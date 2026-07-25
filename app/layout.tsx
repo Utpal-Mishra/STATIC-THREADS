@@ -1,10 +1,15 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Static Threads",
   description: "Understand your wardrobe, build outfits and make smarter clothing purchases."
+};
+
+export const viewport: Viewport = {
+  colorScheme: "dark",
+  themeColor: "#080b0d"
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
