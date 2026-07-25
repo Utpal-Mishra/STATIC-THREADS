@@ -8,13 +8,26 @@ It helps users understand what they own, discover new outfit combinations, maint
 
 The first development foundation includes:
 
-- a responsive Next.js catalogue interface;
+- a minimal dark Next.js interface with restrained colour accents;
+- a responsive wardrobe catalogue;
 - a structured wardrobe catalogue schema;
 - brand, size, category, colour and status filters;
 - a Python image-cleaning pipeline for product-only catalogue images;
 - privacy controls that exclude original photographs from Git;
+- a sale-radar preference interface for brand, size, discount, price and retailer matching;
+- planned coverage for direct brand stores and multi-brand retailers such as JD Sports, Sports Direct and NEXT;
+- browser notification permission and device-local preference storage;
 - catalogue contribution and naming guidance;
-- automated frontend and Python validation through GitHub Actions.
+- automated frontend and Python validation through GitHub Actions;
+- GitHub Pages static deployment configuration.
+
+## Sale radar status
+
+The current application can store sale preferences, automatically inherit brands and sizes from the wardrobe catalogue, and request browser notification permission.
+
+Live product prices, stock checks and scheduled alerts are not connected yet. They require approved retailer or affiliate feeds plus a secure backend matching service. The interface marks this status clearly rather than presenting sample data as live offers.
+
+See [`docs/SALE_MONITORING.md`](docs/SALE_MONITORING.md) for the matching rules, retailer adapter design and implementation phases.
 
 ## Core workflow
 
@@ -24,6 +37,7 @@ The first development foundation includes:
 4. Add the approved image and item metadata to the catalogue.
 5. Update the catalogue, README and changelog on an `agent/*` branch.
 6. Review and merge the draft pull request into `main`.
+7. GitHub Actions validates and deploys the static application.
 
 ## Privacy principle
 
@@ -32,10 +46,12 @@ This is a public repository. Original wardrobe photographs must not be committed
 ## Technology
 
 - Next.js and TypeScript
-- Responsive CSS
+- Responsive dark-theme CSS
 - JSON-backed MVP catalogue
+- Device-local sale preference storage
+- Browser Notification API for permission and test notifications
 - Python, Pillow and optional `rembg` image processing
-- GitHub Actions
+- GitHub Actions and GitHub Pages
 
 ## Local development
 
@@ -78,6 +94,9 @@ types/                   Shared catalogue types
 - wardrobe item creation form
 - outfit compatibility engine
 - brand-specific size profile
+- approved retailer and affiliate feed adapters
+- scheduled sale matching backend
+- web push and email notification delivery
 - shopping URL analysis
 - duplicate-purchase warning
 - outfit and cost-per-wear insights
