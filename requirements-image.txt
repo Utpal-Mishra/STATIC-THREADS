@@ -1,0 +1,4 @@
+Pillow>=10.4,<13
+pillow-heif>=0.18,<2
+rembg>=2.0,<3
+onnxruntime>=1.18,<2
