@@ -103,6 +103,38 @@ export function StyleStudio({ catalog }: { catalog: WardrobeCatalog }) {
         })}
       </div>
 
+      <div className="recommendation-heading">
+        <div>
+          <p className="micro-label">Saved inspiration</p>
+          <h3>Looks to recreate next</h3>
+        </div>
+        <p>These are style directions from your latest references. They are kept separate from wardrobe-owned combinations.</p>
+      </div>
+
+      <div className="outfit-grid">
+        {styleProfile.inspirationLooks.map((look) => (
+          <article className="outfit-card" key={look.id}>
+            <div className="outfit-card-topline">
+              <span>Inspiration</span>
+              <small>{look.mood}</small>
+            </div>
+            <h3>{look.name}</h3>
+            <div className="outfit-stack" aria-label={`${look.name} pieces`}>
+              {look.pieces.map((piece) => (
+                <div className="outfit-piece" key={piece}>
+                  <span className="outfit-piece-swatch" />
+                  <div>
+                    <strong>{piece}</strong>
+                    <small>Target combination</small>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="outfit-why">{look.why}</p>
+          </article>
+        ))}
+      </div>
+
       <div className="recommendation-heading shop-heading" id="shop-similar">
         <div>
           <p className="micro-label">Current retailer matches</p>
