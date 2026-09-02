@@ -150,23 +150,73 @@ export function StyleStudio({ catalog }: { catalog: WardrobeCatalog }) {
               <span className="retailer-pill">{suggestion.retailer}</span>
               <strong>{suggestion.match}% match</strong>
             </div>
-            <div className="shop-product-visual" aria-hidden="true">
-              <span>{suggestion.category}</span>
-              <b>{suggestion.colour}</b>
-            </div>
+
+            {suggestion.imageUrl ? (
+              <a href={suggestion.href} target="_blank" rel="noreferrer" aria-label={`Open ${suggestion.name} at ${suggestion.retailer}`}>
+                <div
+                  style={{
+                    position: "relative",
+                    overflow: "hidden",
+                    width: "100%",
+                    aspectRatio: "4 / 5",
+                    borderRadius: "16px",
+                    background: "#f4f1ea",
+                    marginBottom: "14px"
+                  }}
+                >
+                  <img
+                    src={suggestion.imageUrl}
+                    alt={suggestion.imageAlt ?? `${suggestion.name} from ${suggestion.retailer}`}
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      display: "block"
+                    }}
+                  />
+                  <span
+                    style={{
+                      position: "absolute",
+                      left: "10px",
+                      bottom: "10px",
+                      padding: "6px 9px",
+                      borderRadius: "999px",
+                      background: "rgba(8,11,13,.82)",
+                      color: "#f4f6f2",
+                      fontSize: ".68rem",
+                      fontWeight: 800,
+                      backdropFilter: "blur(10px)"
+                    }}
+                  >
+                    Live product image
+                  </span>
+                </div>
+              </a>
+            ) : (
+              <div className="shop-product-visual" aria-label={`${suggestion.retailer} product preview unavailable`}>
+                <span>{suggestion.category}</span>
+                <b>{suggestion.colour}</b>
+                <small style={{ marginTop: "8px", opacity: 0.72 }}>Retailer image feed pending</small>
+              </div>
+            )}
+
             <h3>{suggestion.name}</h3>
             <p className="shop-price">{suggestion.priceLabel}</p>
             {suggestion.sale ? <p className="sale-note">{suggestion.sale}</p> : null}
+            {suggestion.availability ? <p className="sale-note">{suggestion.availability}</p> : null}
             <p className="shop-reason">{suggestion.reason}</p>
             <div className="pairing-row">
               <span>Pairs with</span>
               <div>{suggestion.pairsWith.slice(0, 3).map((id) => <small key={id}>{byId.get(id)?.name ?? id}</small>)}</div>
             </div>
+            {suggestion.productCode ? <small className="checked-at">Product code: {suggestion.productCode}</small> : null}
             <a href={suggestion.href} target="_blank" rel="noreferrer" className="shop-link">
               {suggestion.sourceType === "product" ? "View current product" : "Browse matching range"}
               <span aria-hidden="true">↗</span>
             </a>
-            <small className="checked-at">Checked {suggestion.checkedAt}. Price and stock may change.</small>
+            <small className="checked-at">Checked {suggestion.checkedAt}. Price, stock and retailer imagery may change.</small>
           </article>
         ))}
       </div>
