@@ -50,6 +50,10 @@ function itemLabel(item: WardrobeItem | undefined) {
   return item ? `${item.name} · ${item.primaryColour}` : "Wardrobe item";
 }
 
+function hasItem(itemIds: readonly string[], id: string) {
+  return itemIds.includes(id);
+}
+
 export function DecisionLab({ catalog }: { catalog: WardrobeCatalog }) {
   const [occasion, setOccasion] = useState<OccasionLabel>("Office");
   const [lockedItemId, setLockedItemId] = useState("none");
@@ -60,8 +64,8 @@ export function DecisionLab({ catalog }: { catalog: WardrobeCatalog }) {
     const preferred = outfitPreference[occasion];
     const candidates = styleProfile.outfits.filter((entry) => preferred.includes(entry.id));
     if (lockedItemId === "none") return candidates[0] ?? styleProfile.outfits[0];
-    return candidates.find((entry) => entry.itemIds.includes(lockedItemId))
-      ?? styleProfile.outfits.find((entry) => entry.itemIds.includes(lockedItemId))
+    return candidates.find((entry) => hasItem(entry.itemIds, lockedItemId))
+      ?? styleProfile.outfits.find((entry) => hasItem(entry.itemIds, lockedItemId))
       ?? candidates[0]
       ?? styleProfile.outfits[0];
   }, [occasion, lockedItemId]);
