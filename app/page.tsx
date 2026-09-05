@@ -1,4 +1,5 @@
 import catalogData from "@/data/catalog.json";
+import { DecisionLab } from "@/components/DecisionLab";
 import { SaleRadar } from "@/components/SaleRadar";
 import { StyleStudio } from "@/components/StyleStudio";
 import { WardrobeCatalogView } from "@/components/WardrobeCatalog";
@@ -16,6 +17,7 @@ export default function HomePage() {
         </a>
         <nav aria-label="Primary navigation">
           <a href="#style-studio">Style</a>
+          <a href="#decision-lab">Decide</a>
           <a href="#wardrobe">Wardrobe</a>
           <a href="#shop-similar">Shop similar</a>
           <a href="#sale-radar">Sale radar</a>
@@ -27,15 +29,14 @@ export default function HomePage() {
           <p className="eyebrow">Your wardrobe, understood</p>
           <h1>Wear more.<br />Buy better.</h1>
           <p className="hero-copy">
-            Your closet now learns from the outfits you actually wear: relaxed shirts, neutral layers,
-            dark bottoms and clean sneakers. Use that profile to build better combinations and judge
-            future purchases against what already works.
+            Your closet learns from the outfits you actually wear, then helps you choose what to wear
+            and judge whether a future purchase adds real wardrobe value.
           </p>
           <div className="hero-tags" aria-label="Static Threads capabilities">
             <span>Personal style profile</span>
-            <span>Wardrobe combinations</span>
+            <span>What should I wear?</span>
+            <span>Purchase intelligence</span>
             <span>Retail match</span>
-            <span>Sale alerts</span>
           </div>
         </div>
 
@@ -50,6 +51,8 @@ export default function HomePage() {
       </section>
 
       <StyleStudio catalog={catalog} />
+
+      <DecisionLab catalog={catalog} />
 
       <div id="wardrobe">
         <WardrobeCatalogView catalog={catalog} />
