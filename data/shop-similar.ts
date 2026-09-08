@@ -40,7 +40,7 @@ export const shopSuggestions: ShopSuggestion[] = [
     imageUrl: "https://xcdn.next.co.uk/common/items/default/default/itemimages/3_4Ratio/product/lge/AG4042s.jpg",
     imageAlt: "NEXT stone tapered fit chinos",
     refreshStatus: "stale",
-    lastAttemptAt: "2026-09-07T10:22:32Z"
+    lastAttemptAt: "2026-09-08T09:44:28Z"
   },
   {
     id: "hm-black-relaxed-shorts",
@@ -58,7 +58,7 @@ export const shopSuggestions: ShopSuggestion[] = [
     availability: "Refresh unavailable; open H&M to verify current stock",
     productCode: "1265992001",
     refreshStatus: "stale",
-    lastAttemptAt: "2026-09-07T10:22:32Z"
+    lastAttemptAt: "2026-09-08T09:44:28Z"
   },
   {
     id: "zara-white-linen-shirt",
@@ -72,12 +72,12 @@ export const shopSuggestions: ShopSuggestion[] = [
     reason: "Your strongest repeated look is a breathable light shirt with a relaxed collar and rolled sleeves. This current Zara linen shirt is a direct extension of that pattern.",
     href: "https://www.zara.com/ie/en/100-linen-regular-fit-shirt-p01063410.html",
     sourceType: "product",
-    checkedAt: "2026-09-07",
+    checkedAt: "2026-09-08",
     availability: "Product page reachable at Zara when refreshed",
     productCode: "1063/410/250",
     imageAlt: "Zara 100% Linen Regular Fit Shirt",
     refreshStatus: "live",
-    lastAttemptAt: "2026-09-07T10:22:32Z"
+    lastAttemptAt: "2026-09-08T09:44:28Z"
   },
   {
     id: "uniqlo-cotton-linen-shirt-jacket",
@@ -92,13 +92,13 @@ export const shopSuggestions: ShopSuggestion[] = [
     reason: "A lightweight natural overshirt gives you the same easy layering effect as your current cream and beige pieces without becoming too formal.",
     href: "https://www.uniqlo.com/eu-ie/en/products/E482443-000/00?colorDisplayCode=69",
     sourceType: "product",
-    checkedAt: "2026-09-07",
+    checkedAt: "2026-09-08",
     availability: "Product page reachable at UNIQLO when refreshed",
     productCode: "482443",
     imageUrl: "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/482443/item/eugoods_57_482443_3x4.jpg",
     imageAlt: "UNIQLO cotton linen blend shirt jacket",
     refreshStatus: "live",
-    lastAttemptAt: "2026-09-07T10:22:32Z"
+    lastAttemptAt: "2026-09-08T09:44:28Z"
   },
   {
     id: "zara-relaxed-trousers",
@@ -112,10 +112,10 @@ export const shopSuggestions: ShopSuggestion[] = [
     reason: "A slightly fuller charcoal or stone trouser preserves your dark-bottom preference while giving the silhouette more polish than denim.",
     href: "https://www.zara.com/ie/en/man-trousers-l838.html",
     sourceType: "category",
-    checkedAt: "2026-09-07",
+    checkedAt: "2026-09-08",
     availability: "Current Zara range; category link refreshed",
     refreshStatus: "manual",
-    lastAttemptAt: "2026-09-07T10:22:32Z"
+    lastAttemptAt: "2026-09-08T09:44:28Z"
   },
   {
     id: "cos-beige-overshirt",
@@ -133,7 +133,7 @@ export const shopSuggestions: ShopSuggestion[] = [
     availability: "Refresh unavailable; open COS to verify current stock",
     productCode: "1326530001",
     refreshStatus: "stale",
-    lastAttemptAt: "2026-09-07T10:22:32Z"
+    lastAttemptAt: "2026-09-08T09:44:28Z"
   },
   {
     id: "mango-linen-shirt",
@@ -148,12 +148,12 @@ export const shopSuggestions: ShopSuggestion[] = [
     reason: "Mango's linen shirt gives you the same relaxed shirt language with a slightly cleaner, more grown-up finish.",
     href: "https://shop.mango.com/ie/en/p/men/shirts/linen/regular-fit-100-linen-shirt/27085939/57/00",
     sourceType: "product",
-    checkedAt: "2026-09-07",
+    checkedAt: "2026-09-08",
     availability: "Product page reachable at MANGO when refreshed",
     productCode: "27085939",
     imageUrl: "https://media.mango.com/is/image/punto/27085939-57-002?wid=1024",
     imageAlt: "MANGO Regular-fit 100% Linen Shirt",
     refreshStatus: "live",
-    lastAttemptAt: "2026-09-07T10:22:32Z"
+    lastAttemptAt: "2026-09-08T09:44:28Z"
   },
 ];
