@@ -1,3 +1,4 @@
+import Link from "next/link";
 import catalogData from "@/data/catalog.json";
 import { DecisionLab } from "@/components/DecisionLab";
 import { SaleRadar } from "@/components/SaleRadar";
@@ -21,6 +22,7 @@ export default function HomePage() {
           <a href="#wardrobe">Wardrobe</a>
           <a href="#shop-similar">Shop similar</a>
           <a href="#sale-radar">Sale radar</a>
+          <Link href="/account/">Account</Link>
         </nav>
       </header>
 
@@ -36,7 +38,7 @@ export default function HomePage() {
             <span>Personal style profile</span>
             <span>What should I wear?</span>
             <span>Purchase intelligence</span>
-            <span>Retail match</span>
+            <span>Private wardrobe foundation</span>
           </div>
         </div>
 
