@@ -18,6 +18,10 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_BASE_PATH: /STATIC-THREADS
+      NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
     steps:
       - name: Checkout repository
@@ -34,11 +38,19 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
+      - name: Type-check application
+        run: npm run typecheck
+
       - name: Build static application
         run: npm run build
 
-      - name: Disable Jekyll processing
-        run: touch out/.nojekyll
+      - name: Verify exported application
+        run: |
+          test -f out/index.html
+          test -d out/_next
+          cp out/index.html out/404.html
+          touch out/.nojekyll
+          echo "Static Threads export verified for /STATIC-THREADS"
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v4

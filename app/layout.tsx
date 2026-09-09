@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import "./globals.css";
 import "./style-studio.css";
 import "./decision-lab.css";
+import "./account.css";
 
 export const metadata: Metadata = {
   title: "Static Threads",

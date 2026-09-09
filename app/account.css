@@ -1,0 +1,132 @@
+.account-shell {
+  padding: 72px 0 24px;
+}
+
+.account-card {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: clamp(24px, 5vw, 48px);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: rgba(18, 23, 27, 0.94);
+  box-shadow: var(--shadow);
+}
+
+.account-card h1 {
+  max-width: 760px;
+  margin: 0;
+  font-size: clamp(2.7rem, 7vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+}
+
+.account-copy {
+  max-width: 690px;
+  margin: 24px 0 0;
+  color: #c1c8c3;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.account-status-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.account-status-grid > div,
+.account-note {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #0b0f12;
+}
+
+.account-status-grid span {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.account-status-grid strong {
+  font-size: 1rem;
+}
+
+.account-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.account-form label {
+  display: grid;
+  gap: 8px;
+}
+
+.account-form label > span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.account-form input {
+  min-height: 50px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #080b0d;
+  color: var(--ink);
+  padding: 0 14px;
+}
+
+.account-form button {
+  width: fit-content;
+  min-height: 46px;
+  border: 0;
+  border-radius: 12px;
+  padding: 0 16px;
+  background: var(--mint);
+  color: #07100c;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.account-form button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.account-message,
+.account-note p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.account-message.sent {
+  color: #92f7ce;
+}
+
+.account-message.error {
+  color: #ffc1bb;
+}
+
+.account-note {
+  margin-top: 24px;
+}
+
+.account-note strong {
+  display: block;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 720px) {
+  .account-status-grid {
+    grid-template-columns: 1fr;
+  }
+}
