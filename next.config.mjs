@@ -1,12 +1,14 @@
 /** @type {import('next').NextConfig} */
 const isProduction = process.env.NODE_ENV === "production";
+const configuredBasePath = process.env.NEXT_PUBLIC_BASE_PATH?.trim();
+const basePath = configuredBasePath ?? (isProduction ? "/STATIC-THREADS" : "");
 
 const nextConfig = {
   reactStrictMode: true,
   output: "export",
   trailingSlash: true,
-  basePath: isProduction ? "/STATIC-THREADS" : "",
-  assetPrefix: isProduction ? "/STATIC-THREADS/" : "",
+  basePath,
+  assetPrefix: basePath ? `${basePath}/` : "",
   images: {
     unoptimized: true
   }
