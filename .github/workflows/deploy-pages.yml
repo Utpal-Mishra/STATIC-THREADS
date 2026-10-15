@@ -1,4 +1,5 @@
 name: Deploy Static Threads to GitHub Pages
+# GitHub Pages source: GitHub Actions
 
 on:
   push:
