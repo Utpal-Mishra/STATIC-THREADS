@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type CSSProperties } from "react";
 import type { WardrobeCatalog, WardrobeItem } from "@/types/catalog";
 
 interface WardrobeCatalogViewProps {
@@ -65,6 +65,7 @@ export function WardrobeCatalogView({ catalog }: WardrobeCatalogViewProps) {
   const [category, setCategory] = useState(ALL);
   const [size, setSize] = useState(ALL);
   const [query, setQuery] = useState("");
+  const [activeClosetIndex, setActiveClosetIndex] = useState<number | null>(null);
 
   const brands = unique(catalog.items.map((item) => item.brand));
   const categories = unique(catalog.items.map((item) => item.category));
@@ -81,12 +82,61 @@ export function WardrobeCatalogView({ catalog }: WardrobeCatalogViewProps) {
   const grouped = groupOrder.map((group) => ({ group, items: filteredItems.filter((item) => groupFor(item) === group) })).filter(({ items }) => items.length > 0);
   const availableCount = catalog.items.filter((item) => item.status === "available").length;
   const brandCount = unique(catalog.items.map((item) => item.brand)).length;
+  const closetItems = catalog.items.filter((item) => !["shoes", "accessories"].includes(item.category)).slice(0, 12);
 
   return (
     <section className="catalog-section" aria-labelledby="catalog-heading">
       <div className="section-heading">
         <div><p className="eyebrow">Digital wardrobe</p><h2 id="catalog-heading">My closet</h2></div>
         <p>Updated {catalog.updatedAt}</p>
+      </div>
+
+      <div className="closet-stage" aria-label="Interactive wardrobe rail">
+        <div className="closet-copy">
+          <p className="micro-label">Walk-in closet</p>
+          <h3>Move through your wardrobe.</h3>
+          <p>Hover, focus or tap a hanger. The selected piece steps forward while the rail makes space around it.</p>
+        </div>
+        <div className="closet-scene">
+          <div className="closet-glow" aria-hidden="true" />
+          <div className="closet-rail" aria-hidden="true" />
+          <div
+            className={`closet-rack ${activeClosetIndex !== null ? "has-active" : ""}`}
+            onMouseLeave={() => setActiveClosetIndex(null)}
+          >
+            {closetItems.map((item, index) => {
+              const distance = activeClosetIndex === null ? 0 : Math.abs(index - activeClosetIndex);
+              const direction = activeClosetIndex === null || index === activeClosetIndex ? 0 : index < activeClosetIndex ? -1 : 1;
+              const style = {
+                "--closet-distance": distance,
+                "--closet-direction": direction
+              } as CSSProperties;
+              return (
+                <button
+                  type="button"
+                  className={`closet-garment ${activeClosetIndex === index ? "is-active" : ""}`}
+                  key={item.id}
+                  style={style}
+                  onMouseEnter={() => setActiveClosetIndex(index)}
+                  onFocus={() => setActiveClosetIndex(index)}
+                  onBlur={() => setActiveClosetIndex(null)}
+                  onClick={() => setActiveClosetIndex(activeClosetIndex === index ? null : index)}
+                  aria-label={`${item.brand} ${item.name}, ${item.primaryColour}`}
+                >
+                  <span className="closet-hanger" aria-hidden="true" />
+                  <span className="closet-card">
+                    <img src={productIllustration(item)} alt="" />
+                    <span className="closet-label">
+                      <strong>{item.name}</strong>
+                      <small>{item.brand} · {item.primaryColour}</small>
+                    </span>
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+          <div className="closet-floor-shadow" aria-hidden="true" />
+        </div>
       </div>
 
       <div className="metric-grid">
