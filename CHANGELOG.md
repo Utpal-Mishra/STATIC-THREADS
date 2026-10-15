@@ -6,6 +6,8 @@ All meaningful Static Threads changes are recorded here.
 
 ### Added
 
+- Day 1 kinetic walk-in closet: hanger rail browsing with hover/focus/touch selection, directional depth, pointer-driven parallax, previous/next controls, selected-garment inspector, mobile horizontal browsing and reduced-motion accessibility.
+
 - Initial Next.js and TypeScript application foundation.
 - Responsive wardrobe catalogue with search, brand, category and size filters.
 - Empty-state workflow for the first approved wardrobe item.

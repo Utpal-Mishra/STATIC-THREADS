@@ -1461,3 +1461,220 @@ a {
     transform: translateY(10px) scale(1.1);
   }
 }
+
+
+/* Day 1: kinetic walk-in closet */
+.closet-scene {
+  --closet-pan: 0;
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.018), transparent 38%),
+    linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+  background-size: auto, 72px 100%;
+}
+
+.closet-back-wall {
+  position: absolute;
+  inset: 12px 18px 22px;
+  z-index: 0;
+  border: 1px solid rgba(255,255,255,.045);
+  border-radius: 24px;
+  background:
+    linear-gradient(110deg, rgba(255,255,255,.018), transparent 32%),
+    radial-gradient(circle at calc(50% + var(--closet-pan) * 14%), 18%, rgba(124,242,194,.09), transparent 28rem);
+  box-shadow: inset 0 -70px 80px rgba(0,0,0,.2);
+  transform: translateX(calc(var(--closet-pan) * -8px)) rotateY(calc(var(--closet-pan) * 1.2deg));
+  transition: transform 220ms ease-out, background 220ms ease-out;
+  transform-origin: center;
+}
+
+.closet-rail {
+  transform: translateX(calc(var(--closet-pan) * -7px)) rotateY(calc(var(--closet-pan) * 1.4deg));
+  transition: transform 220ms ease-out;
+}
+
+.closet-rack {
+  transform: translateX(calc(var(--closet-pan) * -18px)) rotateY(calc(var(--closet-pan) * 2.5deg));
+  transition: transform 220ms ease-out;
+}
+
+.closet-rack::before {
+  position: absolute;
+  top: 38px;
+  left: 8%;
+  width: 84%;
+  height: 210px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(124,242,194,.045), transparent 70%);
+  content: "";
+  filter: blur(18px);
+  pointer-events: none;
+  transform: translateX(calc(var(--closet-pan) * 22px));
+}
+
+.closet-garment {
+  will-change: transform, filter, opacity;
+}
+
+.closet-garment::after {
+  position: absolute;
+  top: 31px;
+  left: 50%;
+  z-index: -1;
+  width: 34px;
+  height: 205px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.02));
+  content: "";
+  filter: blur(11px);
+  opacity: .5;
+  transform: translateX(-50%) translateZ(-35px);
+}
+
+.closet-garment.is-active {
+  animation: closet-step-forward 420ms cubic-bezier(.16,.9,.24,1);
+}
+
+.closet-garment.is-active .closet-hanger {
+  animation: hanger-breathe 2.6s ease-in-out infinite;
+}
+
+.closet-controls {
+  position: absolute;
+  right: 14px;
+  bottom: 12px;
+  z-index: 12;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 999px;
+  background: rgba(6,9,11,.72);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 12px 30px rgba(0,0,0,.25);
+}
+
+.closet-controls button {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 50%;
+  color: var(--ink);
+  background: rgba(255,255,255,.04);
+  cursor: pointer;
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.closet-controls button:hover,
+.closet-controls button:focus-visible {
+  border-color: rgba(124,242,194,.42);
+  background: rgba(124,242,194,.12);
+  transform: scale(1.08);
+}
+
+.closet-controls span {
+  min-width: 78px;
+  color: #c7cfca;
+  font-size: .66rem;
+  font-weight: 800;
+  letter-spacing: .02em;
+  text-align: center;
+}
+
+.closet-inspector {
+  position: absolute;
+  left: 18px;
+  bottom: 12px;
+  z-index: 11;
+  display: grid;
+  max-width: min(320px, 48%);
+  gap: 3px;
+  padding: 11px 13px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  background: rgba(6,9,11,.64);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 12px 34px rgba(0,0,0,.2);
+  transform: translateY(4px);
+  transition: border-color 220ms ease, transform 220ms ease, background 220ms ease;
+}
+
+.closet-inspector.is-visible {
+  border-color: rgba(124,242,194,.22);
+  background: rgba(7,12,13,.8);
+  transform: translateY(0);
+}
+
+.closet-inspector-kicker {
+  color: var(--mint);
+  font-size: .56rem;
+  font-weight: 850;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+
+.closet-inspector strong {
+  overflow: hidden;
+  font-size: .84rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.closet-inspector small {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: .64rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@keyframes closet-step-forward {
+  0% { transform: translateY(0) translateZ(0) scale(1); }
+  62% { transform: translateY(22px) translateZ(168px) scale(1.42); }
+  100% { transform: translateY(18px) translateZ(150px) scale(1.38); }
+}
+
+@keyframes hanger-breathe {
+  0%, 100% { transform: translateY(0) rotate(-.8deg); }
+  50% { transform: translateY(1px) rotate(.8deg); }
+}
+
+@media (max-width: 620px) {
+  .closet-controls {
+    right: 10px;
+    bottom: 9px;
+  }
+
+  .closet-inspector {
+    top: 10px;
+    right: 10px;
+    bottom: auto;
+    left: 10px;
+    max-width: none;
+    pointer-events: none;
+  }
+
+  .closet-rack,
+  .closet-rail,
+  .closet-back-wall {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .closet-back-wall,
+  .closet-rail,
+  .closet-rack,
+  .closet-controls button,
+  .closet-inspector {
+    transition-duration: 1ms !important;
+  }
+
+  .closet-garment.is-active,
+  .closet-garment.is-active .closet-hanger {
+    animation: none !important;
+  }
+}
