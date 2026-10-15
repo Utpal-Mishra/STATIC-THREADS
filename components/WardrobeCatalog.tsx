@@ -66,6 +66,7 @@ export function WardrobeCatalogView({ catalog }: WardrobeCatalogViewProps) {
   const [size, setSize] = useState(ALL);
   const [query, setQuery] = useState("");
   const [activeClosetIndex, setActiveClosetIndex] = useState<number | null>(null);
+  const [closetPan, setClosetPan] = useState(0);
 
   const brands = unique(catalog.items.map((item) => item.brand));
   const categories = unique(catalog.items.map((item) => item.category));
@@ -83,6 +84,21 @@ export function WardrobeCatalogView({ catalog }: WardrobeCatalogViewProps) {
   const availableCount = catalog.items.filter((item) => item.status === "available").length;
   const brandCount = unique(catalog.items.map((item) => item.brand)).length;
   const closetItems = catalog.items.filter((item) => !["shoes", "accessories"].includes(item.category)).slice(0, 12);
+  const activeClosetItem = activeClosetIndex === null ? null : closetItems[activeClosetIndex] ?? null;
+
+  function stepCloset(direction: -1 | 1) {
+    setActiveClosetIndex((current) => {
+      if (closetItems.length === 0) return null;
+      if (current === null) return direction > 0 ? 0 : closetItems.length - 1;
+      return (current + direction + closetItems.length) % closetItems.length;
+    });
+  }
+
+  function updateClosetPan(clientX: number, left: number, width: number) {
+    if (width <= 0) return;
+    const relative = Math.max(0, Math.min(1, (clientX - left) / width));
+    setClosetPan((relative - 0.5) * 2);
+  }
 
   return (
     <section className="catalog-section" aria-labelledby="catalog-heading">
@@ -97,7 +113,17 @@ export function WardrobeCatalogView({ catalog }: WardrobeCatalogViewProps) {
           <h3>Move through your wardrobe.</h3>
           <p>Hover, focus or tap a hanger. The selected piece steps forward while the rail makes space around it.</p>
         </div>
-        <div className="closet-scene">
+        <div
+          className="closet-scene"
+          style={{ "--closet-pan": closetPan } as CSSProperties}
+          onPointerMove={(event) => {
+            if (event.pointerType === "touch") return;
+            const bounds = event.currentTarget.getBoundingClientRect();
+            updateClosetPan(event.clientX, bounds.left, bounds.width);
+          }}
+          onPointerLeave={() => setClosetPan(0)}
+        >
+          <div className="closet-back-wall" aria-hidden="true" />
           <div className="closet-glow" aria-hidden="true" />
           <div className="closet-rail" aria-hidden="true" />
           <div
@@ -136,6 +162,26 @@ export function WardrobeCatalogView({ catalog }: WardrobeCatalogViewProps) {
             })}
           </div>
           <div className="closet-floor-shadow" aria-hidden="true" />
+          <div className="closet-controls" aria-label="Walk through wardrobe">
+            <button type="button" onClick={() => stepCloset(-1)} aria-label="Previous garment">←</button>
+            <span>{activeClosetIndex === null ? "Walk the rail" : `${activeClosetIndex + 1} / ${closetItems.length}`}</span>
+            <button type="button" onClick={() => stepCloset(1)} aria-label="Next garment">→</button>
+          </div>
+          <aside className={`closet-inspector ${activeClosetItem ? "is-visible" : ""}`} aria-live="polite">
+            {activeClosetItem ? (
+              <>
+                <span className="closet-inspector-kicker">Selected from your rail</span>
+                <strong>{activeClosetItem.name}</strong>
+                <small>{activeClosetItem.brand} · {activeClosetItem.primaryColour} · {activeClosetItem.fit}</small>
+              </>
+            ) : (
+              <>
+                <span className="closet-inspector-kicker">Interactive closet</span>
+                <strong>Hover or use the arrows</strong>
+                <small>Move left ↔ right to create depth across the rail.</small>
+              </>
+            )}
+          </aside>
         </div>
       </div>
 
