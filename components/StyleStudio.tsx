@@ -1,5 +1,6 @@
 import { shopSuggestions } from "@/data/shop-similar";
-import { styleProfile } from "@/data/style-profile";\nimport { visualLookbooks, type VisualLookbookId } from "@/data/lookbook-visuals";
+import { styleProfile } from "@/data/style-profile";
+import { visualLookbooks, type VisualLookbookId } from "@/data/lookbook-visuals";
 import type { WardrobeCatalog, WardrobeItem } from "@/types/catalog";
 
 const colourMap: Record<string, string> = {
