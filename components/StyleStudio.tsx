@@ -1,5 +1,5 @@
 import { shopSuggestions } from "@/data/shop-similar";
-import { styleProfile } from "@/data/style-profile";
+import { styleProfile } from "@/data/style-profile";\nimport { visualLookbooks, type VisualLookbookId } from "@/data/lookbook-visuals";
 import type { WardrobeCatalog, WardrobeItem } from "@/types/catalog";
 
 const colourMap: Record<string, string> = {
@@ -80,12 +80,34 @@ export function StyleStudio({ catalog }: { catalog: WardrobeCatalog }) {
         {styleProfile.outfits.map((outfit) => {
           const items = outfit.itemIds.map((id) => byId.get(id)).filter((item): item is WardrobeItem => Boolean(item));
           return (
-            <article className="outfit-card" key={outfit.id}>
+            <article className="outfit-card visual-outfit-card" key={outfit.id}>
               <div className="outfit-card-topline">
                 <span>{outfit.score}% match</span>
                 <small>{outfit.mood}</small>
               </div>
               <h3>{outfit.name}</h3>
+              {outfit.id in visualLookbooks ? (() => {
+                const visual = visualLookbooks[outfit.id as VisualLookbookId];
+                return (
+                  <div className="lookbook-shell">
+                    <div className="lookbook-media">
+                      <img src={visual.asset} alt={`${outfit.name} on a faceless mannequin shown walking, sitting, front, back and side`} loading="lazy" />
+                      <div className="lookbook-fallback" aria-hidden="true">
+                        <span className="fallback-mannequin" />
+                        <strong>Multi-angle mannequin preview</strong>
+                        <small>Walking · Sitting · Front · Back · Side</small>
+                      </div>
+                    </div>
+                    <div className="lookbook-view-row" aria-label="Available outfit views">
+                      {visual.views.map((view) => <span key={view}>{view}</span>)}
+                    </div>
+                    <div className="lookbook-model-note">
+                      <strong>Model: faceless mannequin</strong>
+                      <small>Architecture ready for a future user-photo virtual try-on.</small>
+                    </div>
+                  </div>
+                );
+              })() : null}
               <div className="outfit-stack" aria-label={`${outfit.name} items`}>
                 {items.map((item) => (
                   <div className="outfit-piece" key={item.id}>
