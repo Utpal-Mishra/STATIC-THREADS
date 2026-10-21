@@ -91,12 +91,18 @@ export function StyleStudio({ catalog }: { catalog: WardrobeCatalog }) {
                 return (
                   <div className="lookbook-shell">
                     <div className="lookbook-media">
-                      <img src={visual.asset} alt={`${outfit.name} on a faceless mannequin shown walking, sitting, front, back and side`} loading="lazy" />
-                      <div className="lookbook-fallback" aria-hidden="true">
-                        <span className="fallback-mannequin" />
-                        <strong>Multi-angle mannequin preview</strong>
-                        <small>Walking · Sitting · Front · Back · Side</small>
-                      </div>
+                      {visual.asset ? (
+                        <img src={visual.asset} alt={`${outfit.name} on a faceless mannequin shown walking, sitting, front, back and side`} loading="lazy" />
+                      ) : (
+                        <div className="pose-board" aria-label={`${outfit.name} mannequin preview from five practical angles`}>
+                          {visual.views.map((view, index) => (
+                            <div className={`pose-tile pose-${index + 1}`} key={view}>
+                              <span className="pose-mannequin"><i /><b /></span>
+                              <small>{view}</small>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                     <div className="lookbook-view-row" aria-label="Available outfit views">
                       {visual.views.map((view) => <span key={view}>{view}</span>)}
