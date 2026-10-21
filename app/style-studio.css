@@ -450,3 +450,130 @@
     gap: 10px 14px;
   }
 }
+
+.visual-outfit-card {
+  overflow: hidden;
+}
+
+.lookbook-shell {
+  margin-top: 18px;
+}
+
+.lookbook-media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255,255,255,.08), transparent 18rem),
+    linear-gradient(145deg, #191d20, #0a0d0f);
+}
+
+.lookbook-media img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  background: #111518;
+}
+
+.lookbook-fallback {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 8px;
+  padding: 28px;
+  text-align: center;
+  color: #dce2de;
+}
+
+.fallback-mannequin {
+  position: relative;
+  width: 76px;
+  height: 164px;
+  margin-bottom: 6px;
+  border-radius: 40px 40px 24px 24px;
+  background: linear-gradient(#d8d4cc 0 21%, #343a3e 21% 58%, #24282b 58%);
+  box-shadow: 0 18px 38px rgba(0,0,0,.28);
+}
+
+.fallback-mannequin::before {
+  content: "";
+  position: absolute;
+  top: -28px;
+  left: 21px;
+  width: 34px;
+  height: 42px;
+  border-radius: 50% 50% 46% 46%;
+  background: #d8d4cc;
+}
+
+.lookbook-fallback strong {
+  font-size: .82rem;
+}
+
+.lookbook-fallback small {
+  color: var(--muted);
+  font-size: .68rem;
+}
+
+.lookbook-view-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.lookbook-view-row span {
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: #cbd2cd;
+  background: rgba(255,255,255,.03);
+  font-size: .65rem;
+  font-weight: 760;
+}
+
+.lookbook-model-note {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 11px;
+  padding: 12px 13px;
+  border-radius: 13px;
+  background: rgba(124,242,194,.055);
+}
+
+.lookbook-model-note strong {
+  color: #b9f8db;
+  font-size: .72rem;
+}
+
+.lookbook-model-note small {
+  color: var(--muted);
+  text-align: right;
+  font-size: .63rem;
+}
+
+@media (max-width: 680px) {
+  .lookbook-media {
+    border-radius: 15px;
+  }
+
+  .lookbook-model-note {
+    display: block;
+  }
+
+  .lookbook-model-note small {
+    display: block;
+    margin-top: 5px;
+    text-align: left;
+  }
+}
