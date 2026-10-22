@@ -133,3 +133,26 @@
 - ID: ST-DEC-20261022-02
 - Decision: all runtime public assets must be base-path-aware rather than assuming root-domain deployment.
 - Status: implemented.
+
+
+## 2026-10-22 — Image integrity and wardrobe-photo truthfulness
+
+### System Log
+- ID: ST-SYS-20261022-03
+- Root cause: the previous GitHub connector upload truncated large WebP payloads; deployed lookbook blobs were only 7.5–15 KB and were corrupt.
+- Change: re-encoded the four lookbooks as compact WebP assets small enough for lossless connector transfer and replaced the corrupt blobs.
+
+### Product / Feature Log
+- ID: ST-PROD-20261022-02
+- Change: generated catalogue illustrations are now explicitly labelled as placeholders in both the walk-in rail and wardrobe cards.
+- Rationale: do not present derived vector illustrations as the user's original garment photography.
+
+### Data & Integration Log
+- ID: ST-DATA-20261022-02
+- Historical source status: the July wardrobe photos informed the 26-item catalogue, but the original binary attachments are not currently recoverable through the project file context.
+- Rule: only mark an image as original/cleaned-user-photo after a real source asset is connected.
+
+### Decision Log
+- ID: ST-DEC-20261022-03
+- Decision: no generated catalogue illustration may be represented as an original wardrobe image.
+- Status: implemented.
