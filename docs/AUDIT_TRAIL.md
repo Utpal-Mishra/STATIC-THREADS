@@ -79,3 +79,38 @@
 - Decision: standardise Recommended Combination visuals around the approved dark lookbook composition and five-view mannequin presentation.
 - Future decision gate: replace mannequin with user avatar only after private photo upload, consent, storage, and deletion controls are implemented.
 - Status: implemented at UI/data-model level.
+
+
+## 2026-10-22 — Real lookbook assets replace silhouette fallback
+
+### Product / Feature Log
+- ID: ST-PROD-20261022-01
+- Change: Replaced the crude CSS mannequin fallback in Recommended Combinations with the approved multi-angle mannequin lookbook image assets.
+- UX rule: if a real visual asset is unavailable, show a neutral generation/pending state rather than a fake body silhouette.
+
+### System Log
+- ID: ST-SYS-20261022-01
+- Change: Added four compressed WebP lookbook assets under public/lookbooks and wired them through the visual-lookbook registry.
+- Performance: assets were compressed for web delivery while retaining the approved five-view composition.
+
+### Architecture Log
+- ID: ST-ARCH-20261022-01
+- Decision: add visual fidelity metadata to distinguish a style-preview render from a future exact-garment render and user-avatar render.
+- Rationale: avoid implying that a generated lookbook is an exact representation of the user's owned garments when colour, cut or fabric details differ.
+
+### Risk & Assumption Log
+- ID: ST-RISK-20261022-01
+- Risk: a polished mannequin preview can be mistaken for an exact digital twin of the wardrobe items.
+- Mitigation: label current boards as Visual style preview and keep the actual owned item list visible beneath the render.
+- Status: mitigated at UI level; exact-garment generation remains a planned fidelity upgrade.
+
+### Data & Integration Log
+- ID: ST-DATA-20261022-01
+- Assets: city-minimal.webp, linen-earth.webp, coastal-blue.webp, olive-neutral.webp.
+- Registry field: fidelity = style-preview.
+- Next integration: exact-garment rendering should derive directly from each recommendation's owned item images before user-photo try-on is enabled.
+
+### Decision Log
+- ID: ST-DEC-20261022-01
+- Decision: never use the CSS silhouette mannequin as a user-facing substitute for a missing render.
+- Status: implemented.
