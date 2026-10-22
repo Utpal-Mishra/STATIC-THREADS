@@ -24,6 +24,7 @@ function swatch(item: WardrobeItem) {
 }
 
 export function StyleStudio({ catalog }: { catalog: WardrobeCatalog }) {
+  const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
   const byId = new Map(catalog.items.map((item) => [item.id, item]));
 
   return (
