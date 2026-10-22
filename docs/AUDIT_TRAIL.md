@@ -156,3 +156,40 @@
 - ID: ST-DEC-20261022-03
 - Decision: no generated catalogue illustration may be represented as an original wardrobe image.
 - Status: implemented.
+
+
+## 2026-10-22 — Refined high-quality Recommendation 03/04 lookbooks
+
+### Product / Feature Log
+- ID: ST-PROD-20261022-03
+- Change: Replaced the lower-fidelity Recommendation 03 (Coastal Blue) and Recommendation 04 (Olive Neutral) mannequin boards with refined five-view renders.
+- Views retained: Walking, Sitting, Front View, Back View, Side View.
+- Visual intent: sharper garment texture, cleaner mannequin anatomy, clearer trouser drape, footwear, pose separation, and more consistent dark lookbook presentation.
+
+### System Log
+- ID: ST-SYS-20261022-04
+- Change: Added a deterministic build-time lookbook reconstruction step before Next.js build/export.
+- Build command: npm run build:lookbooks && next build.
+- Validation: the build fails when decoded byte count differs from the approved asset or the reconstructed file does not contain valid RIFF/WEBP container headers.
+
+### Architecture Log
+- ID: ST-ARCH-20261022-02
+- Decision: store refined binary lookbook assets as small base64 source chunks and reconstruct WebP files during CI/build.
+- Rationale: the GitHub connector previously truncated larger binary transfers; chunked text is auditable and survives the connector reliably.
+
+### Data & Integration Log
+- ID: ST-DATA-20261022-03
+- Coastal Blue approved reconstructed asset: 48,011 bytes, refined high-quality WebP.
+- Olive Neutral approved reconstructed asset: 16,890 bytes, optimized WebP for recommendation-card delivery.
+- Output paths remain public/lookbooks/coastal-blue.webp and public/lookbooks/olive-neutral.webp, so no recommendation component API change is required.
+
+### Risk & Assumption Log
+- ID: ST-RISK-20261022-03
+- Risk: large generated image uploads can be silently truncated by repository tooling.
+- Mitigation: source chunking + exact expected byte validation + WebP header validation on every application build.
+- Residual risk: current renders remain style-preview visuals rather than exact digital twins of the user's owned garments.
+
+### Decision Log
+- ID: ST-DEC-20261022-04
+- Decision: refined Recommendation 03/04 renders replace the current compressed boards while preserving the existing five-angle UX and style-preview disclosure.
+- Status: implementation complete on feature branch; pending CI and deployment verification.
