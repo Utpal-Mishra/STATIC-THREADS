@@ -1,29 +1,33 @@
 export const visualLookbooks = {
   "city-minimal": {
     title: "City Minimal",
-    asset: null,
+    asset: "/lookbooks/city-minimal.webp",
     model: "mannequin",
+    fidelity: "style-preview",
     views: ["Walking", "Sitting", "Front View", "Back View", "Side View"],
     futureModel: "user-avatar"
   },
   "weekend-ease": {
     title: "Weekend Ease",
-    asset: null,
+    asset: "/lookbooks/linen-earth.webp",
     model: "mannequin",
+    fidelity: "style-preview",
     views: ["Walking", "Sitting", "Front View", "Back View", "Side View"],
     futureModel: "user-avatar"
   },
   "layered-neutral": {
     title: "Layered Neutral",
-    asset: null,
+    asset: "/lookbooks/coastal-blue.webp",
     model: "mannequin",
+    fidelity: "style-preview",
     views: ["Walking", "Sitting", "Front View", "Back View", "Side View"],
     futureModel: "user-avatar"
   },
   "utility-travel": {
     title: "Utility Travel",
-    asset: null,
+    asset: "/lookbooks/olive-neutral.webp",
     model: "mannequin",
+    fidelity: "style-preview",
     views: ["Walking", "Sitting", "Front View", "Back View", "Side View"],
     futureModel: "user-avatar"
   }
