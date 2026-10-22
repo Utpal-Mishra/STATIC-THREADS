@@ -156,3 +156,32 @@
 - ID: ST-DEC-20261022-03
 - Decision: no generated catalogue illustration may be represented as an original wardrobe image.
 - Status: implemented.
+
+
+## 2026-10-22 — High-quality recommendation lookbooks
+
+### Product / Feature Log
+- ID: ST-PROD-20261022-03
+- Change: Replaced Coastal Blue and Olive Neutral recommendation boards with refined higher-fidelity mannequin renders.
+- Improvement: corrected the visibly degraded sitting/side-view regions, improved fabric texture, silhouette edges, hands/feet, and overall consistency across the five-view presentation.
+
+### System Log
+- ID: ST-SYS-20261022-04
+- Change: Added web-optimized high-quality WebP assets for the two affected recommendation boards.
+- Delivery: retained the existing base-path-aware asset integration and static GitHub Pages compatibility.
+
+### Experiment Log
+- ID: ST-EXP-20261022-02
+- Hypothesis: higher-quality renders will improve outfit confidence and reduce visual distrust caused by compression/generation artefacts.
+- Measurement later: visual-card engagement, outfit acceptance, and rejection feedback.
+
+### Risk & Assumption Log
+- ID: ST-RISK-20261022-04
+- Risk: excessive image compression can reintroduce artefacts, while oversized assets can fail or slow deployment.
+- Mitigation: preserve source fidelity, resize with high-quality resampling, and use tuned WebP compression before repository upload.
+- Status: implemented for Coastal Blue and Olive Neutral.
+
+### Decision Log
+- ID: ST-DEC-20261022-04
+- Decision: recommendation lookbooks must pass a visual-quality gate before publication; obvious artefacts in any pose require regeneration rather than aggressive compression.
+- Status: active standard.
