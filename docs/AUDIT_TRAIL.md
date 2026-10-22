@@ -185,3 +185,31 @@
 - ID: ST-DEC-20261022-04
 - Decision: recommendation lookbooks must pass a visual-quality gate before publication; obvious artefacts in any pose require regeneration rather than aggressive compression.
 - Status: active standard.
+
+
+## 2026-10-22 — Text-free recommendation lookbooks
+
+### Product / Feature Log
+- ID: ST-PROD-20261022-04
+- Change: Removed embedded titles and pose labels from the four recommendation lookbook images.
+- UI rule: recommendation names, match score, mood and pose labels belong to the app interface, not baked into image assets.
+
+### System Log
+- ID: ST-SYS-20261022-05
+- Change: Consolidated the four cleaned lookbooks into one optimized WebP atlas and render each recommendation via background-position cropping.
+- Benefit: one asset request, consistent quality, smaller deployment payload, and no text baked into the image.
+
+### Architecture Log
+- ID: ST-ARCH-20261022-02
+- Decision: keep visual assets presentation-only and keep semantic text in HTML/UI.
+- Rationale: improves accessibility, responsive layout, localization readiness and future user-avatar substitution.
+
+### Data & Integration Log
+- ID: ST-DATA-20261022-03
+- Asset: public/lookbooks/recommendation-lookbooks-atlas.webp.
+- Atlas mapping: City Minimal top-left; Weekend Ease top-right; Layered Neutral bottom-left; Utility Travel bottom-right.
+
+### Decision Log
+- ID: ST-DEC-20261022-05
+- Decision: future generated recommendation imagery must contain no embedded text, labels or titles.
+- Status: implemented.

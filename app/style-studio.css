@@ -573,3 +573,12 @@
   color: var(--muted);
   line-height: 1.5;
 }
+
+.lookbook-atlas-panel {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background-repeat: no-repeat;
+  background-size: 200% 200%;
+  background-color: #111518;
+}
