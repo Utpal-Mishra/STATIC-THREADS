@@ -95,7 +95,15 @@ export function StyleStudio({ catalog }: { catalog: WardrobeCatalog }) {
                     <div className="lookbook-media">
                       {visual.asset ? (
                         <>
-                          <img src={`${publicBasePath}${visual.asset}`} alt={`${outfit.name} visual style preview on a faceless mannequin shown walking, sitting, front, back and side`} loading="lazy" />
+                          <div
+                            className="lookbook-atlas-panel"
+                            role="img"
+                            aria-label={`${outfit.name} visual style preview on a faceless mannequin shown walking, sitting, front, back and side`}
+                            style={{
+                              backgroundImage: `url("${publicBasePath}${visual.asset}")`,
+                              backgroundPosition: visual.atlasPosition
+                            }}
+                          />
                           <span className="lookbook-preview-badge">Visual style preview</span>
                         </>
                       ) : (
