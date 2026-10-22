@@ -152,6 +152,7 @@ export function WardrobeCatalogView({ catalog }: WardrobeCatalogViewProps) {
                   <span className="closet-hanger" aria-hidden="true" />
                   <span className="closet-card">
                     <img src={productIllustration(item)} alt="" />
+                    {item.image.startsWith("embedded:") ? <span className="catalog-source-badge">Placeholder</span> : null}
                     <span className="closet-label">
                       <strong>{item.name}</strong>
                       <small>{item.brand} · {item.primaryColour}</small>
@@ -205,7 +206,10 @@ export function WardrobeCatalogView({ catalog }: WardrobeCatalogViewProps) {
           <div className="catalog-grid">
             {items.map((item) => (
               <article className="item-card" key={item.id}>
-                <div className="item-image-wrap"><img src={productIllustration(item)} alt={`${item.brand} ${item.name}`} className="item-image" /></div>
+                <div className="item-image-wrap">
+                  <img src={productIllustration(item)} alt={`${item.brand} ${item.name} generated catalogue placeholder`} className="item-image" />
+                  {item.image.startsWith("embedded:") ? <span className="catalog-source-badge">Generated placeholder · original photo not connected</span> : null}
+                </div>
                 <div className="item-content">
                   <div className="item-title-row"><div><p>{item.brand}</p><h3>{item.name}</h3></div><span className={`status status-${item.status}`}>{item.status}</span></div>
                   <dl className="item-details"><div><dt>Size</dt><dd>{item.size}</dd></div><div><dt>Colour</dt><dd>{item.primaryColour}</dd></div><div><dt>Fit</dt><dd>{item.fit}</dd></div><div><dt>Type</dt><dd>{item.subcategory}</dd></div></dl>

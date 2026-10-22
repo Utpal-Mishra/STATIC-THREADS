@@ -1678,3 +1678,25 @@ a {
     animation: none !important;
   }
 }
+
+.catalog-source-badge {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  z-index: 4;
+  max-width: calc(100% - 20px);
+  padding: 6px 8px;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 999px;
+  color: #eef2ef;
+  background: rgba(8,11,13,.78);
+  backdrop-filter: blur(10px);
+  font-size: .58rem;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.item-image-wrap,
+.closet-card {
+  position: relative;
+}
