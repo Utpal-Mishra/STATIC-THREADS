@@ -93,15 +93,14 @@ export function StyleStudio({ catalog }: { catalog: WardrobeCatalog }) {
                   <div className="lookbook-shell">
                     <div className="lookbook-media">
                       {visual.asset ? (
-                        <img src={visual.asset} alt={`${outfit.name} on a faceless mannequin shown walking, sitting, front, back and side`} loading="lazy" />
+                        <>
+                          <img src={visual.asset} alt={`${outfit.name} visual style preview on a faceless mannequin shown walking, sitting, front, back and side`} loading="lazy" />
+                          <span className="lookbook-preview-badge">Visual style preview</span>
+                        </>
                       ) : (
-                        <div className="pose-board" aria-label={`${outfit.name} mannequin preview from five practical angles`}>
-                          {visual.views.map((view, index) => (
-                            <div className={`pose-tile pose-${index + 1}`} key={view}>
-                              <span className="pose-mannequin"><i /><b /></span>
-                              <small>{view}</small>
-                            </div>
-                          ))}
+                        <div className="lookbook-pending" role="status">
+                          <strong>Visual preview being generated</strong>
+                          <small>No placeholder mannequin is shown when a real render is unavailable.</small>
                         </div>
                       )}
                     </div>
@@ -110,7 +109,7 @@ export function StyleStudio({ catalog }: { catalog: WardrobeCatalog }) {
                     </div>
                     <div className="lookbook-model-note">
                       <strong>Model: faceless mannequin</strong>
-                      <small>Architecture ready for a future user-photo virtual try-on.</small>
+                      <small>Approved five-view presentation. Exact garment rendering and user-photo try-on are the next fidelity layers.</small>
                     </div>
                   </div>
                 );
