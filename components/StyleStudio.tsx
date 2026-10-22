@@ -94,7 +94,7 @@ export function StyleStudio({ catalog }: { catalog: WardrobeCatalog }) {
                     <div className="lookbook-media">
                       {visual.asset ? (
                         <>
-                          <img src={visual.asset} alt={`${outfit.name} visual style preview on a faceless mannequin shown walking, sitting, front, back and side`} loading="lazy" />
+                          <img src={`${publicBasePath}${visual.asset}`} alt={`${outfit.name} visual style preview on a faceless mannequin shown walking, sitting, front, back and side`} loading="lazy" />
                           <span className="lookbook-preview-badge">Visual style preview</span>
                         </>
                       ) : (
