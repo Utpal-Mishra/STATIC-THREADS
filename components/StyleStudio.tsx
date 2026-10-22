@@ -24,6 +24,7 @@ function swatch(item: WardrobeItem) {
 }
 
 export function StyleStudio({ catalog }: { catalog: WardrobeCatalog }) {
+  const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
   const byId = new Map(catalog.items.map((item) => [item.id, item]));
 
   return (
@@ -94,7 +95,7 @@ export function StyleStudio({ catalog }: { catalog: WardrobeCatalog }) {
                     <div className="lookbook-media">
                       {visual.asset ? (
                         <>
-                          <img src={visual.asset} alt={`${outfit.name} visual style preview on a faceless mannequin shown walking, sitting, front, back and side`} loading="lazy" />
+                          <img src={`${publicBasePath}${visual.asset}`} alt={`${outfit.name} visual style preview on a faceless mannequin shown walking, sitting, front, back and side`} loading="lazy" />
                           <span className="lookbook-preview-badge">Visual style preview</span>
                         </>
                       ) : (

@@ -114,3 +114,22 @@
 - ID: ST-DEC-20261022-01
 - Decision: never use the CSS silhouette mannequin as a user-facing substitute for a missing render.
 - Status: implemented.
+
+
+## 2026-10-22 — GitHub Pages lookbook asset path fix
+
+### System Log
+- ID: ST-SYS-20261022-02
+- Change: Exposed the deployment base path to client-side code and prefixed lookbook image URLs with it.
+- Root cause: GitHub Pages serves the application under /STATIC-THREADS, while absolute /lookbooks/... URLs resolved against github.io root and returned 404.
+
+### Risk & Assumption Log
+- ID: ST-RISK-20261022-02
+- Risk: future public assets can silently break when the app is deployed below a sub-path.
+- Mitigation: use the shared NEXT_PUBLIC_BASE_PATH when constructing runtime public-asset URLs.
+- Status: implemented.
+
+### Decision Log
+- ID: ST-DEC-20261022-02
+- Decision: all runtime public assets must be base-path-aware rather than assuming root-domain deployment.
+- Status: implemented.
