@@ -295,3 +295,28 @@
 - ID: ST-DEC-20261023-04
 - Decision: recommendation-image interactions should enhance the existing layout without materially increasing image height.
 - Status: implemented.
+
+
+## 2026-10-23 — Approved high-quality mannequin lookbooks integrated
+
+### Product / Feature Log
+- ID: ST-PROD-20261023-05
+- Change: Replaced all four recommendation visuals with the user-approved high-quality mannequin lookbooks.
+- Layout: preserved the current compact five-view image sizing.
+- Interaction: retained the existing desktop hover pop-out behavior and mobile carousel behavior.
+
+### Data & Integration Log
+- ID: ST-DATA-20261023-04
+- Assets:
+  - city-minimal-approved-hq.webp
+  - weekend-ease-approved-hq.webp
+  - layered-neutral-approved-hq.webp
+  - utility-travel-approved-hq.webp
+- Source: approved generated mannequin lookbooks from this project session.
+- Encoding: optimized WebP at 1448×1086 to preserve clarity while remaining deployable through GitHub Pages.
+
+### Decision Log
+- ID: ST-DEC-20261023-05
+- Decision: use the approved high-quality lookbooks as the recommendation-section visual baseline.
+- Constraint: do not alter recommendation image height/proportions when upgrading visual fidelity.
+- Status: implemented.
