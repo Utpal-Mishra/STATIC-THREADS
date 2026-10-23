@@ -1,7 +1,7 @@
 import { shopSuggestions } from "@/data/shop-similar";
 import { styleProfile } from "@/data/style-profile";
 import { visualLookbooks, type VisualLookbookId } from "@/data/lookbook-visuals";
-import { RecommendationLookbook } from "@/components/RecommendationLookbook";
+import { RecommendationCard } from "@/components/RecommendationCard";
 import type { WardrobeCatalog, WardrobeItem } from "@/types/catalog";
 
 const colourMap: Record<string, string> = {
@@ -100,37 +100,17 @@ export function StyleStudio({ catalog }: { catalog: WardrobeCatalog }) {
       <div className="outfit-grid">
         {styleProfile.outfits.map((outfit) => {
           const items = outfit.itemIds.map((id) => byId.get(id)).filter((item): item is WardrobeItem => Boolean(item));
+          if (!(outfit.id in visualLookbooks)) return null;
+          const visual = visualLookbooks[outfit.id as VisualLookbookId];
+
           return (
-            <article className="outfit-card visual-outfit-card" key={outfit.id}>
-              <div className="outfit-card-topline">
-                <span>{outfit.score}% match</span>
-                <small>{outfit.mood}</small>
-              </div>
-              <h3>{outfit.name}</h3>
-              {outfit.id in visualLookbooks ? (() => {
-                const visual = visualLookbooks[outfit.id as VisualLookbookId];
-                return (
-                  <RecommendationLookbook
-                    title={outfit.name}
-                    asset={visual.asset}
-                    views={visual.views}
-                    publicBasePath={publicBasePath}
-                  />
-                );
-              })() : null}
-              <div className="outfit-stack" aria-label={`${outfit.name} items`}>
-                {items.map((item) => (
-                  <div className="outfit-piece" key={item.id}>
-                    <span className="outfit-piece-swatch" style={{ background: swatch(item) }} />
-                    <div>
-                      <strong>{item.name}</strong>
-                      <small>{item.brand} · {item.primaryColour}</small>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <p className="outfit-why">{outfit.why}</p>
-            </article>
+            <RecommendationCard
+              key={outfit.id}
+              outfit={outfit}
+              items={items}
+              visual={visual}
+              publicBasePath={publicBasePath}
+            />
           );
         })}
       </div>
