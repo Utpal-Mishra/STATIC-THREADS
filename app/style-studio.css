@@ -461,13 +461,9 @@
 
 .lookbook-five-view {
   display: grid;
-  grid-template-columns: minmax(0, .9fr) minmax(0, 1.4fr) minmax(0, .9fr);
-  grid-template-rows: repeat(2, minmax(170px, 1fr));
-  grid-template-areas:
-    "walking front back"
-    "sitting front side";
-  gap: 12px;
-  min-height: 510px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  min-height: 0;
 }
 
 .lookbook-pose {
@@ -487,9 +483,9 @@
 
 .lookbook-pose:hover {
   z-index: 4;
-  transform: translateY(-5px) scale(1.035);
+  transform: translateY(-4px) scale(1.025);
   border-color: rgba(124,242,194,.38);
-  box-shadow: 0 24px 54px rgba(0,0,0,.36);
+  box-shadow: 0 18px 38px rgba(0,0,0,.30);
 }
 
 .lookbook-pose-image {
@@ -518,11 +514,6 @@
   font-weight: 820;
 }
 
-.pose-walking { grid-area: walking; }
-.pose-sitting { grid-area: sitting; }
-.pose-front { grid-area: front; }
-.pose-back { grid-area: back; }
-.pose-side { grid-area: side; }
 
 .pose-walking .lookbook-pose-image,
 .pose-sitting .lookbook-pose-image,
@@ -569,8 +560,7 @@
 
 @media (max-width: 1100px) and (min-width: 681px) {
   .lookbook-five-view {
-    grid-template-rows: repeat(2, minmax(150px, 1fr));
-    min-height: 450px;
+    min-height: 0;
   }
 }
 
@@ -594,8 +584,8 @@
   }
 
   .lookbook-pose {
-    flex: 0 0 min(82vw, 360px);
-    aspect-ratio: 3 / 4;
+    flex: 0 0 min(78vw, 340px);
+    aspect-ratio: 4 / 5;
     scroll-snap-align: center;
     border-radius: 18px;
     box-shadow: 0 14px 34px rgba(0,0,0,.24);
@@ -648,3 +638,20 @@
   }
 }
 
+
+
+/* Preserve the original compact five-view proportions on desktop. */
+@media (min-width: 681px) {
+  .lookbook-five-view {
+    align-items: stretch;
+  }
+
+  .lookbook-pose {
+    aspect-ratio: 4 / 5;
+    min-height: 0;
+  }
+
+  .lookbook-pose-image {
+    min-height: 0;
+  }
+}
