@@ -421,3 +421,41 @@
 - ID: ST-DEC-20261023-10
 - Decision: desktop recommendation navigation uses a showcase presentation rather than a linear 1/5-to-5/5 scrolling strip.
 - Status: implemented.
+
+
+## 2026-10-23 — HQ colour-render integration
+
+### Product / Feature Log
+- ID: ST-PROD-20261023-11
+- Change: Colour filters now switch the five-pose mannequin board when the selected garment colours exactly match an available rendered preset.
+- Added explicit HQ preset chips so users can jump directly to combinations with real mannequin visuals.
+- City Minimal: Powder Blue + Cream render integrated.
+- Weekend Ease: Olive + Cream render integrated.
+- Layered Neutral: original Beige + Black five-pose board upgraded with the new HQ render.
+- Utility Travel: White + Olive render integrated.
+- Custom mixes without a generated asset remain palette previews and are labelled accordingly.
+
+### System Log
+- ID: ST-SYS-20261023-07
+- Change: RecommendationCard now resolves the selected garment palette against structured variants and passes the matching asset to RecommendationLookbook.
+- Matching rule: all garment-part colours must match the rendered preset before the mannequin image changes.
+- Existing Showcase Slider and mobile five-pose carousel consume the swapped asset automatically.
+
+### Architecture Log
+- ID: ST-ARCH-20261023-05
+- Decision: visual switching is asset-backed, not browser-filter based.
+- Benefit: mannequin skin, lighting, fabric texture, background and shadows remain visually credible.
+
+### Data & Integration Log
+- ID: ST-DATA-20261023-04
+- Added generated HQ assets:
+  - public/lookbooks/city-minimal-powder-blue-cream.webp
+  - public/lookbooks/weekend-ease-olive-cream.webp
+  - public/lookbooks/layered-neutral-beige-black.webp
+  - public/lookbooks/utility-travel-white-olive.webp
+- Remaining alternate colour variants are still structured recommendations but do not yet have dedicated mannequin boards.
+
+### Decision Log
+- ID: ST-DEC-20261023-11
+- Decision: only combinations with an exact generated five-pose asset may claim to change the mannequin visual.
+- Status: implemented.
