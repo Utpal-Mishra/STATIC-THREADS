@@ -89,6 +89,19 @@ export function RecommendationCard({
     [colours, original]
   );
 
+  const selectedVariant = useMemo(
+    () =>
+      variants.find((variant) =>
+        (Object.keys(partLabels) as PartKey[]).every(
+          (part) => (variant.colours[part] ?? undefined) === (colours[part] ?? undefined)
+        )
+      ),
+    [colours, variants]
+  );
+
+  const activeAsset = selectedVariant?.asset ?? visual.asset;
+  const hasExactRender = Boolean(selectedVariant?.asset);
+
   const options = useMemo(() => {
     const result = {} as Record<PartKey, string[]>;
     (Object.keys(partLabels) as PartKey[]).forEach((part) => {
@@ -125,7 +138,7 @@ export function RecommendationCard({
 
       <RecommendationLookbook
         title={outfit.name}
-        asset={visual.asset}
+        asset={activeAsset}
         views={visual.views}
         publicBasePath={publicBasePath}
       />
@@ -137,6 +150,28 @@ export function RecommendationCard({
             <strong>Try another colour direction</strong>
           </div>
           {changed ? <button type="button" onClick={reset}>Reset</button> : null}
+        </div>
+
+        <div className="rendered-preset-row" aria-label="Rendered colour presets">
+          {variants.filter((variant) => variant.asset).map((variant) => (
+            <button
+              type="button"
+              key={variant.id}
+              className={selectedVariant?.id === variant.id ? "is-selected" : ""}
+              onClick={() =>
+                setColours({
+                  top: variant.colours.top,
+                  trousers: variant.colours.trousers,
+                  layer: variant.colours.layer,
+                  cap: variant.colours.cap,
+                  footwear: variant.colours.footwear
+                })
+              }
+            >
+              {variant.label}
+              <span>HQ</span>
+            </button>
+          ))}
         </div>
 
         <div className="colour-filter-groups">
@@ -165,12 +200,14 @@ export function RecommendationCard({
           })}
         </div>
 
-        <div className={`colour-visual-status ${changed ? "is-preview" : "is-original"}`}>
-          <span>{changed ? "Palette preview" : "Original HQ render"}</span>
+        <div className={`colour-visual-status ${hasExactRender ? (changed ? "is-rendered" : "is-original") : "is-preview"}`}>
+          <span>{hasExactRender ? (changed ? "HQ colour render" : "Original HQ render") : "Palette preview"}</span>
           <small>
-            {changed
-              ? "Selected colours update the outfit palette below. The mannequin remains on the approved HQ render until a matching five-pose colour asset is available."
-              : "The five mannequin poses match the original recommendation palette."}
+            {hasExactRender
+              ? changed
+                ? "The five mannequin poses now match this approved colour combination."
+                : "The five mannequin poses match the original recommendation palette."
+              : "This custom mix updates the palette below. Choose an approved rendered combination to update the mannequin."}
           </small>
         </div>
       </div>
