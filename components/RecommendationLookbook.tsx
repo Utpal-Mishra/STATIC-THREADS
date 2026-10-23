@@ -35,8 +35,21 @@ export function RecommendationLookbook({ title, asset, views, publicBasePath }: 
   const goTo = (index: number) => {
     const normalized = (index + views.length) % views.length;
     setActive(normalized);
-    const child = trackRef.current?.children.item(normalized) as HTMLElement | null;
-    child?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+
+    if (window.matchMedia("(max-width: 680px)").matches) {
+      const child = trackRef.current?.children.item(normalized) as HTMLElement | null;
+      child?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+    }
+  };
+
+  const showcaseClass = (index: number) => {
+    const total = views.length;
+    const forward = (index - active + total) % total;
+    if (forward === 0) return "is-active";
+    if (forward === 1) return "is-next";
+    if (forward === total - 1) return "is-prev";
+    if (forward === 2) return "is-far-next";
+    return "is-far-prev";
   };
 
   const step = (direction: -1 | 1) => {
@@ -49,6 +62,7 @@ export function RecommendationLookbook({ title, asset, views, publicBasePath }: 
         className="lookbook-five-view"
         ref={trackRef}
         onScroll={(event) => {
+          if (window.innerWidth > 680) return;
           const element = event.currentTarget;
           const center = element.scrollLeft + element.clientWidth / 2;
           let nearest = 0;
@@ -67,7 +81,7 @@ export function RecommendationLookbook({ title, asset, views, publicBasePath }: 
         aria-label={`${title} five-view outfit preview`}
       >
         {views.map((view, index) => (
-          <figure className={`lookbook-pose ${cropClasses[index] ?? "pose-front"}`} key={view}>
+          <figure className={`lookbook-pose ${cropClasses[index] ?? "pose-front"} ${showcaseClass(index)}`} key={view}>
             <div
               className="lookbook-pose-image"
               role="img"

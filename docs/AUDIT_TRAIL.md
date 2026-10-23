@@ -401,3 +401,23 @@
 - ID: ST-DEC-20261023-09
 - Decision: enlarge recommendation visuals by scaling both width and height proportionally rather than changing aspect ratio.
 - Status: implemented.
+
+
+## 2026-10-23 — Recommendation Showcase Slider
+
+### Product / Feature Log
+- ID: ST-PROD-20261023-10
+- Change: Replaced the desktop recommendation scroll-strip behavior with a Showcase Slider for every recommended combination.
+- Desktop: one active pose is centered and enlarged; adjacent poses remain visible at reduced scale; remaining poses recede instead of progressively covering the strip.
+- Navigation: previous/next controls cycle through all five poses.
+- Mobile: existing swipe carousel and dot indicators remain unchanged.
+
+### System Log
+- ID: ST-SYS-20261023-06
+- Change: Desktop pose state is now driven by active/previous/next/far-position classes rather than scroll position.
+- Mobile scroll tracking remains active only below the mobile breakpoint.
+
+### Decision Log
+- ID: ST-DEC-20261023-10
+- Decision: desktop recommendation navigation uses a showcase presentation rather than a linear 1/5-to-5/5 scrolling strip.
+- Status: implemented.
