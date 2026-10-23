@@ -486,3 +486,41 @@
 - ID: ST-DEC-20261023-12
 - Decision: no colour control may create a visual state that lacks a corresponding mannequin render.
 - Status: implemented.
+
+
+## 2026-10-23 — Corrupt HQ asset repair
+
+### System Log
+- ID: ST-SYS-20261023-09
+- Root cause: previously committed alternate HQ WebP blobs were not decodable by Pillow/browser WebP decoders, producing empty Showcase Slider panels.
+- Change: alternate recommendation renders are now generated during the Pages build from the existing valid HQ source boards.
+- Build dependency: Pillow + NumPy.
+- Verification: the generation script reopens every output WebP and fails the build if decoding or dimensions are invalid.
+
+### Product / Feature Log
+- ID: ST-PROD-20261023-13
+- City Minimal rendered alternate: Olive + Stone.
+- Weekend Ease rendered alternate: Navy + Stone.
+- Layered Neutral rendered alternate: Olive + Black.
+- Utility Travel rendered alternate: Black + Grey.
+- These variants are intentionally visually distinct from the originals so the mannequin colour change is obvious.
+
+### Data & Integration Log
+- ID: ST-DATA-20261023-05
+- New generated-at-build assets:
+  - city-minimal-olive-stone-generated.webp
+  - weekend-ease-navy-stone-generated.webp
+  - layered-neutral-olive-black-generated.webp
+  - utility-travel-black-grey-generated.webp
+- Corrupt legacy alternate files remain unused and are no longer referenced by the application.
+
+### Risk & Assumption Log
+- ID: ST-RISK-20261023-04
+- Risk: automatic recolouring can affect nearby similarly-coloured pixels.
+- Mitigation: recolouring is constrained by both garment colour ranges and pose-specific upper/lower-body spatial masks, with luminance preserved for texture/shadow retention.
+- Future improvement: replace build-time recolours with dedicated generated HQ renders when a supported generation plan is available.
+
+### Decision Log
+- ID: ST-DEC-20261023-13
+- Decision: no deployed colour variant may rely on an unverified binary image asset.
+- Status: implemented.
