@@ -25,14 +25,14 @@ export const recommendationColourVariants = {
       id: "powder-blue-cream",
       label: "Powder Blue + Cream",
       colours: { top: "Powder blue", trousers: "Cream", cap: "Brown", footwear: "Brown" },
-      note: "A lighter summer direction with warm accessories.",
-      asset: "/lookbooks/city-minimal-powder-blue-cream.webp"
+      note: "A lighter summer direction with warm accessories."
     },
     {
       id: "olive-stone",
       label: "Olive + Stone",
       colours: { top: "Olive", trousers: "Stone", cap: "Navy", footwear: "White" },
-      note: "Earthy and understated while keeping the city-minimal silhouette."
+      note: "Earthy and understated while keeping the city-minimal silhouette.",
+      asset: "/lookbooks/city-minimal-olive-stone-generated.webp"
     },
     {
       id: "white-charcoal",
@@ -53,8 +53,7 @@ export const recommendationColourVariants = {
       id: "olive-cream",
       label: "Olive + Cream",
       colours: { top: "Olive", trousers: "Cream", footwear: "White" },
-      note: "Relaxed earth-tone weekend palette.",
-      asset: "/lookbooks/weekend-ease-olive-cream.webp"
+      note: "Relaxed earth-tone weekend palette."
     },
     {
       id: "powder-blue-sand",
@@ -66,7 +65,8 @@ export const recommendationColourVariants = {
       id: "navy-stone",
       label: "Navy + Stone",
       colours: { top: "Navy", trousers: "Stone", footwear: "White" },
-      note: "A slightly sharper travel-ready option."
+      note: "A slightly sharper travel-ready option.",
+      asset: "/lookbooks/weekend-ease-navy-stone-generated.webp"
     }
   ],
   "layered-neutral": [
@@ -75,7 +75,7 @@ export const recommendationColourVariants = {
       label: "Original",
       colours: { top: "White", trousers: "Black", layer: "Beige", footwear: "White" },
       note: "Current wardrobe combination.",
-      asset: "/lookbooks/layered-neutral-beige-black.webp"
+      asset: "/lookbooks/layered-neutral-approved-hq.webp"
     },
     {
       id: "chocolate-cream",
@@ -87,7 +87,8 @@ export const recommendationColourVariants = {
       id: "olive-black",
       label: "Olive + Black",
       colours: { top: "White", trousers: "Black", layer: "Olive", footwear: "White" },
-      note: "Keeps the dark base and swaps the layer for a muted green."
+      note: "Keeps the dark base and swaps the layer for a muted green.",
+      asset: "/lookbooks/layered-neutral-olive-black-generated.webp"
     },
     {
       id: "navy-grey",
@@ -108,14 +109,14 @@ export const recommendationColourVariants = {
       id: "white-olive",
       label: "White + Olive",
       colours: { top: "White", trousers: "Olive", cap: "Navy", footwear: "White" },
-      note: "Cleaner high-contrast travel palette.",
-      asset: "/lookbooks/utility-travel-white-olive.webp"
+      note: "Cleaner high-contrast travel palette."
     },
     {
       id: "black-grey",
       label: "Black + Grey",
       colours: { top: "Black", trousers: "Grey", cap: "Black", footwear: "White" },
-      note: "More urban and functional while keeping the same silhouette."
+      note: "More urban and functional while keeping the same silhouette.",
+      asset: "/lookbooks/utility-travel-black-grey-generated.webp"
     },
     {
       id: "powder-blue-khaki",
