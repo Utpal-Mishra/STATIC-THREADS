@@ -643,12 +643,30 @@
 /* Preserve the original compact five-view proportions on desktop. */
 @media (min-width: 681px) {
   .lookbook-five-view {
+    display: flex;
     align-items: stretch;
+    gap: 12px;
+    margin-inline: -6px;
+    padding: 8px 6px 10px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .lookbook-five-view::-webkit-scrollbar {
+    display: none;
   }
 
   .lookbook-pose {
+    flex: 0 0 clamp(132px, 30%, 154px);
     aspect-ratio: 4 / 5;
     min-height: 0;
+    scroll-snap-align: start;
+  }
+
+  .lookbook-pose:hover {
+    transform: translateY(-4px) scale(1.055);
   }
 
   .lookbook-pose-image {
