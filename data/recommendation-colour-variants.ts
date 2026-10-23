@@ -25,7 +25,8 @@ export const recommendationColourVariants = {
       id: "powder-blue-cream",
       label: "Powder Blue + Cream",
       colours: { top: "Powder blue", trousers: "Cream", cap: "Brown", footwear: "Brown" },
-      note: "A lighter summer direction with warm accessories."
+      note: "A lighter summer direction with warm accessories.",
+      asset: "/lookbooks/city-minimal-powder-blue-cream.webp"
     },
     {
       id: "olive-stone",
@@ -52,7 +53,8 @@ export const recommendationColourVariants = {
       id: "olive-cream",
       label: "Olive + Cream",
       colours: { top: "Olive", trousers: "Cream", footwear: "White" },
-      note: "Relaxed earth-tone weekend palette."
+      note: "Relaxed earth-tone weekend palette.",
+      asset: "/lookbooks/weekend-ease-olive-cream.webp"
     },
     {
       id: "powder-blue-sand",
@@ -73,7 +75,7 @@ export const recommendationColourVariants = {
       label: "Original",
       colours: { top: "White", trousers: "Black", layer: "Beige", footwear: "White" },
       note: "Current wardrobe combination.",
-      asset: "/lookbooks/layered-neutral-approved-hq.webp"
+      asset: "/lookbooks/layered-neutral-beige-black.webp"
     },
     {
       id: "chocolate-cream",
@@ -106,7 +108,8 @@ export const recommendationColourVariants = {
       id: "white-olive",
       label: "White + Olive",
       colours: { top: "White", trousers: "Olive", cap: "Navy", footwear: "White" },
-      note: "Cleaner high-contrast travel palette."
+      note: "Cleaner high-contrast travel palette.",
+      asset: "/lookbooks/utility-travel-white-olive.webp"
     },
     {
       id: "black-grey",
