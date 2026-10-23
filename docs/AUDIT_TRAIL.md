@@ -238,3 +238,17 @@
 - ID: ST-DEC-20261023-01
 - Decision: use individual recommendation assets instead of a large binary atlas while repository transfer remains size-constrained.
 - Decision: original closet imagery will move through a clean-derivative pipeline before replacing placeholders.
+
+
+## 2026-10-23 — Layered Neutral recommendation image repair
+
+### System Log
+- ID: ST-SYS-20261023-02
+- Issue: Layered Neutral rendered as a blank recommendation image while Utility Travel rendered correctly through the same component.
+- Root cause: the dedicated Layered Neutral text-free WebP is not browser-reliable in the deployed build despite the path being correct.
+- Change: switched Layered Neutral to the earlier stable Coastal Blue visual source.
+
+### Decision Log
+- ID: ST-DEC-20261023-02
+- Decision: recommendation assets should be verified before deployment; interactive runtime fallback will be added only through a dedicated client-side image component.
+- Status: planned.
