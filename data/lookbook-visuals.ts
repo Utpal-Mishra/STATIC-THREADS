@@ -1,7 +1,7 @@
 export const visualLookbooks = {
   "city-minimal": {
     title: "City Minimal",
-    asset: "/lookbooks/city-minimal-textfree.webp",
+    asset: "/lookbooks/city-minimal-approved-hq.webp",
     fallbackAsset: "/lookbooks/city-minimal-textfree.webp",
     model: "mannequin",
     fidelity: "style-preview",
@@ -10,7 +10,7 @@ export const visualLookbooks = {
   },
   "weekend-ease": {
     title: "Weekend Ease",
-    asset: "/lookbooks/weekend-ease-textfree.webp",
+    asset: "/lookbooks/weekend-ease-approved-hq.webp",
     fallbackAsset: "/lookbooks/city-minimal-textfree.webp",
     model: "mannequin",
     fidelity: "style-preview",
@@ -19,7 +19,7 @@ export const visualLookbooks = {
   },
   "layered-neutral": {
     title: "Layered Neutral",
-    asset: "/lookbooks/coastal-blue.webp",
+    asset: "/lookbooks/layered-neutral-approved-hq.webp",
     fallbackAsset: "/lookbooks/city-minimal-textfree.webp",
     model: "mannequin",
     fidelity: "style-preview",
@@ -28,7 +28,7 @@ export const visualLookbooks = {
   },
   "utility-travel": {
     title: "Utility Travel",
-    asset: "/lookbooks/utility-travel-textfree.webp",
+    asset: "/lookbooks/utility-travel-approved-hq.webp",
     fallbackAsset: "/lookbooks/city-minimal-textfree.webp",
     model: "mannequin",
     fidelity: "style-preview",
