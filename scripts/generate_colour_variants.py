@@ -86,16 +86,30 @@ def build_variant(source: str, output: str, operations: list[dict]) -> None:
     for op in operations:
         hsv = rgb_to_hsv(arr)
         h, s, v = hsv[..., 0], hsv[..., 1], hsv[..., 2]
+        r = arr[..., 0].astype(np.int16)
+        g = arr[..., 1].astype(np.int16)
+        b = arr[..., 2].astype(np.int16)
         region = spatial_mask(arr.shape, op["boxes"])
 
         if op["kind"] == "blue":
-            colour = (h > 0.50) & (h < 0.72) & (s > 0.10) & (v > 0.18)
+            # Capture both saturated and very pale blue fabric. The previous
+            # threshold missed sleeves/collars where studio lighting reduced
+            # saturation, leaving visible patches of the original shirt.
+            hue_blue = (h > 0.48) & (h < 0.76) & (s > 0.035) & (v > 0.16)
+            channel_blue = ((b - r) > 4) & ((b - g) > -4) & (v > 0.20)
+            colour = hue_blue | channel_blue
         elif op["kind"] == "green":
-            colour = (h > 0.18) & (h < 0.48) & (s > 0.10) & (v > 0.12)
+            hue_green = (h > 0.16) & (h < 0.50) & (s > 0.055) & (v > 0.12)
+            channel_green = ((g - r) > 3) & ((g - b) > -10) & (v > 0.16)
+            colour = hue_green | channel_green
         elif op["kind"] == "beige":
-            colour = (((h > 0.06) & (h < 0.18) & (s > 0.08)) | (s < 0.16)) & (v > 0.35)
+            warm = (h > 0.045) & (h < 0.20) & (s > 0.045) & (v > 0.24)
+            neutral_light = (s < 0.14) & (v > 0.42)
+            colour = warm | neutral_light
         elif op["kind"] == "cream":
-            colour = (s < 0.28) & (v > 0.52)
+            neutral_light = (s < 0.30) & (v > 0.46)
+            warm_light = (h > 0.05) & (h < 0.18) & (s < 0.38) & (v > 0.42)
+            colour = neutral_light | warm_light
         else:
             raise ValueError(op["kind"])
 
@@ -118,7 +132,7 @@ def main() -> None:
         "city-minimal-approved-hq.webp",
         "city-minimal-olive-stone-generated.webp",
         [
-            {"kind": "blue", "boxes": UPPER, "target": (98, 109, 75), "strength": 0.88},
+            {"kind": "blue", "boxes": UPPER, "target": (86, 101, 65), "strength": 0.94},
             {"kind": "cream", "boxes": LOWER, "target": (154, 149, 136), "strength": 0.72},
         ],
     )
