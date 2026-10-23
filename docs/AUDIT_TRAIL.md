@@ -354,3 +354,35 @@
 - ID: ST-DEC-20261023-07
 - Decision: recommendation crops must preserve the source image aspect ratio; slider navigation must be explicit on desktop and gesture-based on mobile.
 - Status: implemented.
+
+
+## 2026-10-23 — Recommendation colour filters
+
+### Product / Feature Log
+- ID: ST-PROD-20261023-08
+- Change: Added interactive colour filters to each recommended combination for Shirt/Top, Pants/Trousers, Jacket/Layer, Cap and Footwear where applicable.
+- Options are drawn only from approved suggested palette directions for that recommendation.
+- Existing five-pose gallery, desktop slider, mobile carousel and pose order remain unchanged.
+- Selected colours update garment swatches and labels immediately.
+
+### System Log
+- ID: ST-SYS-20261023-05
+- Change: Added a client-side RecommendationCard component so colour selection can be interactive without converting the full StyleStudio section to client rendering.
+- Data source: data/recommendation-colour-variants.ts.
+- Original recommendation palette remains the default and can be restored with Reset.
+
+### Architecture Log
+- ID: ST-ARCH-20261023-04
+- Decision: colour variation is represented as structured garment-level state rather than whole-image CSS filters.
+- Reason: hue/saturation filters would incorrectly recolour mannequin skin, background, shadows and unrelated garments.
+- HQ visual asset slots are supported per variant for future exact five-pose colour renders.
+
+### Recommendation Log
+- ID: ST-REC-20261023-02
+- Recommendation: generate dedicated HQ five-pose assets for the non-original approved palettes before visually swapping mannequin clothing colours.
+- Until those assets exist, the UI clearly labels the state as Palette preview instead of implying the mannequin render has changed.
+
+### Decision Log
+- ID: ST-DEC-20261023-08
+- Decision: never fake garment-specific colour changes by applying whole-image browser filters.
+- Status: implemented.
