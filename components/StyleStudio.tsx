@@ -117,6 +117,12 @@ export function StyleStudio({ catalog }: { catalog: WardrobeCatalog }) {
                             src={`${publicBasePath}${visual.asset}`}
                             alt={`${outfit.name} visual style preview on a faceless mannequin shown walking, sitting, front, back and side`}
                             loading="lazy"
+                            onError={(event) => {
+                              const fallback = `${publicBasePath}${visual.fallbackAsset}`;
+                              if (event.currentTarget.src !== new URL(fallback, window.location.href).href) {
+                                event.currentTarget.src = fallback;
+                              }
+                            }}
                           />
                           <span className="lookbook-preview-badge">Visual style preview</span>
                         </>
