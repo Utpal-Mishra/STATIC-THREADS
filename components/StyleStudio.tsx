@@ -23,6 +23,24 @@ function swatch(item: WardrobeItem) {
   return colourMap[item.primaryColour.toLowerCase()] ?? "#747a76";
 }
 
+function inspirationSwatch(piece: string) {
+  const value = piece.toLowerCase();
+  if (value.includes("striped") && value.includes("blue")) return "linear-gradient(135deg, #edf0ed 0 42%, #7992aa 42% 51%, #edf0ed 51% 70%, #7992aa 70% 79%, #edf0ed 79%)";
+  if (value.includes("powder-blue") || value.includes("light blue")) return "#aabfcd";
+  if (value.includes("light-wash")) return "#9eb1bf";
+  if (value.includes("cream") || value.includes("off-white")) return "#ece7da";
+  if (value.includes("white")) return "#f1efe7";
+  if (value.includes("chocolate") || value.includes("espresso") || value.includes("brown")) return "#765342";
+  if (value.includes("burgundy") || value.includes("maroon")) return "#6f2f3c";
+  if (value.includes("navy")) return "#243147";
+  if (value.includes("teal")) return "#35605c";
+  if (value.includes("forest") || value.includes("olive") || value.includes("sage") || value.includes("green")) return "#697057";
+  if (value.includes("charcoal") || value.includes("grey")) return "#666b6d";
+  if (value.includes("black")) return "#17191c";
+  if (value.includes("beige") || value.includes("tan")) return "#c7b697";
+  return "#747a76";
+}
+
 export function StyleStudio({ catalog }: { catalog: WardrobeCatalog }) {
   const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
   const byId = new Map(catalog.items.map((item) => [item.id, item]));
@@ -95,14 +113,10 @@ export function StyleStudio({ catalog }: { catalog: WardrobeCatalog }) {
                     <div className="lookbook-media">
                       {visual.asset ? (
                         <>
-                          <div
-                            className="lookbook-atlas-panel"
-                            role="img"
-                            aria-label={`${outfit.name} visual style preview on a faceless mannequin shown walking, sitting, front, back and side`}
-                            style={{
-                              backgroundImage: `url("${publicBasePath}${visual.asset}")`,
-                              backgroundPosition: visual.atlasPosition
-                            }}
+                          <img
+                            src={`${publicBasePath}${visual.asset}`}
+                            alt={`${outfit.name} visual style preview on a faceless mannequin shown walking, sitting, front, back and side`}
+                            loading="lazy"
                           />
                           <span className="lookbook-preview-badge">Visual style preview</span>
                         </>
@@ -159,7 +173,7 @@ export function StyleStudio({ catalog }: { catalog: WardrobeCatalog }) {
             <div className="outfit-stack" aria-label={`${look.name} pieces`}>
               {look.pieces.map((piece) => (
                 <div className="outfit-piece" key={piece}>
-                  <span className="outfit-piece-swatch" />
+                  <span className="outfit-piece-swatch" style={{ background: inspirationSwatch(piece) }} />
                   <div>
                     <strong>{piece}</strong>
                     <small>Target combination</small>

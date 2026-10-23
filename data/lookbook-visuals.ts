@@ -1,8 +1,7 @@
 export const visualLookbooks = {
   "city-minimal": {
     title: "City Minimal",
-    asset: "/lookbooks/recommendation-lookbooks-atlas.webp",
-    atlasPosition: "0% 0%",
+    asset: "/lookbooks/city-minimal-textfree.webp",
     model: "mannequin",
     fidelity: "style-preview",
     views: ["Walking", "Sitting", "Front View", "Back View", "Side View"],
@@ -10,8 +9,7 @@ export const visualLookbooks = {
   },
   "weekend-ease": {
     title: "Weekend Ease",
-    asset: "/lookbooks/recommendation-lookbooks-atlas.webp",
-    atlasPosition: "100% 0%",
+    asset: "/lookbooks/weekend-ease-textfree.webp",
     model: "mannequin",
     fidelity: "style-preview",
     views: ["Walking", "Sitting", "Front View", "Back View", "Side View"],
@@ -19,8 +17,7 @@ export const visualLookbooks = {
   },
   "layered-neutral": {
     title: "Layered Neutral",
-    asset: "/lookbooks/recommendation-lookbooks-atlas.webp",
-    atlasPosition: "0% 100%",
+    asset: "/lookbooks/layered-neutral-textfree.webp",
     model: "mannequin",
     fidelity: "style-preview",
     views: ["Walking", "Sitting", "Front View", "Back View", "Side View"],
@@ -28,8 +25,7 @@ export const visualLookbooks = {
   },
   "utility-travel": {
     title: "Utility Travel",
-    asset: "/lookbooks/recommendation-lookbooks-atlas.webp",
-    atlasPosition: "100% 100%",
+    asset: "/lookbooks/utility-travel-textfree.webp",
     model: "mannequin",
     fidelity: "style-preview",
     views: ["Walking", "Sitting", "Front View", "Back View", "Side View"],

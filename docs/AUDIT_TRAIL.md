@@ -213,3 +213,28 @@
 - ID: ST-DEC-20261022-05
 - Decision: future generated recommendation imagery must contain no embedded text, labels or titles.
 - Status: implemented.
+
+
+## 2026-10-23 — Recommendation delivery repair and source-photo recovery
+
+### System Log
+- ID: ST-SYS-20261023-01
+- Root cause: the single recommendation atlas was truncated to a 15 KB Git blob during connector transfer, so the browser received an invalid image.
+- Change: replaced the atlas dependency with four individually compressed, text-free WebP lookbooks that stay below the transfer ceiling.
+- UI: recommendation image ratio changed to 3:2 so the full five-view board is visible without distortion.
+
+### Product / Feature Log
+- ID: ST-PROD-20261023-01
+- Change: added visible colour swatches to every piece in Looks to recreate next.
+- Rationale: inspiration cards should communicate palette at a glance, not only through text.
+
+### Data & Integration Log
+- ID: ST-DATA-20261023-01
+- Recovery: original wardrobe uploads from July 25 and later shoe/accessory uploads are still available in project conversation files.
+- Correction: the earlier statement that those originals were unrecoverable was incorrect.
+- Privacy rule: raw room/background photos will not be published to the public GitHub Pages site. Only cleaned garment-only derivatives should be used as public wardrobe assets.
+
+### Decision Log
+- ID: ST-DEC-20261023-01
+- Decision: use individual recommendation assets instead of a large binary atlas while repository transfer remains size-constrained.
+- Decision: original closet imagery will move through a clean-derivative pipeline before replacing placeholders.
