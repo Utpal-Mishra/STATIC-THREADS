@@ -1,6 +1,7 @@
 import { shopSuggestions } from "@/data/shop-similar";
 import { styleProfile } from "@/data/style-profile";
 import { visualLookbooks, type VisualLookbookId } from "@/data/lookbook-visuals";
+import { RecommendationLookbook } from "@/components/RecommendationLookbook";
 import type { WardrobeCatalog, WardrobeItem } from "@/types/catalog";
 
 const colourMap: Record<string, string> = {
@@ -109,32 +110,12 @@ export function StyleStudio({ catalog }: { catalog: WardrobeCatalog }) {
               {outfit.id in visualLookbooks ? (() => {
                 const visual = visualLookbooks[outfit.id as VisualLookbookId];
                 return (
-                  <div className="lookbook-shell">
-                    <div className="lookbook-media">
-                      {visual.asset ? (
-                        <>
-                          <img
-                            src={`${publicBasePath}${visual.asset}`}
-                            alt={`${outfit.name} visual style preview on a faceless mannequin shown walking, sitting, front, back and side`}
-                            loading="lazy"
-                          />
-                          <span className="lookbook-preview-badge">Visual style preview</span>
-                        </>
-                      ) : (
-                        <div className="lookbook-pending" role="status">
-                          <strong>Visual preview being generated</strong>
-                          <small>No placeholder mannequin is shown when a real render is unavailable.</small>
-                        </div>
-                      )}
-                    </div>
-                    <div className="lookbook-view-row" aria-label="Available outfit views">
-                      {visual.views.map((view) => <span key={view}>{view}</span>)}
-                    </div>
-                    <div className="lookbook-model-note">
-                      <strong>Model: faceless mannequin</strong>
-                      <small>Approved five-view presentation. Exact garment rendering and user-photo try-on are the next fidelity layers.</small>
-                    </div>
-                  </div>
+                  <RecommendationLookbook
+                    title={outfit.name}
+                    asset={visual.asset}
+                    views={visual.views}
+                    publicBasePath={publicBasePath}
+                  />
                 );
               })() : null}
               <div className="outfit-stack" aria-label={`${outfit.name} items`}>

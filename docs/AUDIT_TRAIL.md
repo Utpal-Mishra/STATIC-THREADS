@@ -252,3 +252,32 @@
 - ID: ST-DEC-20261023-02
 - Decision: recommendation assets should be verified before deployment; interactive runtime fallback will be added only through a dedicated client-side image component.
 - Status: planned.
+
+
+## 2026-10-23 — Five-view recommendation gallery
+
+### Product / Feature Log
+- ID: ST-PROD-20261023-03
+- Change: Recommendation visuals now expose Walking, Sitting, Front View, Back View and Side View as five independent visual panels instead of one flattened board.
+- Desktop: five-view editorial collage with larger pose panels and hover pop-out enlargement.
+- Mobile: swipeable scroll-snap carousel with auto-advance and position indicators.
+
+### System Log
+- ID: ST-SYS-20261023-03
+- Change: Added a dedicated client-side RecommendationLookbook component so carousel state and animation remain isolated from the server-rendered StyleStudio component.
+- Rendering: each pose uses a dedicated crop of the source lookbook while preserving semantic labels in HTML.
+
+### Architecture Log
+- ID: ST-ARCH-20261023-03
+- Decision: recommendation presentation is now pose-oriented rather than board-oriented.
+- Benefit: each pose can later be replaced by a true high-resolution render or user-avatar try-on independently without redesigning the recommendation card.
+
+### Recommendation Log
+- ID: ST-REC-20261023-01
+- Recommendation: regenerate each pose as a dedicated high-resolution source asset for the next fidelity pass; current source boards remain the limiting factor for genuine detail recovery.
+- Status: queued after responsive gallery deployment.
+
+### Decision Log
+- ID: ST-DEC-20261023-03
+- Decision: desktop uses visible five-pose collage; mobile uses a carousel to avoid shrinking all five poses into an unreadable board.
+- Status: implemented.
