@@ -459,3 +459,30 @@
 - ID: ST-DEC-20261023-11
 - Decision: only combinations with an exact generated five-pose asset may claim to change the mannequin visual.
 - Status: implemented.
+
+
+## 2026-10-23 — Render-backed colour filter correction
+
+### Product / Feature Log
+- ID: ST-PROD-20261023-12
+- Change: Removed unsupported free-mix colour states from recommendation filters.
+- Every selectable garment colour is now backed by an actual HQ five-pose render.
+- Clicking a garment colour switches the full approved outfit preset, ensuring the mannequin visual changes immediately.
+- HQ preset chips remain available for direct switching.
+
+### System Log
+- ID: ST-SYS-20261023-08
+- Change: Colour options are derived only from variants with an asset.
+- Clicking a part colour resolves to a rendered variant and applies all garment colours from that preset atomically.
+- Result: RecommendationLookbook always receives an exact rendered asset for any selectable alternate state.
+
+### Risk & Assumption Log
+- ID: ST-RISK-20261023-03
+- Risk: image-generation service currently blocks creation of additional variants on the connected plan.
+- Impact: unsupported suggested palettes cannot yet be offered as live mannequin states.
+- Mitigation: hide unsupported colour choices until a matching HQ asset exists; data model remains ready to expose them automatically once assets are added.
+
+### Decision Log
+- ID: ST-DEC-20261023-12
+- Decision: no colour control may create a visual state that lacks a corresponding mannequin render.
+- Status: implemented.

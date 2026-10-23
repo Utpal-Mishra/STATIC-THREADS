@@ -102,19 +102,42 @@ export function RecommendationCard({
   const activeAsset = selectedVariant?.asset ?? visual.asset;
   const hasExactRender = Boolean(selectedVariant?.asset);
 
+  const renderedVariants = useMemo(
+    () => variants.filter((variant) => Boolean(variant.asset)),
+    [variants]
+  );
+
   const options = useMemo(() => {
     const result = {} as Record<PartKey, string[]>;
     (Object.keys(partLabels) as PartKey[]).forEach((part) => {
       result[part] = Array.from(
         new Set(
-          variants
+          renderedVariants
             .map((variant) => variant.colours[part])
             .filter((value): value is string => Boolean(value))
         )
       );
     });
     return result;
-  }, [variants]);
+  }, [renderedVariants]);
+
+  const applyRenderedVariantForColour = (part: PartKey, colour: string) => {
+    const match =
+      renderedVariants.find(
+        (variant) => variant.colours[part] === colour && variant.id === selectedVariant?.id
+      ) ??
+      renderedVariants.find((variant) => variant.colours[part] === colour);
+
+    if (!match) return;
+
+    setColours({
+      top: match.colours.top,
+      trousers: match.colours.trousers,
+      layer: match.colours.layer,
+      cap: match.colours.cap,
+      footwear: match.colours.footwear
+    });
+  };
 
   const reset = () => {
     if (!original) return;
@@ -153,7 +176,7 @@ export function RecommendationCard({
         </div>
 
         <div className="rendered-preset-row" aria-label="Rendered colour presets">
-          {variants.filter((variant) => variant.asset).map((variant) => (
+          {renderedVariants.map((variant) => (
             <button
               type="button"
               key={variant.id}
@@ -186,7 +209,7 @@ export function RecommendationCard({
                       type="button"
                       key={colour}
                       className={colours[part] === colour ? "is-selected" : ""}
-                      onClick={() => setColours((current) => ({ ...current, [part]: colour }))}
+                      onClick={() => applyRenderedVariantForColour(part, colour)}
                       aria-pressed={colours[part] === colour}
                       title={`${partLabels[part]}: ${colour}`}
                     >
@@ -200,14 +223,12 @@ export function RecommendationCard({
           })}
         </div>
 
-        <div className={`colour-visual-status ${hasExactRender ? (changed ? "is-rendered" : "is-original") : "is-preview"}`}>
-          <span>{hasExactRender ? (changed ? "HQ colour render" : "Original HQ render") : "Palette preview"}</span>
+        <div className={`colour-visual-status ${changed ? "is-rendered" : "is-original"}`}>
+          <span>{changed ? "HQ colour render" : "Original HQ render"}</span>
           <small>
-            {hasExactRender
-              ? changed
-                ? "The five mannequin poses now match this approved colour combination."
-                : "The five mannequin poses match the original recommendation palette."
-              : "This custom mix updates the palette below. Choose an approved rendered combination to update the mannequin."}
+            {changed
+              ? "The five mannequin poses match this rendered colour combination."
+              : "The five mannequin poses match the original recommendation palette."}
           </small>
         </div>
       </div>
