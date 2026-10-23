@@ -335,3 +335,22 @@
 - ID: ST-DEC-20261023-06
 - Decision: recommendation pose sizing should prioritize legibility on desktop without increasing section height or changing the approved mobile carousel.
 - Status: implemented.
+
+
+## 2026-10-23 — Desktop slider and Front View proportion repair
+
+### Product / Feature Log
+- ID: ST-PROD-20261023-07
+- Change: Added explicit previous/next slider controls to every recommendation on desktop while retaining the larger horizontal pose strip.
+- Mobile: existing swipe carousel and dot indicators remain unchanged.
+
+### System Log
+- ID: ST-SYS-20261023-04
+- Root cause: Front View used background-size 300% 100%, which changed the source board aspect ratio and visually widened the mannequin.
+- Change: Front View now uses an aspect-preserving crop of 166.7% 100%; corner poses use 333.4% 200% for the same reason.
+- Result: all five views retain consistent mannequin proportions.
+
+### Decision Log
+- ID: ST-DEC-20261023-07
+- Decision: recommendation crops must preserve the source image aspect ratio; slider navigation must be explicit on desktop and gesture-based on mobile.
+- Status: implemented.
