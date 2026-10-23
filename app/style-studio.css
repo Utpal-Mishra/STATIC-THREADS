@@ -519,7 +519,7 @@
 .pose-sitting .lookbook-pose-image,
 .pose-back .lookbook-pose-image,
 .pose-side .lookbook-pose-image {
-  background-size: 300% 200%;
+  background-size: 333.4% 200%;
 }
 
 .pose-walking .lookbook-pose-image { background-position: 0% 0%; }
@@ -528,8 +528,44 @@
 .pose-side .lookbook-pose-image { background-position: 100% 100%; }
 
 .pose-front .lookbook-pose-image {
-  background-size: 300% 100%;
+  background-size: 166.7% 100%;
   background-position: 50% 50%;
+}
+
+.lookbook-desktop-slider-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 9px;
+  margin-top: 8px;
+}
+
+.lookbook-desktop-slider-controls button {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 999px;
+  color: #f4f7f5;
+  background: rgba(255,255,255,.035);
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.lookbook-desktop-slider-controls button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(124,242,194,.4);
+  background: rgba(124,242,194,.08);
+}
+
+.lookbook-desktop-slider-controls span {
+  min-width: 42px;
+  color: var(--muted);
+  text-align: center;
+  font-size: .68rem;
+  font-weight: 800;
 }
 
 .lookbook-carousel-controls {
@@ -565,6 +601,10 @@
 }
 
 @media (max-width: 680px) {
+  .lookbook-desktop-slider-controls {
+    display: none;
+  }
+
   .lookbook-five-view {
     display: flex;
     min-height: 0;

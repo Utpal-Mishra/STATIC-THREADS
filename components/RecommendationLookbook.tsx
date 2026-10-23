@@ -33,9 +33,14 @@ export function RecommendationLookbook({ title, asset, views, publicBasePath }: 
   }, [views.length]);
 
   const goTo = (index: number) => {
-    setActive(index);
-    const child = trackRef.current?.children.item(index) as HTMLElement | null;
+    const normalized = (index + views.length) % views.length;
+    setActive(normalized);
+    const child = trackRef.current?.children.item(normalized) as HTMLElement | null;
     child?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+  };
+
+  const step = (direction: -1 | 1) => {
+    goTo(active + direction);
   };
 
   return (
@@ -45,7 +50,6 @@ export function RecommendationLookbook({ title, asset, views, publicBasePath }: 
         ref={trackRef}
         onScroll={(event) => {
           const element = event.currentTarget;
-          if (window.innerWidth > 680) return;
           const center = element.scrollLeft + element.clientWidth / 2;
           let nearest = 0;
           let distance = Number.POSITIVE_INFINITY;
@@ -73,6 +77,12 @@ export function RecommendationLookbook({ title, asset, views, publicBasePath }: 
             <figcaption>{view}</figcaption>
           </figure>
         ))}
+      </div>
+
+      <div className="lookbook-desktop-slider-controls" aria-label={`${title} desktop slider controls`}>
+        <button type="button" onClick={() => step(-1)} aria-label="Previous outfit view">←</button>
+        <span>{active + 1} / {views.length}</span>
+        <button type="button" onClick={() => step(1)} aria-label="Next outfit view">→</button>
       </div>
 
       <div className="lookbook-carousel-controls" aria-label={`${title} carousel controls`}>
