@@ -320,3 +320,18 @@
 - Decision: use the approved high-quality lookbooks as the recommendation-section visual baseline.
 - Constraint: do not alter recommendation image height/proportions when upgrading visual fidelity.
 - Status: implemented.
+
+
+## 2026-10-23 — Desktop recommendation image size correction
+
+### Product / Feature Log
+- ID: ST-PROD-20261023-06
+- Change: Desktop recommendation poses are no longer squeezed into five equal columns inside a half-width card.
+- Desktop: each pose keeps a larger, comfortable 4:5 thumbnail size in a horizontal strip with a visible next-item peek and subtle hover pop-out.
+- Mobile: unchanged; retains the existing swipeable carousel and auto-advance behavior.
+- Card height: remains compact; the change increases pose width, not the vertical footprint.
+
+### Decision Log
+- ID: ST-DEC-20261023-06
+- Decision: recommendation pose sizing should prioritize legibility on desktop without increasing section height or changing the approved mobile carousel.
+- Status: implemented.
