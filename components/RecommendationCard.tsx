@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { RecommendationLookbook } from "@/components/RecommendationLookbook";
-import { recommendationColourVariants, type RecommendationColourVariantId } from "@/data/recommendation-colour-variants";
+import { recommendationColourVariants, type RecommendationColourVariant, type RecommendationColourVariantId } from "@/data/recommendation-colour-variants";
 import type { WardrobeItem } from "@/types/catalog";
 
 type Visual = {
@@ -48,7 +48,7 @@ const colourHex: Record<string, string> = {
 
 const itemPart = (item: WardrobeItem): PartKey | null => {
   const category = item.category.toLowerCase();
-  const type = item.type.toLowerCase();
+  const type = item.subcategory.toLowerCase();
   const name = item.name.toLowerCase();
 
   if (category.includes("access") || type.includes("cap") || name.includes("cap")) return "cap";
@@ -72,7 +72,7 @@ export function RecommendationCard({
   visual: Visual;
   publicBasePath: string;
 }) {
-  const variants = recommendationColourVariants[outfit.id as RecommendationColourVariantId] ?? [];
+  const variants = (recommendationColourVariants[outfit.id as RecommendationColourVariantId] ?? []) as readonly RecommendationColourVariant[];
   const original = variants[0];
   const [colours, setColours] = useState<Record<PartKey, string | undefined>>({
     top: original?.colours.top,
