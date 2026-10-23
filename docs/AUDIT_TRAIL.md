@@ -386,3 +386,18 @@
 - ID: ST-DEC-20261023-08
 - Decision: never fake garment-specific colour changes by applying whole-image browser filters.
 - Status: implemented.
+
+
+## 2026-10-23 — Desktop recommendation image scale increase
+
+### Product / Feature Log
+- ID: ST-PROD-20261023-09
+- Change: Increased recommendation pose-card size on desktop only.
+- Ratio: all pose cards remain 4:5, preserving the existing length-to-width proportion and mannequin geometry.
+- Scope: applies consistently across all recommended combinations.
+- Mobile: unchanged.
+
+### Decision Log
+- ID: ST-DEC-20261023-09
+- Decision: enlarge recommendation visuals by scaling both width and height proportionally rather than changing aspect ratio.
+- Status: implemented.
