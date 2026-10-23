@@ -281,3 +281,17 @@
 - ID: ST-DEC-20261023-03
 - Decision: desktop uses visible five-pose collage; mobile uses a carousel to avoid shrinking all five poses into an unreadable board.
 - Status: implemented.
+
+
+## 2026-10-23 — Recommendation proportion correction
+
+### Product / Feature Log
+- ID: ST-PROD-20261023-04
+- Change: Restored the original compact five-image proportions under each recommendation instead of the taller editorial collage.
+- Desktop interaction: retains only a subtle hover lift/scale pop-out.
+- Mobile interaction: keeps the carousel behavior while preserving the compact image proportions.
+
+### Decision Log
+- ID: ST-DEC-20261023-04
+- Decision: recommendation-image interactions should enhance the existing layout without materially increasing image height.
+- Status: implemented.
