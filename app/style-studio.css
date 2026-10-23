@@ -683,34 +683,92 @@
 /* Preserve the original compact five-view proportions on desktop. */
 @media (min-width: 681px) {
   .lookbook-five-view {
-    display: flex;
-    align-items: stretch;
-    gap: 14px;
-    margin-inline: -8px;
-    padding: 10px 8px 12px;
-    overflow-x: auto;
-    scroll-snap-type: x proximity;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .lookbook-five-view::-webkit-scrollbar {
-    display: none;
+    position: relative;
+    display: block;
+    height: clamp(235px, 25vw, 285px);
+    margin-top: 8px;
+    overflow: hidden;
+    perspective: 1200px;
   }
 
   .lookbook-pose {
-    flex: 0 0 clamp(156px, 34%, 184px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: clamp(156px, 34%, 184px);
     aspect-ratio: 4 / 5;
     min-height: 0;
-    scroll-snap-align: start;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(.72);
+    transform-origin: center;
+    pointer-events: none;
+    transition:
+      transform 360ms cubic-bezier(.2,.75,.2,1),
+      opacity 280ms ease,
+      filter 280ms ease,
+      box-shadow 280ms ease,
+      border-color 280ms ease;
+  }
+
+  .lookbook-pose.is-active {
+    z-index: 5;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.08);
+    pointer-events: auto;
+    border-color: rgba(124,242,194,.42);
+    box-shadow: 0 24px 48px rgba(0,0,0,.38);
+  }
+
+  .lookbook-pose.is-prev,
+  .lookbook-pose.is-next {
+    z-index: 4;
+    opacity: .78;
+    filter: brightness(.88) saturate(.9);
+    pointer-events: auto;
+  }
+
+  .lookbook-pose.is-prev {
+    transform: translate(calc(-50% - 145px), -50%) scale(.88) rotateY(5deg);
+  }
+
+  .lookbook-pose.is-next {
+    transform: translate(calc(-50% + 145px), -50%) scale(.88) rotateY(-5deg);
+  }
+
+  .lookbook-pose.is-far-prev,
+  .lookbook-pose.is-far-next {
+    z-index: 2;
+    opacity: .3;
+    filter: brightness(.68) saturate(.75);
+  }
+
+  .lookbook-pose.is-far-prev {
+    transform: translate(calc(-50% - 250px), -50%) scale(.7);
+  }
+
+  .lookbook-pose.is-far-next {
+    transform: translate(calc(-50% + 250px), -50%) scale(.7);
   }
 
   .lookbook-pose:hover {
-    transform: translateY(-4px) scale(1.055);
+    transform: translate(-50%, calc(-50% - 4px)) scale(1.11);
+  }
+
+  .lookbook-pose.is-prev:hover {
+    transform: translate(calc(-50% - 145px), calc(-50% - 3px)) scale(.91) rotateY(5deg);
+  }
+
+  .lookbook-pose.is-next:hover {
+    transform: translate(calc(-50% + 145px), calc(-50% - 3px)) scale(.91) rotateY(-5deg);
   }
 
   .lookbook-pose-image {
     min-height: 0;
+  }
+
+  .lookbook-desktop-slider-controls {
+    justify-content: center;
+    margin-top: 10px;
   }
 }
 
