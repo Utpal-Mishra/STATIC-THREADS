@@ -524,3 +524,28 @@
 - ID: ST-DEC-20261023-13
 - Decision: no deployed colour variant may rely on an unverified binary image asset.
 - Status: implemented.
+
+
+## 2026-10-23 — Full-garment recolour correction
+
+### Product / Feature Log
+- ID: ST-PROD-20261023-14
+- Fix: alternate recommendation renders now recolour the complete target garment instead of only the most saturated fabric pixels.
+- City Minimal: olive shirt now includes sleeves, cuffs and low-saturation lit fabric consistently across Walking, Sitting, Front, Back and Side views.
+- Same broader garment-mask logic is applied to the green, beige and cream recolour paths used by the other recommendation variants.
+
+### System Log
+- ID: ST-SYS-20261023-10
+- Root cause: colour masks relied too heavily on HSV saturation, so pale fabric under studio lighting fell outside the mask.
+- Change: masks now combine hue detection with RGB channel-difference tests and lower-saturation thresholds.
+- Texture/shadow preservation remains luminance-based.
+
+### Risk & Assumption Log
+- ID: ST-RISK-20261023-05
+- Risk: broader masks can catch nearby pixels with similar colours.
+- Mitigation: every recolour remains constrained to pose-specific garment regions and source-colour tests; background and unrelated lower/upper body areas are excluded spatially.
+
+### Decision Log
+- ID: ST-DEC-20261023-14
+- Decision: garment completeness takes priority over conservative saturation thresholds, provided spatial masking remains in place.
+- Status: implemented.
