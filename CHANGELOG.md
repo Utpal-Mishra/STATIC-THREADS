@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-24 — Independent mannequin colour controls
+
+- Each garment colour updates only that garment across all five poses, including footwear and the visible Utility Travel cap.
+- Replaced rectangular build-time recolours with pose-specific garment masks and source-based shading.
+- All suggested palettes and custom mixes now render in the browser; Reset restores the initial palette.
+- Corrected original-preview colours, exposed rendering errors, and kept owned item colours separate from preview colours.
+
+
 All meaningful Static Threads changes are recorded here.
 
 ## Unreleased

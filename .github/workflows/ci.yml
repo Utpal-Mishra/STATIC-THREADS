@@ -29,8 +29,8 @@ jobs:
       - name: Install image validation dependencies
         run: python -m pip install --disable-pip-version-check pillow numpy
 
-      - name: Generate and validate recommendation colour variants
-        run: python scripts/generate_colour_variants.py
+      - name: Validate garment masks
+        run: python scripts/validate_garment_masks.py
 
       - name: Type-check application
         run: npm run typecheck
