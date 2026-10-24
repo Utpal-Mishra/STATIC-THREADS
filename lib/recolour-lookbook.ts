@@ -4,6 +4,10 @@ export type GarmentPart = 'top' | 'trousers' | 'layer' | 'cap' | 'footwear';
 export type GarmentColours = Partial<Record<GarmentPart, string>>;
 type MaskBoard = { width: number; height: number; reference: Partial<Record<GarmentPart, number>>; parts: Partial<Record<GarmentPart, number[][][]>> };
 export const garmentBoards: Record<string, MaskBoard> = masks;
+export const nativeFootwearColours: Record<string, string> = {
+  'city-minimal': 'Brown', 'weekend-ease': 'White',
+  'layered-neutral': 'White', 'utility-travel': 'Cream'
+};
 export const colourHex: Record<string, string> = {
   White: '#f1efe7', Cream: '#e8ddc4', 'Light grey': '#b1b6b8', Grey: '#777b7f',
   Charcoal: '#45494d', Black: '#17191c', Beige: '#c7b697', Stone: '#aaa18f',
@@ -45,6 +49,8 @@ export function recolourLookbook(image: HTMLImageElement, outfitId: string, colo
   const labels = mctx.getImageData(0, 0, mask.width, mask.height).data;
   const parts: GarmentPart[] = ['top', 'trousers', 'footwear', 'layer', 'cap'];
   const targets = parts.map((part) => {
+    // Preserve the source footwear's leather, soles, straps and accent colours.
+    if (part === 'footwear' && colours.footwear === nativeFootwearColours[outfitId]) return null;
     const hex = colours[part] && colourHex[colours[part]!];
     return hex ? [1, 3, 5].map((start) => parseInt(hex.slice(start, start + 2), 16)) : null;
   });

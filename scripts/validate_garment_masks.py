@@ -22,3 +22,10 @@ for outfit, board in boards.items():
             continue  # The utility cap is visible above these two faces.
         assert labels[y, x] == 0, (outfit, "skin/background", x, y)
     print(f"Validated {outfit}: {len(board['parts'])} garments")
+
+# Regression: collars/cuffs must not retain any detected source-blue fabric.
+from repair_city_shirt_mask import blue_shirt_candidates
+labels = np.asarray(Image.open(ROOT / "public/lookbooks/masks/city-minimal.png"))
+source = np.asarray(Image.open(ROOT / "public/lookbooks/city-minimal-approved-hq.webp").convert("RGB"))
+assert not np.any(blue_shirt_candidates(source, labels) & (labels != CODES["top"])), "City Minimal collar/cuff coverage regressed"
+print("City Minimal collar/cuff coverage passed")

@@ -17,7 +17,7 @@ export const recommendationColourVariants = {
     {
       id: "original",
       label: "Original",
-      colours: { top: "Cream", trousers: "Grey", cap: "Brown", footwear: "White" },
+      colours: { top: "Cream", trousers: "Grey", cap: "Brown", footwear: "Brown" },
       note: "Current wardrobe combination.",
       asset: "/lookbooks/city-minimal-approved-hq.webp"
     },
@@ -45,7 +45,7 @@ export const recommendationColourVariants = {
     {
       id: "original",
       label: "Original",
-      colours: { top: "Grey", trousers: "Light grey", footwear: "Cream" },
+      colours: { top: "Grey", trousers: "Light grey", footwear: "White" },
       note: "Current wardrobe combination.",
       asset: "/lookbooks/weekend-ease-approved-hq.webp"
     },
