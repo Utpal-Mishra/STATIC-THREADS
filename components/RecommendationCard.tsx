@@ -61,6 +61,13 @@ const itemPart = (item: WardrobeItem): PartKey | null => {
 
 const colourFor = (name: string) => colourHex[name] ?? "#747a76";
 
+const visualFilterParts: Record<string, PartKey[]> = {
+  "city-minimal": ["top", "trousers"],
+  "weekend-ease": ["top", "trousers"],
+  "layered-neutral": ["layer"],
+  "utility-travel": ["top", "trousers"]
+};
+
 export function RecommendationCard({
   outfit,
   items,
@@ -82,21 +89,23 @@ export function RecommendationCard({
     footwear: original?.colours.footwear
   });
 
+  const supportedParts = visualFilterParts[outfit.id] ?? [];
+
   const changed = useMemo(
     () =>
       Boolean(original) &&
-      (Object.keys(partLabels) as PartKey[]).some((part) => colours[part] !== original.colours[part]),
-    [colours, original]
+      supportedParts.some((part) => colours[part] !== original.colours[part]),
+    [colours, original, supportedParts]
   );
 
   const selectedVariant = useMemo(
     () =>
       variants.find((variant) =>
-        (Object.keys(partLabels) as PartKey[]).every(
+        supportedParts.every(
           (part) => (variant.colours[part] ?? undefined) === (colours[part] ?? undefined)
         )
       ),
-    [colours, variants]
+    [colours, variants, supportedParts]
   );
 
   const activeAsset = selectedVariant?.asset ?? visual.asset;
@@ -110,6 +119,11 @@ export function RecommendationCard({
   const options = useMemo(() => {
     const result = {} as Record<PartKey, string[]>;
     (Object.keys(partLabels) as PartKey[]).forEach((part) => {
+      if (!supportedParts.includes(part)) {
+        result[part] = [];
+        return;
+      }
+
       result[part] = Array.from(
         new Set(
           renderedVariants
@@ -119,7 +133,7 @@ export function RecommendationCard({
       );
     });
     return result;
-  }, [renderedVariants]);
+  }, [renderedVariants, supportedParts]);
 
   const applyRenderedVariantForColour = (part: PartKey, colour: string) => {
     const match =
@@ -130,12 +144,12 @@ export function RecommendationCard({
 
     if (!match) return;
 
-    setColours({
-      top: match.colours.top,
-      trousers: match.colours.trousers,
-      layer: match.colours.layer,
-      cap: match.colours.cap,
-      footwear: match.colours.footwear
+    setColours((current) => {
+      const next = { ...current };
+      supportedParts.forEach((supportedPart) => {
+        next[supportedPart] = match.colours[supportedPart];
+      });
+      return next;
     });
   };
 
@@ -182,12 +196,12 @@ export function RecommendationCard({
               key={variant.id}
               className={selectedVariant?.id === variant.id ? "is-selected" : ""}
               onClick={() =>
-                setColours({
-                  top: variant.colours.top,
-                  trousers: variant.colours.trousers,
-                  layer: variant.colours.layer,
-                  cap: variant.colours.cap,
-                  footwear: variant.colours.footwear
+                setColours((current) => {
+                  const next = { ...current };
+                  supportedParts.forEach((part) => {
+                    next[part] = variant.colours[part];
+                  });
+                  return next;
                 })
               }
             >
@@ -227,8 +241,8 @@ export function RecommendationCard({
           <span>{changed ? "HQ colour render" : "Original HQ render"}</span>
           <small>
             {changed
-              ? "The five mannequin poses match this rendered colour combination."
-              : "The five mannequin poses match the original recommendation palette."}
+              ? "The mannequin preview matches the rendered garment colours shown above. Accessories and footwear stay tied to the owned outfit unless they are explicitly rendered."
+              : "The mannequin preview matches the original rendered garment palette. Accessories and footwear are shown separately below."}
           </small>
         </div>
       </div>
