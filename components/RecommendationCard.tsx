@@ -1,8 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { RecommendationLookbook } from "@/components/RecommendationLookbook";
 import { recommendationColourVariants, type RecommendationColourVariant, type RecommendationColourVariantId } from "@/data/recommendation-colour-variants";
+import { colourHex, garmentBoards, loadLookbook, recolourLookbook } from "@/lib/recolour-lookbook";
 import type { WardrobeItem } from "@/types/catalog";
 
 type Visual = {
@@ -28,24 +29,6 @@ const partLabels: Record<PartKey, string> = {
   footwear: "Footwear"
 };
 
-const colourHex: Record<string, string> = {
-  White: "#f1efe7",
-  Cream: "#e8ddc4",
-  "Light grey": "#b1b6b8",
-  Grey: "#777b7f",
-  Charcoal: "#45494d",
-  Black: "#17191c",
-  Beige: "#c7b697",
-  Stone: "#aaa18f",
-  Sand: "#c9b58f",
-  Khaki: "#9c946f",
-  Olive: "#687153",
-  Navy: "#243049",
-  Brown: "#75523f",
-  Chocolate: "#5b3b2f",
-  "Powder blue": "#aabfcd"
-};
-
 const itemPart = (item: WardrobeItem): PartKey | null => {
   const category = item.category.toLowerCase();
   const type = item.subcategory.toLowerCase();
@@ -53,20 +36,13 @@ const itemPart = (item: WardrobeItem): PartKey | null => {
 
   if (category.includes("access") || type.includes("cap") || name.includes("cap")) return "cap";
   if (category.includes("shoe") || type.includes("trainer") || type.includes("shoe") || name.includes("adidas") || name.includes("puma") || name.includes("timberland")) return "footwear";
-  if (category.includes("bottom") || type.includes("jean") || type.includes("trouser") || type.includes("cargo") || type.includes("short")) return "trousers";
-  if (category.includes("outer") || type.includes("overshirt") || type.includes("jacket")) return "layer";
+  if (category.includes("jean") || category.includes("trouser") || category.includes("short") || category.includes("bottom") || type.includes("jean") || type.includes("trouser") || type.includes("cargo") || type.includes("short")) return "trousers";
+  if (category.includes("jacket") || category.includes("outer") || type.includes("overshirt") || type.includes("jacket")) return "layer";
   if (category.includes("top") || type.includes("shirt") || type.includes("t-shirt") || type.includes("tee")) return "top";
   return null;
 };
 
 const colourFor = (name: string) => colourHex[name] ?? "#747a76";
-
-const visualFilterParts: Record<string, PartKey[]> = {
-  "city-minimal": ["top", "trousers"],
-  "weekend-ease": ["top", "trousers"],
-  "layered-neutral": ["layer"],
-  "utility-travel": ["top", "trousers"]
-};
 
 export function RecommendationCard({
   outfit,
@@ -89,7 +65,7 @@ export function RecommendationCard({
     footwear: original?.colours.footwear
   });
 
-  const supportedParts = visualFilterParts[outfit.id] ?? [];
+  const supportedParts = useMemo(() => Object.keys(garmentBoards[outfit.id]?.parts ?? {}) as PartKey[], [outfit.id]);
 
   const changed = useMemo(
     () =>
@@ -108,13 +84,25 @@ export function RecommendationCard({
     [colours, variants, supportedParts]
   );
 
-  const activeAsset = selectedVariant?.asset ?? visual.asset;
-  const hasExactRender = Boolean(selectedVariant?.asset);
+  const renderedVariants = variants;
+  const [preview, setPreview] = useState<{ key: string; asset: string } | null>(null);
+  const [renderError, setRenderError] = useState(false);
+  const paletteKey = JSON.stringify([outfit.id, visual.asset, publicBasePath, colours]);
+  const ready = preview?.key === paletteKey;
+  const activeAsset = ready ? preview.asset : visual.asset;
 
-  const renderedVariants = useMemo(
-    () => variants.filter((variant) => Boolean(variant.asset)),
-    [variants]
-  );
+  useEffect(() => {
+    let cancelled = false;
+    setRenderError(false);
+    Promise.all([loadLookbook(`${publicBasePath}${visual.asset}`), loadLookbook(`${publicBasePath}/lookbooks/masks/${outfit.id}.png`)])
+      .then(([image, segmentation]) => {
+        if (cancelled) return;
+        const asset = recolourLookbook(image, outfit.id, colours, segmentation);
+        setPreview({ key: paletteKey, asset });
+      })
+      .catch(() => { if (!cancelled) setRenderError(true); });
+    return () => { cancelled = true; };
+  }, [paletteKey, colours, outfit.id, visual.asset, publicBasePath]);
 
   const options = useMemo(() => {
     const result = {} as Record<PartKey, string[]>;
@@ -136,21 +124,7 @@ export function RecommendationCard({
   }, [renderedVariants, supportedParts]);
 
   const applyRenderedVariantForColour = (part: PartKey, colour: string) => {
-    const match =
-      renderedVariants.find(
-        (variant) => variant.colours[part] === colour && variant.id === selectedVariant?.id
-      ) ??
-      renderedVariants.find((variant) => variant.colours[part] === colour);
-
-    if (!match) return;
-
-    setColours((current) => {
-      const next = { ...current };
-      supportedParts.forEach((supportedPart) => {
-        next[supportedPart] = match.colours[supportedPart];
-      });
-      return next;
-    });
+    setColours((current) => ({ ...current, [part]: colour }));
   };
 
   const reset = () => {
@@ -165,7 +139,7 @@ export function RecommendationCard({
   };
 
   return (
-    <article className="outfit-card visual-outfit-card">
+    <article className="outfit-card visual-outfit-card" data-outfit-id={outfit.id} aria-busy={!ready && !renderError}>
       <div className="outfit-card-topline">
         <span>{outfit.score}% match</span>
         <small>{outfit.mood}</small>
@@ -177,7 +151,9 @@ export function RecommendationCard({
         title={outfit.name}
         asset={activeAsset}
         views={visual.views}
-        publicBasePath={publicBasePath}
+        publicBasePath={ready ? "" : publicBasePath}
+        paletteLabel={supportedParts.map((part) => `${partLabels[part]}: ${colours[part]}`).join(", ")}
+        pending={!ready}
       />
 
       <div className="colour-filter-panel">
@@ -195,6 +171,7 @@ export function RecommendationCard({
               type="button"
               key={variant.id}
               className={selectedVariant?.id === variant.id ? "is-selected" : ""}
+              aria-pressed={selectedVariant?.id === variant.id}
               onClick={() =>
                 setColours((current) => {
                   const next = { ...current };
@@ -206,7 +183,7 @@ export function RecommendationCard({
               }
             >
               {variant.label}
-              <span>HQ</span>
+              <span>Preview</span>
             </button>
           ))}
         </div>
@@ -237,13 +214,10 @@ export function RecommendationCard({
           })}
         </div>
 
-        <div className={`colour-visual-status ${changed ? "is-rendered" : "is-original"}`}>
-          <span>{changed ? "HQ colour render" : "Original HQ render"}</span>
-          <small>
-            {changed
-              ? "The mannequin preview matches the rendered garment colours shown above. Accessories and footwear stay tied to the owned outfit unless they are explicitly rendered."
-              : "The mannequin preview matches the original rendered garment palette. Accessories and footwear are shown separately below."}
-          </small>
+        <div className={`colour-visual-status ${changed ? "is-rendered" : "is-original"}`} role="status" aria-live="polite">
+          <span>{renderError ? "Preview unavailable" : !ready ? "Updating outfit colours…" : changed ? "Custom colour preview" : "Original colour preview"}</span>
+          <small>{renderError ? "Please reload to retry. The mannequin could not be updated." : "Each colour changes only that garment across all five poses. Style preview: garment shapes may differ from your owned pieces."}</small>
+          {outfit.id === "city-minimal" ? <small>The owned cap is listed below; this mannequin is not wearing a cap.</small> : null}
         </div>
       </div>
 
@@ -259,7 +233,7 @@ export function RecommendationCard({
               />
               <div>
                 <strong>{item.name}</strong>
-                <small>{item.brand} · {selectedColour ?? item.primaryColour}</small>
+                <small>{item.brand} · Owned: {item.primaryColour}{part && supportedParts.includes(part) && selectedColour ? ` · Preview: ${selectedColour}` : ""}</small>
               </div>
             </div>
           );

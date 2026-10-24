@@ -100,3 +100,11 @@ types/                   Shared catalogue types
 - shopping URL analysis
 - duplicate-purchase warning
 - outfit and cost-per-wear insights
+
+## Recommendation colour previews
+
+`data/garment-masks.json` traces each visible garment in the four five-pose source boards. `lib/recolour-lookbook.ts` uses the reviewed segmentation maps under `public/lookbooks/masks/` to apply the selected colours independently from the decoded source, preserving local shading. All poses share one rendered board. Suggested palettes are starting points; individual controls do not change other garments. Masks are tied to the source image geometry and must be reviewed if source boards change. These are style previews; owned item metadata remains separate. The City Minimal board has no cap, so no cap control is offered for it.
+
+Run `python scripts/validate_garment_masks.py` to check source dimensions, garment labels and face/background protection.
+
+For offline mask regeneration, install `opencv-python-headless` in addition to Pillow/NumPy, then run `python scripts/refine_garment_masks.py`. Review the generated maps against all five poses before committing them; deployment consumes the reviewed PNGs directly.

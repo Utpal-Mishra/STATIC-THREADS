@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 
 type RecommendationLookbookProps = {
   title: string;
+  paletteLabel?: string;
+  pending?: boolean;
   asset: string;
   views: readonly string[];
   publicBasePath: string;
@@ -11,7 +13,7 @@ type RecommendationLookbookProps = {
 
 const cropClasses = ["pose-walking", "pose-sitting", "pose-front", "pose-back", "pose-side"] as const;
 
-export function RecommendationLookbook({ title, asset, views, publicBasePath }: RecommendationLookbookProps) {
+export function RecommendationLookbook({ title, asset, views, publicBasePath, paletteLabel, pending }: RecommendationLookbookProps) {
   const [active, setActive] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -85,8 +87,8 @@ export function RecommendationLookbook({ title, asset, views, publicBasePath }: 
             <div
               className="lookbook-pose-image"
               role="img"
-              aria-label={`${title} — ${view}`}
-              style={{ backgroundImage: `url("${publicBasePath}${asset}")` }}
+              aria-label={`${title} — ${view}${paletteLabel ? ` — ${paletteLabel}` : ""}`}
+              style={{ visibility: pending ? "hidden" : "visible", backgroundImage: `url("${publicBasePath}${asset}")` }}
             />
             <figcaption>{view}</figcaption>
           </figure>
