@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MobileDock } from "@/components/MobileDock";
 import { AccountPanel } from "@/components/AccountPanel";
 
 export default function AccountPage() {
@@ -14,6 +15,7 @@ export default function AccountPage() {
         </nav>
       </header>
       <AccountPanel />
+      <MobileDock accountPage />
     </main>
   );
 }

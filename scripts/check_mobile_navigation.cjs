@@ -41,67 +41,57 @@ async function until(check, message) {
     await page.getByRole('heading', { level: 1 }).waitFor();
     assert.ok(!/Application error|Internal Server Error/.test(await page.locator('body').innerText()));
     const dock = page.getByRole('navigation', { name: 'Mobile navigation', exact: true });
-    const menuButton = dock.getByRole('button', { name: 'Open navigation menu' });
-    const menu = page.getByRole('dialog', { name: 'Explore Static Threads' });
     await dock.waitFor({ state: 'visible' });
     assert.equal(await page.getByRole('navigation', { name: 'Primary navigation', exact: true }).isVisible(), false);
-    for (const width of [320, 390, 680]) {
+    assert.equal(await page.locator('.mobile-account-link').count(), 0);
+    assert.equal(await page.locator('dialog').count(), 0);
+    assert.deepEqual(await dock.getByRole('link').allTextContents(), ['Style', 'Decide', 'Wardrobe', 'Similar', 'Radar', 'Account']);
+    assert.equal(await dock.getByRole('button').count(), 0);
+    for (const width of [320, 360, 390, 430, 680]) {
       await page.setViewportSize({ width, height: 844 });
       const box = await dock.boundingBox();
-      assert.ok(box.x >= 10 && box.x + box.width <= width - 10, `Dock overflows ${width}px`);
-      for (const target of await dock.locator('a, button').all()) {
+      assert.ok(box.x >= 6 && box.x + box.width <= width - 6, `Dock overflows ${width}px`);
+      for (const target of await dock.getByRole('link').all()) {
         const hit = await target.boundingBox();
-        assert.ok(hit.width >= 44 && hit.height >= 44);
+        assert.ok(hit.width >= 44 && hit.height >= 44, `Tap target too small at ${width}px: ${JSON.stringify(hit)}`);
+        const label = await target.locator('span').evaluate(e => ({ fits: e.scrollWidth <= e.clientWidth, text: e.textContent, content: e.scrollWidth, available: e.clientWidth }));
+        assert.ok(label.fits, `Label clipped at ${width}px: ${JSON.stringify(label)}`);
       }
-      await menuButton.click();
-      await menu.waitFor({ state: 'visible' });
-      const bounds = await menu.boundingBox();
-      assert.ok(bounds.x >= 0 && bounds.x + bounds.width <= width, `Menu overflows ${width}px`);
-      assert.ok(bounds.y >= 0 && bounds.y + bounds.height < 844);
-      assert.equal(await menu.getByRole('link').count(), 6);
-      assert.equal(await page.locator('body').evaluate(e => e.style.overflow), 'hidden');
-      await page.keyboard.press('Shift+Tab');
-      assert.equal(await menu.evaluate(e => e.contains(document.activeElement)), true);
-      await page.keyboard.press('Escape');
-      await menu.waitFor({ state: 'hidden' });
-      await until(() => menuButton.evaluate(e => document.activeElement === e), 'Focus not restored');
-      await until(() => page.locator('body').evaluate(e => e.style.overflow !== 'hidden'), 'Scroll not restored');
+      if (width === 320) await page.screenshot({ path: `${screenshots}/mobile-dock-320.png` });
     }
     await page.setViewportSize({ width: 390, height: 844 });
     await page.getByRole('link', { name: 'Static Threads home' }).click();
     await until(() => page.locator('#top').evaluate(e => e.getBoundingClientRect().top >= 85), 'Home anchor obscured by header');
     await page.screenshot({ path: `${screenshots}/mobile-dock.png` });
-    for (const [label, id] of [['Wardrobe', 'wardrobe'], ['Decide', 'decision-lab'], ['Style', 'style-studio']]) {
+    for (const [label, id] of [['Style', 'style-studio'], ['Decide', 'decision-lab'], ['Wardrobe', 'wardrobe'], ['Similar', 'shop-similar'], ['Radar', 'sale-radar']]) {
       await dock.getByRole('link', { name: label, exact: true }).click();
       await until(() => dock.getByRole('link', { name: label, exact: true }).getAttribute('aria-current').then(x => x === 'location'), `${label} active state incorrect`);
       await until(() => page.locator(`#${id}`).evaluate(e => Math.abs(e.getBoundingClientRect().top - 92) < 20), `${label} anchor obscured`);
+      assert.equal(await page.locator('body').evaluate(e => e.style.overflow === 'hidden'), false);
     }
-    await menuButton.click();
-    await menu.getByRole('link', { name: 'Sale radar', exact: true }).click();
-    await menu.waitFor({ state: 'hidden' });
-    await until(() => page.locator('#sale-radar').evaluate(e => Math.abs(e.getBoundingClientRect().top - 92) < 20), 'Sale anchor obscured');
-    await until(() => menuButton.evaluate(e => e.classList.contains('is-active')), 'Menu section not highlighted');
-    await menuButton.click();
-    await menu.getByRole('link', { name: 'Shop similar', exact: true }).click();
-    await menu.waitFor({ state: 'hidden' });
-    await until(() => page.locator('#shop-similar').evaluate(e => Math.abs(e.getBoundingClientRect().top - 92) < 20), 'Shop anchor obscured');
-    await menuButton.click();
-    assert.ok((await menu.getByRole('link', { name: 'Account', exact: true }).getAttribute('href')).endsWith('/account/'));
-    await page.mouse.click(2, 2);
-    await menu.waitFor({ state: 'hidden' });
+    // Scroll without using a dock link to check the live section indicator.
+    await page.locator('#decision-lab').evaluate(e => e.scrollIntoView({ block: 'start' }));
+    await until(() => dock.getByRole('link', { name: 'Decide', exact: true }).getAttribute('aria-current').then(x => x === 'location'), 'Scroll-based active state failed');
+    await dock.getByRole('link', { name: 'Account', exact: true }).click();
+    await page.waitForURL(/\/account\/?$/);
+    await until(() => dock.getByRole('link', { name: 'Account', exact: true }).getAttribute('aria-current').then(x => x === 'page'), 'Account not highlighted');
+    await page.getByRole('heading', { name: 'Your wardrobe should belong to you.', exact: true }).waitFor();
+    assert.equal(await dock.getByRole('link').count(), 6);
+    await page.screenshot({ path: `${screenshots}/mobile-account.png` });
+    await dock.getByRole('link', { name: 'Wardrobe', exact: true }).click();
+    await page.waitForURL(/#wardrobe$/);
+    await until(() => dock.getByRole('link', { name: 'Wardrobe', exact: true }).getAttribute('aria-current').then(x => x === 'location'), 'Return from Account failed');
     await page.getByRole('link', { name: 'Static Threads home' }).click();
-    await menuButton.click();
-    await page.screenshot({ path: `${screenshots}/mobile-menu.png` });
     await page.setViewportSize({ width: 1280, height: 900 });
-    await menu.waitFor({ state: 'hidden' });
     assert.equal(await dock.isVisible(), false);
-    assert.equal(await page.getByRole('navigation', { name: 'Primary navigation', exact: true }).getByRole('link').count(), 6);
-    await page.getByRole('navigation', { name: 'Primary navigation', exact: true }).waitFor({ state: 'visible' });
+    const desktop = page.getByRole('navigation', { name: 'Primary navigation', exact: true });
+    await desktop.waitFor({ state: 'visible' });
+    assert.deepEqual(await desktop.getByRole('link').allTextContents(), ['Style', 'Decide', 'Wardrobe', 'Shop similar', 'Sale radar', 'Account']);
     await page.screenshot({ path: `${screenshots}/desktop-header.png` });
     await page.setViewportSize({ width: 681, height: 900 });
     assert.equal(await dock.isVisible(), false);
     assert.deepEqual(errors, []);
-    console.log('PASS: 320/390/680px dock and menu bounds, tap targets, all destinations, active states, focus trap/restore, Escape/backdrop dismissal, scroll locking and desktop 681/1280px. No app errors.');
+    console.log('PASS: six direct links at 320/360/390/430/680px, 44px tap targets, unclipped labels, all five anchors, scroll-based active state, Account navigation/return and desktop 681/1280px. No app errors.');
   } catch (error) {
     if (page) {
       console.error('Failure state:', await page.evaluate(() => ({ width: innerWidth, css: Array.from(document.styleSheets).map(s => s.href), scroll: scrollY })));

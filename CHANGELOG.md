@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-24 — Six direct mobile island links
+
+- Show Style, Decide, Wardrobe, Similar, Radar and Account together in one mobile island.
+- Remove the Menu dialog and duplicate top Account shortcut.
+- Keep the island on the Account page, with return links to all five homepage sections.
+- Preserve active highlighting, bottom safe-area spacing and desktop navigation.
+- Check six-link geometry, readable labels, 44px targets and navigation at small phone widths.
+
 ## 2026-10-24 — Mobile floating navigation dock
 
 - Replace the crowded mobile header links with a floating Style / Wardrobe / Decide / Menu dock at widths up to 680px.

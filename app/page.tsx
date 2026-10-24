@@ -3,7 +3,7 @@ import catalogData from "@/data/catalog.json";
 import { DecisionLab } from "@/components/DecisionLab";
 import { SaleRadar } from "@/components/SaleRadar";
 import { StyleStudio } from "@/components/StyleStudio";
-import { MobileDock, NavigationIcon } from "@/components/MobileDock";
+import { MobileDock } from "@/components/MobileDock";
 import { WardrobeCatalogView } from "@/components/WardrobeCatalog";
 import type { WardrobeCatalog } from "@/types/catalog";
 
@@ -25,7 +25,6 @@ export default function HomePage() {
           <a href="#sale-radar">Sale radar</a>
           <Link href="/account/">Account</Link>
         </nav>
-        <Link className="mobile-account-link" href="/account/" aria-label="Account"><NavigationIcon name="account" /></Link>
       </header>
 
       <section className="hero" id="top">
