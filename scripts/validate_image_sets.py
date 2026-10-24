@@ -35,5 +35,6 @@ for old in ['recolour-lookbook', 'recolourLookbook', 'garmentBoards', 'getImageD
     assert old not in card, ('Runtime recolour path returned', old)
 assert 'preserveAspectRatio="xMidYMid meet"' in lookbook
 assert 'viewBox=' in lookbook and '<image href=' in lookbook
+assert 'clipPathUnits="userSpaceOnUse"' in lookbook and 'clipPath={`url(' in lookbook, 'Native frame clipping must prevent adjacent-panel bleed'
 assert 'data:image/' not in card + lookbook
 print('All 16 boards / 80 views validated; runtime uses complete images without recolouring')
