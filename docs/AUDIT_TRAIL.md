@@ -549,3 +549,32 @@
 - ID: ST-DEC-20261023-14
 - Decision: garment completeness takes priority over conservative saturation thresholds, provided spatial masking remains in place.
 - Status: implemented.
+
+
+## 2026-10-24 — Visual-truth colour controls
+
+### Product / Feature Log
+- ID: ST-PROD-20261024-01
+- Change: Recommendation colour controls now expose only garment parts that are actually represented by the rendered mannequin variant.
+- City Minimal: Shirt / Top + Pants / Trousers.
+- Weekend Ease: Shirt / Top + Pants / Trousers.
+- Layered Neutral: Jacket / Layer.
+- Utility Travel: Shirt / Top + Pants / Trousers.
+- Cap and footwear controls are hidden unless a future render explicitly supports them.
+
+### System Log
+- ID: ST-SYS-20261024-01
+- Change: Render selection matching now compares only visually supported parts.
+- Variant selection updates only those supported garment parts; unsupported owned-item colours remain unchanged in the item list.
+- This prevents a rendered image from claiming Navy cap / White footwear when those details are not actually present in the mannequin board.
+
+### Risk & Assumption Log
+- ID: ST-RISK-20261024-01
+- Risk: current composite mannequin boards are palette previews, not exact accessory-level virtual try-on.
+- Mitigation: controls are constrained to visually verifiable garment regions and copy explicitly separates rendered garments from owned accessories/footwear.
+- Future state: re-enable cap/footwear controls only after dedicated exact renders are available.
+
+### Decision Log
+- ID: ST-DEC-20261024-01
+- Decision: visual truth takes precedence over exposing every possible filter.
+- Status: implemented.
