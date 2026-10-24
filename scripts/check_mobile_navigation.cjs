@@ -73,7 +73,7 @@ async function until(check, message) {
     await page.locator('#decision-lab').evaluate(e => e.scrollIntoView({ block: 'start' }));
     await until(() => dock.getByRole('link', { name: 'Decide', exact: true }).getAttribute('aria-current').then(x => x === 'location'), 'Scroll-based active state failed');
     await dock.getByRole('link', { name: 'Account', exact: true }).click();
-    await page.waitForURL(/\/account\/$/);
+    await page.waitForURL(/\/account\/?$/);
     await until(() => dock.getByRole('link', { name: 'Account', exact: true }).getAttribute('aria-current').then(x => x === 'page'), 'Account not highlighted');
     await page.getByRole('heading', { name: 'Your wardrobe should belong to you.', exact: true }).waitFor();
     assert.equal(await dock.getByRole('link').count(), 6);
