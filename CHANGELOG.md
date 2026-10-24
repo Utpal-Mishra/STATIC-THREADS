@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-24 — Mobile floating navigation dock
+
+- Replace the crowded mobile header links with a floating Style / Wardrobe / Decide / Menu dock at widths up to 680px.
+- Keep a compact ST header and Account shortcut; retain desktop navigation.
+- Add an accessible expanded menu with all sections, keyboard dismissal, focus restoration, scroll locking and safe-area spacing.
+- Track the current section as the page scrolls and reserve space below content for the dock.
+
 ## 2026-10-24 — Saved inspiration complete-image combinations
 
 - Add five-view mannequin photography to all eight saved inspiration looks, with three independently generated palettes per look.

@@ -116,3 +116,5 @@ Run `python scripts/validate_image_sets.py` to verify all 16 boards and 80 frame
 The earlier mask/recolour files remain only as historical tooling. They are not imported by the live recommendation components or used in the deployment image path.
 
 Saved inspiration uses `data/inspiration-image-sets.json`: eight style directions, three complete generated looks each and five poses per image. These are inspiration pieces, not owned inventory. All boards are lossless WebP under `public/lookbooks/inspiration/v1/`; palette changes swap the full image and update the piece list through the shared recommendation card.
+
+Mobile navigation uses `components/MobileDock.tsx` below 681px: three section shortcuts and a native dialog menu covering all destinations. It supports Escape, backdrop/close dismissal, focus restoration and scroll locking. Desktop header links remain unchanged. Safe-area insets and page bottom padding protect content from the fixed dock.

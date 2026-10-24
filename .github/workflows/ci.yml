@@ -8,7 +8,7 @@ on:
 
 jobs:
   application:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -37,6 +37,23 @@ jobs:
 
       - name: Build application
         run: npm run build
+
+      - name: Install browser QA tools without changing application dependencies
+        run: npm install --no-save --package-lock=false playwright@1.56.1
+
+      - name: Prepare browser for navigation checks
+        run: npx playwright install --with-deps chromium
+
+      - name: Check mobile and desktop navigation
+        run: node scripts/check_mobile_navigation.cjs
+
+      - name: Save navigation screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mobile-navigation-qa
+          path: /tmp/mobile-dock-qa/*.png
+          if-no-files-found: ignore
 
   catalogue:
     runs-on: ubuntu-latest
