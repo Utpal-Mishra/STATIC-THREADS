@@ -101,18 +101,16 @@ types/                   Shared catalogue types
 - duplicate-purchase warning
 - outfit and cost-per-wear insights
 
-## Recommendation colour previews
+## Complete outfit image presets
 
-`data/garment-masks.json` traces each visible garment in the four five-pose source boards. `lib/recolour-lookbook.ts` uses the reviewed segmentation maps under `public/lookbooks/masks/` to apply the selected colours independently from the decoded source, preserving local shading. All poses share one rendered board. Suggested palettes are starting points; individual controls do not change other garments. Masks are tied to the source image geometry and must be reviewed if source boards change. These are style previews; owned item metadata remains separate. The City Minimal board has no cap, so no cap control is offered for it.
+Each recommendation has four complete high-quality outfit boards, with five views per board. The first board restores the user-approved original. The other three are independently generated from that reference with a coordinated clothing palette and matching original footwear.
 
-Run `python scripts/validate_garment_masks.py` to check source dimensions, garment labels and face/background protection.
+- `data/recommendation-image-sets.json` contains the 16 asset records, palette labels, native dimensions, five frame windows and integrity hashes.
+- `RecommendationCard` selects a complete board after preloading/decoding it. The previous look remains visible during loading or a failed request; the latest selection wins during rapid toggling.
+- `RecommendationLookbook` uses aspect-preserving SVG view windows onto the unchanged board. It does not stretch the mannequin, repaint pixels, or adjust image contrast/saturation.
+- `public/lookbooks/collections/v1/` contains full-resolution lossless WebP assets. Decoded RGB pixels are identical to the corresponding original or generated PNG.
+- Owned item metadata stays separate from the rendered inspiration palette.
 
-For offline mask regeneration, install `opencv-python-headless` in addition to Pillow/NumPy, then run `python scripts/refine_garment_masks.py`. Review the generated maps against all five poses before committing them; deployment consumes the reviewed PNGs directly.
+Run `python scripts/validate_image_sets.py` to verify all 16 boards and 80 frame windows, including decoded pixel and file integrity. CI and deployment run this check.
 
-### Collar and footwear regression checks
-
-The City Minimal mask includes source-blue fabric at collar/cuff boundaries; `repair_city_shirt_mask.py` repairs these pixels after offline refinement, and CI validates coverage. Native footwear colours bypass recolouring so leather, straps, soles and accents stay intact. Clothing presets preserve the current footwear selection; footwear can still be changed separately. City Minimal defaults to its original brown sandals.
-
-### Layered trouser mask
-
-`repair_layered_trousers.py` applies reviewed source-specific outlines for all five Layered Neutral poses, including the seated lap and waistband. The dark denim is too similar to the studio background for colour clustering alone. Skin tone and brightness exclusions protect occluding hands, and the original footwear remains protected. Mask validation probes denim and protected chair/hand/leg-gap areas directly. Offline refinement reapplies these reviewed contours automatically.
+The earlier mask/recolour files remain only as historical tooling. They are not imported by the live recommendation components or used in the deployment image path.
