@@ -94,7 +94,7 @@ export function RecommendationCard({
   useEffect(() => {
     let cancelled = false;
     setRenderError(false);
-    Promise.all([loadLookbook(`${publicBasePath}${visual.asset}`), loadLookbook(`${publicBasePath}/lookbooks/masks/${outfit.id}.png?v=20261024-collar-2`)])
+    Promise.all([loadLookbook(`${publicBasePath}${visual.asset}`), loadLookbook(`${publicBasePath}/lookbooks/masks/${outfit.id}.png?v=20261024-trousers-3`)])
       .then(([image, segmentation]) => {
         if (cancelled) return;
         const asset = recolourLookbook(image, outfit.id, colours, segmentation);

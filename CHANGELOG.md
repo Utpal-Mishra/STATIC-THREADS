@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-24 — Layered trouser coverage repair
+
+- Replaced generic trouser masking for Layered Neutral with source-specific contours for all five poses.
+- Included the seated lap/hips, waistband and upper thighs while protecting hands, the chair, leg gaps and footwear.
+- Added direct regression probes for the previously missed denim areas and protected regions.
+- Refreshed mask cache identity for returning browsers.
+
+
 ## 2026-10-24 — Collar coverage and original footwear restoration
 
 - Recovered 2,055 source-blue collar, cuff and fabric-edge pixels missed by skin protection masks.
