@@ -10,7 +10,7 @@ const root = path.resolve(__dirname, '../out');
 const screenshots = '/tmp/mobile-dock-qa';
 const mime = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.json': 'application/json' };
 const server = http.createServer((req, res) => {
-  const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
+  const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname).replace(/^\/STATIC-THREADS(?=\/|$)/, '') || '/';
   let file = path.resolve(root, `.${pathname}`);
   if (!file.startsWith(root + path.sep) && file !== root) { res.writeHead(403).end(); return; }
   if (fs.existsSync(file) && fs.statSync(file).isDirectory()) file = path.join(file, 'index.html');
@@ -31,11 +31,12 @@ async function until(check, message) {
   fs.mkdirSync(screenshots, { recursive: true });
   await new Promise(resolve => server.listen(4174, '127.0.0.1', resolve));
   const browser = await chromium.launch({ headless: true });
+  let page;
   try {
-    const page = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: 'reduce' });
+    page = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: 'reduce' });
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
-    await page.goto(process.env.TEST_BASE_URL || 'http://127.0.0.1:4174/', { waitUntil: 'load' });
+    await page.goto(process.env.TEST_BASE_URL || 'http://127.0.0.1:4174/STATIC-THREADS/', { waitUntil: 'load' });
     assert.equal(await page.title(), 'Static Threads');
     await page.getByRole('heading', { level: 1 }).waitFor();
     assert.ok(!/Application error|Internal Server Error/.test(await page.locator('body').innerText()));
@@ -100,5 +101,11 @@ async function until(check, message) {
     assert.equal(await dock.isVisible(), false);
     assert.deepEqual(errors, []);
     console.log('PASS: 320/390/680px dock and menu bounds, tap targets, all destinations, active states, focus trap/restore, Escape/backdrop dismissal, scroll locking and desktop 681/1280px. No app errors.');
+  } catch (error) {
+    if (page) {
+      console.error('Failure state:', await page.evaluate(() => ({ width: innerWidth, css: Array.from(document.styleSheets).map(s => s.href), scroll: scrollY })));
+      await page.screenshot({ path: `${screenshots}/failure.png` });
+    }
+    throw error;
   } finally { await browser.close(); }
 })().catch(error => { console.error(error); process.exitCode = 1; }).finally(() => server.close());
