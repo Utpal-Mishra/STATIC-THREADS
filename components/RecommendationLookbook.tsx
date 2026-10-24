@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import type { BoardFrame } from "@/data/recommendation-colour-variants";
 
 type RecommendationLookbookProps = {
@@ -18,6 +18,7 @@ const cropClasses = ["pose-walking", "pose-sitting", "pose-front", "pose-back", 
 
 export function RecommendationLookbook({ title, asset, views, publicBasePath, paletteLabel, frames, boardWidth, boardHeight }: RecommendationLookbookProps) {
   const [active, setActive] = useState(0);
+  const frameClipId = useId().replace(/:/g, "");
   const trackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -95,7 +96,12 @@ export function RecommendationLookbook({ title, asset, views, publicBasePath, pa
               viewBox={(frames[index] ?? frames[2]).join(" ")}
               preserveAspectRatio="xMidYMid meet"
             >
-              <image href={`${publicBasePath}${asset}`} width={boardWidth} height={boardHeight} />
+              <defs>
+                <clipPath id={`${frameClipId}-${index}`} clipPathUnits="userSpaceOnUse">
+                  <rect x={(frames[index] ?? frames[2])[0]} y={(frames[index] ?? frames[2])[1]} width={(frames[index] ?? frames[2])[2]} height={(frames[index] ?? frames[2])[3]} />
+                </clipPath>
+              </defs>
+              <image href={`${publicBasePath}${asset}`} width={boardWidth} height={boardHeight} clipPath={`url(#${frameClipId}-${index})`} />
             </svg>
             <figcaption>{view}</figcaption>
           </figure>

@@ -5,6 +5,7 @@
 - Restore the four approved original outfit boards as the default views.
 - Add twelve independently generated colour boards: four complete choices for each recommendation, with five views each.
 - Replace garment filters with a complete-look toggle, preserving native resolution, original footwear, fabric detail and lighting.
+- Clip each native frame explicitly so adjacent board panels cannot enter letterboxed space.
 - Display lossless images through aspect-preserving frame windows; remove runtime recolouring and contrast/saturation filters.
 - Preload/decode before switching, keep the previous image on load failure, and guard against stale rapid-toggle results.
 - Validate all image hashes, lossless RGB pixels, resolution and 80 view windows in CI.
