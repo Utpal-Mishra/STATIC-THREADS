@@ -2,11 +2,11 @@
 
 import { useRef, useState } from 'react';
 import { RecommendationLookbook } from '@/components/RecommendationLookbook';
-import { recommendationColourVariants, type RecommendationColourVariantId } from '@/data/recommendation-colour-variants';
+import { recommendationColourVariants, type RecommendationColourVariant, type RecommendationColourVariantId } from '@/data/recommendation-colour-variants';
 import { colourHex } from '@/lib/palette-colours';
 import type { WardrobeItem } from '@/types/catalog';
 
-type Outfit = { id: string; name: string; mood: string; score: number; why: string };
+type Outfit = { id: string; name: string; mood: string; score?: number; why: string };
 type Visual = { asset: string; views: readonly string[] };
 const decodedBoards = new Map<string, Promise<void>>();
 
@@ -24,10 +24,11 @@ function loadBoard(url: string) {
   return pending;
 }
 
-export function RecommendationCard({ outfit, items, visual, publicBasePath }: {
+export function RecommendationCard({ outfit, items, visual, publicBasePath, imageVariants, inspirationPieces }: {
   outfit: Outfit; items: WardrobeItem[]; visual: Visual; publicBasePath: string;
+  imageVariants?: readonly RecommendationColourVariant[]; inspirationPieces?: readonly string[];
 }) {
-  const variants = recommendationColourVariants[outfit.id as RecommendationColourVariantId] ?? [];
+  const variants = imageVariants ?? recommendationColourVariants[outfit.id as RecommendationColourVariantId] ?? [];
   const [selectedId, setSelectedId] = useState(variants[0]?.id);
   const [pendingId, setPendingId] = useState<string | null>(null);
   const [error, setError] = useState(false);
@@ -55,8 +56,8 @@ export function RecommendationCard({ outfit, items, visual, publicBasePath }: {
   };
 
   return (
-    <article className="outfit-card visual-outfit-card" data-outfit-id={outfit.id} aria-busy={pendingId !== null}>
-      <div className="outfit-card-topline"><span>{outfit.score}% match</span><small>{outfit.mood}</small></div>
+    <article className={`outfit-card visual-outfit-card${inspirationPieces ? " inspiration-outfit-card" : ""}`} data-outfit-id={outfit.id} aria-busy={pendingId !== null}>
+      <div className="outfit-card-topline"><span>{inspirationPieces ? "Inspiration" : `${outfit.score}% match`}</span><small>{outfit.mood}</small></div>
       <h3>{outfit.name}</h3>
       <RecommendationLookbook
         title={outfit.name}
@@ -75,7 +76,7 @@ export function RecommendationCard({ outfit, items, visual, publicBasePath }: {
           <span className="combination-count">{variants.findIndex((v) => v.id === selected.id) + 1} / {variants.length}</span>
         </div>
         <div className="combination-toggle-group" role="group" aria-label={`${outfit.name} colour combinations`}>
-          {variants.map((variant) => (
+          {variants.map((variant, index) => (
             <button
               type="button"
               key={variant.id}
@@ -90,7 +91,7 @@ export function RecommendationCard({ outfit, items, visual, publicBasePath }: {
                 ))}
               </span>
               <span>{variant.label}</span>
-              {pendingId === variant.id ? <small>Loading…</small> : variant.original ? <small>Original</small> : null}
+              {pendingId === variant.id ? <small>Loading…</small> : variant.original || (inspirationPieces && index === 0) ? <small>{inspirationPieces ? "Saved palette" : "Original"}</small> : null}
             </button>
           ))}
         </div>
@@ -102,7 +103,12 @@ export function RecommendationCard({ outfit, items, visual, publicBasePath }: {
         <a className="full-board-link" href={`${publicBasePath}${selected.asset}`} target="_blank" rel="noreferrer">View full-resolution image ↗</a>
       </div>
 
-      <div className="outfit-stack" aria-label={`${outfit.name} owned items`}>
+      <div className="outfit-stack" aria-label={`${outfit.name} ${inspirationPieces ? "inspiration pieces" : "owned items"}`}>
+        {inspirationPieces && (selected.pieces ?? inspirationPieces).map((piece) => (
+          <div className="outfit-piece" key={piece}>
+            <div><strong>{piece}</strong><small>Style inspiration · Not marked as owned</small></div>
+          </div>
+        ))}
         {items.map((item) => (
           <div className="outfit-piece" key={item.id}>
             <span className="outfit-piece-swatch" style={{ background: colourHex[item.primaryColour] ?? '#747a76' }} />
@@ -111,7 +117,7 @@ export function RecommendationCard({ outfit, items, visual, publicBasePath }: {
         ))}
       </div>
       <p className="outfit-why">{outfit.why}</p>
-      <small className="combination-disclaimer">Style inspiration; the garments shown may differ from your owned pieces.</small>
+      <small className="combination-disclaimer">{inspirationPieces ? "Generated style inspiration based on your saved direction; these pieces are not marked as owned." : "Style inspiration; the garments shown may differ from your owned pieces."}</small>
     </article>
   );
 }

@@ -114,3 +114,5 @@ Each recommendation has four complete high-quality outfit boards, with five view
 Run `python scripts/validate_image_sets.py` to verify all 16 boards and 80 frame windows, including decoded pixel and file integrity. CI and deployment run this check.
 
 The earlier mask/recolour files remain only as historical tooling. They are not imported by the live recommendation components or used in the deployment image path.
+
+Saved inspiration uses `data/inspiration-image-sets.json`: eight style directions, three complete generated looks each and five poses per image. These are inspiration pieces, not owned inventory. All boards are lossless WebP under `public/lookbooks/inspiration/v1/`; palette changes swap the full image and update the piece list through the shared recommendation card.

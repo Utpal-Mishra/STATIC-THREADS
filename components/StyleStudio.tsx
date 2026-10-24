@@ -1,46 +1,10 @@
 import { shopSuggestions } from "@/data/shop-similar";
 import { styleProfile } from "@/data/style-profile";
 import { visualLookbooks, type VisualLookbookId } from "@/data/lookbook-visuals";
+import inspirationImageSets from "@/data/inspiration-image-sets.json";
+import type { RecommendationColourVariant } from "@/data/recommendation-colour-variants";
 import { RecommendationCard } from "@/components/RecommendationCard";
 import type { WardrobeCatalog, WardrobeItem } from "@/types/catalog";
-
-const colourMap: Record<string, string> = {
-  white: "#f1efe7",
-  black: "#17191c",
-  cream: "#e8ddc4",
-  navy: "#243049",
-  taupe: "#81766d",
-  "olive green": "#687153",
-  lilac: "#aaa0ba",
-  grey: "#777b7f",
-  charcoal: "#45494d",
-  beige: "#c7b697",
-  blue: "#7892aa",
-  "light grey": "#b1b6b8",
-  brown: "#75523f"
-};
-
-function swatch(item: WardrobeItem) {
-  return colourMap[item.primaryColour.toLowerCase()] ?? "#747a76";
-}
-
-function inspirationSwatch(piece: string) {
-  const value = piece.toLowerCase();
-  if (value.includes("striped") && value.includes("blue")) return "linear-gradient(135deg, #edf0ed 0 42%, #7992aa 42% 51%, #edf0ed 51% 70%, #7992aa 70% 79%, #edf0ed 79%)";
-  if (value.includes("powder-blue") || value.includes("light blue")) return "#aabfcd";
-  if (value.includes("light-wash")) return "#9eb1bf";
-  if (value.includes("cream") || value.includes("off-white")) return "#ece7da";
-  if (value.includes("white")) return "#f1efe7";
-  if (value.includes("chocolate") || value.includes("espresso") || value.includes("brown")) return "#765342";
-  if (value.includes("burgundy") || value.includes("maroon")) return "#6f2f3c";
-  if (value.includes("navy")) return "#243147";
-  if (value.includes("teal")) return "#35605c";
-  if (value.includes("forest") || value.includes("olive") || value.includes("sage") || value.includes("green")) return "#697057";
-  if (value.includes("charcoal") || value.includes("grey")) return "#666b6d";
-  if (value.includes("black")) return "#17191c";
-  if (value.includes("beige") || value.includes("tan")) return "#c7b697";
-  return "#747a76";
-}
 
 export function StyleStudio({ catalog }: { catalog: WardrobeCatalog }) {
   const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -115,7 +79,7 @@ export function StyleStudio({ catalog }: { catalog: WardrobeCatalog }) {
         })}
       </div>
 
-      <div className="recommendation-heading">
+      <div className="recommendation-heading" id="saved-inspiration">
         <div>
           <p className="micro-label">Saved inspiration</p>
           <h3>Looks to recreate next</h3>
@@ -125,25 +89,15 @@ export function StyleStudio({ catalog }: { catalog: WardrobeCatalog }) {
 
       <div className="outfit-grid">
         {styleProfile.inspirationLooks.map((look) => (
-          <article className="outfit-card" key={look.id}>
-            <div className="outfit-card-topline">
-              <span>Inspiration</span>
-              <small>{look.mood}</small>
-            </div>
-            <h3>{look.name}</h3>
-            <div className="outfit-stack" aria-label={`${look.name} pieces`}>
-              {look.pieces.map((piece) => (
-                <div className="outfit-piece" key={piece}>
-                  <span className="outfit-piece-swatch" style={{ background: inspirationSwatch(piece) }} />
-                  <div>
-                    <strong>{piece}</strong>
-                    <small>Target combination</small>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <p className="outfit-why">{look.why}</p>
-          </article>
+          <RecommendationCard
+            key={look.id}
+            outfit={look}
+            items={[]}
+            inspirationPieces={look.pieces}
+            imageVariants={inspirationImageSets[look.id] as unknown as RecommendationColourVariant[]}
+            visual={{ asset: inspirationImageSets[look.id][0].asset, views: ["Walking", "Sitting", "Front View", "Back View", "Side View"] }}
+            publicBasePath={publicBasePath}
+          />
         ))}
       </div>
 

@@ -12,6 +12,7 @@ export type RecommendationColourVariant = {
   height: number;
   frames: readonly BoardFrame[];
   original: boolean;
+  pieces?: readonly string[];
 };
 export type RecommendationColourVariantId = 'city-minimal' | 'weekend-ease' | 'layered-neutral' | 'utility-travel';
 export const recommendationColourVariants = imageSets as unknown as Record<RecommendationColourVariantId, readonly RecommendationColourVariant[]>;

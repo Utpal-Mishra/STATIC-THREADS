@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-24 — Saved inspiration complete-image combinations
+
+- Add five-view mannequin photography to all eight saved inspiration looks, with three independently generated palettes per look.
+- Reuse complete-image toggles, preloading, clipped native-resolution views and full-resolution links.
+- Update target piece descriptions with the selected palette while keeping inspiration separate from wardrobe-owned items.
+- Validate all 40 outfit boards and 200 frame windows in CI.
+
 ## 2026-10-24 — Complete generated image combinations
 
 - Restore the four approved original outfit boards as the default views.
