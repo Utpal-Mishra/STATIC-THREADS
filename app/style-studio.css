@@ -979,3 +979,6 @@ svg.lookbook-pose-image { display: block; overflow: hidden; filter: none; }
 .full-board-link { display: inline-block; margin-top: 8px; color: #aef9d7; font-size: .7rem; text-underline-offset: 3px; }
 .combination-disclaimer { display: block; margin-top: 10px; color: var(--muted); font-size: .68rem; line-height: 1.5; }
 @media (max-width: 380px) { .combination-toggle-group { grid-template-columns: 1fr; } }
+
+.inspiration-outfit-card .outfit-piece strong,
+.inspiration-outfit-card .outfit-piece small { white-space: normal; overflow: visible; overflow-wrap: anywhere; }

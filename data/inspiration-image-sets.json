@@ -1,0 +1,1320 @@
+{
+  "powder-blue-cream": [
+    {
+      "id": "powder-cream",
+      "label": "Powder Blue + Cream",
+      "colours": {
+        "top": "Powder blue",
+        "trousers": "Cream",
+        "footwear": "White"
+      },
+      "pieces": [
+        "Powder blue relaxed linen shirt",
+        "Cream wide tailored trousers",
+        "White low-profile leather trainers"
+      ],
+      "note": "Complete generated saved-inspiration look.",
+      "asset": "/lookbooks/inspiration/v1/powder-blue-cream-powder-cream.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          418,
+          528
+        ],
+        [
+          3,
+          536,
+          418,
+          547
+        ],
+        [
+          427,
+          3,
+          596,
+          1080
+        ],
+        [
+          1029,
+          3,
+          416,
+          528
+        ],
+        [
+          1029,
+          536,
+          416,
+          547
+        ]
+      ],
+      "original": false,
+      "sha256": "6b17177c193ccc15a3a7e7bf6693c3a58496af850ed0a0aa62f83d84f48a39e2",
+      "pixelSha256": "3baf6aece0e6d1fd6ace06798f9cee1e733eda286fe94c108d3dbb67248df1eb"
+    },
+    {
+      "id": "sage-stone",
+      "label": "Sage + Stone",
+      "colours": {
+        "top": "Sage",
+        "trousers": "Stone",
+        "footwear": "White"
+      },
+      "pieces": [
+        "Sage green relaxed linen shirt",
+        "Stone wide tailored trousers",
+        "White low-profile leather trainers"
+      ],
+      "note": "Complete generated saved-inspiration look.",
+      "asset": "/lookbooks/inspiration/v1/powder-blue-cream-sage-stone.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          417,
+          528
+        ],
+        [
+          3,
+          536,
+          417,
+          547
+        ],
+        [
+          426,
+          3,
+          596,
+          1080
+        ],
+        [
+          1028,
+          3,
+          417,
+          528
+        ],
+        [
+          1028,
+          536,
+          417,
+          547
+        ]
+      ],
+      "original": false,
+      "sha256": "3fc84ef5ebd0ffbabb230362d10f2e12489f831183e2ec3f2af409a21449cb5f",
+      "pixelSha256": "1fe436de590de0364daced9f35c92cb1242affdf12443f84fd25b47ab795fff9"
+    },
+    {
+      "id": "navy-sand",
+      "label": "Navy + Sand",
+      "colours": {
+        "top": "Navy",
+        "trousers": "Sand",
+        "footwear": "White"
+      },
+      "pieces": [
+        "Navy relaxed linen shirt",
+        "Sand wide tailored trousers",
+        "White low-profile leather trainers"
+      ],
+      "note": "Complete generated saved-inspiration look.",
+      "asset": "/lookbooks/inspiration/v1/powder-blue-cream-navy-sand.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          418,
+          528
+        ],
+        [
+          3,
+          536,
+          418,
+          547
+        ],
+        [
+          426,
+          3,
+          597,
+          1080
+        ],
+        [
+          1028,
+          3,
+          417,
+          528
+        ],
+        [
+          1028,
+          536,
+          417,
+          547
+        ]
+      ],
+      "original": false,
+      "sha256": "a40560763b3061c87a74db168d0fd9c8b86870be264d1de91795a56c1a9675b1",
+      "pixelSha256": "e481143eed84b1164577e51367bcf0be49b8f75f60cd3e49a7dff08b3b0bd743"
+    }
+  ],
+  "stripe-denim-knit": [
+    {
+      "id": "blue-navy",
+      "label": "Blue Stripe + Navy",
+      "colours": {
+        "top": "Blue",
+        "trousers": "Light denim",
+        "footwear": "Cream",
+        "layer": "Navy"
+      },
+      "pieces": [
+        "Fine blue-and-white striped shirt",
+        "Light-wash relaxed jeans",
+        "Navy knit draped over shoulders",
+        "Cream sneakers",
+        "Brown leather bag"
+      ],
+      "note": "Complete generated saved-inspiration look.",
+      "asset": "/lookbooks/inspiration/v1/stripe-denim-knit-blue-navy.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          417,
+          528
+        ],
+        [
+          3,
+          536,
+          417,
+          547
+        ],
+        [
+          426,
+          3,
+          596,
+          1080
+        ],
+        [
+          1027,
+          3,
+          418,
+          528
+        ],
+        [
+          1027,
+          536,
+          418,
+          547
+        ]
+      ],
+      "original": false,
+      "sha256": "e9150b19e55b3c8ea44e0c2a0218dff63782f8f54e4c782f2fbf9322d8627b0b",
+      "pixelSha256": "4f916af79f93232722da57397665ec5fc7a5a42421f81767c290944d00ed01fc"
+    },
+    {
+      "id": "sage-cream",
+      "label": "Sage Stripe + Cream",
+      "colours": {
+        "top": "Sage",
+        "trousers": "Light denim",
+        "footwear": "Cream",
+        "layer": "Cream"
+      },
+      "pieces": [
+        "Fine sage-and-white striped shirt",
+        "Light-wash relaxed jeans",
+        "Cream knit draped over shoulders",
+        "Cream sneakers",
+        "Brown leather bag"
+      ],
+      "note": "Complete generated saved-inspiration look.",
+      "asset": "/lookbooks/inspiration/v1/stripe-denim-knit-sage-cream.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          417,
+          528
+        ],
+        [
+          3,
+          536,
+          417,
+          547
+        ],
+        [
+          426,
+          3,
+          596,
+          1080
+        ],
+        [
+          1028,
+          3,
+          417,
+          528
+        ],
+        [
+          1028,
+          536,
+          417,
+          547
+        ]
+      ],
+      "original": false,
+      "sha256": "d5b6b039ad168a1e711245c64207281da62867b3cd63cc88eb441255a54b7571",
+      "pixelSha256": "b9dd49f390b58f9a0c6b7db4eed5346e96b3cd46c2284b232987e1ecd165ec9f"
+    },
+    {
+      "id": "burgundy-grey",
+      "label": "Burgundy Stripe + Grey",
+      "colours": {
+        "top": "Burgundy",
+        "trousers": "Denim",
+        "footwear": "Cream",
+        "layer": "Grey"
+      },
+      "pieces": [
+        "Fine burgundy-and-white striped shirt",
+        "Mid-wash relaxed jeans",
+        "Grey knit draped over shoulders",
+        "Cream sneakers",
+        "Brown leather bag"
+      ],
+      "note": "Complete generated saved-inspiration look.",
+      "asset": "/lookbooks/inspiration/v1/stripe-denim-knit-burgundy-grey.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          418,
+          527
+        ],
+        [
+          3,
+          536,
+          418,
+          547
+        ],
+        [
+          426,
+          3,
+          596,
+          1080
+        ],
+        [
+          1027,
+          3,
+          418,
+          527
+        ],
+        [
+          1027,
+          536,
+          418,
+          547
+        ]
+      ],
+      "original": false,
+      "sha256": "80b461959fbd2bac572e1f517bc1191a7c072c5817a274593ce74ce28812a91f",
+      "pixelSha256": "a567cfbc80d5fb4a6c13c4dd53f37434868a49049aa1f69a572c3ee2ebaff4f8"
+    }
+  ],
+  "brown-black-olive": [
+    {
+      "id": "chocolate-olive",
+      "label": "Chocolate + Black + Olive",
+      "colours": {
+        "top": "Chocolate",
+        "trousers": "Black",
+        "footwear": "Black",
+        "layer": "Olive"
+      },
+      "pieces": [
+        "Chocolate-brown shirt",
+        "Black tailored trousers",
+        "Olive knit draped over shoulders",
+        "Brown leather bag",
+        "Black leather loafers"
+      ],
+      "note": "Complete generated saved-inspiration look.",
+      "asset": "/lookbooks/inspiration/v1/brown-black-olive-chocolate-olive.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          417,
+          528
+        ],
+        [
+          3,
+          536,
+          417,
+          547
+        ],
+        [
+          426,
+          3,
+          596,
+          1080
+        ],
+        [
+          1028,
+          3,
+          417,
+          528
+        ],
+        [
+          1028,
+          536,
+          417,
+          547
+        ]
+      ],
+      "original": false,
+      "sha256": "a00802cbbad69d9e00bbf0b757ef29401e68fa70984905612082acd9676a7901",
+      "pixelSha256": "915ea30d3b1965ff70bc5d46c1de99700f7826c1bd47c35870576fdf8292fe15"
+    },
+    {
+      "id": "navy-stone",
+      "label": "Navy + Stone + Cream",
+      "colours": {
+        "top": "Navy",
+        "trousers": "Stone",
+        "footwear": "Black",
+        "layer": "Cream"
+      },
+      "pieces": [
+        "Navy shirt",
+        "Stone tailored trousers",
+        "Cream knit draped over shoulders",
+        "Brown leather bag",
+        "Black leather loafers"
+      ],
+      "note": "Complete generated saved-inspiration look.",
+      "asset": "/lookbooks/inspiration/v1/brown-black-olive-navy-stone.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          417,
+          528
+        ],
+        [
+          3,
+          537,
+          417,
+          546
+        ],
+        [
+          426,
+          3,
+          596,
+          1080
+        ],
+        [
+          1028,
+          3,
+          417,
+          528
+        ],
+        [
+          1028,
+          537,
+          417,
+          546
+        ]
+      ],
+      "original": false,
+      "sha256": "7cb576aea568dbbeaf630b589f02f9c1b0b7e8402905ed8e88b752e6bec9a22a",
+      "pixelSha256": "9a345705a2277db4189090d4ba477bfe417a3809b6c60e28024ef82ff0f4d5b8"
+    },
+    {
+      "id": "burgundy-charcoal",
+      "label": "Burgundy + Charcoal + Grey",
+      "colours": {
+        "top": "Burgundy",
+        "trousers": "Charcoal",
+        "footwear": "Black",
+        "layer": "Grey"
+      },
+      "pieces": [
+        "Burgundy shirt",
+        "Charcoal tailored trousers",
+        "Light grey knit draped over shoulders",
+        "Brown leather bag",
+        "Black leather loafers"
+      ],
+      "note": "Complete generated saved-inspiration look.",
+      "asset": "/lookbooks/inspiration/v1/brown-black-olive-burgundy-charcoal.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          418,
+          528
+        ],
+        [
+          3,
+          536,
+          418,
+          547
+        ],
+        [
+          426,
+          3,
+          596,
+          1080
+        ],
+        [
+          1028,
+          3,
+          417,
+          528
+        ],
+        [
+          1028,
+          536,
+          417,
+          547
+        ]
+      ],
+      "original": false,
+      "sha256": "0e02682e8189771237c6915684e4a222f56b4a95f61c97f44df23747b46fa8f5",
+      "pixelSha256": "fc6df1f4566befd3390b191c7cc69fbf9aeeb145a15fbdeaccba760b54113cfb"
+    }
+  ],
+  "espresso-cream": [
+    {
+      "id": "espresso-cream",
+      "label": "Espresso + Cream",
+      "colours": {
+        "top": "Espresso",
+        "trousers": "Cream",
+        "footwear": "Black"
+      },
+      "pieces": [
+        "Espresso dark-brown knitted polo",
+        "Cream straight tailored trousers",
+        "Black leather loafers"
+      ],
+      "note": "Complete generated saved-inspiration look.",
+      "asset": "/lookbooks/inspiration/v1/espresso-cream-espresso-cream.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          418,
+          528
+        ],
+        [
+          3,
+          536,
+          418,
+          547
+        ],
+        [
+          426,
+          3,
+          597,
+          1080
+        ],
+        [
+          1028,
+          3,
+          417,
+          528
+        ],
+        [
+          1028,
+          536,
+          417,
+          547
+        ]
+      ],
+      "original": false,
+      "sha256": "7743d5f9ba658677921bb8f200f26d7ba014dfd08400936f09967b90bde9efec",
+      "pixelSha256": "18bc4cb228ebd96732963c8f1614e5f1a12c027e388f226d8c9dc14392624f7b"
+    },
+    {
+      "id": "navy-stone",
+      "label": "Navy + Stone",
+      "colours": {
+        "top": "Navy",
+        "trousers": "Stone",
+        "footwear": "Black"
+      },
+      "pieces": [
+        "Navy knitted polo",
+        "Stone straight tailored trousers",
+        "Black leather loafers"
+      ],
+      "note": "Complete generated saved-inspiration look.",
+      "asset": "/lookbooks/inspiration/v1/espresso-cream-navy-stone.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          418,
+          528
+        ],
+        [
+          3,
+          536,
+          418,
+          547
+        ],
+        [
+          426,
+          3,
+          597,
+          1080
+        ],
+        [
+          1028,
+          3,
+          417,
+          528
+        ],
+        [
+          1028,
+          536,
+          417,
+          547
+        ]
+      ],
+      "original": false,
+      "sha256": "2df07cef0a001fed43c637ec133fb4662c7b35a3dcd37c095a44961e978f0292",
+      "pixelSha256": "cf7fe1ed1c4f2d22609e188186bbae9ca330e7b41fb93d79052793cb0ad419f1"
+    },
+    {
+      "id": "burgundy-sand",
+      "label": "Burgundy + Sand",
+      "colours": {
+        "top": "Burgundy",
+        "trousers": "Sand",
+        "footwear": "Black"
+      },
+      "pieces": [
+        "Burgundy knitted polo",
+        "Sand straight tailored trousers",
+        "Black leather loafers"
+      ],
+      "note": "Complete generated saved-inspiration look.",
+      "asset": "/lookbooks/inspiration/v1/espresso-cream-burgundy-sand.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          417,
+          528
+        ],
+        [
+          3,
+          536,
+          417,
+          547
+        ],
+        [
+          426,
+          3,
+          596,
+          1080
+        ],
+        [
+          1028,
+          3,
+          417,
+          528
+        ],
+        [
+          1028,
+          536,
+          417,
+          547
+        ]
+      ],
+      "original": false,
+      "sha256": "5afa4f6deade55f5f82dab70de046edcb8744c9cd50682b918d49ab401a703ef",
+      "pixelSha256": "b7b159f7f0b9dc06567c5ee6f61b64fadbf73e7efb77b81bb0b1b139728282e3"
+    }
+  ],
+  "forest-cream": [
+    {
+      "id": "forest-cream",
+      "label": "Forest Green + Cream",
+      "colours": {
+        "top": "Forest green",
+        "trousers": "Cream",
+        "footwear": "Brown"
+      },
+      "pieces": [
+        "Forest-green relaxed tucked cotton tee",
+        "Cream tailored trousers",
+        "Brown leather sandals",
+        "Black leather belt"
+      ],
+      "note": "Complete generated saved-inspiration look.",
+      "asset": "/lookbooks/inspiration/v1/forest-cream-forest-cream.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          417,
+          528
+        ],
+        [
+          3,
+          536,
+          417,
+          547
+        ],
+        [
+          426,
+          3,
+          596,
+          1080
+        ],
+        [
+          1028,
+          3,
+          417,
+          528
+        ],
+        [
+          1028,
+          536,
+          417,
+          547
+        ]
+      ],
+      "original": false,
+      "sha256": "9c5f22cd2b8688ed2b8b3abe606aa3ffd254229e3c7d5b676ce816cbeb3676be",
+      "pixelSha256": "ab1123803f1647ec83497bb8b9f977ae63d8cbcafc974e9272176e017b75b264"
+    },
+    {
+      "id": "olive-stone",
+      "label": "Olive + Stone",
+      "colours": {
+        "top": "Olive",
+        "trousers": "Stone",
+        "footwear": "Brown"
+      },
+      "pieces": [
+        "Olive relaxed tucked cotton tee",
+        "Stone tailored trousers",
+        "Brown leather sandals",
+        "Black leather belt"
+      ],
+      "note": "Complete generated saved-inspiration look.",
+      "asset": "/lookbooks/inspiration/v1/forest-cream-olive-stone.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          417,
+          528
+        ],
+        [
+          3,
+          536,
+          417,
+          547
+        ],
+        [
+          426,
+          3,
+          596,
+          1080
+        ],
+        [
+          1028,
+          3,
+          417,
+          528
+        ],
+        [
+          1028,
+          536,
+          417,
+          547
+        ]
+      ],
+      "original": false,
+      "sha256": "87be5caca5f8f4698350d53b21ac162908d0226cb018a9bc1a762d66ff65aee6",
+      "pixelSha256": "30c83a63043bcab4163b29b0ed0693bf8606f85f21e0b6ff8582d8b61d376fa7"
+    },
+    {
+      "id": "navy-cream",
+      "label": "Navy + Cream",
+      "colours": {
+        "top": "Navy",
+        "trousers": "Cream",
+        "footwear": "Brown"
+      },
+      "pieces": [
+        "Navy relaxed tucked cotton tee",
+        "Cream tailored trousers",
+        "Brown leather sandals",
+        "Black leather belt"
+      ],
+      "note": "Complete generated saved-inspiration look.",
+      "asset": "/lookbooks/inspiration/v1/forest-cream-navy-cream.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          417,
+          528
+        ],
+        [
+          3,
+          536,
+          417,
+          547
+        ],
+        [
+          426,
+          3,
+          596,
+          1080
+        ],
+        [
+          1027,
+          3,
+          418,
+          528
+        ],
+        [
+          1027,
+          536,
+          418,
+          547
+        ]
+      ],
+      "original": false,
+      "sha256": "201476d0d95db223c95bce511d7c9c4d403608fa4657bf4b2078239a9fd81282",
+      "pixelSha256": "75fce8dac14138b789b6958d40855a77205f4c70892bbda64e3bbf89859c3348"
+    }
+  ],
+  "black-light-denim": [
+    {
+      "id": "black-light-denim",
+      "label": "Black + Light Denim",
+      "colours": {
+        "top": "Black",
+        "trousers": "Light denim",
+        "footwear": "White"
+      },
+      "pieces": [
+        "Black relaxed cotton tee",
+        "Light-wash relaxed jeans",
+        "White leather trainers",
+        "Brown canvas tote"
+      ],
+      "note": "Complete generated saved-inspiration look.",
+      "asset": "/lookbooks/inspiration/v1/black-light-denim-black-light-denim.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          418,
+          528
+        ],
+        [
+          3,
+          536,
+          418,
+          547
+        ],
+        [
+          427,
+          3,
+          596,
+          1080
+        ],
+        [
+          1029,
+          3,
+          416,
+          528
+        ],
+        [
+          1029,
+          536,
+          416,
+          547
+        ]
+      ],
+      "original": false,
+      "sha256": "944de2df9fd92706175c455d5632c591a4dbce53a0f6c5c67e494e979d495967",
+      "pixelSha256": "95d458601e8cb89883b287664fa7eb882b802f2dc57a397b3d2a3c4f43f938ae"
+    },
+    {
+      "id": "white-mid-denim",
+      "label": "White + Mid Denim",
+      "colours": {
+        "top": "White",
+        "trousers": "Denim",
+        "footwear": "White"
+      },
+      "pieces": [
+        "White relaxed cotton tee",
+        "Mid-blue relaxed jeans",
+        "White leather trainers",
+        "Brown canvas tote"
+      ],
+      "note": "Complete generated saved-inspiration look.",
+      "asset": "/lookbooks/inspiration/v1/black-light-denim-white-mid-denim.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          418,
+          528
+        ],
+        [
+          3,
+          537,
+          418,
+          546
+        ],
+        [
+          426,
+          3,
+          597,
+          1080
+        ],
+        [
+          1028,
+          3,
+          417,
+          528
+        ],
+        [
+          1028,
+          537,
+          417,
+          546
+        ]
+      ],
+      "original": false,
+      "sha256": "3be9bb838578d7eab0ee2caf5d0bba85913bf1f805491a1237db15cf270870ee",
+      "pixelSha256": "9989aabae28a2417fc1dc7087a2f538b41885f113de1c075fb60720e7faa114e"
+    },
+    {
+      "id": "olive-washed-grey",
+      "label": "Olive + Washed Grey",
+      "colours": {
+        "top": "Olive",
+        "trousers": "Grey",
+        "footwear": "White"
+      },
+      "pieces": [
+        "Olive relaxed cotton tee",
+        "Washed grey relaxed jeans",
+        "White leather trainers",
+        "Brown canvas tote"
+      ],
+      "note": "Complete generated saved-inspiration look.",
+      "asset": "/lookbooks/inspiration/v1/black-light-denim-olive-washed-grey.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          417,
+          528
+        ],
+        [
+          3,
+          536,
+          417,
+          547
+        ],
+        [
+          426,
+          3,
+          596,
+          1080
+        ],
+        [
+          1028,
+          3,
+          417,
+          528
+        ],
+        [
+          1028,
+          536,
+          417,
+          547
+        ]
+      ],
+      "original": false,
+      "sha256": "82482325710af587b58863895a5d27d795a7cf7324d7837b461557d6a44b20d6",
+      "pixelSha256": "d88a7141f991827935665c8f22bf3b2caadcc870ded2c1f357f79cda40e15463"
+    }
+  ],
+  "black-cream-sandal": [
+    {
+      "id": "black-cream",
+      "label": "Black + Cream",
+      "colours": {
+        "top": "Black",
+        "trousers": "Cream",
+        "footwear": "Brown"
+      },
+      "pieces": [
+        "Black fitted cotton tee",
+        "Cream relaxed trousers",
+        "Brown leather sandals",
+        "Black belt"
+      ],
+      "note": "Complete generated saved-inspiration look.",
+      "asset": "/lookbooks/inspiration/v1/black-cream-sandal-black-cream.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          418,
+          528
+        ],
+        [
+          3,
+          536,
+          418,
+          547
+        ],
+        [
+          426,
+          3,
+          597,
+          1080
+        ],
+        [
+          1028,
+          3,
+          417,
+          528
+        ],
+        [
+          1028,
+          536,
+          417,
+          547
+        ]
+      ],
+      "original": false,
+      "sha256": "63923e6d34e91b4c5eaf97e74b566ac6a16ee08b527f1a81831da202075e5d1f",
+      "pixelSha256": "86ea701b46c7fce17c5214630708b96658695c7978af0f5c409da58478d4c405"
+    },
+    {
+      "id": "chocolate-stone",
+      "label": "Chocolate + Stone",
+      "colours": {
+        "top": "Chocolate",
+        "trousers": "Stone",
+        "footwear": "Brown"
+      },
+      "pieces": [
+        "Chocolate fitted cotton tee",
+        "Stone relaxed trousers",
+        "Brown leather sandals",
+        "Black belt"
+      ],
+      "note": "Complete generated saved-inspiration look.",
+      "asset": "/lookbooks/inspiration/v1/black-cream-sandal-chocolate-stone.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          417,
+          528
+        ],
+        [
+          3,
+          536,
+          417,
+          547
+        ],
+        [
+          426,
+          3,
+          597,
+          1080
+        ],
+        [
+          1028,
+          3,
+          417,
+          528
+        ],
+        [
+          1028,
+          536,
+          417,
+          547
+        ]
+      ],
+      "original": false,
+      "sha256": "0d04ec4a5fc5350a4194439429624b0fe60f802f6c311cd06e75ce030012888b",
+      "pixelSha256": "9ecd60b79f4ba3652215b327b41c2f58a0ad0146409d030b66e6014f5277f58d"
+    },
+    {
+      "id": "burgundy-sand",
+      "label": "Burgundy + Sand",
+      "colours": {
+        "top": "Burgundy",
+        "trousers": "Sand",
+        "footwear": "Brown"
+      },
+      "pieces": [
+        "Burgundy fitted cotton tee",
+        "Sand relaxed trousers",
+        "Brown leather sandals",
+        "Black belt"
+      ],
+      "note": "Complete generated saved-inspiration look.",
+      "asset": "/lookbooks/inspiration/v1/black-cream-sandal-burgundy-sand.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          418,
+          528
+        ],
+        [
+          3,
+          536,
+          418,
+          547
+        ],
+        [
+          427,
+          3,
+          596,
+          1080
+        ],
+        [
+          1029,
+          3,
+          416,
+          528
+        ],
+        [
+          1029,
+          536,
+          416,
+          547
+        ]
+      ],
+      "original": false,
+      "sha256": "eaeff4209b7f7cc8f9f0b232f57aaeb8a067fc91c54d39d602062fa4762e3863",
+      "pixelSha256": "e2a40d429a4786ecc03b82d088839d7caedbbeac204d701cccde5a920281c071"
+    }
+  ],
+  "teal-washed-grey": [
+    {
+      "id": "teal-grey",
+      "label": "Teal + Washed Grey",
+      "colours": {
+        "top": "Teal",
+        "trousers": "Charcoal",
+        "footwear": "Black"
+      },
+      "pieces": [
+        "Deep teal relaxed shirt",
+        "Washed charcoal relaxed jeans",
+        "Black leather shoes",
+        "Dark-brown leather tote"
+      ],
+      "note": "Complete generated saved-inspiration look.",
+      "asset": "/lookbooks/inspiration/v1/teal-washed-grey-teal-grey.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          418,
+          528
+        ],
+        [
+          3,
+          536,
+          418,
+          547
+        ],
+        [
+          426,
+          3,
+          597,
+          1080
+        ],
+        [
+          1028,
+          3,
+          417,
+          528
+        ],
+        [
+          1028,
+          536,
+          417,
+          547
+        ]
+      ],
+      "original": false,
+      "sha256": "ff897050844464c7a6013adc380aa0bf489ebb85f31f7078fc580c1da58a6215",
+      "pixelSha256": "6b9cdf2d73350db108ddb5a97ceaf5e1e651c2211fa4e8a6523e4c86c98b2937"
+    },
+    {
+      "id": "burgundy-charcoal",
+      "label": "Burgundy + Charcoal",
+      "colours": {
+        "top": "Burgundy",
+        "trousers": "Charcoal",
+        "footwear": "Black"
+      },
+      "pieces": [
+        "Burgundy relaxed shirt",
+        "Washed charcoal relaxed jeans",
+        "Black leather shoes",
+        "Dark-brown leather tote"
+      ],
+      "note": "Complete generated saved-inspiration look.",
+      "asset": "/lookbooks/inspiration/v1/teal-washed-grey-burgundy-charcoal.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          417,
+          527
+        ],
+        [
+          3,
+          536,
+          417,
+          547
+        ],
+        [
+          426,
+          3,
+          595,
+          1080
+        ],
+        [
+          1027,
+          3,
+          418,
+          527
+        ],
+        [
+          1027,
+          536,
+          418,
+          547
+        ]
+      ],
+      "original": false,
+      "sha256": "b82adcdc7b66df8160428abd0c1197087e3e9967243509c9cff679cddb46ded4",
+      "pixelSha256": "26b8509725432734d07d4c7837383d23e80a5fc29f0669fcf3e27232d83f32a8"
+    },
+    {
+      "id": "navy-stone",
+      "label": "Navy + Stone",
+      "colours": {
+        "top": "Navy",
+        "trousers": "Stone",
+        "footwear": "Black"
+      },
+      "pieces": [
+        "Navy relaxed shirt",
+        "Stone relaxed jeans",
+        "Black leather shoes",
+        "Dark-brown leather tote"
+      ],
+      "note": "Complete generated saved-inspiration look.",
+      "asset": "/lookbooks/inspiration/v1/teal-washed-grey-navy-stone.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          417,
+          528
+        ],
+        [
+          3,
+          536,
+          417,
+          547
+        ],
+        [
+          426,
+          3,
+          596,
+          1080
+        ],
+        [
+          1028,
+          3,
+          417,
+          528
+        ],
+        [
+          1028,
+          536,
+          417,
+          547
+        ]
+      ],
+      "original": false,
+      "sha256": "243c6e9c0f8d90fd136fb69614ad449fec65c50315fef794c9973663367feea0",
+      "pixelSha256": "011a3d93a57972ef5b270f95bb74c2769c4b210ffa1de2d3eed19541222bb4c6"
+    }
+  ]
+}
