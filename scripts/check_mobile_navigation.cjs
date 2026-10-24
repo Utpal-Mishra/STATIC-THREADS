@@ -32,7 +32,7 @@ async function until(check, message) {
   await new Promise(resolve => server.listen(4174, '127.0.0.1', resolve));
   const browser = await chromium.launch({ headless: true });
   try {
-    const page = await browser.newPage({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
+    const page = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: 'reduce' });
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
     await page.goto(process.env.TEST_BASE_URL || 'http://127.0.0.1:4174/', { waitUntil: 'load' });
