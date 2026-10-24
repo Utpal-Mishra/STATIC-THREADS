@@ -108,3 +108,7 @@ types/                   Shared catalogue types
 Run `python scripts/validate_garment_masks.py` to check source dimensions, garment labels and face/background protection.
 
 For offline mask regeneration, install `opencv-python-headless` in addition to Pillow/NumPy, then run `python scripts/refine_garment_masks.py`. Review the generated maps against all five poses before committing them; deployment consumes the reviewed PNGs directly.
+
+### Collar and footwear regression checks
+
+The City Minimal mask includes source-blue fabric at collar/cuff boundaries; `repair_city_shirt_mask.py` repairs these pixels after offline refinement, and CI validates coverage. Native footwear colours bypass recolouring so leather, straps, soles and accents stay intact. Clothing presets preserve the current footwear selection; footwear can still be changed separately. City Minimal defaults to its original brown sandals.

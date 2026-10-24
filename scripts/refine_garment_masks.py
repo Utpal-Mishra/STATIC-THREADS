@@ -52,3 +52,11 @@ for key,board in boards.items():
  Image.fromarray(result).save(root/f'public/lookbooks/masks/{key}.png')
  print(key,flush=True)
 (root/'data/garment-masks.json').write_text(json.dumps(boards,separators=(',',':'))+'\n')
+
+# Recover cool-blue collar/cuff pixels excluded by warm skin-protection contours.
+from repair_city_shirt_mask import blue_shirt_candidates
+p = root / "public/lookbooks/masks/city-minimal.png"
+labels = np.array(Image.open(p))
+source = np.asarray(Image.open(root / "public/lookbooks/city-minimal-approved-hq.webp").convert("RGB"))
+labels[blue_shirt_candidates(source, labels)] = codes["top"]
+Image.fromarray(labels).save(p)

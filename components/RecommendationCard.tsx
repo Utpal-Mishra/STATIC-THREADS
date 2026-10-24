@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { RecommendationLookbook } from "@/components/RecommendationLookbook";
 import { recommendationColourVariants, type RecommendationColourVariant, type RecommendationColourVariantId } from "@/data/recommendation-colour-variants";
-import { colourHex, garmentBoards, loadLookbook, recolourLookbook } from "@/lib/recolour-lookbook";
+import { colourHex, nativeFootwearColours, garmentBoards, loadLookbook, recolourLookbook } from "@/lib/recolour-lookbook";
 import type { WardrobeItem } from "@/types/catalog";
 
 type Visual = {
@@ -77,7 +77,7 @@ export function RecommendationCard({
   const selectedVariant = useMemo(
     () =>
       variants.find((variant) =>
-        supportedParts.every(
+        supportedParts.filter((part) => part !== "footwear").every(
           (part) => (variant.colours[part] ?? undefined) === (colours[part] ?? undefined)
         )
       ),
@@ -94,7 +94,7 @@ export function RecommendationCard({
   useEffect(() => {
     let cancelled = false;
     setRenderError(false);
-    Promise.all([loadLookbook(`${publicBasePath}${visual.asset}`), loadLookbook(`${publicBasePath}/lookbooks/masks/${outfit.id}.png`)])
+    Promise.all([loadLookbook(`${publicBasePath}${visual.asset}`), loadLookbook(`${publicBasePath}/lookbooks/masks/${outfit.id}.png?v=20261024-collar-2`)])
       .then(([image, segmentation]) => {
         if (cancelled) return;
         const asset = recolourLookbook(image, outfit.id, colours, segmentation);
@@ -176,7 +176,7 @@ export function RecommendationCard({
                 setColours((current) => {
                   const next = { ...current };
                   supportedParts.forEach((part) => {
-                    next[part] = variant.colours[part];
+                    if (part !== "footwear") next[part] = variant.colours[part];
                   });
                   return next;
                 })
@@ -205,7 +205,7 @@ export function RecommendationCard({
                       title={`${partLabels[part]}: ${colour}`}
                     >
                       <span style={{ background: colourFor(colour) }} />
-                      <b>{colour}</b>
+                      <b>{colour}{part === "footwear" && colour === nativeFootwearColours[outfit.id] ? " · Original" : ""}</b>
                     </button>
                   ))}
                 </div>
@@ -216,7 +216,7 @@ export function RecommendationCard({
 
         <div className={`colour-visual-status ${changed ? "is-rendered" : "is-original"}`} role="status" aria-live="polite">
           <span>{renderError ? "Preview unavailable" : !ready ? "Updating outfit colours…" : changed ? "Custom colour preview" : "Original colour preview"}</span>
-          <small>{renderError ? "Please reload to retry. The mannequin could not be updated." : "Each colour changes only that garment across all five poses. Style preview: garment shapes may differ from your owned pieces."}</small>
+          <small>{renderError ? "Please reload to retry. The mannequin could not be updated." : "Clothing presets keep your footwear selection. Original footwear retains its natural texture and details. Style preview: garment shapes may differ from your owned pieces."}</small>
           {outfit.id === "city-minimal" ? <small>The owned cap is listed below; this mannequin is not wearing a cap.</small> : null}
         </div>
       </div>

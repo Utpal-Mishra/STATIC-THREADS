@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-24 — Collar coverage and original footwear restoration
+
+- Recovered 2,055 source-blue collar, cuff and fabric-edge pixels missed by skin protection masks.
+- Restore native footwear colours and details by default, including City Minimal brown sandals.
+- Clothing presets preserve the separately selected footwear colour.
+- Added source-blue coverage regression validation and refreshed mask cache identity.
+
+
 ## 2026-10-24 — Independent mannequin colour controls
 
 - Each garment colour updates only that garment across all five poses, including footwear and the visible Utility Travel cap.
