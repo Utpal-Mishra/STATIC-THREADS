@@ -84,12 +84,19 @@ export function MobileDock() {
             <NavigationIcon name={section.icon} /><span>{section.label}</span>
           </a>
         ))}
-        <button ref={menuButton} type="button" aria-label="Open navigation menu" aria-haspopup="dialog" aria-expanded={menuOpen} aria-controls="mobile-navigation-menu" className={menuOpen || active === "shop-similar" || active === "sale-radar" ? "is-active" : ""} onClick={() => { menu.current?.showModal(); setMenuOpen(true); }}>
+        <button ref={menuButton} type="button" aria-label="Open navigation menu" aria-haspopup="dialog" aria-expanded={menuOpen} aria-controls="mobile-navigation-menu" className={menuOpen || active === "shop-similar" || active === "sale-radar" ? "is-active" : ""} onClick={() => { menu.current?.showModal(); menu.current?.querySelector<HTMLButtonElement>("button")?.focus(); setMenuOpen(true); }}>
           <NavigationIcon name="menu" /><span>Menu</span>
         </button>
       </nav>
 
-      <dialog ref={menu} id="mobile-navigation-menu" className="mobile-navigation-menu" aria-labelledby="mobile-menu-title" onClose={() => { setMenuOpen(false); if (window.matchMedia("(max-width: 680px)").matches) menuButton.current?.focus(); }} onClick={(event) => { if (event.target === event.currentTarget) { const bounds = event.currentTarget.getBoundingClientRect(); if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) closeMenu(); } }}>
+      <dialog ref={menu} id="mobile-navigation-menu" className="mobile-navigation-menu" aria-labelledby="mobile-menu-title" onKeyDown={(event) => {
+        if (event.key !== "Tab") return;
+        const targets = Array.from(event.currentTarget.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')).filter(element => element.getClientRects().length > 0);
+        const first = targets[0];
+        const last = targets[targets.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+      }} onClose={() => { setMenuOpen(false); if (window.matchMedia("(max-width: 680px)").matches) menuButton.current?.focus(); }} onClick={(event) => { if (event.target === event.currentTarget) { const bounds = event.currentTarget.getBoundingClientRect(); if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) closeMenu(); } }}>
         <div className="mobile-menu-heading"><h2 id="mobile-menu-title">Explore Static Threads</h2><button type="button" onClick={closeMenu} aria-label="Close navigation menu" autoFocus>×</button></div>
         <nav aria-label="All mobile sections">
           {sections.map((section) => (
