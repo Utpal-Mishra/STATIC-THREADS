@@ -29,3 +29,11 @@ labels = np.asarray(Image.open(ROOT / "public/lookbooks/masks/city-minimal.png")
 source = np.asarray(Image.open(ROOT / "public/lookbooks/city-minimal-approved-hq.webp").convert("RGB"))
 assert not np.any(blue_shirt_candidates(source, labels) & (labels != CODES["top"])), "City Minimal collar/cuff coverage regressed"
 print("City Minimal collar/cuff coverage passed")
+
+# Regression: waistband, lap and both legs must be included in all five poses.
+labels = np.asarray(Image.open(ROOT / "public/lookbooks/masks/layered-neutral.png"))
+for x, y in [(246,258),(197,414),(221,342),(142,787),(211,807),(228,813),(112,806),(304,811),(203,937),(724,483),(754,480),(691,600),(802,700),(1211,282),(1256,280),(1245,801),(1253,930)]:
+    assert labels[y,x] == CODES["trousers"], ("Layered denim coverage",x,y)
+for x, y in [(251,805),(215,880),(749,800),(1225,450),(210,996),(698,358)]:
+    assert labels[y,x] != CODES["trousers"], ("Protected hand/chair/gap/shoe/shirt",x,y)
+print("Layered trouser waistband/lap/legs and protected regions passed")

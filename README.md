@@ -112,3 +112,7 @@ For offline mask regeneration, install `opencv-python-headless` in addition to P
 ### Collar and footwear regression checks
 
 The City Minimal mask includes source-blue fabric at collar/cuff boundaries; `repair_city_shirt_mask.py` repairs these pixels after offline refinement, and CI validates coverage. Native footwear colours bypass recolouring so leather, straps, soles and accents stay intact. Clothing presets preserve the current footwear selection; footwear can still be changed separately. City Minimal defaults to its original brown sandals.
+
+### Layered trouser mask
+
+`repair_layered_trousers.py` applies reviewed source-specific outlines for all five Layered Neutral poses, including the seated lap and waistband. The dark denim is too similar to the studio background for colour clustering alone. Skin tone and brightness exclusions protect occluding hands, and the original footwear remains protected. Mask validation probes denim and protected chair/hand/leg-gap areas directly. Offline refinement reapplies these reviewed contours automatically.

@@ -60,3 +60,7 @@ labels = np.array(Image.open(p))
 source = np.asarray(Image.open(root / "public/lookbooks/city-minimal-approved-hq.webp").convert("RGB"))
 labels[blue_shirt_candidates(source, labels)] = codes["top"]
 Image.fromarray(labels).save(p)
+
+# Keep the reviewed layered trouser contours after generic clustering.
+import runpy
+runpy.run_path(str(root / "scripts/repair_layered_trousers.py"), run_name="__main__")
