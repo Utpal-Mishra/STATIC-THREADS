@@ -54,7 +54,8 @@ async function until(check, message) {
       for (const target of await dock.getByRole('link').all()) {
         const hit = await target.boundingBox();
         assert.ok(hit.width >= 44 && hit.height >= 44, `Tap target too small at ${width}px: ${JSON.stringify(hit)}`);
-        assert.equal(await target.locator('span').evaluate(e => e.scrollWidth <= e.clientWidth), true, `Label clipped at ${width}px`);
+        const label = await target.locator('span').evaluate(e => ({ fits: e.scrollWidth <= e.clientWidth, text: e.textContent, content: e.scrollWidth, available: e.clientWidth }));
+        assert.ok(label.fits, `Label clipped at ${width}px: ${JSON.stringify(label)}`);
       }
       if (width === 320) await page.screenshot({ path: `${screenshots}/mobile-dock-320.png` });
     }
