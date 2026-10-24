@@ -1,11 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { BoardFrame } from "@/data/recommendation-colour-variants";
 
 type RecommendationLookbookProps = {
   title: string;
   paletteLabel?: string;
-  pending?: boolean;
+  frames: readonly BoardFrame[];
+  boardWidth: number;
+  boardHeight: number;
   asset: string;
   views: readonly string[];
   publicBasePath: string;
@@ -13,7 +16,7 @@ type RecommendationLookbookProps = {
 
 const cropClasses = ["pose-walking", "pose-sitting", "pose-front", "pose-back", "pose-side"] as const;
 
-export function RecommendationLookbook({ title, asset, views, publicBasePath, paletteLabel, pending }: RecommendationLookbookProps) {
+export function RecommendationLookbook({ title, asset, views, publicBasePath, paletteLabel, frames, boardWidth, boardHeight }: RecommendationLookbookProps) {
   const [active, setActive] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -26,7 +29,7 @@ export function RecommendationLookbook({ title, asset, views, publicBasePath, pa
         const next = (current + 1) % views.length;
         const track = trackRef.current;
         const child = track?.children.item(next) as HTMLElement | null;
-        child?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+        if (track && child) track.scrollTo({ left: child.offsetLeft - track.offsetLeft - (track.clientWidth - child.clientWidth) / 2, behavior: "smooth" });
         return next;
       });
     }, 3600);
@@ -39,8 +42,9 @@ export function RecommendationLookbook({ title, asset, views, publicBasePath, pa
     setActive(normalized);
 
     if (window.matchMedia("(max-width: 680px)").matches) {
-      const child = trackRef.current?.children.item(normalized) as HTMLElement | null;
-      child?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+      const track = trackRef.current;
+      const child = track?.children.item(normalized) as HTMLElement | null;
+      if (track && child) track.scrollTo({ left: child.offsetLeft - track.offsetLeft - (track.clientWidth - child.clientWidth) / 2, behavior: "smooth" });
     }
   };
 
@@ -84,12 +88,15 @@ export function RecommendationLookbook({ title, asset, views, publicBasePath, pa
       >
         {views.map((view, index) => (
           <figure className={`lookbook-pose ${cropClasses[index] ?? "pose-front"} ${showcaseClass(index)}`} key={view}>
-            <div
+            <svg
               className="lookbook-pose-image"
               role="img"
               aria-label={`${title} — ${view}${paletteLabel ? ` — ${paletteLabel}` : ""}`}
-              style={{ visibility: pending ? "hidden" : "visible", backgroundImage: `url("${publicBasePath}${asset}")` }}
-            />
+              viewBox={(frames[index] ?? frames[2]).join(" ")}
+              preserveAspectRatio="xMidYMid meet"
+            >
+              <image href={`${publicBasePath}${asset}`} width={boardWidth} height={boardHeight} />
+            </svg>
             <figcaption>{view}</figcaption>
           </figure>
         ))}
@@ -118,7 +125,7 @@ export function RecommendationLookbook({ title, asset, views, publicBasePath, pa
 
       <div className="lookbook-model-note">
         <strong>Model: faceless mannequin</strong>
-        <small>Five-view presentation. Exact garment rendering and user-photo try-on are the next fidelity layers.</small>
+        <small>One complete colour combination, shown from five angles.</small>
       </div>
     </div>
   );

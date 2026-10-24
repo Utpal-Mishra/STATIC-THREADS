@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-24 — Complete generated image combinations
+
+- Restore the four approved original outfit boards as the default views.
+- Add twelve independently generated colour boards: four complete choices for each recommendation, with five views each.
+- Replace garment filters with a complete-look toggle, preserving native resolution, original footwear, fabric detail and lighting.
+- Display lossless images through aspect-preserving frame windows; remove runtime recolouring and contrast/saturation filters.
+- Preload/decode before switching, keep the previous image on load failure, and guard against stale rapid-toggle results.
+- Validate all image hashes, lossless RGB pixels, resolution and 80 view windows in CI.
+
+
 ## 2026-10-24 — Layered trouser coverage repair
 
 - Replaced generic trouser masking for Layered Neutral with source-specific contours for all five poses.

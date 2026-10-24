@@ -1,0 +1,786 @@
+{
+  "city-minimal": [
+    {
+      "id": "powder-blue-cream",
+      "label": "Powder Blue + Cream",
+      "colours": {
+        "top": "Powder blue",
+        "trousers": "Cream",
+        "footwear": "Brown"
+      },
+      "note": "Original approved image.",
+      "asset": "/lookbooks/collections/v1/city-minimal-powder-blue-cream.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          418,
+          528
+        ],
+        [
+          3,
+          536,
+          418,
+          547
+        ],
+        [
+          426,
+          3,
+          597,
+          1080
+        ],
+        [
+          1028,
+          3,
+          417,
+          528
+        ],
+        [
+          1028,
+          536,
+          417,
+          547
+        ]
+      ],
+      "original": true,
+      "sha256": "2c31a1672793d9975a8601b44580cfd8934ec76748d64093ab4b0a19b3fccc36",
+      "pixelSha256": "536d3f25508629ee863b2c01b876fab0cf27c8b89f42b256b6a2f546dcf56067"
+    },
+    {
+      "id": "cream-grey",
+      "label": "Cream + Grey",
+      "colours": {
+        "top": "Cream",
+        "trousers": "Grey",
+        "footwear": "Brown"
+      },
+      "note": "Complete generated colour combination.",
+      "asset": "/lookbooks/collections/v1/city-minimal-cream-grey.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          418,
+          527
+        ],
+        [
+          3,
+          536,
+          418,
+          547
+        ],
+        [
+          426,
+          3,
+          597,
+          1080
+        ],
+        [
+          1028,
+          3,
+          417,
+          527
+        ],
+        [
+          1028,
+          536,
+          417,
+          547
+        ]
+      ],
+      "original": false,
+      "sha256": "4b8f4dc819d32c9b60d7388e618f3d8a74078d6a769fba5da4a6ba8872920cb0",
+      "pixelSha256": "5aa572c509b4d2d96a08bd6942a8b8041a914a65a3e340244c224b00a0660958"
+    },
+    {
+      "id": "olive-stone",
+      "label": "Olive + Stone",
+      "colours": {
+        "top": "Olive",
+        "trousers": "Stone",
+        "footwear": "Brown"
+      },
+      "note": "Complete generated colour combination.",
+      "asset": "/lookbooks/collections/v1/city-minimal-olive-stone.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          417,
+          527
+        ],
+        [
+          3,
+          536,
+          417,
+          547
+        ],
+        [
+          426,
+          3,
+          596,
+          1080
+        ],
+        [
+          1028,
+          3,
+          417,
+          527
+        ],
+        [
+          1028,
+          536,
+          417,
+          547
+        ]
+      ],
+      "original": false,
+      "sha256": "7380f6afe864bad7ca6a52790b1c17c50206a158adf4e954a53988762be17733",
+      "pixelSha256": "9da0b3d151738dbaef764e8780d7f1f6817c29b2da7e52b8d1d2fcdb560881c0"
+    },
+    {
+      "id": "white-charcoal",
+      "label": "White + Charcoal",
+      "colours": {
+        "top": "White",
+        "trousers": "Charcoal",
+        "footwear": "Brown"
+      },
+      "note": "Complete generated colour combination.",
+      "asset": "/lookbooks/collections/v1/city-minimal-white-charcoal.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          418,
+          528
+        ],
+        [
+          3,
+          536,
+          418,
+          547
+        ],
+        [
+          427,
+          3,
+          596,
+          1080
+        ],
+        [
+          1029,
+          3,
+          416,
+          528
+        ],
+        [
+          1029,
+          536,
+          416,
+          547
+        ]
+      ],
+      "original": false,
+      "sha256": "4d9751f7a5953d231624a2df198487b2b9d7ddf889bd76f738d901180a161ba0",
+      "pixelSha256": "a8eff1c4f7f30c529ba161a76c12c8cd5acb6a4c3d3727957529a6ce6b7aaae1"
+    }
+  ],
+  "weekend-ease": [
+    {
+      "id": "olive-cream",
+      "label": "Olive + Cream",
+      "colours": {
+        "top": "Olive",
+        "trousers": "Cream",
+        "footwear": "White"
+      },
+      "note": "Original approved image.",
+      "asset": "/lookbooks/collections/v1/weekend-ease-olive-cream.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          417,
+          528
+        ],
+        [
+          3,
+          535,
+          417,
+          548
+        ],
+        [
+          424,
+          3,
+          599,
+          1080
+        ],
+        [
+          1027,
+          3,
+          418,
+          528
+        ],
+        [
+          1027,
+          535,
+          418,
+          548
+        ]
+      ],
+      "original": true,
+      "sha256": "d22d730423415a7e5d472ad046d789a39b1c41cd931a2b1ee7e2365dc6bacbda",
+      "pixelSha256": "f5697b81ec479d4a408e40e867d05804b9b552cdcd07628091c576bff4624a6c"
+    },
+    {
+      "id": "grey-light-grey",
+      "label": "Grey + Light Grey",
+      "colours": {
+        "top": "Grey",
+        "trousers": "Light grey",
+        "footwear": "White"
+      },
+      "note": "Complete generated colour combination.",
+      "asset": "/lookbooks/collections/v1/weekend-ease-grey-light-grey.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          417,
+          528
+        ],
+        [
+          3,
+          535,
+          417,
+          548
+        ],
+        [
+          424,
+          3,
+          598,
+          1080
+        ],
+        [
+          1026,
+          3,
+          419,
+          528
+        ],
+        [
+          1026,
+          535,
+          419,
+          548
+        ]
+      ],
+      "original": false,
+      "sha256": "1b056d0a8c80a2bc7f1900dfd9b3bbfedf269bed447ad2c2693ee43b62b619b9",
+      "pixelSha256": "4226fa4da0334d2803e0040b1d30cdc7a6f16e270645d173906cb13922c93f0d"
+    },
+    {
+      "id": "powder-blue-sand",
+      "label": "Powder Blue + Sand",
+      "colours": {
+        "top": "Powder blue",
+        "trousers": "Sand",
+        "footwear": "White"
+      },
+      "note": "Complete generated colour combination.",
+      "asset": "/lookbooks/collections/v1/weekend-ease-powder-blue-sand.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          417,
+          528
+        ],
+        [
+          3,
+          535,
+          417,
+          548
+        ],
+        [
+          424,
+          3,
+          598,
+          1080
+        ],
+        [
+          1026,
+          3,
+          419,
+          528
+        ],
+        [
+          1026,
+          535,
+          419,
+          548
+        ]
+      ],
+      "original": false,
+      "sha256": "dec6266a8a609e7a7a9dd5f4ee18c2b9dae09d54471b5d1ad1fc75e6083f00ab",
+      "pixelSha256": "af8c98f9459f10c40d551fb589c4a5ff116558ef5695275ef99831679f951955"
+    },
+    {
+      "id": "navy-stone",
+      "label": "Navy + Stone",
+      "colours": {
+        "top": "Navy",
+        "trousers": "Stone",
+        "footwear": "White"
+      },
+      "note": "Complete generated colour combination.",
+      "asset": "/lookbooks/collections/v1/weekend-ease-navy-stone.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          417,
+          528
+        ],
+        [
+          3,
+          535,
+          417,
+          548
+        ],
+        [
+          424,
+          3,
+          598,
+          1080
+        ],
+        [
+          1026,
+          3,
+          419,
+          528
+        ],
+        [
+          1026,
+          535,
+          419,
+          548
+        ]
+      ],
+      "original": false,
+      "sha256": "f570b82f00a3b518f65293da701835b05ba1a18fbf7ac105d0260145988da7c6",
+      "pixelSha256": "8ae743569473fc73ea8fc88db4b5dc7eeeec0b80228ce5a320b84501267b912e"
+    }
+  ],
+  "layered-neutral": [
+    {
+      "id": "beige-black",
+      "label": "Beige + Black",
+      "colours": {
+        "top": "White",
+        "trousers": "Black",
+        "layer": "Beige",
+        "footwear": "White"
+      },
+      "note": "Original approved image.",
+      "asset": "/lookbooks/collections/v1/layered-neutral-beige-black.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          446,
+          523
+        ],
+        [
+          3,
+          532,
+          446,
+          551
+        ],
+        [
+          454,
+          3,
+          539,
+          1080
+        ],
+        [
+          998,
+          3,
+          447,
+          523
+        ],
+        [
+          998,
+          532,
+          447,
+          551
+        ]
+      ],
+      "original": true,
+      "sha256": "77828474905dfbf9ffe29e5a55445435dc79bc6af5ab94169d80f8ad7b7c7eba",
+      "pixelSha256": "81b8afa7236419acc8f0af244e0c98b965ee58ce20d6c6257cb60b602a7dc5d4"
+    },
+    {
+      "id": "chocolate-cream",
+      "label": "Chocolate + Cream",
+      "colours": {
+        "top": "Cream",
+        "trousers": "Cream",
+        "layer": "Chocolate",
+        "footwear": "White"
+      },
+      "note": "Complete generated colour combination.",
+      "asset": "/lookbooks/collections/v1/layered-neutral-chocolate-cream.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          446,
+          523
+        ],
+        [
+          3,
+          532,
+          446,
+          551
+        ],
+        [
+          454,
+          3,
+          538,
+          1080
+        ],
+        [
+          997,
+          3,
+          448,
+          523
+        ],
+        [
+          997,
+          532,
+          448,
+          551
+        ]
+      ],
+      "original": false,
+      "sha256": "7b51fe044d77743a90f8470abae54324b52e5308b0d719b970484ff3ef2c9cf6",
+      "pixelSha256": "c06b34d1288dc606186ac8e1212ce427956559dc6b0d74dcbfc085c5ba068c50"
+    },
+    {
+      "id": "olive-black",
+      "label": "Olive + Black",
+      "colours": {
+        "top": "White",
+        "trousers": "Black",
+        "layer": "Olive",
+        "footwear": "White"
+      },
+      "note": "Complete generated colour combination.",
+      "asset": "/lookbooks/collections/v1/layered-neutral-olive-black.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          446,
+          523
+        ],
+        [
+          3,
+          532,
+          446,
+          551
+        ],
+        [
+          454,
+          3,
+          538,
+          1080
+        ],
+        [
+          997,
+          3,
+          448,
+          523
+        ],
+        [
+          997,
+          532,
+          448,
+          551
+        ]
+      ],
+      "original": false,
+      "sha256": "59e22330abd232defed38bc5e3d9fc88f48ff84b4e3f928db8e118b1f6edf632",
+      "pixelSha256": "39aacc5f12243ddfa6a50ff29555c6baa210f38f225c7e87a1d66b566a248982"
+    },
+    {
+      "id": "navy-grey",
+      "label": "Navy + Grey",
+      "colours": {
+        "top": "White",
+        "trousers": "Grey",
+        "layer": "Navy",
+        "footwear": "White"
+      },
+      "note": "Complete generated colour combination.",
+      "asset": "/lookbooks/collections/v1/layered-neutral-navy-grey.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          446,
+          523
+        ],
+        [
+          3,
+          532,
+          446,
+          551
+        ],
+        [
+          454,
+          3,
+          539,
+          1080
+        ],
+        [
+          998,
+          3,
+          447,
+          523
+        ],
+        [
+          998,
+          532,
+          447,
+          551
+        ]
+      ],
+      "original": false,
+      "sha256": "afdcb41c99cb5f153ef284b35f595aea95d671c83df4d5c4aff0dd3daa6462b3",
+      "pixelSha256": "56e496799891e0f15e1fecb068796673be4bf686870142a91d3850ca173403a8"
+    }
+  ],
+  "utility-travel": [
+    {
+      "id": "cream-olive",
+      "label": "Cream + Olive",
+      "colours": {
+        "top": "Cream",
+        "trousers": "Olive",
+        "cap": "Navy",
+        "footwear": "Cream"
+      },
+      "note": "Original approved image.",
+      "asset": "/lookbooks/collections/v1/utility-travel-cream-olive.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          417,
+          528
+        ],
+        [
+          3,
+          535,
+          417,
+          548
+        ],
+        [
+          424,
+          3,
+          599,
+          1080
+        ],
+        [
+          1027,
+          3,
+          418,
+          528
+        ],
+        [
+          1027,
+          535,
+          418,
+          548
+        ]
+      ],
+      "original": true,
+      "sha256": "5d3d671c92f5bd94816f91f2fc72e936a1656acd48d9c70b0dbf259fe5a1ef2a",
+      "pixelSha256": "57b28b6f29569e625d572d2ac73d9fc27bc0563a7e95e1b12efde484b8acb995"
+    },
+    {
+      "id": "white-olive",
+      "label": "White + Olive",
+      "colours": {
+        "top": "White",
+        "trousers": "Olive",
+        "cap": "Navy",
+        "footwear": "Cream"
+      },
+      "note": "Complete generated colour combination.",
+      "asset": "/lookbooks/collections/v1/utility-travel-white-olive.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          417,
+          528
+        ],
+        [
+          3,
+          535,
+          417,
+          548
+        ],
+        [
+          424,
+          3,
+          599,
+          1080
+        ],
+        [
+          1027,
+          3,
+          418,
+          528
+        ],
+        [
+          1027,
+          535,
+          418,
+          548
+        ]
+      ],
+      "original": false,
+      "sha256": "720f7d54498ed198d0d57ad144204a5b1121ee5a33e6029876d29a693ee29449",
+      "pixelSha256": "d3d58bc0860cff77b6c9d3aa92cef0d9d828441c8059920c6ab0083697895bc4"
+    },
+    {
+      "id": "black-grey",
+      "label": "Black + Grey",
+      "colours": {
+        "top": "Black",
+        "trousers": "Grey",
+        "cap": "Navy",
+        "footwear": "Cream"
+      },
+      "note": "Complete generated colour combination.",
+      "asset": "/lookbooks/collections/v1/utility-travel-black-grey.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          417,
+          528
+        ],
+        [
+          3,
+          535,
+          417,
+          548
+        ],
+        [
+          425,
+          3,
+          598,
+          1080
+        ],
+        [
+          1028,
+          3,
+          417,
+          528
+        ],
+        [
+          1028,
+          535,
+          417,
+          548
+        ]
+      ],
+      "original": false,
+      "sha256": "bfe55d6d7db3c9b9a6293dac42d86f6cbb30275baf8497cae3dba3a07ffdebfc",
+      "pixelSha256": "7683ec0c88c46740519b2bdbab0ac1f9d47fdbb7dff0a3365327df539e9dead5"
+    },
+    {
+      "id": "powder-blue-khaki",
+      "label": "Powder Blue + Khaki",
+      "colours": {
+        "top": "Powder blue",
+        "trousers": "Khaki",
+        "cap": "Navy",
+        "footwear": "Cream"
+      },
+      "note": "Complete generated colour combination.",
+      "asset": "/lookbooks/collections/v1/utility-travel-powder-blue-khaki.webp",
+      "width": 1448,
+      "height": 1086,
+      "frames": [
+        [
+          3,
+          3,
+          417,
+          528
+        ],
+        [
+          3,
+          535,
+          417,
+          548
+        ],
+        [
+          424,
+          3,
+          599,
+          1080
+        ],
+        [
+          1027,
+          3,
+          418,
+          528
+        ],
+        [
+          1027,
+          535,
+          418,
+          548
+        ]
+      ],
+      "original": false,
+      "sha256": "2f40a3c36d5474932d0bd44b90e51b8a2756134b9033c2c358aece7318eece9c",
+      "pixelSha256": "b3c2c997cb9a7db5d36f0e89dcf8d55340be666a9ea967ce86ecaf0f9c58b35d"
+    }
+  ]
+}
