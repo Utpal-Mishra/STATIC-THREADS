@@ -6,6 +6,7 @@
 - Keep a compact ST header and Account shortcut; retain desktop navigation.
 - Add an accessible expanded menu with all sections, keyboard dismissal, focus restoration, scroll locking and safe-area spacing.
 - Track the current section as the page scrolls and reserve space below content for the dock.
+- Offset the mobile home anchor so the ST shortcut keeps the hero clear of the sticky header.
 
 ## 2026-10-24 — Saved inspiration complete-image combinations
 
