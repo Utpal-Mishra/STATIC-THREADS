@@ -69,6 +69,7 @@ async function until(check, message) {
     }
     await page.setViewportSize({ width: 390, height: 844 });
     await page.getByRole('link', { name: 'Static Threads home' }).click();
+    await until(() => page.locator('#top').evaluate(e => e.getBoundingClientRect().top >= 85), 'Home anchor obscured by header');
     await page.screenshot({ path: `${screenshots}/mobile-dock.png` });
     for (const [label, id] of [['Wardrobe', 'wardrobe'], ['Decide', 'decision-lab'], ['Style', 'style-studio']]) {
       await dock.getByRole('link', { name: label, exact: true }).click();
