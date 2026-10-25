@@ -1719,3 +1719,31 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* Closet product preview: persistent selection on hover, focus and touch. */
+.closet-scene { overflow-x: auto; overflow-y: hidden; min-height: 350px; scrollbar-width: thin; scrollbar-color: #52675e transparent; }
+.closet-scene::before, .closet-scene::after { display: none; }
+.closet-rack { right: auto; left: 0; width: max-content; min-width: 100%; padding-inline: 38px; transform: none; }
+.closet-garment { flex: 0 0 68px; width: 68px; margin-left: -8px; }
+.closet-rail { left: 18px; right: auto; width: max(100%, 1640px); transform: none; }
+.closet-rack.has-active .closet-garment:not(.is-active), .closet-garment.is-active { filter: none; }
+.closet-card img { padding: 0; object-fit: contain; transform: none; background: #e8e3da; }
+.closet-controls { position: sticky; top: 282px; left: 12px; width: max-content; }
+.closet-controls button { width: 44px; height: 44px; }
+.closet-inspector { display: none; }
+.closet-preview { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(20px, 4vw, 48px); padding: clamp(18px, 3vw, 32px); margin-bottom: 24px; border: 1px solid var(--line); border-radius: 24px; background: #101719; }
+.closet-preview-image { position: relative; display: grid; place-items: center; min-width: 0; border-radius: 18px; overflow: hidden; background: #e8e3da; }
+.closet-preview-image img { display: block; width: 100%; max-height: 350px; aspect-ratio: 1; object-fit: contain; }
+.closet-preview-details { min-width: 0; align-self: center; }
+.closet-preview-details h3 { margin: 8px 0; font-size: clamp(1.5rem, 3vw, 2.4rem); letter-spacing: -.04em; }
+.closet-preview-details > p { color: var(--muted); line-height: 1.6; }
+.closet-preview-details .micro-label { color: var(--mint); }
+.closet-preview-details dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin: 24px 0; }
+.closet-preview-details dt { font-size: .75rem; color: var(--muted); }
+.closet-preview-details dd { margin: 5px 0 0; overflow-wrap: anywhere; text-transform: capitalize; }
+.closet-how-it-works { padding-top: 16px; border-top: 1px solid var(--line); font-size: .85rem; }
+@media (max-width: 620px) {
+  .closet-preview { grid-template-columns: minmax(0, 1fr); }
+  .closet-preview-image img { max-height: 280px; }
+  .closet-garment { flex-basis: 68px; width: 68px; }
+}

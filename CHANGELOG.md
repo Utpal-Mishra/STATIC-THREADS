@@ -87,3 +87,8 @@ All meaningful Static Threads changes are recorded here.
 - Added restrained mint, violet, amber, coral and blue accents for hierarchy and interaction.
 - Added sticky navigation, responsive sale-monitoring sections and improved mobile layouts.
 - Updated the homepage positioning around wardrobe understanding and better purchase decisions.
+
+
+### Closet rail preview
+
+All 26 wardrobe items are accessible on the rail. Hover, keyboard focus, tap and previous/next controls update a persistent product preview with catalogue details and recorded wear history. Rail and catalogue use the configured product image when available, preserving its colours and proportions against a warm neutral backdrop. The existing 26 records still require original garment photographs; illustrations remain explicitly labelled until those photos are supplied.

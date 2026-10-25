@@ -88,6 +88,31 @@ async function until(check, message) {
     await desktop.waitFor({ state: 'visible' });
     assert.deepEqual(await desktop.getByRole('link').allTextContents(), ['Style', 'Decide', 'Wardrobe', 'Shop similar', 'Sale radar', 'Account']);
     await page.screenshot({ path: `${screenshots}/desktop-header.png` });
+    const garments = page.locator('.closet-garment');
+    const preview = page.locator('#closet-preview');
+    assert.equal(await garments.count(), 26);
+    await garments.nth(3).hover();
+    await until(() => preview.getByRole('heading', { name: 'White Navy Raglan', exact: true }).isVisible(), 'Hover did not update preview');
+    await page.mouse.move(0, 0);
+    assert.equal(await garments.nth(3).getAttribute('aria-pressed'), 'true');
+    await garments.nth(5).focus();
+    await until(() => preview.getByRole('heading', { name: 'Green Tee', exact: true }).isVisible(), 'Focus did not update preview');
+    await page.getByRole('button', { name: 'Next garment', exact: true }).click();
+    await until(() => preview.getByRole('heading', { name: 'Lilac Pocket Tee', exact: true }).isVisible(), 'Arrow did not update preview');
+    await page.locator('.closet-stage').scrollIntoViewIfNeeded();
+    await page.screenshot({ path: `${screenshots}/closet-desktop.png` });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await garments.first().tap();
+    assert.equal(await garments.first().getAttribute('aria-pressed'), 'true');
+    await page.getByRole('button', { name: 'Previous garment', exact: true }).tap();
+    await until(() => preview.getByRole('heading', { name: 'Navy Mesh Cap', exact: true }).isVisible(), 'Mobile wrap-around failed');
+    await preview.scrollIntoViewIfNeeded();
+    await page.screenshot({ path: `${screenshots}/closet-mobile.png` });
+    for (const width of [320, 390, 680, 1280]) {
+      await page.setViewportSize({ width, height: 900 });
+      assert.ok(await preview.evaluate(e => e.scrollWidth <= e.clientWidth), `Closet preview clipped at ${width}px`);
+      assert.equal(await preview.locator('img').evaluate(e => e.complete && e.naturalWidth > 0), true);
+    }
     await page.setViewportSize({ width: 681, height: 900 });
     assert.equal(await dock.isVisible(), false);
     assert.deepEqual(errors, []);

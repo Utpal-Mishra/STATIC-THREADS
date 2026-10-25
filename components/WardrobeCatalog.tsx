@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, type CSSProperties } from "react";
+import { useMemo, useRef, useState, type CSSProperties } from "react";
 import type { WardrobeCatalog, WardrobeItem } from "@/types/catalog";
 
 interface WardrobeCatalogViewProps {
@@ -8,6 +8,7 @@ interface WardrobeCatalogViewProps {
 }
 
 const ALL = "all";
+const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const groupOrder = ["T-Shirts & Tops", "Shirts", "Overshirts & Jackets", "Bottoms", "Shoes", "Caps & Accessories"];
 
 const colourMap: Record<string, string> = {
@@ -60,12 +61,18 @@ function productIllustration(item: WardrobeItem): string {
   return `data:image/svg+xml,${encodeURIComponent(svg)}`;
 }
 
+function productImage(item: WardrobeItem): string {
+  if (item.image.startsWith("embedded:")) return productIllustration(item);
+  return item.image.startsWith("/") ? `${publicBasePath}${item.image}` : item.image;
+}
+
 export function WardrobeCatalogView({ catalog }: WardrobeCatalogViewProps) {
+  const closetScene = useRef<HTMLDivElement>(null);
   const [brand, setBrand] = useState(ALL);
   const [category, setCategory] = useState(ALL);
   const [size, setSize] = useState(ALL);
   const [query, setQuery] = useState("");
-  const [activeClosetIndex, setActiveClosetIndex] = useState<number | null>(null);
+  const [activeClosetIndex, setActiveClosetIndex] = useState<number | null>(0);
   const [closetPan, setClosetPan] = useState(0);
 
   const brands = unique(catalog.items.map((item) => item.brand));
@@ -83,15 +90,16 @@ export function WardrobeCatalogView({ catalog }: WardrobeCatalogViewProps) {
   const grouped = groupOrder.map((group) => ({ group, items: filteredItems.filter((item) => groupFor(item) === group) })).filter(({ items }) => items.length > 0);
   const availableCount = catalog.items.filter((item) => item.status === "available").length;
   const brandCount = unique(catalog.items.map((item) => item.brand)).length;
-  const closetItems = catalog.items.filter((item) => !["shoes", "accessories"].includes(item.category)).slice(0, 12);
+  const closetItems = catalog.items;
   const activeClosetItem = activeClosetIndex === null ? null : closetItems[activeClosetIndex] ?? null;
 
   function stepCloset(direction: -1 | 1) {
-    setActiveClosetIndex((current) => {
-      if (closetItems.length === 0) return null;
-      if (current === null) return direction > 0 ? 0 : closetItems.length - 1;
-      return (current + direction + closetItems.length) % closetItems.length;
-    });
+    if (closetItems.length === 0) return;
+    const next = activeClosetIndex === null ? (direction > 0 ? 0 : closetItems.length - 1) : (activeClosetIndex + direction + closetItems.length) % closetItems.length;
+    setActiveClosetIndex(next);
+    const scene = closetScene.current;
+    const garment = scene?.querySelectorAll<HTMLElement>(".closet-garment")[next];
+    if (scene && garment) scene.scrollTo({ left: garment.offsetLeft - scene.clientWidth / 2 + garment.offsetWidth / 2 });
   }
 
   function updateClosetPan(clientX: number, left: number, width: number) {
@@ -111,9 +119,10 @@ export function WardrobeCatalogView({ catalog }: WardrobeCatalogViewProps) {
         <div className="closet-copy">
           <p className="micro-label">Walk-in closet</p>
           <h3>Move through your wardrobe.</h3>
-          <p>Hover, focus or tap a hanger. The selected piece steps forward while the rail makes space around it.</p>
+          <p>Explore every piece on the rail. Hover, focus or tap to bring it forward and see its details below.</p>
         </div>
         <div
+          ref={closetScene}
           className="closet-scene"
           style={{ "--closet-pan": closetPan } as CSSProperties}
           onPointerMove={(event) => {
@@ -128,7 +137,6 @@ export function WardrobeCatalogView({ catalog }: WardrobeCatalogViewProps) {
           <div className="closet-rail" aria-hidden="true" />
           <div
             className={`closet-rack ${activeClosetIndex !== null ? "has-active" : ""}`}
-            onMouseLeave={() => setActiveClosetIndex(null)}
           >
             {closetItems.map((item, index) => {
               const distance = activeClosetIndex === null ? 0 : Math.abs(index - activeClosetIndex);
@@ -143,15 +151,17 @@ export function WardrobeCatalogView({ catalog }: WardrobeCatalogViewProps) {
                   className={`closet-garment ${activeClosetIndex === index ? "is-active" : ""}`}
                   key={item.id}
                   style={style}
-                  onMouseEnter={() => setActiveClosetIndex(index)}
+                  id={`closet-item-${item.id}`}
+                  aria-pressed={activeClosetIndex === index}
+                  aria-controls="closet-preview"
+                  onPointerEnter={(event) => { if (event.pointerType !== "touch") setActiveClosetIndex(index); }}
                   onFocus={() => setActiveClosetIndex(index)}
-                  onBlur={() => setActiveClosetIndex(null)}
-                  onClick={() => setActiveClosetIndex(activeClosetIndex === index ? null : index)}
+                  onClick={() => setActiveClosetIndex(index)}
                   aria-label={`${item.brand} ${item.name}, ${item.primaryColour}`}
                 >
                   <span className="closet-hanger" aria-hidden="true" />
                   <span className="closet-card">
-                    <img src={productIllustration(item)} alt="" />
+                    <img src={productImage(item)} alt="" />
                     {item.image.startsWith("embedded:") ? <span className="catalog-source-badge">Placeholder</span> : null}
                     <span className="closet-label">
                       <strong>{item.name}</strong>
@@ -186,6 +196,28 @@ export function WardrobeCatalogView({ catalog }: WardrobeCatalogViewProps) {
         </div>
       </div>
 
+      {activeClosetItem ? (
+        <section id="closet-preview" className="closet-preview" aria-label="Selected wardrobe item">
+          <div className="closet-preview-image">
+            <img src={productImage(activeClosetItem)} alt={`${activeClosetItem.name}, ${activeClosetItem.primaryColour}`} />
+            {activeClosetItem.image.startsWith("embedded:") ? <span className="catalog-source-badge">Illustration · photo pending</span> : null}
+          </div>
+          <div className="closet-preview-details" aria-live="polite" aria-atomic="true">
+            <p className="micro-label">On your rail · {activeClosetIndex! + 1} / {closetItems.length}</p>
+            <h3>{activeClosetItem.name}</h3>
+            <p>{activeClosetItem.brand} · {activeClosetItem.subcategory}</p>
+            <dl>
+              <div><dt>Colour</dt><dd>{[activeClosetItem.primaryColour, ...activeClosetItem.secondaryColours].join(" / ")}</dd></div>
+              <div><dt>Fit</dt><dd>{activeClosetItem.fit}</dd></div>
+              <div><dt>Size</dt><dd>{activeClosetItem.size}</dd></div>
+              <div><dt>Status</dt><dd>{activeClosetItem.status}</dd></div>
+            </dl>
+            <p className="closet-wear-history">{activeClosetItem.wearCount > 0 ? `${activeClosetItem.wearCount} recorded wears` : "No wears recorded yet"}</p>
+            <p className="closet-how-it-works">Move across the rail to compare pieces. Swipe to explore more, tap to keep a piece in view, or use the arrows to step through your closet.</p>
+          </div>
+        </section>
+      ) : null}
+
       <div className="metric-grid">
         <article className="metric-card"><span>Total items</span><strong>{catalog.items.length}</strong></article>
         <article className="metric-card"><span>Available</span><strong>{availableCount}</strong></article>
@@ -207,7 +239,7 @@ export function WardrobeCatalogView({ catalog }: WardrobeCatalogViewProps) {
             {items.map((item) => (
               <article className="item-card" key={item.id}>
                 <div className="item-image-wrap">
-                  <img src={productIllustration(item)} alt={`${item.brand} ${item.name} generated catalogue placeholder`} className="item-image" />
+                  <img src={productImage(item)} alt={`${item.brand} ${item.name}${item.image.startsWith("embedded:") ? " illustration; original photo not connected" : " product photo"}`} className="item-image" />
                   {item.image.startsWith("embedded:") ? <span className="catalog-source-badge">Generated placeholder · original photo not connected</span> : null}
                 </div>
                 <div className="item-content">
