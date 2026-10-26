@@ -96,7 +96,7 @@ async function until(check, message) {
         const header = nav.closest('.site-header').getBoundingClientRect();
         const logo = nav.closest('.site-header').querySelector('.wordmark').getBoundingClientRect();
         const bounds = nav.getBoundingClientRect();
-        return { fits: bounds.right <= header.right - 8 && bounds.left >= logo.right + 4, width: innerWidth };
+        return { fits: bounds.right <= header.right - 8 && bounds.left >= logo.right + 4, width: innerWidth, headerRight: header.right, logoRight: logo.right, navLeft: bounds.left, navRight: bounds.right };
       });
       assert.ok(layout.fits, `Desktop navigation overlaps or overflows: ${JSON.stringify(layout)}`);
       for (const link of await desktop.getByRole('link').all()) {

@@ -139,9 +139,9 @@ a {
 }
 
 @media (min-width: 681px) and (max-width: 920px) {
-  .site-header { gap: 12px; }
+  .site-header { gap: 8px; }
   .site-header nav { gap: 0; }
-  .site-header nav a { gap: 5px; padding: 8px 6px; font-size: .72rem; }
+  .site-header nav a { gap: 4px; padding: 8px 4px; font-size: .72rem; }
   .site-header nav a svg { width: 16px; height: 16px; }
 }
 
