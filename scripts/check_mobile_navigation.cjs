@@ -30,7 +30,8 @@ async function until(check, message) {
 (async () => {
   fs.mkdirSync(screenshots, { recursive: true });
   await new Promise(resolve => server.listen(4174, '127.0.0.1', resolve));
-  const browser = await chromium.launch({ headless: true });
+  const runnerChrome = ['/usr/bin/google-chrome', '/usr/bin/google-chrome-stable'].find(file => fs.existsSync(file));
+  const browser = await chromium.launch({ headless: true, ...(runnerChrome ? { executablePath: runnerChrome } : {}) });
   let page;
   let closetPage;
   try {
