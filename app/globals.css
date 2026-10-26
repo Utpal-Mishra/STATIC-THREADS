@@ -1285,10 +1285,6 @@ a {
     font-size: 0.72rem;
   }
 
-  .wordmark {
-    font-size: 0;
-  }
-
   .wordmark span {
     font-size: 0.72rem;
   }
@@ -1716,7 +1712,6 @@ a {
 @media (max-width: 680px) {
   .site-header > nav { display: none; }
   .site-header { top: 8px; gap: 12px; padding: 9px 12px; }
-  .site-header .wordmark { font-size: 0; }
   .site-header .wordmark span { width: 38px; height: 38px; font-size: .8rem; }
   .page-shell { padding-bottom: calc(112px + env(safe-area-inset-bottom, 0px)); }
   #top, #style-studio, #decision-lab, #wardrobe, #shop-similar, #sale-radar { scroll-margin-top: 92px; }
