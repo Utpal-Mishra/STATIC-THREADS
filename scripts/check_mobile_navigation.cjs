@@ -110,6 +110,31 @@ async function until(check, message) {
     await until(() => preview.getByRole('heading', { name: 'Lilac Pocket Tee', exact: true }).isVisible(), 'Arrow did not update preview');
     await closetPage.locator('.closet-stage').scrollIntoViewIfNeeded();
     await closetPage.screenshot({ path: `${screenshots}/closet-desktop.png` });
+    // Regression: native 1254px product images must fit compact square cards.
+    for (const width of [320, 390, 680, 1280]) {
+      await closetPage.setViewportSize({ width, height: 900 });
+      const images = await closetPage.locator('.item-image').evaluateAll(elements => elements.map(image => {
+        const frame = image.parentElement.getBoundingClientRect();
+        const box = image.getBoundingClientRect();
+        return { alt: image.alt, width: box.width, height: box.height, frameWidth: frame.width, frameHeight: frame.height, fits: box.left >= frame.left - 1 && box.right <= frame.right + 1 && box.top >= frame.top - 1 && box.bottom <= frame.bottom + 1, fit: getComputedStyle(image).objectFit, loaded: image.complete && image.naturalWidth > 0 };
+      }));
+      assert.equal(images.length, 26);
+      for (const image of images) {
+        assert.ok(image.loaded && image.fits, `Product image overflow at ${width}px: ${JSON.stringify(image)}`);
+        assert.ok(Math.abs(image.frameHeight - image.frameWidth) < 2, `Non-square image frame at ${width}px: ${JSON.stringify(image)}`);
+        assert.ok(Math.abs(image.height - image.frameHeight) < 2 && image.height < 400, `Oversized product image at ${width}px: ${JSON.stringify(image)}`);
+        assert.equal(image.fit, 'contain');
+      }
+      assert.equal(await closetPage.locator('.wardrobe-group').count(), 6);
+      if (width === 390 || width === 1280) {
+        await closetPage.locator('.wardrobe-group').first().scrollIntoViewIfNeeded();
+        await closetPage.screenshot({ path: `${screenshots}/catalog-${width}.png` });
+      }
+    }
+    await closetPage.getByRole('textbox', { name: 'Search wardrobe', exact: true }).fill('jeans');
+    assert.equal(await closetPage.locator('.item-card').count(), 2);
+    await closetPage.getByRole('textbox', { name: 'Search wardrobe', exact: true }).fill('');
+    assert.equal(await closetPage.locator('.item-card').count(), 26);
     await closetPage.close();
     const mobileGarments = page.locator('.closet-garment');
     const mobilePreview = page.locator('#closet-preview');
@@ -128,7 +153,7 @@ async function until(check, message) {
     await page.setViewportSize({ width: 681, height: 900 });
     assert.equal(await dock.isVisible(), false);
     assert.deepEqual(errors, []);
-    console.log('PASS: closet desktop hover/focus, mobile tap, wrap-around, responsive preview, all 26 items; six direct links at 320/360/390/430/680px, 44px tap targets, unclipped labels, all five anchors, scroll-based active state, Account navigation/return and desktop 681/1280px. No app errors.');
+    console.log('PASS: all 26 catalogue cards fit square frames at 320/390/680/1280px; search filtering; closet desktop hover/focus, mobile tap, wrap-around, responsive preview, all 26 items; six direct links at 320/360/390/430/680px, 44px tap targets, unclipped labels, all five anchors, scroll-based active state, Account navigation/return and desktop 681/1280px. No app errors.');
   } catch (error) {
     if (closetPage && !closetPage.isClosed()) {
       console.error('Closet state:', await closetPage.locator('.closet-garment[aria-pressed=true]').getAttribute('aria-label'));

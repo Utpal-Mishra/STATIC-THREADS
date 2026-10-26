@@ -92,3 +92,8 @@ All meaningful Static Threads changes are recorded here.
 ### Closet rail preview
 
 All 26 wardrobe items are accessible on the rail. Hover, keyboard focus, tap and previous/next controls update a persistent product preview with catalogue details and recorded wear history. Rail and catalogue use the configured product image when available, preserving its colours and proportions against a warm neutral backdrop. All 26 records now reference individually generated photorealistic product images, authorised by the user, on a consistent warm neutral studio background. They represent the catalogue descriptions and are identified as generated images, rather than exact photographs of owned garments. Native 1254px images are encoded as high-quality WebP without recolouring or cropping. Generation prompts, dimensions and checksums are in data/catalog-image-sets.json.
+
+
+### Compact closet image cards
+
+Catalogue product images now fit square, responsive frames. Explicit image dimensions and positioning prevent native-resolution files from expanding the cards or clipping the garments. Browser checks cover all 26 items across six categories at mobile and desktop widths, including search filtering.
