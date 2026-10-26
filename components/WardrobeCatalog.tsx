@@ -115,6 +115,8 @@ export function WardrobeCatalogView({ catalog }: WardrobeCatalogViewProps) {
         <p>Updated {catalog.updatedAt}</p>
       </div>
 
+      <p className="closet-image-note">Photorealistic catalog images generated from your item descriptions.</p>
+
       <div className="closet-stage" aria-label="Interactive wardrobe rail">
         <div className="closet-copy">
           <p className="micro-label">Walk-in closet</p>
@@ -159,7 +161,7 @@ export function WardrobeCatalogView({ catalog }: WardrobeCatalogViewProps) {
                   onClick={() => setActiveClosetIndex(index)}
                   aria-label={`${item.brand} ${item.name}, ${item.primaryColour}`}
                 >
-                  <span className="closet-hanger" aria-hidden="true" />
+                  <span className="closet-visual"><span className="closet-hanger" aria-hidden="true" />
                   <span className="closet-card">
                     <img src={productImage(item)} alt="" />
                     {item.image.startsWith("embedded:") ? <span className="catalog-source-badge">Placeholder</span> : null}
@@ -167,7 +169,7 @@ export function WardrobeCatalogView({ catalog }: WardrobeCatalogViewProps) {
                       <strong>{item.name}</strong>
                       <small>{item.brand} · {item.primaryColour}</small>
                     </span>
-                  </span>
+                  </span></span>
                 </button>
               );
             })}
@@ -239,7 +241,7 @@ export function WardrobeCatalogView({ catalog }: WardrobeCatalogViewProps) {
             {items.map((item) => (
               <article className="item-card" key={item.id}>
                 <div className="item-image-wrap">
-                  <img src={productImage(item)} alt={`${item.brand} ${item.name}${item.image.startsWith("embedded:") ? " illustration; original photo not connected" : " product photo"}`} className="item-image" />
+                  <img src={productImage(item)} alt={`${item.brand} ${item.name}${item.image.startsWith("embedded:") ? " illustration; original photo not connected" : " generated catalog image"}`} className="item-image" />
                   {item.image.startsWith("embedded:") ? <span className="catalog-source-badge">Generated placeholder · original photo not connected</span> : null}
                 </div>
                 <div className="item-content">

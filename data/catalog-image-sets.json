@@ -1,0 +1,240 @@
+{
+  "source": "AI-generated representative product images; not exact photographs of owned garments.",
+  "generator": "built-in image generation",
+  "items": [
+    {
+      "id": "white-tee",
+      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce garment photograph for digital closet. Square image. Front-facing invisible mannequin shape, natural volume, realistic fabric folds, no visible person or mannequin. Entire garment centred, 10% margin on ALL sides. Seamless warm light greige studio backdrop #e8e3da, diffuse softbox lighting, soft restrained shadow, crisp stitching and realistic fabric texture, accurate colours. No hanger, text, captions, borders, watermark, props or invented logos. Representative generated catalog image. Subject: Plain white regular-fit men's crewneck short-sleeve T-shirt.",
+      "asset": "/catalog/white-tee.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "31e3554240677e7bcb39caff4859db333e92124bc7618d7bfa093e59a71e678d",
+      "bytes": 65722
+    },
+    {
+      "id": "black-tee",
+      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce garment photograph for digital closet. Square image. Front-facing invisible mannequin shape, natural volume, realistic fabric folds, no visible person or mannequin. Entire garment centred, 10% margin on ALL sides. Seamless warm light greige studio backdrop #e8e3da, diffuse softbox lighting, soft restrained shadow, crisp stitching and realistic fabric texture, accurate colours. No hanger, text, captions, borders, watermark, props or invented logos. Representative generated catalog image. Subject: Plain black regular-fit men's crewneck short-sleeve T-shirt, solid black cotton, no prints.",
+      "asset": "/catalog/black-tee.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "3244b57cf690a0425ebff0cb690214388aa30efe955a2d07ab883b741a8d81a2",
+      "bytes": 115164
+    },
+    {
+      "id": "cream-pocket-tee",
+      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce garment photograph for digital closet. Square image. Front-facing invisible mannequin shape, natural volume, realistic fabric folds, no visible person or mannequin. Entire garment centred, 10% margin on ALL sides. Seamless warm light greige studio backdrop #e8e3da, diffuse softbox lighting, soft restrained shadow, crisp stitching and realistic fabric texture, accurate colours. No hanger, text, captions, borders, watermark, props or invented logos. Representative generated catalog image. Subject: Cream regular-fit men's short-sleeve crewneck T-shirt with ONE contrasting BLACK rectangular chest pocket. Cream body, black pocket.",
+      "asset": "/catalog/cream-pocket-tee.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "e5d4f9ae0d5765926bcc7c042ca560849f270a81f8a9563af8c2ef53aec4157f",
+      "bytes": 106006
+    },
+    {
+      "id": "white-navy-raglan",
+      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce garment photograph for digital closet. Square image. Front-facing invisible mannequin shape, natural volume, realistic fabric folds, no visible person or mannequin. Entire garment centred, 10% margin on ALL sides. Seamless warm light greige studio backdrop #e8e3da, diffuse softbox lighting, soft restrained shadow, crisp stitching and realistic fabric texture, accurate colours. No hanger, text, captions, borders, watermark, props or invented logos. Representative generated catalog image. Subject: Men's white regular-fit raglan crewneck T-shirt with contrasting dark NAVY raglan sleeves and white torso.",
+      "asset": "/catalog/white-navy-raglan.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "e2e3acc5dfb6166f0975ec81a752a49337ab74add6fb1d5630b43d8863501947",
+      "bytes": 109302
+    },
+    {
+      "id": "taupe-tee",
+      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce garment photograph for digital closet. Square image. Front-facing invisible mannequin shape, natural volume, realistic fabric folds, no visible person or mannequin. Entire garment centred, 10% margin on ALL sides. Seamless warm light greige studio backdrop #e8e3da, diffuse softbox lighting, soft restrained shadow, crisp stitching and realistic fabric texture, accurate colours. No hanger, text, captions, borders, watermark, props or invented logos. Representative generated catalog image. Subject: Plain taupe regular-fit men's crewneck short-sleeve T-shirt, warm grey-brown taupe cotton, no pocket.",
+      "asset": "/catalog/taupe-tee.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "cbbd6dffa80eddd22bc6ac31f79828d55fa7de86b440d5b5c7de335deb23e073",
+      "bytes": 197520
+    },
+    {
+      "id": "green-tee",
+      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce garment photograph for digital closet. Square image. Front-facing invisible mannequin shape, natural volume, realistic fabric folds, no visible person or mannequin. Entire garment centred, 10% margin on ALL sides. Seamless warm light greige studio backdrop #e8e3da, diffuse softbox lighting, soft restrained shadow, crisp stitching and realistic fabric texture, accurate colours. No hanger, text, captions, borders, watermark, props or invented logos. Representative generated catalog image. Subject: Plain muted olive green regular-fit men's crewneck short-sleeve T-shirt, no pocket or prints.",
+      "asset": "/catalog/green-tee.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "44dd9a0ffb8793126ba0ebf1f482e7695ca9fb9e3f8cf902b0c494df2108b7a6",
+      "bytes": 204380
+    },
+    {
+      "id": "lilac-pocket-tee",
+      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce garment photograph for digital closet. Square image. Front-facing invisible mannequin shape, natural volume, realistic fabric folds, no visible person or mannequin. Entire garment centred, 10% margin on ALL sides. Seamless warm light greige studio backdrop #e8e3da, diffuse softbox lighting, soft restrained shadow, crisp stitching and realistic fabric texture, accurate colours. No hanger, text, captions, borders, watermark, props or invented logos. Representative generated catalog image. Subject: Lilac muted lavender regular-fit men's short-sleeve crewneck T-shirt with one same-colour chest pocket, solid fabric.",
+      "asset": "/catalog/lilac-pocket-tee.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "42297af695e17596170f7ad58b30ed996091752c7d15e6a71ff06fd3607519df",
+      "bytes": 171778
+    },
+    {
+      "id": "white-textured-shirt",
+      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce garment photograph for digital closet. Square image. Front-facing invisible mannequin shape, natural volume, realistic fabric folds, no visible person or mannequin. Entire garment centred, 10% margin on ALL sides. Seamless warm light greige studio backdrop #e8e3da, diffuse softbox lighting, soft restrained shadow, crisp stitching and realistic fabric texture, accurate colours. No hanger, text, captions, borders, watermark, props or invented logos. Representative generated catalog image. Subject: Cream/off-white relaxed-fit men's textured short-sleeve button-front shirt, subtle woven vertical texture, open collar.",
+      "asset": "/catalog/white-textured-shirt.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "7516a661bdede0c3e4667cdbc59697a1c090e18608d39fb1da97c03e5055b0bc",
+      "bytes": 282992
+    },
+    {
+      "id": "grey-linen-shirt",
+      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce garment photograph for digital closet. Square image. Front-facing invisible mannequin shape, natural volume, realistic fabric folds, no visible person or mannequin. Entire garment centred, 10% margin on ALL sides. Seamless warm light greige studio backdrop #e8e3da, diffuse softbox lighting, soft restrained shadow, crisp stitching and realistic fabric texture, accurate colours. No hanger, text, captions, borders, watermark, props or invented logos. Representative generated catalog image. Subject: Grey relaxed-fit men's linen button-front long-sleeve shirt, subtle natural linen slub, open collar.",
+      "asset": "/catalog/grey-linen-shirt.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "190e20863a3fd9f9a07491f531d72cc2c10fcf87d0bc540a37772685f2d8a0e5",
+      "bytes": 320200
+    },
+    {
+      "id": "navy-pattern-shirt",
+      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce garment photograph for digital closet. Square image. Front-facing invisible mannequin shape, natural volume, realistic fabric folds, no visible person or mannequin. Entire garment centred, 10% margin on ALL sides. Seamless warm light greige studio backdrop #e8e3da, diffuse softbox lighting, soft restrained shadow, crisp stitching and realistic fabric texture, accurate colours. No hanger, text, captions, borders, watermark, props or invented logos. Representative generated catalog image. Subject: Navy regular-fit men's button-front long-sleeve casual shirt with small subtle grey repeating motif pattern.",
+      "asset": "/catalog/navy-pattern-shirt.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "d8302392d23d715964d6dfcf08cfb0d2da8691f81b06005518843d07e98d9faa",
+      "bytes": 163694
+    },
+    {
+      "id": "dark-navy-shirt",
+      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce garment photograph for digital closet. Square image. Front-facing invisible mannequin shape, natural volume, realistic fabric folds, no visible person or mannequin. Entire garment centred, 10% margin on ALL sides. Seamless warm light greige studio backdrop #e8e3da, diffuse softbox lighting, soft restrained shadow, crisp stitching and realistic fabric texture, accurate colours. No hanger, text, captions, borders, watermark, props or invented logos. Representative generated catalog image. Subject: Solid dark navy regular-fit men's casual long-sleeve button-front shirt, conventional collar.",
+      "asset": "/catalog/dark-navy-shirt.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "d25c526c1eeee6a6871e2649b5d0469a8f1fba216bf8cd1a27e174b150d63abf",
+      "bytes": 158674
+    },
+    {
+      "id": "beige-overshirt",
+      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce garment photograph for digital closet. Square image. Front-facing invisible mannequin shape, natural volume, realistic fabric folds, no visible person or mannequin. Entire garment centred, 10% margin on ALL sides. Seamless warm light greige studio backdrop #e8e3da, diffuse softbox lighting, soft restrained shadow, crisp stitching and realistic fabric texture, accurate colours. No hanger, text, captions, borders, watermark, props or invented logos. Representative generated catalog image. Subject: Beige relaxed-fit men's long-sleeve overshirt, substantial cotton twill, button front, two flap chest pockets, conventional collar.",
+      "asset": "/catalog/beige-overshirt.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "d0d498b7cb7cdca5b5568db4b74c20dd138e0f65f0ca43c50d2ec3a45e5d0e55",
+      "bytes": 239830
+    },
+    {
+      "id": "grey-overshirt",
+      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce garment photograph for digital closet. Square image. Front-facing invisible mannequin shape, natural volume, realistic fabric folds, no visible person or mannequin. Entire garment centred, 10% margin on ALL sides. Seamless warm light greige studio backdrop #e8e3da, diffuse softbox lighting, soft restrained shadow, crisp stitching and realistic fabric texture, accurate colours. No hanger, text, captions, borders, watermark, props or invented logos. Representative generated catalog image. Subject: Charcoal grey relaxed-fit men's long-sleeve overshirt with fine subtle lighter grey PINSTRIPES, button front and two chest pockets.",
+      "asset": "/catalog/grey-overshirt.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "97ba216b19bd3ee0b5def9ef7479904687e684b301b4f0686cdbe865331e93b4",
+      "bytes": 320632
+    },
+    {
+      "id": "plaid-overshirt",
+      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce garment photograph for digital closet. Square image. Front-facing invisible mannequin shape, natural volume, realistic fabric folds, no visible person or mannequin. Entire garment centred, 10% margin on ALL sides. Seamless warm light greige studio backdrop #e8e3da, diffuse softbox lighting, soft restrained shadow, crisp stitching and realistic fabric texture, accurate colours. No hanger, text, captions, borders, watermark, props or invented logos. Representative generated catalog image. Subject: Blue and cream plaid relaxed-fit men's long-sleeve overshirt, soft brushed texture, button front and chest pockets.",
+      "asset": "/catalog/plaid-overshirt.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "b5d65aa7e426de58afbefb4360ed90572debd575bd2299af5c986ee1f1ce5e52",
+      "bytes": 446992
+    },
+    {
+      "id": "olive-overshirt",
+      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce garment photograph for digital closet. Square image. Front-facing invisible mannequin shape, natural volume, realistic fabric folds, no visible person or mannequin. Entire garment centred, 10% margin on ALL sides. Seamless warm light greige studio backdrop #e8e3da, diffuse softbox lighting, soft restrained shadow, crisp stitching and realistic fabric texture, accurate colours. No hanger, text, captions, borders, watermark, props or invented logos. Representative generated catalog image. Subject: Muted olive green relaxed-fit men's long-sleeve utility overshirt, button front, utility chest pockets.",
+      "asset": "/catalog/olive-overshirt.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "f1cdb2bf22ae12f0b54b9767d2be85dd854dadf2e05f21917f114163bbb1e6cd",
+      "bytes": 270294
+    },
+    {
+      "id": "grey-jeans",
+      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce garment photograph for digital closet. Square image. Front-facing invisible mannequin shape, natural volume, realistic fabric folds, no visible person or mannequin. Entire garment centred, 10% margin on ALL sides. Seamless warm light greige studio backdrop #e8e3da, diffuse softbox lighting, soft restrained shadow, crisp stitching and realistic fabric texture, accurate colours. No hanger, text, captions, borders, watermark, props or invented logos. Representative generated catalog image. Subject: Grey slim-fit men's full-length denim jeans, front view with both legs fully visible, five pocket design, subtle realistic grey denim texture.",
+      "asset": "/catalog/grey-jeans.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "b4d101d87a6b5a4f8ed4d6070075ce0666f8ab0e231ca0a0576cf7783205986e",
+      "bytes": 149122
+    },
+    {
+      "id": "black-jeans",
+      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce garment photograph for digital closet. Square image. Front-facing invisible mannequin shape, natural volume, realistic fabric folds, no visible person or mannequin. Entire garment centred, 10% margin on ALL sides. Seamless warm light greige studio backdrop #e8e3da, diffuse softbox lighting, soft restrained shadow, crisp stitching and realistic fabric texture, accurate colours. No hanger, text, captions, borders, watermark, props or invented logos. Representative generated catalog image. Subject: Black slim-fit men's full-length denim jeans, front view with both legs fully visible, five pocket design, realistic black denim texture.",
+      "asset": "/catalog/black-jeans.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "e130b509d6f0f929ab458127e0207457d74e1ed0c81ce57079d14c7af278baab",
+      "bytes": 99342
+    },
+    {
+      "id": "olive-cargo",
+      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce garment photograph for digital closet. Square image. Front-facing invisible mannequin shape, natural volume, realistic fabric folds, no visible person or mannequin. Entire garment centred, 10% margin on ALL sides. Seamless warm light greige studio backdrop #e8e3da, diffuse softbox lighting, soft restrained shadow, crisp stitching and realistic fabric texture, accurate colours. No hanger, text, captions, borders, watermark, props or invented logos. Representative generated catalog image. Subject: Olive green regular-fit men's full-length cargo trousers, both legs fully visible, practical thigh flap pockets and natural fabric folds.",
+      "asset": "/catalog/olive-cargo.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "50a3466c303f4edd121fca54836cfc88bd5ab707e9e65cd8856eeef9e16426e4",
+      "bytes": 122766
+    },
+    {
+      "id": "black-cargo",
+      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce garment photograph for digital closet. Square image. Front-facing invisible mannequin shape, natural volume, realistic fabric folds, no visible person or mannequin. Entire garment centred, 10% margin on ALL sides. Seamless warm light greige studio backdrop #e8e3da, diffuse softbox lighting, soft restrained shadow, crisp stitching and realistic fabric texture, accurate colours. No hanger, text, captions, borders, watermark, props or invented logos. Representative generated catalog image. Subject: Black regular-fit men's full-length cargo trousers, both legs fully visible, practical thigh flap pockets and natural fabric folds.",
+      "asset": "/catalog/black-cargo.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "fcbee77d97cf10ae8527acac3d9286827de04b930d174eaed00ca3720971e47f",
+      "bytes": 90978
+    },
+    {
+      "id": "light-grey-denim-shorts",
+      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce garment photograph for digital closet. Square image. Front-facing invisible mannequin shape, natural volume, realistic fabric folds, no visible person or mannequin. Entire garment centred, 10% margin on ALL sides. Seamless warm light greige studio backdrop #e8e3da, diffuse softbox lighting, soft restrained shadow, crisp stitching and realistic fabric texture, accurate colours. No hanger, text, captions, borders, watermark, props or invented logos. Representative generated catalog image. Subject: Light grey men's regular-fit knee-length denim shorts, front view, five pockets, subtly distressed fabric and lightly frayed hems.",
+      "asset": "/catalog/light-grey-denim-shorts.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "24a15d73b62bcf6e5afef427d5da22a29b33e3fa7483f6da6be6b280120ccffb",
+      "bytes": 362034
+    },
+    {
+      "id": "adidas-white-black",
+      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce garment photograph for digital closet. Square image. Front-facing invisible mannequin shape, natural volume, realistic fabric folds, no visible person or mannequin. Entire garment centred, 10% margin on ALL sides. Seamless warm light greige studio backdrop #e8e3da, diffuse softbox lighting, soft restrained shadow, crisp stitching and realistic fabric texture, accurate colours. No hanger, text, captions, borders, watermark, props or invented logos. Representative generated catalog image. Subject: A pair of men's white leather low-top Adidas-style trainers with contrasting three black side stripes, clean white soles and white laces. Three-quarter view on the studio surface, both shoes fully visible, accurate leather panels, no text overlay. No garment, no mannequin.",
+      "asset": "/catalog/adidas-white-black.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "55f695a7515e12dc6ac870a85bcba1ff88a8b99ba515601fe3557286f00bc8eb",
+      "bytes": 116952
+    },
+    {
+      "id": "adidas-white-burgundy",
+      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce product photograph for a digital closet. Square image. Three-quarter front/side view, entire product centred and fully visible, 10% margin on all sides. Seamless warm light greige studio background #e8e3da, soft diffuse studio lighting, restrained natural contact shadow, crisp stitching, realistic material textures, accurate colours. No person, hands, props, text overlays, labels, borders or watermark. Representative generated catalogue image. Subject: A pair of Adidas Handball Spezial style low-top suede trainers, off-white/white suede body with BURGUNDY three side stripes and burgundy heel tabs, gum soles and cream laces. Both shoes fully visible.",
+      "asset": "/catalog/adidas-white-burgundy.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "2218e2778c6c22620d0f7b9edcb61a9a2610862010cefdb59b08312a897e977b",
+      "bytes": 179446
+    },
+    {
+      "id": "puma-white-green",
+      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce product photograph for a digital closet. Square image. Three-quarter front/side view, entire product centred and fully visible, 10% margin on all sides. Seamless warm light greige studio background #e8e3da, soft diffuse studio lighting, restrained natural contact shadow, crisp stitching, realistic material textures, accurate colours. No person, hands, props, text overlays, labels, borders or watermark. Representative generated catalogue image. Subject: A pair of Puma-style low-top casual trainers, cream body, green curved side accent, tan suede panels and cream soles. Both shoes fully visible.",
+      "asset": "/catalog/puma-white-green.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "d451392679fcc858b23c99b7dc8307cac5d50e41b72c034215647c2f9fcf2bd7",
+      "bytes": 166772
+    },
+    {
+      "id": "timberland-brown",
+      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce product photograph for a digital closet. Square image. Three-quarter front/side view, entire product centred and fully visible, 10% margin on all sides. Seamless warm light greige studio background #e8e3da, soft diffuse studio lighting, restrained natural contact shadow, crisp stitching, realistic material textures, accurate colours. No person, hands, props, text overlays, labels, borders or watermark. Representative generated catalogue image. Subject: A pair of Timberland-style brown leather casual lace-up shoes, warm medium brown leather, sturdy dark rubber soles and brown laces. Low cut casual shoes, not tall boots. Both shoes fully visible.",
+      "asset": "/catalog/timberland-brown.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "f811b5f5077ad22f2b7c32d79ea6002a34fe6138b231a246185fa777e2440b5a",
+      "bytes": 200672
+    },
+    {
+      "id": "brown-cap",
+      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce product photograph for a digital closet. Square image. Three-quarter front/side view, entire product centred and fully visible, 10% margin on all sides. Seamless warm light greige studio background #e8e3da, soft diffuse studio lighting, restrained natural contact shadow, crisp stitching, realistic material textures, accurate colours. No person, hands, props, text overlays, labels, borders or watermark. Representative generated catalogue image. Subject: A single plain brown cotton six-panel baseball cap with curved brim, matching brown stitching, no logo or text.",
+      "asset": "/catalog/brown-cap.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "e0a1e00dd9b9944dc50ad797b6a308952868887eb8f4fd0007feea20bc434f79",
+      "bytes": 201566
+    },
+    {
+      "id": "navy-mesh-cap",
+      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce product photograph for a digital closet. Square image. Three-quarter front/side view, entire product centred and fully visible, 10% margin on all sides. Seamless warm light greige studio background #e8e3da, soft diffuse studio lighting, restrained natural contact shadow, crisp stitching, realistic material textures, accurate colours. No person, hands, props, text overlays, labels, borders or watermark. Representative generated catalogue image. Subject: A single navy blue mesh-back trucker baseball cap with curved navy brim and minimal small white embroidered emblem on the front, no readable words.",
+      "asset": "/catalog/navy-mesh-cap.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "30958d5c6a8ee56dee5e87babbb40b373f5fd84e54fee15f28d32f441ac1cc27",
+      "bytes": 275346
+    }
+  ]
+}
