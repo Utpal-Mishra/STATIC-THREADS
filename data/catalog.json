@@ -217,7 +217,7 @@
       "name": "Navy Pattern Shirt",
       "brand": "Netplay",
       "category": "shirts",
-      "subcategory": "pattern shirt",
+      "subcategory": "half-sleeve patterned shirt",
       "size": "Unknown",
       "fit": "regular",
       "primaryColour": "Navy",
@@ -234,9 +234,10 @@
         "casual",
         "smart-casual"
       ],
-      "image": "/catalog/navy-pattern-shirt.webp",
+      "image": "/catalog/navy-pattern-shirt-half-sleeve.webp",
       "status": "available",
-      "wearCount": 0
+      "wearCount": 0,
+      "notes": "Half sleeves confirmed by owner on 2026-10-26."
     },
     {
       "id": "dark-navy-shirt",
