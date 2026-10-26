@@ -112,3 +112,8 @@ The mobile header now shows Static Threads beside the ST logo, using the same wo
 ### Consistent desktop navigation
 
 Desktop navigation now uses Style, Decide, Wardrobe, Similar, Radar and Account, with the same six icons as the mobile dock. A shared SVG component keeps both views consistent, and compact spacing keeps the desktop header clear at tablet widths.
+
+
+### Zara long-sleeve raglan correction
+
+White Navy Raglan is a Zara long-sleeve T-shirt. Its product image now has full-length navy sleeves while retaining the white body, navy neckline and original studio background. A new asset filename updates the rail, preview and catalogue without stale image caching.
