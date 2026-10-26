@@ -70,12 +70,15 @@
     },
     {
       "id": "white-textured-shirt",
-      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce garment photograph for digital closet. Square image. Front-facing invisible mannequin shape, natural volume, realistic fabric folds, no visible person or mannequin. Entire garment centred, 10% margin on ALL sides. Seamless warm light greige studio backdrop #e8e3da, diffuse softbox lighting, soft restrained shadow, crisp stitching and realistic fabric texture, accurate colours. No hanger, text, captions, borders, watermark, props or invented logos. Representative generated catalog image. Subject: Cream/off-white relaxed-fit men's textured short-sleeve button-front shirt, subtle woven vertical texture, open collar.",
-      "asset": "/catalog/white-textured-shirt.webp",
+      "prompt": "Use case: precise-object-edit. Edit target: the referenced cream textured short-sleeve button-front shirt product photograph. Change ONLY the two sleeves to full-length long sleeves, naturally extending the existing shoulders down to wrists with neat shirt cuffs in the same cream textured fabric. Preserve the EXACT cream/off-white colour, fine vertical woven texture, open collar, button placket and buttons, relaxed torso shape, stitching, studio background, soft lighting, natural folds and high-quality photographic style. Full shirt with BOTH complete long sleeves visible inside the square frame; sleeves hang slightly outward beside the body ending near the lower hem. Keep the texture consistent across body and sleeves. No person, hands, hanger, logos, text, labels, props, watermark or sweatshirt-style ribbed cuffs. Do not redesign the shirt, add pockets or change the colour. This is the same shirt, now with full sleeves.",
+      "asset": "/catalog/white-textured-shirt-long-sleeve.webp",
       "width": 1254,
       "height": 1254,
-      "sha256": "7516a661bdede0c3e4667cdbc59697a1c090e18608d39fb1da97c03e5055b0bc",
-      "bytes": 282992
+      "sha256": "92200c1c6a04ff41ca880487dccc727eca709f9d9efbb25f894e7214a0d1f0db",
+      "bytes": 325706,
+      "previousAsset": "/catalog/white-textured-shirt.webp",
+      "previousSha256": "7516a661bdede0c3e4667cdbc59697a1c090e18608d39fb1da97c03e5055b0bc",
+      "revision": "Full-length cream textured sleeves; existing colour and studio presentation retained."
     },
     {
       "id": "grey-linen-shirt",

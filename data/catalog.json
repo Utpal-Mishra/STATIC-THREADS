@@ -168,7 +168,7 @@
       "name": "White Textured Shirt",
       "brand": "Powerlook",
       "category": "shirts",
-      "subcategory": "textured shirt",
+      "subcategory": "long-sleeve textured shirt",
       "size": "Unknown",
       "fit": "relaxed",
       "primaryColour": "Cream",
@@ -183,9 +183,10 @@
         "casual",
         "smart-casual"
       ],
-      "image": "/catalog/white-textured-shirt.webp",
+      "image": "/catalog/white-textured-shirt-long-sleeve.webp",
       "status": "available",
-      "wearCount": 0
+      "wearCount": 0,
+      "notes": "Full-length sleeves confirmed by owner on 2026-10-26."
     },
     {
       "id": "grey-linen-shirt",
