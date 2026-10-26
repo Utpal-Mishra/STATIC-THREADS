@@ -148,3 +148,8 @@ Desktop navigation now uses Style, Decide, Wardrobe, Similar, Radar and Account,
 ### Zara long-sleeve raglan correction
 
 White Navy Raglan is a Zara long-sleeve T-shirt. Its product image now has full-length navy sleeves while retaining the white body, navy neckline and original studio background. A new asset filename updates the rail, preview and catalogue without stale image caching.
+
+
+### Powerlook textured shirt sleeve correction
+
+White Textured Shirt is a full-sleeve Powerlook shirt. Its product image now has long sleeves in the existing cream textured fabric, and its type reads long-sleeve textured shirt. The versioned image reference updates the rail, preview and closet card.
