@@ -102,3 +102,8 @@ Catalogue product images now fit square, responsive frames. Explicit image dimen
 ### Confirmed wardrobe brands
 
 Olive Cargo and Black Cargo are Pull&Bear; Brown Cap is Zara. These catalogue corrections flow through product cards, rail details, brand filters and owned-item recommendations.
+
+
+### Mobile header branding
+
+The mobile header now shows Static Threads beside the ST logo, using the same wordmark styling as desktop. This applies to both the home and account pages.
