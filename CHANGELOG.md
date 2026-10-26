@@ -97,3 +97,8 @@ All 26 wardrobe items are accessible on the rail. Hover, keyboard focus, tap and
 ### Compact closet image cards
 
 Catalogue product images now fit square, responsive frames. Explicit image dimensions and positioning prevent native-resolution files from expanding the cards or clipping the garments. Browser checks cover all 26 items across six categories at mobile and desktop widths, including search filtering.
+
+
+### Confirmed wardrobe brands
+
+Olive Cargo and Black Cargo are Pull&Bear; Brown Cap is Zara. These catalogue corrections flow through product cards, rail details, brand filters and owned-item recommendations.
