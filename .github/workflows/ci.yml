@@ -32,6 +32,9 @@ jobs:
       - name: Validate complete outfit image sets
         run: python scripts/validate_image_sets.py
 
+      - name: Validate closet product images
+        run: python scripts/validate_catalog_images.py
+
       - name: Type-check application
         run: npm run typecheck
 

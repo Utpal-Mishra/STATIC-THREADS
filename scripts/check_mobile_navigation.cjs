@@ -32,6 +32,7 @@ async function until(check, message) {
   await new Promise(resolve => server.listen(4174, '127.0.0.1', resolve));
   const browser = await chromium.launch({ headless: true });
   let page;
+  let closetPage;
   try {
     page = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: 'reduce' });
     const errors = [];
@@ -88,11 +89,51 @@ async function until(check, message) {
     await desktop.waitFor({ state: 'visible' });
     assert.deepEqual(await desktop.getByRole('link').allTextContents(), ['Style', 'Decide', 'Wardrobe', 'Shop similar', 'Sale radar', 'Account']);
     await page.screenshot({ path: `${screenshots}/desktop-header.png` });
+    // Hover must run in a desktop context: changing a touch viewport alone
+    // retains mobile input semantics and suppresses genuine hover.
+    closetPage = await browser.newPage({ viewport: { width: 1280, height: 900 }, reducedMotion: 'reduce' });
+    closetPage.on('pageerror', error => errors.push(error.message));
+    await closetPage.goto(process.env.TEST_BASE_URL || 'http://127.0.0.1:4174/STATIC-THREADS/', { waitUntil: 'load' });
+    const garments = closetPage.locator('.closet-garment');
+    const preview = closetPage.locator('#closet-preview');
+    assert.equal(await garments.count(), 26);
+    await until(() => garments.locator('img').evaluateAll(images => images.every(i => i.complete && i.naturalWidth === 1254)), 'Closet images did not load');
+    assert.equal(await closetPage.locator('.catalog-source-badge').count(), 0);
+    assert.equal(await garments.locator('img').evaluateAll(images => new Set(images.map(i => i.src)).size), 26);
+    await garments.nth(3).hover();
+    await until(() => preview.getByRole('heading', { name: 'White Navy Raglan', exact: true }).isVisible(), 'Hover did not update preview');
+    await closetPage.mouse.move(0, 0);
+    assert.equal(await garments.nth(3).getAttribute('aria-pressed'), 'true');
+    await garments.nth(5).focus();
+    await until(() => preview.getByRole('heading', { name: 'Green Tee', exact: true }).isVisible(), 'Focus did not update preview');
+    await closetPage.getByRole('button', { name: 'Next garment', exact: true }).click();
+    await until(() => preview.getByRole('heading', { name: 'Lilac Pocket Tee', exact: true }).isVisible(), 'Arrow did not update preview');
+    await closetPage.locator('.closet-stage').scrollIntoViewIfNeeded();
+    await closetPage.screenshot({ path: `${screenshots}/closet-desktop.png` });
+    await closetPage.close();
+    const mobileGarments = page.locator('.closet-garment');
+    const mobilePreview = page.locator('#closet-preview');
+    await page.setViewportSize({ width: 390, height: 844 });
+    await mobileGarments.first().tap();
+    assert.equal(await mobileGarments.first().getAttribute('aria-pressed'), 'true');
+    await page.getByRole('button', { name: 'Previous garment', exact: true }).tap();
+    await until(() => mobilePreview.getByRole('heading', { name: 'Navy Mesh Cap', exact: true }).isVisible(), 'Mobile wrap-around failed');
+    await mobilePreview.scrollIntoViewIfNeeded();
+    await page.screenshot({ path: `${screenshots}/closet-mobile.png` });
+    for (const width of [320, 390, 680, 1280]) {
+      await page.setViewportSize({ width, height: 900 });
+      assert.ok(await mobilePreview.evaluate(e => e.scrollWidth <= e.clientWidth), `Closet preview clipped at ${width}px`);
+      assert.equal(await mobilePreview.locator('img').evaluate(e => e.complete && e.naturalWidth > 0), true);
+    }
     await page.setViewportSize({ width: 681, height: 900 });
     assert.equal(await dock.isVisible(), false);
     assert.deepEqual(errors, []);
-    console.log('PASS: six direct links at 320/360/390/430/680px, 44px tap targets, unclipped labels, all five anchors, scroll-based active state, Account navigation/return and desktop 681/1280px. No app errors.');
+    console.log('PASS: closet desktop hover/focus, mobile tap, wrap-around, responsive preview, all 26 items; six direct links at 320/360/390/430/680px, 44px tap targets, unclipped labels, all five anchors, scroll-based active state, Account navigation/return and desktop 681/1280px. No app errors.');
   } catch (error) {
+    if (closetPage && !closetPage.isClosed()) {
+      console.error('Closet state:', await closetPage.locator('.closet-garment[aria-pressed=true]').getAttribute('aria-label'));
+      await closetPage.screenshot({ path: `${screenshots}/closet-failure.png` });
+    }
     if (page) {
       console.error('Failure state:', await page.evaluate(() => ({ width: innerWidth, css: Array.from(document.styleSheets).map(s => s.href), scroll: scrollY })));
       await page.screenshot({ path: `${screenshots}/failure.png` });

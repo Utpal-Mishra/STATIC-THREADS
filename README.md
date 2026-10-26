@@ -118,3 +118,8 @@ The earlier mask/recolour files remain only as historical tooling. They are not 
 Saved inspiration uses `data/inspiration-image-sets.json`: eight style directions, three complete generated looks each and five poses per image. These are inspiration pieces, not owned inventory. All boards are lossless WebP under `public/lookbooks/inspiration/v1/`; palette changes swap the full image and update the piece list through the shared recommendation card.
 
 Mobile navigation uses `components/MobileDock.tsx` below 681px: six direct links in one floating island — Style, Decide, Wardrobe, Similar, Radar and Account. The island remains available on the Account page with Account highlighted; section links return to the homepage. Desktop header labels remain unchanged. Safe-area insets and page bottom padding protect content from the fixed dock. The old mobile modal and duplicate Account shortcut have been removed.
+
+
+### Closet rail preview
+
+All 26 wardrobe items are accessible on the rail. Hover, keyboard focus, tap and previous/next controls update a persistent product preview with catalogue details and recorded wear history. Rail and catalogue use the configured product image when available, preserving its colours and proportions against a warm neutral backdrop. All 26 records now reference individually generated photorealistic product images, authorised by the user, on a consistent warm neutral studio background. They represent the catalogue descriptions and are identified as generated images, rather than exact photographs of owned garments. Native 1254px images are encoded as high-quality WebP without recolouring or cropping. Generation prompts, dimensions and checksums are in data/catalog-image-sets.json.
