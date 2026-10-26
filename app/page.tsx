@@ -3,6 +3,7 @@ import catalogData from "@/data/catalog.json";
 import { DecisionLab } from "@/components/DecisionLab";
 import { SaleRadar } from "@/components/SaleRadar";
 import { StyleStudio } from "@/components/StyleStudio";
+import { NavigationIcon } from "@/components/NavigationIcon";
 import { MobileDock } from "@/components/MobileDock";
 import { WardrobeCatalogView } from "@/components/WardrobeCatalog";
 import type { WardrobeCatalog } from "@/types/catalog";
@@ -18,12 +19,12 @@ export default function HomePage() {
           Static Threads
         </a>
         <nav aria-label="Primary navigation">
-          <a href="#style-studio">Style</a>
-          <a href="#decision-lab">Decide</a>
-          <a href="#wardrobe">Wardrobe</a>
-          <a href="#shop-similar">Shop similar</a>
-          <a href="#sale-radar">Sale radar</a>
-          <Link href="/account/">Account</Link>
+          <a href="#style-studio"><NavigationIcon name="style" /><span>Style</span></a>
+          <a href="#decision-lab"><NavigationIcon name="decide" /><span>Decide</span></a>
+          <a href="#wardrobe"><NavigationIcon name="wardrobe" /><span>Wardrobe</span></a>
+          <a href="#shop-similar"><NavigationIcon name="shop" /><span>Similar</span></a>
+          <a href="#sale-radar"><NavigationIcon name="sale" /><span>Radar</span></a>
+          <Link href="/account/"><NavigationIcon name="account" /><span>Account</span></Link>
         </nav>
       </header>
 

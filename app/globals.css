@@ -89,6 +89,8 @@ a {
 
 .wordmark {
   display: inline-flex;
+  flex-shrink: 0;
+  white-space: nowrap;
   align-items: center;
   gap: 10px;
   color: var(--ink);
@@ -117,6 +119,10 @@ a {
 }
 
 .site-header nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
   padding: 9px 12px;
   border-radius: 10px;
   color: var(--muted);
@@ -124,6 +130,19 @@ a {
   font-weight: 700;
   text-decoration: none;
   transition: color 160ms ease, background 160ms ease;
+}
+
+.site-header nav a svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+@media (min-width: 681px) and (max-width: 920px) {
+  .site-header { gap: 12px; }
+  .site-header nav { gap: 0; }
+  .site-header nav a { gap: 5px; padding: 8px 6px; font-size: .72rem; }
+  .site-header nav a svg { width: 16px; height: 16px; }
 }
 
 .site-header nav a:hover,
