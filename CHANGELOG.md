@@ -122,3 +122,8 @@ White Navy Raglan is a Zara long-sleeve T-shirt. Its product image now has full-
 ### Powerlook textured shirt sleeve correction
 
 White Textured Shirt is a full-sleeve Powerlook shirt. Its product image now has long sleeves in the existing cream textured fabric, and its type reads long-sleeve textured shirt. The versioned image reference updates the rail, preview and closet card.
+
+
+### Netplay patterned shirt sleeve correction
+
+Navy Pattern Shirt is a half-sleeve Netplay shirt. Its product image now has short sleeves while keeping the existing navy colour and grey motif. The versioned image reference updates its rail, preview and closet card.

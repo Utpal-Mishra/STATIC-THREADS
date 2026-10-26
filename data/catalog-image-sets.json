@@ -91,12 +91,15 @@
     },
     {
       "id": "navy-pattern-shirt",
-      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce garment photograph for digital closet. Square image. Front-facing invisible mannequin shape, natural volume, realistic fabric folds, no visible person or mannequin. Entire garment centred, 10% margin on ALL sides. Seamless warm light greige studio backdrop #e8e3da, diffuse softbox lighting, soft restrained shadow, crisp stitching and realistic fabric texture, accurate colours. No hanger, text, captions, borders, watermark, props or invented logos. Representative generated catalog image. Subject: Navy regular-fit men's button-front long-sleeve casual shirt with small subtle grey repeating motif pattern.",
-      "asset": "/catalog/navy-pattern-shirt.webp",
+      "prompt": "Use case: precise-object-edit. Edit target: the referenced navy patterned long-sleeve button-front shirt product photograph. Change ONLY BOTH sleeves to half sleeves / short sleeves, ending around mid-upper arm just above the elbows, with neat plain stitched hems. Preserve the SAME dark navy fabric colour and small grey repeating motif on the body and sleeves. Preserve the collar, button placket, torso shape, regular fit, curved hem, studio background, soft lighting, natural folds and crisp photographic detail. Keep the whole shirt centred and fully visible in the square frame. No rolled-up long sleeves, no wrist cuffs, no hands, people, hanger, logos, text, props or watermark. Do not add pockets or redesign the pattern. This is the same navy patterned shirt with half sleeves.",
+      "asset": "/catalog/navy-pattern-shirt-half-sleeve.webp",
       "width": 1254,
       "height": 1254,
-      "sha256": "d8302392d23d715964d6dfcf08cfb0d2da8691f81b06005518843d07e98d9faa",
-      "bytes": 163694
+      "sha256": "d19b89c9b4dcb3382ee0bfdc73d60a334034b10475be1ae443e07d3794a365ae",
+      "bytes": 130202,
+      "previousAsset": "/catalog/navy-pattern-shirt.webp",
+      "previousSha256": "d8302392d23d715964d6dfcf08cfb0d2da8691f81b06005518843d07e98d9faa",
+      "revision": "Half sleeves; existing navy colour, grey motif and studio presentation retained."
     },
     {
       "id": "dark-navy-shirt",
