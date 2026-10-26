@@ -107,3 +107,8 @@ Olive Cargo and Black Cargo are Pull&Bear; Brown Cap is Zara. These catalogue co
 ### Mobile header branding
 
 The mobile header now shows Static Threads beside the ST logo, using the same wordmark styling as desktop. This applies to both the home and account pages.
+
+
+### Consistent desktop navigation
+
+Desktop navigation now uses Style, Decide, Wardrobe, Similar, Radar and Account, with the same six icons as the mobile dock. A shared SVG component keeps both views consistent, and compact spacing keeps the desktop header clear at tablet widths.

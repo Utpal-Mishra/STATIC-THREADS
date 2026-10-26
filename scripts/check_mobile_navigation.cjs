@@ -88,7 +88,27 @@ async function until(check, message) {
     assert.equal(await dock.isVisible(), false);
     const desktop = page.getByRole('navigation', { name: 'Primary navigation', exact: true });
     await desktop.waitFor({ state: 'visible' });
-    assert.deepEqual(await desktop.getByRole('link').allTextContents(), ['Style', 'Decide', 'Wardrobe', 'Shop similar', 'Sale radar', 'Account']);
+    assert.deepEqual(await desktop.getByRole('link').allTextContents(), ['Style', 'Decide', 'Wardrobe', 'Similar', 'Radar', 'Account']);
+    assert.equal(await desktop.locator('svg[aria-hidden="true"]').count(), 6);
+    for (const width of [681, 768, 920, 1280]) {
+      await page.setViewportSize({ width, height: 900 });
+      const layout = await desktop.evaluate(nav => {
+        const header = nav.closest('.site-header').getBoundingClientRect();
+        const logo = nav.closest('.site-header').querySelector('.wordmark').getBoundingClientRect();
+        const bounds = nav.getBoundingClientRect();
+        return { fits: bounds.right <= header.right - 8 && bounds.left >= logo.right + 4, width: innerWidth, headerRight: header.right, logoRight: logo.right, navLeft: bounds.left, navRight: bounds.right };
+      });
+      assert.ok(layout.fits, `Desktop navigation overlaps or overflows: ${JSON.stringify(layout)}`);
+      for (const link of await desktop.getByRole('link').all()) {
+        const boxes = await link.evaluate(e => {
+          const icon = e.querySelector('svg').getBoundingClientRect();
+          const text = e.querySelector('span').getBoundingClientRect();
+          return { correctOrder: icon.width >= 16 && icon.right <= text.left + 1, fits: e.scrollWidth <= e.clientWidth };
+        });
+        assert.ok(boxes.correctOrder && boxes.fits, `Desktop icon/label clipped at ${width}px`);
+      }
+      if (width === 681) await page.screenshot({ path: `${screenshots}/desktop-header-681.png` });
+    }
     await page.screenshot({ path: `${screenshots}/desktop-header.png` });
     // Hover must run in a desktop context: changing a touch viewport alone
     // retains mobile input semantics and suppresses genuine hover.
