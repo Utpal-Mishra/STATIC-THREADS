@@ -74,9 +74,9 @@
     {
       "id": "white-navy-raglan",
       "name": "White Navy Raglan",
-      "brand": "Unknown",
+      "brand": "Zara",
       "category": "tops",
-      "subcategory": "raglan top",
+      "subcategory": "long-sleeve raglan t-shirt",
       "size": "Unknown",
       "fit": "regular",
       "primaryColour": "White",
@@ -91,9 +91,10 @@
       "occasions": [
         "casual"
       ],
-      "image": "/catalog/white-navy-raglan.webp",
+      "image": "/catalog/white-navy-raglan-long-sleeve.webp",
       "status": "available",
-      "wearCount": 0
+      "wearCount": 0,
+      "notes": "Brand and full-length navy sleeves confirmed by owner on 2026-10-26."
     },
     {
       "id": "taupe-tee",

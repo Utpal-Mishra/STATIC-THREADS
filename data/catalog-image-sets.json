@@ -31,12 +31,15 @@
     },
     {
       "id": "white-navy-raglan",
-      "prompt": "Use case: product-mockup. Premium photorealistic ecommerce garment photograph for digital closet. Square image. Front-facing invisible mannequin shape, natural volume, realistic fabric folds, no visible person or mannequin. Entire garment centred, 10% margin on ALL sides. Seamless warm light greige studio backdrop #e8e3da, diffuse softbox lighting, soft restrained shadow, crisp stitching and realistic fabric texture, accurate colours. No hanger, text, captions, borders, watermark, props or invented logos. Representative generated catalog image. Subject: Men's white regular-fit raglan crewneck T-shirt with contrasting dark NAVY raglan sleeves and white torso.",
-      "asset": "/catalog/white-navy-raglan.webp",
+      "prompt": "Use case: precise-object-edit. Edit target: the attached product photograph of the white and navy raglan T-shirt. Change ONLY both short sleeves into full-length long sleeves extending naturally from the same navy raglan shoulder panels down to wrist-length plain hems. Match the EXACT existing dark navy blue fabric colour and cotton texture on both sleeves. Preserve the white torso, navy crew neckline, raglan seams, body fit, stitching, background, soft studio lighting, natural volume, contrast and photographic quality. Keep the whole garment including BOTH full sleeves completely inside the square frame with comfortable margins; sleeves hang naturally slightly outward alongside the torso, ending near the lower hem. No hands, no person, no hanger, no branding/text, no ribbed sweatshirt cuffs, no props or watermark. This remains a long-sleeve cotton T-shirt, not a sweatshirt. Preserve the existing white-and-navy colour blocking; do not turn the torso blue.",
+      "asset": "/catalog/white-navy-raglan-long-sleeve.webp",
       "width": 1254,
       "height": 1254,
-      "sha256": "e2e3acc5dfb6166f0975ec81a752a49337ab74add6fb1d5630b43d8863501947",
-      "bytes": 109302
+      "sha256": "925ef4706633c4726293c42f5e49b3c38ab315729bd1d94a5e8cc2146f27e7a3",
+      "bytes": 141278,
+      "previousAsset": "/catalog/white-navy-raglan.webp",
+      "previousSha256": "e2e3acc5dfb6166f0975ec81a752a49337ab74add6fb1d5630b43d8863501947",
+      "revision": "Long navy sleeves; white torso and original studio presentation retained."
     },
     {
       "id": "taupe-tee",
