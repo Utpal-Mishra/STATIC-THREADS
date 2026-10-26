@@ -699,15 +699,25 @@ a {
 
 .item-image-wrap {
   position: relative;
-  aspect-ratio: 4 / 5;
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
   background:
     radial-gradient(circle at top, rgba(124, 242, 194, 0.08), transparent 60%),
     #0c1013;
 }
 
 .item-image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
   object-fit: contain;
+  object-position: center;
   padding: 12px;
+  background: #e8e3da;
 }
 
 .item-content {
@@ -1756,4 +1766,3 @@ a {
 @media (prefers-reduced-motion: reduce) { .closet-visual { transition: none; } }
 
 .closet-image-note { color: var(--muted); font-size: .8rem; margin: 0 0 16px; }
-.item-image { object-fit: contain; background: #e8e3da; }
