@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-30 — Account authentication lifecycle
+
+- Complete magic-link callbacks using the Supabase SDK with PKCE, session persistence and refresh.
+- Verify account identity before displaying signed-in state; synchronize authentication changes across tabs.
+- Add browser-scoped logout, resend cooldown and safe recovery messages for failed/expired links.
+- Preserve account styling and demo catalogue; distinguish account sign-in from future private wardrobe sync.
+- Add intercepted-service account regression checks and production configuration guidance.
+
+
 ## 2026-10-24 — Six direct mobile island links
 
 - Show Style, Decide, Wardrobe, Similar, Radar and Account together in one mobile island.

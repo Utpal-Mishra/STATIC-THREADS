@@ -79,3 +79,38 @@ jobs:
 
       - name: Validate catalogue records
         run: python scripts/validate_catalog.py
+
+  account-auth:
+    runs-on: ubuntu-24.04
+    env:
+      NEXT_PUBLIC_SUPABASE_URL: https://auth-test.example
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: public-test-key-not-a-secret
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm ci
+      - name: Type-check authentication
+        run: npm run typecheck
+      - name: Build isolated authentication test app
+        run: npm run build
+      - name: Install browser test tools
+        run: npm install --no-save --package-lock=false playwright@1.56.1
+      - name: Prepare browser
+        run: |
+          if command -v google-chrome >/dev/null || command -v google-chrome-stable >/dev/null; then
+            echo "Using runner-provided Chrome"
+          else
+            npx playwright install --with-deps chromium
+          fi
+      - name: Exercise account lifecycle with intercepted auth service
+        run: node scripts/check_account_auth.cjs
+      - name: Save account QA screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: account-auth-qa
+          path: /tmp/static-threads-auth-qa/*.png
+          if-no-files-found: ignore

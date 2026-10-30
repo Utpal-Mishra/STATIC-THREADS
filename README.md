@@ -90,7 +90,7 @@ types/                   Shared catalogue types
 
 ## Planned next steps
 
-- Supabase authentication and storage
+- Private wardrobe cloud storage (authentication lifecycle implemented; production setup/acceptance pending)
 - wardrobe item creation form
 - outfit compatibility engine
 - brand-specific size profile
@@ -158,3 +158,7 @@ White Textured Shirt is a full-sleeve Powerlook shirt. Its product image now has
 ### Netplay patterned shirt sleeve correction
 
 Navy Pattern Shirt is a half-sleeve Netplay shirt. Its product image now has short sleeves while keeping the existing navy colour and grey motif. The versioned image reference updates its rail, preview and closet card.
+
+### Account authentication
+
+Email magic-link sign-in now includes PKCE callback completion, persisted/refreshed sessions, server-verified account identity, cross-tab updates and browser-scoped logout. The existing account design and public demo remain available. Personal wardrobe storage is a separate integration. See [account setup and verification](docs/ACCOUNT_AUTH.md).
