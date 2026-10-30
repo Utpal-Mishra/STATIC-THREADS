@@ -110,7 +110,7 @@ const server = http.createServer((req, res) => {
     failUser = true;
     await page.reload();
     await page.getByLabel('Email', { exact: true }).waitFor();
-    await page.getByRole('alert').waitFor();
+    await page.getByRole('alert').filter({ hasText: "couldn't verify your session" }).waitFor();
     assert.equal(await page.getByRole('button', { name: 'Sign out of this browser' }).count(), 0);
     failUser = false;
     // An expired access token is refreshed through the SDK, then server-verified.
@@ -125,6 +125,7 @@ const server = http.createServer((req, res) => {
     await page.getByRole('alert').filter({ hasText: 'invalid or has expired' }).waitFor();
     assert.equal(new URL(page.url()).search, '');
     await page.goto(origin + account + '#error=access_denied&error_description=private-secret');
+    await page.reload(); // Simulate a full-document return from the external auth service.
     await page.getByRole('alert').filter({ hasText: 'invalid or has expired' }).waitFor();
     assert.equal(new URL(page.url()).hash, '');
     assert.equal((await page.locator('body').innerText()).includes('private-secret'), false);
