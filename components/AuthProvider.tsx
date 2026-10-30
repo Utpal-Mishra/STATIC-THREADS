@@ -23,6 +23,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     let active = true;
     let revision = 0;
     const callbackError = callbackHasError();
+    const hasCallbackCode = new URL(window.location.href).searchParams.has("code");
     async function verify(session: Session | null) {
       const current = ++revision;
       if (!session) {
@@ -53,6 +54,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         }
         const { data, error } = await supabase.auth.getSession();
         if (error) throw error;
+        if (hasCallbackCode && !data.session) {
+          if (active) { ++revision; setState({ status: "signed-out", user: null, message: "This sign-in link is invalid or has expired. Request a new link and open it in the same browser." }); }
+          return;
+        }
         if (active) await verify(data.session);
       } catch (error) {
         clearAuthCallbackUrl();

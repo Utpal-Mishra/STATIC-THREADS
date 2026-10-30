@@ -52,7 +52,7 @@ export function clearAuthCallbackUrl() {
   for (const key of ["code", "error", "error_code", "error_description"]) {
     if (url.searchParams.has(key)) { url.searchParams.delete(key); changed = true; }
   }
-  if (["access_token", "refresh_token", "error", "error_description"].some(key => hash.has(key))) {
+  if (["access_token", "refresh_token", "error", "error_code", "error_description"].some(key => hash.has(key))) {
     url.hash = "";
     changed = true;
   }

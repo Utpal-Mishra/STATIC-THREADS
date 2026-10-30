@@ -25,7 +25,7 @@ const server = http.createServer((req, res) => {
 });
 (async () => {
   await new Promise(resolve => server.listen(4175, '127.0.0.1', resolve));
-  const runnerChrome = ['/usr/bin/google-chrome', '/usr/bin/google-chrome-stable'].find(file => fs.existsSync(file));
+  const runnerChrome = [process.env.CHROME_PATH, '/usr/bin/google-chrome', '/usr/bin/google-chrome-stable'].filter(Boolean).find(file => fs.existsSync(file));
   const browser = await chromium.launch({ headless: true, ...(runnerChrome ? { executablePath: runnerChrome } : {}) });
   const origin = 'http://127.0.0.1:4175';
   const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
