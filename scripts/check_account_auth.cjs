@@ -88,9 +88,16 @@ const server = http.createServer((req, res) => {
     await tab.getByText('Signed in as', { exact: false }).waitFor();
     failLogout = true;
     await page.getByRole('button', { name: 'Sign out of this browser' }).click();
-    await page.getByRole('alert').filter({ hasText: "couldn't sign you out" }).waitFor();
-    assert.equal(await page.getByText('Signed in as', { exact: false }).count(), 1);
+    await page.getByRole('alert').filter({ hasText: "couldn't confirm server sign-out" }).waitFor();
+    await page.getByLabel('Email', { exact: true }).waitFor();
+    await tab.getByLabel('Email', { exact: true }).waitFor();
+    assert.equal(await page.getByText('Signed in as', { exact: false }).count(), 0);
     failLogout = false;
+    await page.getByLabel('Email', { exact: true }).fill(user.email);
+    await page.getByRole('button', { name: 'Send secure sign-in link' }).click();
+    await page.getByText('Check your email for the sign-in link.', { exact: false }).waitFor();
+    await page.goto(origin + account + '?code=valid-again');
+    await page.getByText('Signed in as', { exact: false }).waitFor();
     await page.getByRole('button', { name: 'Sign out of this browser' }).click();
     await page.getByLabel('Email', { exact: true }).waitFor();
     await tab.getByLabel('Email', { exact: true }).waitFor();

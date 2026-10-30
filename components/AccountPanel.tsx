@@ -19,7 +19,10 @@ export function AccountPanel() {
     const timer = window.setTimeout(() => setCooldown(value => Math.max(0, value - 1)), 1000);
     return () => window.clearTimeout(timer);
   }, [cooldown]);
-  useEffect(() => { setMessage(""); setStatus("idle"); setEmail(""); }, [auth.status]);
+  useEffect(() => {
+    setEmail("");
+    if (auth.status === "signed-in") { setMessage(""); setStatus("idle"); setCooldown(0); }
+  }, [auth.status]);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -41,7 +44,15 @@ export function AccountPanel() {
     try {
       // This browser only; other devices keep their own sessions.
       const { error } = await supabase.auth.signOut({ scope: "local" });
-      if (error) throw error;
+      if (error) {
+        const { data } = await supabase.auth.getSession();
+        if (!data.session) {
+          setStatus("error");
+          setMessage("Signed out on this browser, but we couldn't confirm server sign-out. The previous session may remain valid until it expires.");
+          return;
+        }
+        throw error;
+      }
       setStatus("idle"); setMessage("You are signed out on this browser.");
     } catch (error) {
       setStatus("error"); setMessage(authErrorMessage(error, "logout"));
