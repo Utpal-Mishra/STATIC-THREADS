@@ -166,3 +166,7 @@ Email magic-link sign-in now includes PKCE callback completion, persisted/refres
 ### Outfit planning chat
 
 Use **Plan an outfit** on home or Account to plan for an event, refine dress code/weather/colour preferences, compare available-item combinations, and save or record wearing a look. The current version is a local rule-based planner with explicit demo/personal data boundaries; no external AI or live weather service is connected. See [outfit chat behaviour and setup](docs/OUTFIT_CHAT.md).
+
+### Chat mannequin galleries and web outfit flow
+
+Matching chat options now show the existing five-view mannequin catalogue gallery. Missing previews offer **Suggest top 5 outfits from the web**, with a consent step and per-result generated mannequin galleries when the secure service is activated. Live search/generation is off until Supabase Edge Function/provider setup and acceptance are complete. See [activation and verification](docs/CHAT_MANNEQUIN_WEB.md).

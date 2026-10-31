@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "test:planner": "tsc lib/outfit-planner.ts --outDir /tmp/static-threads-planner-tests --target ES2020 --module commonjs --skipLibCheck && node scripts/test_outfit_planner.cjs"
+    "test:planner": "tsc lib/outfit-planner.ts --outDir /tmp/static-threads-planner-tests --target ES2020 --module commonjs --skipLibCheck && node scripts/test_outfit_planner.cjs",
+    "test:outfit-visuals": "tsc supabase/functions/outfit-visuals/core.ts --outDir /tmp/static-threads-visual-service --target ES2022 --module commonjs --skipLibCheck && tsc supabase/functions/outfit-visuals/index.ts --noEmit --allowImportingTsExtensions --target ES2022 --module esnext --moduleResolution bundler --skipLibCheck && node scripts/test_outfit_visual_service.cjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.118.0",

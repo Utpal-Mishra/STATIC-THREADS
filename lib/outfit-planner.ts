@@ -90,7 +90,7 @@ const matchesTerm = (text: string, term: string) => {
 const itemText = (item: PlannerItem) => norm([item.name, item.category, item.subcategory, item.colour, ...item.secondaryColours, item.material].join(" "));
 const isNeutral = (colour: string) => /\b(black|white|grey|gray|navy|cream|beige|brown|taupe|stone)\b/.test(norm(colour));
 
-export function planOutfits(items: PlannerItem[], brief: Brief, seen: string[] = []): { outfits: Outfit[]; missing: string[]; message: string } {
+export function planOutfits(items: PlannerItem[], brief: Brief, seen: string[] = [], catalogueItemSets: readonly (readonly string[])[] = []): { outfits: Outfit[]; missing: string[]; message: string } {
   const formal = brief.dressCode === "formal" || brief.dressCode === "black-tie";
   const allowed = items.filter(item => {
     if (item.status !== "available") return false;
@@ -142,6 +142,20 @@ export function planOutfits(items: PlannerItem[], brief: Brief, seen: string[] =
     if (seen.includes(id)) continue;
     const harmony = set.slice(0, 2).some(item => isNeutral(item.colour)) ? 2 : 0;
     candidates.push({ items: set, id, score: set.reduce((sum, item) => sum + score(item), harmony) });
+  }
+  // Prefer existing illustrated combinations only when every actual item still meets the brief.
+  const byId = new Map(allowed.map(item => [item.id, item]));
+  for (const ids of catalogueItemSets) {
+    const seed = ids.map(id => byId.get(id));
+    if (seed.some(item => !item) || new Set(ids).size !== ids.length) continue;
+    const set = seed as PlannerItem[];
+    const roles = set.map(itemRole);
+    if (!(roles.includes("one-piece") || (roles.includes("top") && roles.includes("bottom"))) || !roles.includes("shoes") || (needsLayer && !roles.includes("layer")) || (brief.anchorId && !ids.includes(brief.anchorId))) continue;
+    const id = [...ids].sort().join("|");
+    if (seen.includes(id)) continue;
+    const existing = candidates.find(candidate => candidate.id === id);
+    if (existing) existing.score += 12;
+    else candidates.push({ id, items: set, score: set.reduce((sum, item) => sum + score(item), 12) });
   }
   const choices = candidates.sort((a, b) => b.score - a.score || a.id.localeCompare(b.id));
   const picked: typeof choices = [];

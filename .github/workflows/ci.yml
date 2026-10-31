@@ -41,6 +41,9 @@ jobs:
       - name: Validate outfit planning constraints
         run: npm run test:planner
 
+      - name: Validate web mannequin service contracts
+        run: npm run test:outfit-visuals
+
       - name: Build application
         run: npm run build
 
@@ -60,6 +63,17 @@ jobs:
 
       - name: Check outfit planning chat
         run: node scripts/check_outfit_chat.cjs
+
+      - name: Check catalogue mannequin galleries
+        run: node scripts/check_chat_visuals.cjs
+
+      - name: Save mannequin chat screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chat-mannequin-qa
+          path: /tmp/static-threads-chat-visuals/*.png
+          if-no-files-found: ignore
 
       - name: Save chat screenshots
         if: always()
@@ -99,6 +113,7 @@ jobs:
     env:
       NEXT_PUBLIC_SUPABASE_URL: https://auth-test.example
       NEXT_PUBLIC_SUPABASE_ANON_KEY: public-test-key-not-a-secret
+      NEXT_PUBLIC_OUTFIT_VISUALS_ENABLED: "true"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -123,6 +138,8 @@ jobs:
         run: node scripts/check_account_auth.cjs
       - name: Check personal wardrobe chat contracts
         run: TEST_PRIVATE=1 node scripts/check_outfit_chat.cjs
+      - name: Check web mannequin flow contracts
+        run: TEST_WEB=1 node scripts/check_chat_visuals.cjs
       - name: Save account QA screenshots
         if: always()
         uses: actions/upload-artifact@v4
@@ -150,4 +167,6 @@ jobs:
       - name: Verify actual outfit-event RLS enforcement
         env:
           PGPASSWORD: ci-test-password
-        run: psql -h localhost -U postgres -d postgres -f scripts/test_outfit_chat_rls.sql
+        run: |
+          psql -h localhost -U postgres -d postgres -f scripts/test_outfit_chat_rls.sql
+          psql -h localhost -U postgres -d postgres -f scripts/test_outfit_visual_quota.sql

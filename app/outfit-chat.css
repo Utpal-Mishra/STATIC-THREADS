@@ -57,3 +57,21 @@
   .outfit-chat-header, .outfit-chat-source, .outfit-chat-toolbar, .outfit-chat-quick { padding-block: 5px; }
   .outfit-chat-quick button { min-height: 30px; }
 }
+.chat-outfit-visuals { margin-top: 14px; }
+.chat-visual-label { color: #a1edc7; font-size: .72rem !important; font-weight: 800; }
+.chat-mannequin-main { display: block; width: 100%; height: 255px; border-radius: 12px; background: #eeebe5; margin-top: 10px; }
+.chat-mannequin-full { display: block; width: 100%; height: auto; margin-top: 10px; border-radius: 12px; }
+.chat-mannequin-thumbs { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 4px; margin-top: 7px; }
+.chat-mannequin-thumbs button { min-width: 0; padding: 3px; border: 1px solid #3b5145; border-radius: 8px; color: #d3e7d9; background: #14271d; }
+.chat-mannequin-thumbs button[aria-pressed="true"] { border-color: #a0f5c7; background: #24523d; }
+.chat-mannequin-thumbs svg { display: block; width: 100%; height: 68px; background: #edeae4; border-radius: 5px; }
+.chat-mannequin-thumbs span { display: block; font-size: .58rem; padding: 5px 0; }
+.chat-visual-note { font-size: .7rem !important; color: #b9cbbf; line-height: 1.5; overflow-wrap: anywhere; }
+.chat-web-outfit-button, .chat-board-toggle, .chat-web-consent button, .chat-web-result button { min-height: 40px; padding: 8px 10px; margin-top: 8px; border: 1px solid #60987b; border-radius: 10px; color: #b7f6d2; background: #173125; font-size: .75rem; }
+.chat-web-consent, .chat-web-result { margin-top: 12px; padding: 12px; border: 1px solid #365d46; border-radius: 12px; background: #122018; }
+.chat-web-consent button + button { margin-left: 7px; }
+.chat-web-result h4 { margin: 0; font-size: .85rem; }
+.chat-web-result p, .chat-web-result li { font-size: .75rem !important; }
+.chat-web-sources { display: grid; gap: 8px; margin: 10px 0; }
+.chat-web-sources a { color: #a9eaca; font-size: .73rem; overflow-wrap: anywhere; }
+@media(max-width:360px) { .chat-mannequin-thumbs { gap: 3px; } .chat-mannequin-thumbs button { padding: 2px; } .chat-mannequin-thumbs svg { height: 54px; } }

@@ -53,4 +53,9 @@ assert.equal(planOutfits(items.map(item => ({ ...item, status: 'stored' })), bri
 const unknownEvent = updateBrief(emptyBrief(), 'Plan my outfit for a poetry reading', items);
 assert.equal(unknownEvent.event, 'a poetry reading');
 assert.ok(planOutfits(items, updateBrief(cold, 'rainy', items)).outfits.every(outfit => outfit.cautions.some(caution => caution.includes('Water resistance'))));
+const illustratedIds = ['grey-linen-shirt', 'light-grey-denim-shorts', 'puma-white-green'];
+const casualBrief = updateBrief(emptyBrief(), 'Dinner casual indoors', items);
+assert.equal(planOutfits(items, casualBrief, [], [illustratedIds]).outfits[0].id, [...illustratedIds].sort().join('|'));
+assert.ok(planOutfits(items, formal, [], [illustratedIds]).outfits.length === 0);
+assert.ok(planOutfits(items, updateBrief(casualBrief, 'no shorts', items), [], [illustratedIds]).outfits.every(outfit => !outfit.items.some(item => item.category === 'shorts')));
 console.log('PASS: grounded IDs, unavailable items, hard exclusions, multi-turn brief, formal gaps, weather, alternatives, named anchor, one-piece/sets and custom events.');
