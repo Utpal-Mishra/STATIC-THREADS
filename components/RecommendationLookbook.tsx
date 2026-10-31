@@ -103,7 +103,7 @@ export function RecommendationLookbook({ title, asset, views, publicBasePath, pa
                 </clipPath>
               </defs>
               {index === 2 ? <FrontViewBackground frame={frames[index] ?? frames[2]} sourceId={`${frameClipId}-${index}-source`} /> : null}
-              <image href={`${publicBasePath}${asset}`} id={`${frameClipId}-${index}-source`}} width={boardWidth} height={boardHeight} clipPath={`url(#${frameClipId}-${index})`} />
+              <image href={`${publicBasePath}${asset}`} id={`${frameClipId}-${index}-source`} width={boardWidth} height={boardHeight} clipPath={`url(#${frameClipId}-${index})`} />
             </svg>
             <figcaption>{view}</figcaption>
           </figure>
