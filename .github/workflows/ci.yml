@@ -59,12 +59,15 @@ jobs:
           fi
 
       - name: Check mobile and desktop navigation
+        timeout-minutes: 3
         run: node scripts/check_mobile_navigation.cjs
 
       - name: Check outfit planning chat
+        timeout-minutes: 3
         run: node scripts/check_outfit_chat.cjs
 
       - name: Check catalogue mannequin galleries
+        timeout-minutes: 3
         run: node scripts/check_chat_visuals.cjs
 
       - name: Save mannequin chat screenshots
@@ -135,10 +138,13 @@ jobs:
             npx playwright install --with-deps chromium
           fi
       - name: Exercise account lifecycle with intercepted auth service
+        timeout-minutes: 3
         run: node scripts/check_account_auth.cjs
       - name: Check personal wardrobe chat contracts
+        timeout-minutes: 3
         run: TEST_PRIVATE=1 node scripts/check_outfit_chat.cjs
       - name: Check web mannequin flow contracts
+        timeout-minutes: 3
         run: TEST_WEB=1 node scripts/check_chat_visuals.cjs
       - name: Save account QA screenshots
         if: always()
