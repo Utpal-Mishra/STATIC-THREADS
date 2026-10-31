@@ -76,3 +76,6 @@
 .chat-web-sources { display: grid; gap: 8px; margin: 10px 0; }
 .chat-web-sources a { color: #a9eaca; font-size: .73rem; overflow-wrap: anywhere; }
 @media(max-width:360px) { .chat-mannequin-thumbs { gap: 3px; } .chat-mannequin-thumbs button { padding: 2px; } .chat-mannequin-thumbs svg { height: 54px; } }
+
+/* Keep outfit actions at the same compact text scale as New plan. */
+.outfit-chat-dialog .outfit-chat-actions button, .outfit-chat-dialog button.chat-board-toggle { font: inherit; font-size: .7rem; min-height: 36px; padding: 6px 10px; max-width: 100%; }

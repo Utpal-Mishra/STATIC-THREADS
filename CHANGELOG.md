@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-31 — Compact chatbot outfit actions
+
+- Match complete-board, save and wear button typography to New plan and reduce their padding and height while preserving wrapping, colours and behaviour.
+
 ## 2026-10-31 — More space for chatbot outfit previews
 
 - Capitalize Demo Wardrobe and hide its explanatory text to free vertical space, retaining signed-in wardrobe switching.
