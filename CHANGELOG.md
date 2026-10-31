@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-31 — More space for chatbot outfit previews
+
+- Capitalize Demo Wardrobe and hide its explanatory text to free vertical space, retaining signed-in wardrobe switching.
+- Enlarge selected mannequin previews with catalogue-style 4:5 portrait frames, dark backgrounds, rounded borders and unchanged aspect-preserving crops.
+
 ## 2026-10-31 — Chat suggestion typography
 
 - Match suggested-reply font size and inherited typography to New plan while preserving existing colours, layout and button touch targets.

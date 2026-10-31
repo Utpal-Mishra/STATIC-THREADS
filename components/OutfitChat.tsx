@@ -39,9 +39,9 @@ export default function OutfitChat({ onClose }: { onClose: () => void }) {
       <button type="button" className="outfit-chat-close" onClick={onClose} aria-label="Close outfit planner">×</button>
     </header>
     <div className="outfit-chat-source">
-      <strong>{personal ? "Your private wardrobe" : "Demo wardrobe"}</strong>
-      <span>Local outfit planner · optional web mannequin previews</span>
-      {auth.status === "signed-in" ? <button type="button" onClick={() => setDemo(value => !value)}>{demo ? "Use my wardrobe" : "Try demo wardrobe"}</button> : <small>Demo pieces belong to the sample catalogue. Personal wardrobe access requires a connected account.</small>}
+      <strong>{personal ? "Your private wardrobe" : "Demo Wardrobe"}</strong>
+      <span hidden>Local outfit planner · optional web mannequin previews</span>
+      {auth.status === "signed-in" ? <button type="button" onClick={() => setDemo(value => !value)}>{demo ? "Use my wardrobe" : "Try demo wardrobe"}</button> : <small hidden>Demo pieces belong to the sample catalogue. Personal wardrobe access requires a connected account.</small>}
     </div>
     {auth.status === "loading" ? <p className="outfit-chat-notice" role="status">Checking your account…</p> : <ChatSession key={sourceKey} userId={personal ? auth.user!.id : null} />}
   </dialog>;

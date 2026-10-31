@@ -49,7 +49,7 @@ function testSession() {
     await launcher.click();
     const dialog = page.getByRole('dialog', { name: 'Your outfit planner' });
     await dialog.waitFor();
-    await dialog.getByText('Demo wardrobe', { exact: true }).waitFor();
+    await dialog.getByText('Demo Wardrobe', { exact: true }).waitFor();
     async function send(text) {
       await dialog.getByLabel('Tell the planner').fill(text);
       await dialog.getByRole('button', { name: 'Send', exact: true }).click();
@@ -92,7 +92,7 @@ function testSession() {
     assert.equal(await launcher.evaluate(node => node === document.activeElement), true);
     assert.equal(await page.locator('body').evaluate(node => node.style.overflow), '');
     await launcher.click();
-    await dialog.getByText('Demo wardrobe', { exact: true }).waitFor();
+    await dialog.getByText('Demo Wardrobe', { exact: true }).waitFor();
     assert.equal(await dialog.getByRole('article').count(), 0, 'Conversation should not persist on close');
     await dialog.getByRole('button', { name: 'Saved demo outfits (1)' }).click();
     await dialog.locator('.outfit-chat-saved li').waitFor();
@@ -148,7 +148,7 @@ function testSession() {
       assert.equal(writes.at(-1).action, 'worn');
       // Source switches cannot retain private suggestions in demo mode.
       await dialog.getByRole('button', { name: 'Try demo wardrobe' }).click();
-      await dialog.getByText('Demo wardrobe', { exact: true }).waitFor();
+      await dialog.getByText('Demo Wardrobe', { exact: true }).waitFor();
       assert.equal(await dialog.getByText('Private dresses', { exact: true }).count(), 0);
       for (const mode of ['empty', 'error', 'wrong-owner']) {
         dataMode = mode;
@@ -163,7 +163,7 @@ function testSession() {
       await page.getByRole('button', { name: 'Sign out of this browser' }).click();
       await page.getByLabel('Email', { exact: true }).waitFor();
       await launcher.click();
-      await dialog.getByText('Demo wardrobe', { exact: true }).waitFor();
+      await dialog.getByText('Demo Wardrobe', { exact: true }).waitFor();
       assert.equal(await dialog.getByText('Private dresses', { exact: true }).count(), 0);
     }
     assert.deepEqual(errors, []);
