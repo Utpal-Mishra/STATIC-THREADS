@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-31 — Outfit planning chatbot
+
+- Add a lazy-loaded, accessible Plan an outfit dialog on home and Account without replacing existing navigation or visuals.
+- Plan through event, dress code and relevant weather follow-ups; support item/colour preferences, alternatives and explicit save/wear actions.
+- Ground suggestions in available wardrobe items, report unsuitable/missing inventory and support one-piece/sets alongside separates.
+- Distinguish the usable demo planner from private account inventory; verify ownership before private event writes and never substitute demo data on private failures.
+- Keep conversation local and transient; document the local rule-based scope and pending production account/RLS acceptance.
+
+
 ## 2026-10-30 — Account authentication lifecycle
 
 - Complete magic-link callbacks using the Supabase SDK with PKCE, session persistence and refresh.

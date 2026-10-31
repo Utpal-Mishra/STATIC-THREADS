@@ -1,0 +1,59 @@
+.outfit-chat-launcher { position: fixed; z-index: 60; right: 24px; bottom: 24px; display: inline-flex; align-items: center; gap: 9px; min-height: 48px; padding: 12px 18px; border: 1px solid #82e5bd; border-radius: 18px; background: #91f2c8; color: #092018; box-shadow: 0 8px 28px #0006; font-weight: 800; cursor: pointer; }
+.outfit-chat-loading { position: fixed; z-index: 65; right: 24px; bottom: 82px; padding: 12px; border-radius: 12px; background: #11191a; color: #eff7f1; }
+.outfit-chat-dialog { position: fixed; inset: auto 20px 20px auto; margin: 0; padding: 0; width: min(480px, calc(100vw - 32px)); height: min(760px, calc(100dvh - 40px)); max-height: calc(100dvh - 40px); max-width: calc(100vw - 24px); overflow: hidden; border: 1px solid #3a5048; border-radius: 24px; background: #101719; color: #f2f7f3; box-shadow: 0 24px 100px #0009; }
+.outfit-chat-dialog[open] { display: flex; flex-direction: column; }
+.outfit-chat-dialog::backdrop { background: #050a0bc2; }
+.outfit-chat-header { display: flex; justify-content: space-between; gap: 12px; align-items: center; padding: 18px 20px 14px; flex-shrink: 0; }
+.outfit-chat-header .eyebrow { margin: 0 0 7px; font-size: .62rem; }
+.outfit-chat-header h2 { margin: 0; font-size: 1.35rem; letter-spacing: -.025em; }
+.outfit-chat-close { width: 44px; height: 44px; flex-shrink: 0; border: 1px solid #3b4d46; border-radius: 50%; background: #192325; color: #fff; font-size: 1.6rem; cursor: pointer; }
+.outfit-chat-source { display: grid; gap: 6px; padding: 12px 20px; border-block: 1px solid #2a3934; background: #152420; flex-shrink: 0; }
+.outfit-chat-source strong { font-size: .8rem; color: #9af3cc; }
+.outfit-chat-source span, .outfit-chat-source small { font-size: .7rem; color: #bacac2; line-height: 1.4; }
+.outfit-chat-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 20px; font-size: .7rem; color: #bccbc3; flex-shrink: 0; }
+.outfit-chat-dialog button:not(.outfit-chat-close) { font: inherit; cursor: pointer; }
+.outfit-chat-source button, .outfit-chat-toolbar button, .outfit-chat-notice button, .outfit-chat-saved button { width: fit-content; min-height: 36px; padding: 5px 8px; border: 1px solid #416557; border-radius: 9px; background: #14251e; color: #a8f5d0; font-size: .75rem; }
+.outfit-chat-transcript { min-height: 0; flex: 1; overflow-y: auto; padding: 8px 18px 14px; overscroll-behavior: contain; }
+.outfit-chat-message { margin: 8px 0 12px; padding: 12px; border: 1px solid #2a3b34; border-radius: 14px; background: #1a2524; overflow-wrap: anywhere; }
+.outfit-chat-message.from-user { margin-left: 30px; background: #23362f; }
+.outfit-chat-message > span { font-size: .62rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: #92eac0; }
+.outfit-chat-message p, .outfit-chat-outfit p { margin: 6px 0 0; font-size: .82rem; line-height: 1.6; }
+.outfit-chat-outfit { padding: 14px; margin: 10px 0; border: 1px solid #4c6e5e; border-radius: 16px; background: #0c1413; }
+.outfit-chat-outfit h3 { margin: 0 0 10px; font-size: 1rem; }
+.outfit-chat-outfit ul { padding: 0; margin: 0; list-style: none; }
+.outfit-chat-outfit li { display: grid; gap: 3px; padding: 8px 0; border-bottom: 1px solid #263a30; font-size: .8rem; overflow-wrap: anywhere; }
+.outfit-chat-outfit li span { font-size: .72rem; color: #b1c2b8; }
+.outfit-chat-outfit details { margin-top: 10px; font-size: .74rem; color: #bbccc1; }
+.outfit-chat-outfit summary { cursor: pointer; min-height: 30px; }
+.outfit-chat-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.outfit-chat-actions button, .outfit-chat-form button { min-height: 44px; padding: 10px 14px; border: 1px solid #73c49d; border-radius: 10px; background: #9aeec6; color: #0c2018; font-size: .78rem; font-weight: 800; }
+.outfit-chat-actions button + button { background: #18362a; color: #a5f2cc; }
+.outfit-chat-dialog button:disabled { opacity: .55; cursor: default; }
+.outfit-chat-action-message { flex-shrink: 0; margin: 0; padding: 0 20px; color: #a1efca; font-size: .75rem; line-height: 1.4; }
+.outfit-chat-action-message:not(:empty) { padding-block: 7px; }
+.outfit-chat-quick { flex-shrink: 0; display: flex; flex-wrap: wrap; gap: 6px; padding: 9px 18px; }
+.outfit-chat-quick button { min-height: 36px; border: 1px solid #3c5448; border-radius: 12px; background: #182820; color: #d2ecde; padding: 6px 10px; font-size: .72rem; }
+.outfit-chat-form { flex-shrink: 0; padding: 10px 18px 14px; border-top: 1px solid #2b3c33; }
+.outfit-chat-form > div { display: flex; gap: 8px; align-items: stretch; }
+.outfit-chat-input-label { display: block; margin-bottom: 7px; font-size: .7rem; color: #c2d9cb; }
+.outfit-chat-form textarea { flex: 1; width: 100%; min-width: 0; max-height: 90px; resize: none; border: 1px solid #3a5547; border-radius: 12px; padding: 10px; background: #0a1410; color: #f1f7f3; font: inherit; font-size: 16px; }
+.outfit-chat-form small { display: block; margin-top: 7px; color: #afc3b7; font-size: .63rem; line-height: 1.4; }
+.outfit-chat-notice { padding: 12px 20px; margin: 0; color: #f3d7a4; font-size: .8rem; line-height: 1.5; }
+.outfit-chat-notice button { display: block; margin-top: 8px; }
+.outfit-chat-saved { display: grid; gap: 8px; padding: 10px 0; }
+.outfit-chat-saved ul, .outfit-chat-saved small { font-size: .72rem; color: #b7c9bd; line-height: 1.6; }
+.outfit-chat-dialog :focus-visible, .outfit-chat-launcher:focus-visible { outline: 2px solid #a5f8cf; outline-offset: 3px; }
+@media (max-width: 680px) {
+  .outfit-chat-launcher { right: 14px; bottom: calc(104px + env(safe-area-inset-bottom, 0px)); font-size: .8rem; }
+  .outfit-chat-loading { right: 14px; bottom: calc(160px + env(safe-area-inset-bottom, 0px)); }
+  .outfit-chat-dialog { inset: auto 8px calc(8px + env(safe-area-inset-bottom, 0px)) 8px; width: auto; max-width: none; height: min(800px, calc(100dvh - 24px - env(safe-area-inset-bottom, 0px))); max-height: calc(100dvh - 24px - env(safe-area-inset-bottom, 0px)); border-radius: 20px; }
+  .outfit-chat-source { padding: 9px 14px; }
+  .outfit-chat-header { padding: 12px 14px; }
+  .outfit-chat-quick { padding: 7px 12px; }
+  .outfit-chat-form { padding: 8px 12px 12px; }
+}
+@media (max-height: 520px) {
+  .outfit-chat-source small, .outfit-chat-source span, .outfit-chat-form small, .outfit-chat-header .eyebrow { display: none; }
+  .outfit-chat-header, .outfit-chat-source, .outfit-chat-toolbar, .outfit-chat-quick { padding-block: 5px; }
+  .outfit-chat-quick button { min-height: 30px; }
+}

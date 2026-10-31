@@ -1,10 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import { OutfitChatLauncher } from "@/components/OutfitChatLauncher";
 import { AuthProvider } from "@/components/AuthProvider";
 import "./globals.css";
 import "./style-studio.css";
 import "./decision-lab.css";
 import "./account.css";
+import "./outfit-chat.css";
 
 export const metadata: Metadata = {
   title: "Static Threads",
@@ -19,7 +21,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en">
-      <body><AuthProvider>{children}</AuthProvider></body>
+      <body><AuthProvider>{children}<OutfitChatLauncher /></AuthProvider></body>
     </html>
   );
 }
