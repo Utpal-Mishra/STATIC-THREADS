@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-31 — Chat suggestion typography
+
+- Match suggested-reply font size and inherited typography to New plan while preserving existing colours, layout and button touch targets.
+
 ## 2026-10-31 — Chat mannequin galleries and web outfit integration
 
 - Match exact catalogue outfit IDs and display all five mannequin poses under the corresponding chat option, with full-board inspection and style-preview disclosure.
