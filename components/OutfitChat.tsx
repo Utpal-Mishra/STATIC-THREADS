@@ -74,7 +74,13 @@ function ChatSession({ userId }: { userId: string | null }) {
     }).catch(() => { if (!controller.signal.aborted) { setItems([]); setLoadStatus("error"); } });
     return () => controller.abort();
   }, [userId, retry]);
-  useEffect(() => { transcript.current?.scrollTo({ top: transcript.current.scrollHeight }); }, [messages, outfits]);
+  useEffect(() => {
+    const container = transcript.current;
+    if (!container) return;
+    const replies = container.querySelectorAll<HTMLElement>(".outfit-chat-message.from-planner");
+    const reply = outfits.length ? replies[replies.length - 1] : null;
+    container.scrollTo({ top: reply ? container.scrollTop + reply.getBoundingClientRect().top - container.getBoundingClientRect().top : container.scrollHeight });
+  }, [messages, outfits]);
 
   function addMessage(speaker: Message["speaker"], text: string) {
     setMessages(current => [...current.slice(-38), { id: sequence.current++, speaker, text }]);
