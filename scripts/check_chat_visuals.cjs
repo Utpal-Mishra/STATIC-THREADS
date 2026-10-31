@@ -36,10 +36,12 @@ const server=http.createServer((req,res)=>{
   await first.getByRole('button',{name:'Show selected pose'}).click();
   await first.getByRole('button',{name:'Show front mannequin view',exact:true}).click();
   for(const width of [320,390,1280]){
-   await page.setViewportSize({width,height:900});await first.locator('.chat-mannequin-gallery').scrollIntoViewIfNeeded();
+   await page.setViewportSize({width,height:900});await first.locator('.chat-mannequin-main').scrollIntoViewIfNeeded();
    const box=await first.locator('.chat-mannequin-gallery').boundingBox(),bounds=await dialog.boundingBox();assert.ok(box.x>=bounds.x&&box.x+box.width<=bounds.x+bounds.width);
    if(width===390)await page.screenshot({path:`${shots}/catalogue-mobile.png`});if(width===1280)await page.screenshot({path:`${shots}/catalogue-desktop.png`});
   }
+  await first.locator('.chat-mannequin-main image').evaluate(node=>node.setAttribute('href','data:image/png;base64,aW52YWxpZA=='));
+  await first.getByRole('button',{name:'Suggest top 5 outfits from the web',exact:true}).waitFor();
   await dialog.getByRole('button',{name:'New plan'}).click();await send('Wedding formal indoors');
   const fallback=dialog.getByRole('button',{name:'Suggest top 5 outfits from the web',exact:true});await fallback.waitFor();await fallback.click();
   if(!process.env.TEST_WEB){
@@ -74,6 +76,9 @@ const server=http.createServer((req,res)=>{
    await page.waitForFunction(()=>document.querySelectorAll('.chat-web-result .chat-mannequin-gallery').length===5);
    assert.equal(searches,1);assert.equal(renders,5);assert.equal(await dialog.locator('.chat-web-sources a').count(),5);
    for(const result of await dialog.locator('.chat-web-result').all())assert.equal(await result.getByRole('button',{name:/Show .* mannequin view/}).count(),5);
+   const firstWeb=dialog.locator('.chat-web-result').first();
+   await firstWeb.locator('.chat-mannequin-main image').evaluate(node=>node.setAttribute('href','data:image/png;base64,aW52YWxpZA=='));
+   await firstWeb.getByRole('button',{name:'Retry mannequin preview',exact:true}).waitFor();
    // Restarting a plan clears web results and aborts queued work.
    await dialog.getByRole('button',{name:'New plan'}).click();assert.equal(await dialog.locator('.chat-web-result').count(),0);
    failRender=true;await send('Wedding formal indoors');await fallback.click();await dialog.getByRole('button',{name:'Search and create mannequin previews'}).click();

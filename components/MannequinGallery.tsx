@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useId, useState } from "react";
 import { mannequinViews, type MannequinBoard } from "@/lib/outfit-visuals";
-export function MannequinGallery({ board, generated = false }: { board: MannequinBoard; generated?: boolean }) {
+export function MannequinGallery({ board, generated = false, onUnavailable }: { board: MannequinBoard; generated?: boolean; onUnavailable?: () => void }) {
   const [active, setActive] = useState(2);
   const [full, setFull] = useState(false);
   const [error, setError] = useState(false);
@@ -11,9 +11,9 @@ export function MannequinGallery({ board, generated = false }: { board: Mannequi
   if (error) return <p className="chat-visual-note" role="status">This mannequin image could not be loaded. No unrelated preview has been substituted.</p>;
   return <section className="chat-mannequin-gallery" aria-label={`${board.label} mannequin views`}>
     <p className="chat-visual-label">{generated ? "Generated mannequin interpretation" : "Catalogue mannequin style preview"}</p>
-    {full ? <img className="chat-mannequin-full" src={board.asset} alt={`${board.label}: complete five-view board`} onError={() => setError(true)} /> : <svg className="chat-mannequin-main" role="img" aria-label={`${board.label} — ${mannequinViews[active]}`} viewBox={frame.join(" ")} preserveAspectRatio="xMidYMid meet">
+    {full ? <img className="chat-mannequin-full" src={board.asset} alt={`${board.label}: complete five-view board`} onError={() => { setError(true); onUnavailable?.(); }} /> : <svg className="chat-mannequin-main" role="img" aria-label={`${board.label} — ${mannequinViews[active]}`} viewBox={frame.join(" ")} preserveAspectRatio="xMidYMid meet">
       <defs><clipPath id={`${id}-main`}><rect x={frame[0]} y={frame[1]} width={frame[2]} height={frame[3]} /></clipPath></defs>
-      <image href={board.asset} width={board.width} height={board.height} clipPath={`url(#${id}-main)`} onError={() => setError(true)} />
+      <image href={board.asset} width={board.width} height={board.height} clipPath={`url(#${id}-main)`} onError={() => { setError(true); onUnavailable?.(); }} />
     </svg>}
     <div className="chat-mannequin-thumbs" aria-label="Mannequin poses">{mannequinViews.map((view, index) => {
       const crop = board.frames[index];

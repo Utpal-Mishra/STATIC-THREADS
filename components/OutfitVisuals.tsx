@@ -8,6 +8,7 @@ import { MannequinGallery } from "@/components/MannequinGallery";
 type RenderState = { status: "waiting" | "rendering" | "ready" | "error"; board?: MannequinBoard; message?: string };
 export function OutfitVisuals({ outfit, brief }: { outfit: Outfit; brief: Brief }) {
   const catalogue = catalogueMannequin(outfit.items);
+  const [catalogueUnavailable, setCatalogueUnavailable] = useState(false);
   const [confirm, setConfirm] = useState(false);
   const [status, setStatus] = useState<"idle" | "searching" | "ready" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -46,7 +47,7 @@ export function OutfitVisuals({ outfit, brief }: { outfit: Outfit; brief: Brief 
     } finally { if (request.current === controller) busy.current = false; }
   }
   return <div className="chat-outfit-visuals">
-    {catalogue ? <MannequinGallery board={catalogue} /> : <>
+    {catalogue && !catalogueUnavailable ? <MannequinGallery board={catalogue} onUnavailable={() => setCatalogueUnavailable(true)} /> : <>
       <p className="chat-visual-note">No matching mannequin set is available in the catalogue for this combination.</p>
       <button type="button" className="chat-web-outfit-button" disabled={status === "searching" || busy.current} onClick={() => setConfirm(true)}>Suggest top 5 outfits from the web</button>
       {confirm ? <div className="chat-web-consent">
@@ -62,7 +63,7 @@ export function OutfitVisuals({ outfit, brief }: { outfit: Outfit; brief: Brief 
       <h4>Web outfit {index + 1}: {result.title}</h4><p>{result.description}</p><ul>{result.pieces.map((piece, i) => <li key={i}>{piece}</li>)}</ul>
       <p className="chat-visual-note">Checked {result.checkedAt}. Stock, prices and styling may change.</p>
       <div className="chat-web-sources">{result.sourceUrls.map((url, i) => <a key={url} href={url} target="_blank" rel="noreferrer">Source {i + 1}: {new URL(url).hostname}</a>)}</div>
-      {renders[index]?.board ? <MannequinGallery board={renders[index].board!} generated /> : <p className="chat-visual-note" role="status">{renders[index]?.status === "error" ? renders[index].message : renders[index]?.status === "rendering" ? "Creating this outfit's five-view mannequin board…" : "Mannequin preview queued…"}</p>}
+      {renders[index]?.board ? <MannequinGallery board={renders[index].board!} generated onUnavailable={() => setRenders(current => ({ ...current, [index]: { status: "error", message: "The generated image could not be decoded. Please retry the mannequin preview." } }))} /> : <p className="chat-visual-note" role="status">{renders[index]?.status === "error" ? renders[index].message : renders[index]?.status === "rendering" ? "Creating this outfit's five-view mannequin board…" : "Mannequin preview queued…"}</p>}
       {renders[index]?.status === "error" ? <button type="button" onClick={() => { if (request.current && !request.current.signal.aborted) void render(index, result, request.current); }}>Retry mannequin preview</button> : null}
     </section>)}
   </div>;
