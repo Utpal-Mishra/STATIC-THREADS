@@ -27,6 +27,11 @@ for (const outfit of planOutfits(items, cold).outfits) {
   assert.ok(outfit.items.some(item => item.category === 'jackets'));
   assert.ok(outfit.items.every(item => item.category !== 'shorts'));
 }
+const anchoredLayer = updateBrief(cold, 'build around Beige Overshirt', items);
+for (const outfit of planOutfits(items, anchoredLayer).outfits) {
+  assert.equal(outfit.items.filter(item => item.category === 'jackets').length, 1);
+  assert.ok(outfit.items.some(item => item.id === 'beige-overshirt'));
+}
 const alternatives = planOutfits(items, brief, result.outfits.map(outfit => outfit.id));
 assert.ok(alternatives.outfits.every(outfit => !result.outfits.some(old => old.id === outfit.id)));
 const anchorBrief = updateBrief(brief, 'build around Grey Linen Shirt', items);

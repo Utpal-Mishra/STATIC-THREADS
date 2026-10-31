@@ -134,7 +134,8 @@ export function planOutfits(items: PlannerItem[], brief: Brief, seen: string[] =
     const set = [...base, shoe, ...(layer ? [layer] : [])];
     if (brief.anchorId && !set.some(item => item.id === brief.anchorId)) {
       const anchor = allowed.find(item => item.id === brief.anchorId);
-      if (anchor && (itemRole(anchor) === "layer" || itemRole(anchor) === "other")) set.push(anchor);
+      if (anchor && itemRole(anchor) === "other") set.push(anchor);
+      else if (anchor && itemRole(anchor) === "layer" && !needsLayer) set.push(anchor);
       else continue;
     }
     const id = set.map(item => item.id).sort().join("|");
