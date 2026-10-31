@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-31 — Front-view background extension
+
+- Extend only front-view scene edges into the portrait frame side margins in catalogue cards and chatbot previews, including thumbnails.
+- Preserve mannequin scale, original image pixels/crops, full-board images and every other pose.
+
 ## 2026-10-31 — Compact chatbot outfit actions
 
 - Match complete-board, save and wear button typography to New plan and reduce their padding and height while preserving wrapping, colours and behaviour.
