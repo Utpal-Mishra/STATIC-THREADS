@@ -162,3 +162,7 @@ Navy Pattern Shirt is a half-sleeve Netplay shirt. Its product image now has sho
 ### Account authentication
 
 Email magic-link sign-in now includes PKCE callback completion, persisted/refreshed sessions, server-verified account identity, cross-tab updates and browser-scoped logout. The existing account design and public demo remain available. Personal wardrobe storage is a separate integration. See [account setup and verification](docs/ACCOUNT_AUTH.md).
+
+### Outfit planning chat
+
+Use **Plan an outfit** on home or Account to plan for an event, refine dress code/weather/colour preferences, compare available-item combinations, and save or record wearing a look. The current version is a local rule-based planner with explicit demo/personal data boundaries; no external AI or live weather service is connected. See [outfit chat behaviour and setup](docs/OUTFIT_CHAT.md).

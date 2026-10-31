@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test:planner": "tsc lib/outfit-planner.ts --outDir /tmp/static-threads-planner-tests --target ES2020 --module commonjs --skipLibCheck && node scripts/test_outfit_planner.cjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.118.0",
