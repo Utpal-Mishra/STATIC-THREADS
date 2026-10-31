@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-31 — Chat mannequin galleries and web outfit integration
+
+- Match exact catalogue outfit IDs and display all five mannequin poses under the corresponding chat option, with full-board inspection and style-preview disclosure.
+- Prefer illustrated catalogue combinations only when the same wardrobe constraints permit them.
+- Add explicit top-five web outfit confirmation, source links and per-result mannequin generation/loading/retry UI.
+- Supply an authenticated Edge Function with source-vetted outfit tickets, server-only provider keys and durable daily usage limits. Live provider activation remains pending.
+- Add handler, browser and real PostgreSQL quota tests; preserve existing images and page layouts.
+
+
 ## 2026-10-31 — Outfit planning chatbot
 
 - Add a lazy-loaded, accessible Plan an outfit dialog on home and Account without replacing existing navigation or visuals.

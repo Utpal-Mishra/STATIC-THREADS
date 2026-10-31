@@ -1,7 +1,9 @@
 "use client";
 
 import { FormEvent, type KeyboardEvent, useEffect, useRef, useState } from "react";
+import { OutfitVisuals } from "@/components/OutfitVisuals";
 import { useAuth } from "@/components/AuthProvider";
+import { styleProfile } from "@/data/style-profile";
 import catalog from "@/data/catalog.json";
 import { emptyBrief, nextQuestion, planOutfits, updateBrief, type Brief, type Outfit, type PlannerItem } from "@/lib/outfit-planner";
 import { loadPersonalWardrobe, readDemoActions, recordDemoOutfit, recordPersonalOutfit, type DemoActions } from "@/lib/outfit-chat-data";
@@ -38,7 +40,7 @@ export default function OutfitChat({ onClose }: { onClose: () => void }) {
     </header>
     <div className="outfit-chat-source">
       <strong>{personal ? "Your private wardrobe" : "Demo wardrobe"}</strong>
-      <span>Local rule-based planner · no external AI service</span>
+      <span>Local outfit planner · optional web mannequin previews</span>
       {auth.status === "signed-in" ? <button type="button" onClick={() => setDemo(value => !value)}>{demo ? "Use my wardrobe" : "Try demo wardrobe"}</button> : <small>Demo pieces belong to the sample catalogue. Personal wardrobe access requires a connected account.</small>}
     </div>
     {auth.status === "loading" ? <p className="outfit-chat-notice" role="status">Checking your account…</p> : <ChatSession key={sourceKey} userId={personal ? auth.user!.id : null} />}
@@ -98,7 +100,7 @@ function ChatSession({ userId }: { userId: string | null }) {
     } else if (!changed && outfits.length && !/\b(another|alternative|more|again|options)\b/i.test(text)) {
       addMessage("Planner", "I can adjust this plan using an event, dress code, indoor/outdoor conditions, colours to avoid or an exact item name. Try ‘no black’, ‘prefer blue’ or ‘another option’. This local planner doesn't answer general questions.");
     } else {
-      const result = planOutfits(items, next, changed ? [] : seen);
+      const result = planOutfits(items, next, changed ? [] : seen, userId ? [] : styleProfile.outfits.slice(0, 4).map(look => look.itemIds));
       setOutfits(result.outfits); setSeen(current => [...(changed ? [] : current), ...result.outfits.map(outfit => outfit.id)]);
       setQuestion(result.outfits.length ? ["Another option", "No black", "Prefer blue", "Comfortable"] : ["Casual", "Smart casual", "Clear preferences"]);
       addMessage("Planner", result.message);
@@ -141,6 +143,7 @@ function ChatSession({ userId }: { userId: string | null }) {
         <h3>Option {index + 1}</h3>
         <ul>{outfit.items.map(item => <li key={item.id}><strong>{item.name}</strong><span>{item.colour} · {item.category}</span></li>)}</ul>
         <p>{outfit.explanation}</p>
+        <OutfitVisuals key={`${outfit.id}:${JSON.stringify(brief)}`} outfit={outfit} brief={brief} />
         <details><summary>Before you wear it</summary>{outfit.cautions.map(caution => <p key={caution}>{caution}</p>)}</details>
         <div className="outfit-chat-actions">{(["saved", "worn"] as const).map(action => {
           const state = actionState[`${outfit.id}:${action}`];
@@ -148,6 +151,7 @@ function ChatSession({ userId }: { userId: string | null }) {
           return <button key={action} type="button" disabled={state === "busy" || done} onClick={() => void act(outfit, action)}>{state === "busy" ? "Recording…" : done ? action === "saved" ? "Saved" : "Wear recorded" : action === "saved" ? "Save outfit" : "Wore this"}</button>;
         })}</div>
       </article>)}</div> : null}
+      {!outfits.length && messages.length > 1 && !nextQuestion(brief) ? <div className="chat-empty-visual"><OutfitVisuals key={JSON.stringify(brief)} outfit={{ id: "missing-wardrobe-look", items: [], explanation: "", cautions: [] }} brief={brief} /></div> : null}
       {!userId && savedDemo.length ? <div className="outfit-chat-saved"><button type="button" aria-expanded={showSaved} onClick={() => setShowSaved(value => !value)}>Saved demo outfits ({savedDemo.length})</button>{showSaved ? <ul>{savedDemo.map(outfit => <li key={outfit.id}>{outfit.items.map(item => item.name).join(" + ")}</li>)}</ul> : null}<small>{demoActions.worn.length} demo wear event(s) on this browser</small></div> : null}
     </div>
     <p className="outfit-chat-action-message" role="status">{actionMessage}</p>
