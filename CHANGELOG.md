@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-01 — Blend front-view scene extensions
+
+- Replace stretched four-pixel background strips with mirrored texture at native scale and feather front-only joins to remove vertical boundaries and horizontal floor streaks.
+- Preserve mannequin scale, centre pixels, other poses and original image assets in catalogue and chat.
+
 ## 2026-10-31 — Front-view background extension
 
 - Extend only front-view scene edges into the portrait frame side margins in catalogue cards and chatbot previews, including thumbnails.
