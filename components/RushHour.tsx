@@ -46,6 +46,7 @@ export default function RushHour({ userId }: { userId: string | null }) {
   }
   async function identify(photo: RushPhoto) {
     if (!userId || !consent || pending.current) return;
+    if (pieces.filter(p => p.photoId !== photo.id).length >= MAX_RUSH_PIECES) { setError("Remove a draft piece before identifying another photo."); return; }
     pending.current = true; setBusy(true); setError(""); setFeedback("");
     const current = revision.current, controller = new AbortController(); request.current = controller;
     try {
@@ -107,7 +108,7 @@ export default function RushHour({ userId }: { userId: string | null }) {
       {!userId ? <p className="rush-note">No account is needed for manual review and outfit planning. Sign in from Account before starting if you want recognition or private saving.</p> : null}
       {busy ? <p role="status" className="rush-note">Processing…</p> : null}
       {error ? <p role="alert" className="rush-error">{error}</p> : null}{feedback ? <p role="status" className="rush-feedback">{feedback}</p> : null}
-      <div className="rush-photos">{photos.map((photo, index) => <section className="rush-photo" aria-label={`Rush photo ${index + 1}`} key={photo.id}><img src={photo.data} alt={`Clothing options photo ${index + 1}`} /><div><strong>Photo {index + 1}</strong><button className="rush-button" type="button" disabled={busy || !consent || !userId || !recognitionEnabled()} onClick={() => void identify(photo)}>Identify photo {index + 1}</button><button className="rush-button" type="button" disabled={busy || pieces.length >= MAX_RUSH_PIECES} onClick={() => addPiece(photo)}>Add piece to photo {index + 1}</button><button className="rush-button" type="button" disabled={busy} onClick={() => { setPhotos(old => old.filter(p => p.id !== photo.id)); setPieces(old => old.filter(p => p.photoId !== photo.id)); invalidate(); }}>Remove photo {index + 1}</button></div></section>)}</div>
+      <div className="rush-photos">{photos.map((photo, index) => <section className="rush-photo" aria-label={`Rush photo ${index + 1}`} key={photo.id}><img src={photo.data} alt={`Clothing options photo ${index + 1}`} /><div><strong>Photo {index + 1}</strong><button className="rush-button" type="button" disabled={busy || !consent || !userId || !recognitionEnabled() || pieces.filter(p => p.photoId !== photo.id).length >= MAX_RUSH_PIECES} onClick={() => void identify(photo)}>Identify photo {index + 1}</button><button className="rush-button" type="button" disabled={busy || pieces.length >= MAX_RUSH_PIECES} onClick={() => addPiece(photo)}>Add piece to photo {index + 1}</button><button className="rush-button" type="button" disabled={busy} onClick={() => { setPhotos(old => old.filter(p => p.id !== photo.id)); setPieces(old => old.filter(p => p.photoId !== photo.id)); invalidate(); }}>Remove photo {index + 1}</button></div></section>)}</div>
       {photos.length ? <p className="rush-note">Identify replaces the draft pieces for that photo. Check uncertain names, categories and crops. A model score is an estimate, not measured accuracy.</p> : null}
       {pieces.length ? <section aria-label="Rush Hour piece review"><h3>Review your options</h3>{pieces.map((piece, index) => {
         const photo = photos.find(p => p.id === piece.photoId)!;
