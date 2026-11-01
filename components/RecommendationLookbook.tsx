@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import { FrontViewBackground } from "@/components/FrontViewBackground";
+import { FrontViewBackground, FrontViewBlendEdges } from "@/components/FrontViewBackground";
 import type { BoardFrame } from "@/data/recommendation-colour-variants";
 
 type RecommendationLookbookProps = {
@@ -104,6 +104,7 @@ export function RecommendationLookbook({ title, asset, views, publicBasePath, pa
               </defs>
               {index === 2 ? <FrontViewBackground frame={frames[index] ?? frames[2]} sourceId={`${frameClipId}-${index}-source`} /> : null}
               <image href={`${publicBasePath}${asset}`} id={`${frameClipId}-${index}-source`} width={boardWidth} height={boardHeight} clipPath={`url(#${frameClipId}-${index})`} />
+              {index === 2 ? <FrontViewBlendEdges frame={frames[index] ?? frames[2]} sourceId={`${frameClipId}-${index}-source`} /> : null}
             </svg>
             <figcaption>{view}</figcaption>
           </figure>

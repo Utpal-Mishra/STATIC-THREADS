@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useId, useState } from "react";
-import { FrontViewBackground } from "@/components/FrontViewBackground";
+import { FrontViewBackground, FrontViewBlendEdges } from "@/components/FrontViewBackground";
 import { mannequinViews, type MannequinBoard } from "@/lib/outfit-visuals";
 export function MannequinGallery({ board, generated = false, onUnavailable }: { board: MannequinBoard; generated?: boolean; onUnavailable?: () => void }) {
   const [active, setActive] = useState(2);
@@ -15,12 +15,12 @@ export function MannequinGallery({ board, generated = false, onUnavailable }: { 
     {full ? <img className="chat-mannequin-full" src={board.asset} alt={`${board.label}: complete five-view board`} onError={() => { setError(true); onUnavailable?.(); }} /> : <svg className="chat-mannequin-main" role="img" aria-label={`${board.label} — ${mannequinViews[active]}`} viewBox={frame.join(" ")} preserveAspectRatio="xMidYMid meet">
       <defs><clipPath id={`${id}-main`}><rect x={frame[0]} y={frame[1]} width={frame[2]} height={frame[3]} /></clipPath></defs>
       {active === 2 ? <FrontViewBackground frame={frame} sourceId={`${id}-main-source`} /> : null}
-      <image id={`${id}-main-source`} href={board.asset} width={board.width} height={board.height} clipPath={`url(#${id}-main)`} onError={() => { setError(true); onUnavailable?.(); }} />
+      <image id={`${id}-main-source`} href={board.asset} width={board.width} height={board.height} clipPath={`url(#${id}-main)`} onError={() => { setError(true); onUnavailable?.(); }} />{active === 2 ? <FrontViewBlendEdges frame={frame} sourceId={`${id}-main-source`} /> : null}
     </svg>}
     <div className="chat-mannequin-thumbs" aria-label="Mannequin poses">{mannequinViews.map((view, index) => {
       const crop = board.frames[index];
       return <button type="button" key={view} onClick={() => { setActive(index); setFull(false); }} aria-label={`Show ${view.toLowerCase()} mannequin view`} aria-pressed={!full && active === index}>
-        <svg aria-hidden="true" viewBox={crop.join(" ")} preserveAspectRatio="xMidYMid meet"><defs><clipPath id={`${id}-${index}`}><rect x={crop[0]} y={crop[1]} width={crop[2]} height={crop[3]} /></clipPath></defs>{index === 2 ? <FrontViewBackground frame={crop} sourceId={`${id}-${index}-source`} /> : null}<image id={`${id}-${index}-source`} href={board.asset} width={board.width} height={board.height} clipPath={`url(#${id}-${index})`} /></svg><span>{view}</span>
+        <svg aria-hidden="true" viewBox={crop.join(" ")} preserveAspectRatio="xMidYMid meet"><defs><clipPath id={`${id}-${index}`}><rect x={crop[0]} y={crop[1]} width={crop[2]} height={crop[3]} /></clipPath></defs>{index === 2 ? <FrontViewBackground frame={crop} sourceId={`${id}-${index}-source`} /> : null}<image id={`${id}-${index}-source`} href={board.asset} width={board.width} height={board.height} clipPath={`url(#${id}-${index})`} />{index === 2 ? <FrontViewBlendEdges frame={crop} sourceId={`${id}-${index}-source`} /> : null}</svg><span>{view}</span>
       </button>;
     })}</div>
     <button type="button" className="chat-board-toggle" aria-pressed={full} onClick={() => setFull(value => !value)}>{full ? "Show selected pose" : "Show complete image board"}</button>
