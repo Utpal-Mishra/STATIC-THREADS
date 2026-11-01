@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-01 — Priority 10 Rush Hour
+
+- Add Rush Hour inside the outfit chatbot with mobile camera/gallery pickers, up to three session photos, editable pieces/crops/style labels and explicit confirmation.
+- Build grounded event-specific combinations from confirmed session options, ask for missing essentials, show supplied garment crops and compare alternatives.
+- Reuse Priority 8 recognition and optional retry-safe private metadata saving; automatic recognition remains activation-gated.
+- Clear transient photos/plans on mode exit, close, clear or account change; preserve existing catalogue assets and ordinary wardrobe planning.
+- Add domain/browser contracts for session-only planning, limits, consent, partial-save retry and cancellation.
+
 ## 2026-11-01 — Priority 8 full-outfit photo import
 
 - Add My closet photo-import entry and local photo preparation, editable garment categories/crops and explicit review/session confirmation.
