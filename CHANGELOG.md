@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-01 — Priority 8 full-outfit photo import
+
+- Add My closet photo-import entry and local photo preparation, editable garment categories/crops and explicit review/session confirmation.
+- Support one-piece, coordinated and layered garments with flexible user descriptions and possible-duplicate warnings.
+- Add atomic, owner-scoped, retry-safe wardrobe metadata import and imported-record reload. Photos remain session-only.
+- Supply consent-gated vision Edge Function with bounded JPEG inputs, validated candidate coordinates and server-only daily quotas. Real service activation and model-quality acceptance remain pending.
+- Add handler, browser and PostgreSQL isolation/duplicate tests; preserve existing catalogue assets and navigation.
+
 ## 2026-11-01 — Blend front-view scene extensions
 
 - Replace stretched four-pixel background strips with mirrored texture at native scale and feather front-only joins to remove vertical boundaries and horizontal floor streaks.

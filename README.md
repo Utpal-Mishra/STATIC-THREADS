@@ -170,3 +170,7 @@ Use **Plan an outfit** on home or Account to plan for an event, refine dress cod
 ### Chat mannequin galleries and web outfit flow
 
 Matching chat options now show the existing five-view mannequin catalogue gallery. Missing previews offer **Suggest top 5 outfits from the web**, with a consent step and per-result generated mannequin galleries when the secure service is activated. Live search/generation is off until Supabase Edge Function/provider setup and acceptance are complete. See [activation and verification](docs/CHAT_MANNEQUIN_WEB.md).
+
+### Full-outfit photo import (Priority 8)
+
+Use **My closet → Import outfit photo** to review visible garments, edit categories/crops and confirm selected pieces. Local manual review works immediately; private metadata saving needs Supabase migration/configuration, and automatic recognition is off until the vision function/provider is activated. Photos are session-only, not cloud-stored. See [setup and limitations](docs/OUTFIT_PHOTO_IMPORT.md).

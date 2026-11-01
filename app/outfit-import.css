@@ -1,0 +1,29 @@
+.outfit-import { max-width: 1050px; margin: 36px auto 100px; color: #eff7f1; }
+.import-intro { max-width: 720px; margin: 0 0 24px; }
+.import-intro h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin: 8px 0 16px; }
+.outfit-import p { line-height: 1.6; }
+.import-panel { background: #101b19; border: 1px solid #345247; border-radius: 20px; padding: 24px; margin-block: 20px; min-width: 0; }
+.import-panel h2 { margin-top: 0; font-size: 1.3rem; }
+.import-drop { display: grid; gap: 10px; padding: 24px; border: 1px dashed #87d5b1; border-radius: 16px; background: #172c23; cursor: pointer; }
+.import-drop span, .import-note { color: #b3c6bc; font-size: .8rem; }
+.import-source { display: block; max-width: 100%; max-height: 420px; margin: 20px auto; border-radius: 14px; object-fit: contain; }
+.import-recognition { display: grid; gap: 12px; }
+.outfit-import button, .photo-import-entry { display: inline-block; font: inherit; font-size: .8rem; padding: 9px 14px; min-height: 40px; width: fit-content; max-width: 100%; border: 1px solid #73b89b; border-radius: 10px; color: #baf9d9; background: #153c2c; cursor: pointer; text-decoration: none; }
+.outfit-import button:disabled { opacity: .5; cursor: default; }
+.outfit-import a { color: #a2f3ca; }
+.outfit-import input:not([type=checkbox]):not([type=range]), .outfit-import select { width: 100%; min-width: 0; font: inherit; font-size: 16px; padding: 9px; color: #f2f8f4; background: #091611; border: 1px solid #527160; border-radius: 8px; }
+.outfit-import label { display: block; margin-block: 8px; line-height: 1.5; font-size: .85rem; }
+.outfit-import input[type=checkbox] { width: 18px; height: 18px; vertical-align: middle; margin-right: 7px; accent-color: #8af4bd; }
+.import-candidates { display: grid; gap: 18px; }
+.import-candidate { display: grid; grid-template-columns: minmax(130px, .65fr) minmax(0, 1fr); gap: 20px; border: 1px solid #355b48; border-radius: 16px; padding: 16px; }
+.import-candidate fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.import-candidate legend { font-size: .85rem; color: #b8e7d0; }
+.import-crop { width: 100%; height: 280px; background: #101816; border-radius: 12px; overflow: hidden; }
+.import-candidate summary { cursor: pointer; padding-block: 10px; }
+.import-candidate input[type=range] { width: 100%; }
+.import-buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-block: 16px; }
+.import-feedback, .import-error { padding: 16px; border: 1px solid #406853; border-radius: 12px; background: #11291f; overflow-wrap: anywhere; }
+.import-error { border-color: #c88b6c; color: #ffdbc0; }
+.import-confirmed { padding-top: 10px; border-top: 1px solid #3e5e4a; }
+.outfit-import :focus-visible { outline: 2px solid #94f3c6; outline-offset: 3px; }
+@media(max-width:680px) { .import-panel { padding: 16px; } .import-candidate { grid-template-columns: 1fr; padding: 12px; } .import-drop { padding: 16px; } .outfit-import { margin-top: 20px; } }

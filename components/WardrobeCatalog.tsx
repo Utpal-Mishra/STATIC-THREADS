@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useRef, useState, type CSSProperties } from "react";
 import type { WardrobeCatalog, WardrobeItem } from "@/types/catalog";
 
@@ -114,6 +115,8 @@ export function WardrobeCatalogView({ catalog }: WardrobeCatalogViewProps) {
         <div><p className="eyebrow">Digital wardrobe</p><h2 id="catalog-heading">My closet</h2></div>
         <p>Updated {catalog.updatedAt}</p>
       </div>
+
+      <Link className="photo-import-entry" href="/import/">Import outfit photo</Link>
 
       <p className="closet-image-note">Photorealistic catalog images generated from your item descriptions.</p>
 
