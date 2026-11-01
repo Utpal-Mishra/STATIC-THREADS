@@ -7,6 +7,7 @@ import "./style-studio.css";
 import "./decision-lab.css";
 import "./account.css";
 import "./outfit-chat.css";
+import "./outfit-import.css";
 
 export const metadata: Metadata = {
   title: "Static Threads",

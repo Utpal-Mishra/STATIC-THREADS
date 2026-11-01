@@ -44,6 +44,9 @@ jobs:
       - name: Validate web mannequin service contracts
         run: npm run test:outfit-visuals
 
+      - name: Validate outfit photo import contracts
+        run: npm run test:outfit-import
+
       - name: Build application
         run: npm run build
 
@@ -69,6 +72,10 @@ jobs:
       - name: Check catalogue mannequin galleries
         timeout-minutes: 3
         run: node scripts/check_chat_visuals.cjs
+
+      - name: Check outfit photo import review
+        timeout-minutes: 3
+        run: node scripts/check_outfit_import.cjs
 
       - name: Save mannequin chat screenshots
         if: always()
@@ -117,6 +124,7 @@ jobs:
       NEXT_PUBLIC_SUPABASE_URL: https://auth-test.example
       NEXT_PUBLIC_SUPABASE_ANON_KEY: public-test-key-not-a-secret
       NEXT_PUBLIC_OUTFIT_VISUALS_ENABLED: "true"
+      NEXT_PUBLIC_OUTFIT_IMPORT_ENABLED: "true"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -146,6 +154,9 @@ jobs:
       - name: Check web mannequin flow contracts
         timeout-minutes: 3
         run: TEST_WEB=1 node scripts/check_chat_visuals.cjs
+      - name: Check configured photo import contracts
+        timeout-minutes: 3
+        run: TEST_IMPORT=1 node scripts/check_outfit_import.cjs
       - name: Save account QA screenshots
         if: always()
         uses: actions/upload-artifact@v4
@@ -176,3 +187,4 @@ jobs:
         run: |
           psql -h localhost -U postgres -d postgres -f scripts/test_outfit_chat_rls.sql
           psql -h localhost -U postgres -d postgres -f scripts/test_outfit_visual_quota.sql
+          psql -h localhost -U postgres -d postgres -f scripts/test_outfit_import.sql
