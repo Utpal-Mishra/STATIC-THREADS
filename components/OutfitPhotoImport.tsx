@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { GarmentCrop } from "@/components/GarmentCrop";
 import { useAuth } from "@/components/AuthProvider";
 import { clothingCategories, prepareImportPhoto, uniqueCandidates, validBox, type ClothingCategory, type GarmentCandidate, type ImportPhoto } from "@/lib/outfit-import";
 import { detectGarments, loadImportedGarments, recognitionEnabled, saveImportedGarments } from "@/lib/outfit-import-client";
@@ -8,10 +9,6 @@ import { detectGarments, loadImportedGarments, recognitionEnabled, saveImportedG
 export function OutfitPhotoImport() {
   const auth = useAuth();
   return <ImportSession key={auth.user?.id ?? "guest"} userId={auth.status === "signed-in" ? auth.user!.id : null} />;
-}
-function CropPreview({ photo, item }: { photo: ImportPhoto; item: GarmentCandidate }) {
-  const [x, y, w, h] = item.box;
-  return <svg className="import-crop" role="img" aria-label={`Visible crop of ${item.name || "garment"}`} viewBox={[x * photo.width, y * photo.height, w * photo.width, h * photo.height].join(" ")}><image href={photo.data} width={photo.width} height={photo.height} /></svg>;
 }
 function ImportSession({ userId }: { userId: string | null }) {
   const [photo, setPhoto] = useState<ImportPhoto | null>(null);
@@ -92,7 +89,7 @@ function ImportSession({ userId }: { userId: string | null }) {
     </section>
     {error ? <p className="import-error" role="alert">{error}</p> : null}{message ? <p className="import-feedback" role="status">{message}</p> : null}
     {photo && items.length ? <section className="import-panel" aria-label="Review detected pieces"><h2>Review the pieces</h2><p>These are visible rectangular crops, not reconstructed garments or background-free cutouts. Hidden pieces may be missed. Model scores are estimates, not measured accuracy.</p>
-      <div className="import-candidates">{items.map((item, index) => <article className="import-candidate" key={item.id} aria-label={`Piece ${index + 1}`}><CropPreview photo={photo} item={item} />
+      <div className="import-candidates">{items.map((item, index) => <article className="import-candidate" key={item.id} aria-label={`Piece ${index + 1}`}><GarmentCrop photo={photo} item={item} />
         <fieldset disabled={busy}><legend>Piece {index + 1}{item.id.startsWith("detected-") ? ` · model score ${Math.round(item.confidence * 100)}%` : " · manual"}</legend>
           {possibleDuplicate(item) ? <p className="import-note">Possible duplicate: an imported piece has the same name, category and colour. Include it only if this is a different garment.</p> : null}
           <label><input type="checkbox" checked={item.selected} onChange={e => edit(item.id, { selected: e.target.checked })} /> Include this piece</label>

@@ -79,3 +79,35 @@
 
 /* Keep outfit actions at the same compact text scale as New plan. */
 .outfit-chat-dialog .outfit-chat-actions button, .outfit-chat-dialog button.chat-board-toggle { font: inherit; font-size: .7rem; min-height: 36px; padding: 6px 10px; max-width: 100%; }
+
+/* Rush Hour stays inside the existing dialog and uses its compact controls. */
+.outfit-chat-modes { display: flex; gap: 8px; padding: 5px 18px; flex-shrink: 0; }
+.outfit-chat-dialog .outfit-chat-modes button, .outfit-chat-dialog .rush-button { font: inherit; font-size: .7rem; min-height: 36px; padding: 6px 10px; border: 1px solid #527761; border-radius: 10px; background: #13291f; color: #b6f4d0; max-width: 100%; }
+.outfit-chat-modes button[aria-pressed=true] { background: #25533b; border-color: #9decc4; }
+.rush-body { min-height: 0; flex: 1; overflow-y: auto; overscroll-behavior: contain; padding: 10px 18px 18px; }
+.rush-note { font-size: .72rem; line-height: 1.5; color: #bdd2c6; }
+.rush-body h3 { font-size: .95rem; margin-block: 12px; }
+.rush-body label { display: block; font-size: .72rem; line-height: 1.5; margin-block: 8px; }
+.rush-body input:not([type=checkbox]), .rush-body select { font: inherit; font-size: 16px; width: 100%; min-width: 0; padding: 7px; border: 1px solid #4b6c59; border-radius: 8px; color: #eaf4ee; background: #101c16; }
+.rush-body input[type=checkbox] { width: 18px; height: 18px; vertical-align: middle; margin-right: 6px; accent-color: #8cebbb; }
+.rush-body fieldset { min-width: 0; border: 0; padding: 0; margin: 10px 0; }
+.rush-body legend { font-size: .72rem; color: #a6d3bb; }
+.rush-body summary { cursor: pointer; font-size: .75rem; padding-block: 8px; }
+.rush-uploads, .rush-photo, .rush-piece { padding: 12px; border: 1px solid #385440; border-radius: 12px; margin-block: 10px; background: #11221a; }
+.rush-photos { display: grid; gap: 8px; }
+.rush-photo { display: grid; grid-template-columns: 90px minmax(0,1fr); gap: 10px; }
+.rush-photo img { display: block; width: 90px; height: 135px; object-fit: contain; border-radius: 8px; background: #102018; }
+.rush-photo strong { display: block; font-size: .75rem; }
+.rush-body .rush-button { margin: 5px 6px 5px 0; }
+.rush-crop { display: block; width: 100%; height: 150px; overflow: hidden; border-radius: 10px; background: #15241b; }
+.rush-option-pieces { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; margin-block: 12px; }
+.rush-option-pieces figure { min-width: 0; margin: 0; }
+.rush-option-pieces figcaption { font-size: .75rem; line-height: 1.4; overflow-wrap: anywhere; margin-top: 7px; }
+.rush-option-pieces small { display: block; color: #adc6b6; font-size: .65rem; }
+.rush-error, .rush-feedback { border: 1px solid #628772; padding: 10px; border-radius: 10px; font-size: .73rem; line-height: 1.5; overflow-wrap: anywhere; }
+.rush-error { color: #ffddc6; border-color: #b88c70; }
+.rush-compare { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; padding: 10px; border: 1px solid #5f8c71; border-radius: 12px; margin-block: 12px; }
+.rush-compare div { min-width: 0; }
+.rush-compare h4, .rush-compare li { font-size: .72rem; overflow-wrap: anywhere; }
+.rush-compare ul { padding-left: 16px; }
+@media(max-width:680px) { .outfit-chat-modes { padding-inline: 12px; } .rush-body { padding-inline: 12px; } }

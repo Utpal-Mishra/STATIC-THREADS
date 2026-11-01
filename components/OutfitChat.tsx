@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { FormEvent, type KeyboardEvent, useEffect, useRef, useState } from "react";
 import { OutfitVisuals } from "@/components/OutfitVisuals";
 import { useAuth } from "@/components/AuthProvider";
@@ -7,6 +8,8 @@ import { styleProfile } from "@/data/style-profile";
 import catalog from "@/data/catalog.json";
 import { emptyBrief, nextQuestion, planOutfits, updateBrief, type Brief, type Outfit, type PlannerItem } from "@/lib/outfit-planner";
 import { loadPersonalWardrobe, readDemoActions, recordDemoOutfit, recordPersonalOutfit, type DemoActions } from "@/lib/outfit-chat-data";
+
+const RushHour = dynamic(() => import("@/components/RushHour"), { loading: () => <p className="outfit-chat-notice">Opening Rush Hour…</p> });
 
 type Message = { id: number; speaker: "You" | "Planner"; text: string };
 const initialMessage: Message = { id: 0, speaker: "Planner", text: "Tell me what you're dressing for. For example: ‘Plan my outfit for dinner, smart casual, indoors.’ You can name a wardrobe piece, avoid colours or ask for a comfortable option." };
@@ -16,6 +19,7 @@ export default function OutfitChat({ onClose }: { onClose: () => void }) {
   const auth = useAuth();
   const dialog = useRef<HTMLDialogElement>(null);
   const [demo, setDemo] = useState(false);
+  const [mode, setMode] = useState<"wardrobe" | "rush">("wardrobe");
   useEffect(() => {
     const element = dialog.current;
     const overflow = document.body.style.overflow;
@@ -38,12 +42,13 @@ export default function OutfitChat({ onClose }: { onClose: () => void }) {
       <div><p className="eyebrow">Static Threads</p><h2 id="outfit-chat-title">Your outfit planner</h2></div>
       <button type="button" className="outfit-chat-close" onClick={onClose} aria-label="Close outfit planner">×</button>
     </header>
-    <div className="outfit-chat-source">
+    <div className="outfit-chat-modes" role="group" aria-label="Planner mode"><button type="button" aria-pressed={mode === "wardrobe"} onClick={() => setMode("wardrobe")}>Wardrobe</button><button type="button" aria-pressed={mode === "rush"} onClick={() => setMode("rush")}>Rush Hour</button></div>
+    {mode === "wardrobe" ? <div className="outfit-chat-source">
       <strong>{personal ? "Your private wardrobe" : "Demo Wardrobe"}</strong>
       <span hidden>Local outfit planner · optional web mannequin previews</span>
       {auth.status === "signed-in" ? <button type="button" onClick={() => setDemo(value => !value)}>{demo ? "Use my wardrobe" : "Try demo wardrobe"}</button> : <small hidden>Demo pieces belong to the sample catalogue. Personal wardrobe access requires a connected account.</small>}
-    </div>
-    {auth.status === "loading" ? <p className="outfit-chat-notice" role="status">Checking your account…</p> : <ChatSession key={sourceKey} userId={personal ? auth.user!.id : null} />}
+    </div> : <div className="outfit-chat-source"><strong>Rush Hour</strong></div>}
+    {auth.status === "loading" ? <p className="outfit-chat-notice" role="status">Checking your account…</p> : mode === "rush" ? <RushHour key={`rush:${auth.user?.id ?? "guest"}`} userId={auth.status === "signed-in" ? auth.user!.id : null} /> : <ChatSession key={sourceKey} userId={personal ? auth.user!.id : null} />}
   </dialog>;
 }
 

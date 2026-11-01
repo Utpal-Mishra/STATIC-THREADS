@@ -174,3 +174,7 @@ Matching chat options now show the existing five-view mannequin catalogue galler
 ### Full-outfit photo import (Priority 8)
 
 Use **My closet → Import outfit photo** to review visible garments, edit categories/crops and confirm selected pieces. Local manual review works immediately; private metadata saving needs Supabase migration/configuration, and automatic recognition is off until the vision function/provider is activated. Photos are session-only, not cloud-stored. See [setup and limitations](docs/OUTFIT_PHOTO_IMPORT.md).
+
+### Rush Hour (Priority 10)
+
+Open **Plan an outfit → Rush Hour** to photograph/upload a few options, review pieces and plan without a complete wardrobe. Manual review works without an account. Recognition and optional private metadata saving reuse Priority 8 activation. Photos/plans are transient; no virtual try-on is claimed. See [Rush Hour flow and acceptance](docs/RUSH_HOUR.md).
