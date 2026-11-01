@@ -85,7 +85,7 @@ function ImportSession({ userId }: { userId: string | null }) {
           {!userId ? <p><Link href="/account/">Sign in</Link> for recognition and private wardrobe saving. Manual review works without an account.</p> : null}
           <label><input type="checkbox" checked={consent} disabled={busy || !recognitionEnabled() || !userId} onChange={e => setConsent(e.target.checked)} /> I agree to send this photo for clothing recognition.</label>
           <button type="button" disabled={busy || !consent || !userId || !recognitionEnabled()} onClick={() => void recognize()}>{items.length ? "Recognize again (replaces draft pieces)" : "Detect garments"}</button>
-          <button type="button" disabled={busy || items.length >= 20} onClick={() => { setItems(old => [...old, { id: crypto.randomUUID(), name: "", category: "other", colour: "Unknown", detail: "", confidence: 0, box: [.1, .1, .8, .8], selected: true }]); setReviewed(false); setMessage(""); }}>Add a piece manually</button>
+          <button type="button" disabled={busy || items.length >= 20} onClick={() => { setItems(old => [...old, { id: crypto.randomUUID(), name: "", category: "other", colour: "Unknown", detail: "", confidence: 0, box: [.1, .1, .8, .8], selected: true }]); setReviewed(false); setConfirmed([]); setMessage(""); }}>Add a piece manually</button>
           <button type="button" onClick={clear}>Clear photo and draft</button>
         </div>
       </> : null}

@@ -12,7 +12,7 @@ begin
   if (select count(*) from public.wardrobe_items where client_item_id like 'photo:%') <> 1 then raise exception 'Retry duplicated garments'; end if;
   if exists(select 1 from public.import_outfit_items(payload) where user_id <> auth.uid()) then raise exception 'Wrong import owner'; end if;
   begin
-    perform * from public.import_outfit_items(payload || jsonb_build_array(jsonb_build_object('client_item_id','photo:'||repeat('a',64)||':bad','name','','category','other','primary_colour','Unknown','subcategory','')));
+    perform * from public.import_outfit_items(jsonb_set(payload, '{0,client_item_id}', to_jsonb('photo:'||repeat('a',64)||':new')) || jsonb_build_array(jsonb_build_object('client_item_id','photo:'||repeat('a',64)||':bad','name','','category','other','primary_colour','Unknown','subcategory','')));
     raise exception 'Invalid batch accepted';
   exception when raise_exception then if sqlerrm = 'Invalid batch accepted' then raise; end if; end;
   if (select count(*) from public.wardrobe_items where client_item_id like 'photo:%') <> 1 then raise exception 'Invalid import partially committed'; end if;
