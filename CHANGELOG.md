@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-02 — Compact chatbot web suggestion button
+
+- Match Suggest top 5 outfits from the web to New plan typography, text scale and compact button spacing.
+- Preserve confirmation, sources and web mannequin behaviour.
+
 ## 2026-11-02 — Rush Hour upload typography
 
 - Match camera/gallery labels, file names and native file-picker button typography to the chatbot’s compact New plan text scale.
