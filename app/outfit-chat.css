@@ -89,6 +89,10 @@
 .rush-body h3 { font-size: .95rem; margin-block: 12px; }
 .rush-body label { display: block; font-size: .72rem; line-height: 1.5; margin-block: 8px; }
 .rush-body input:not([type=checkbox]), .rush-body select { font: inherit; font-size: 16px; width: 100%; min-width: 0; padding: 7px; border: 1px solid #4b6c59; border-radius: 8px; color: #eaf4ee; background: #101c16; }
+/* Match camera/gallery labels, filenames and native picker buttons to New plan. */
+.rush-body .rush-uploads label, .rush-body .rush-uploads input[type=file] { font: inherit; font-size: .7rem; }
+.rush-body .rush-uploads input[type=file]::file-selector-button { font: inherit; }
+.rush-body .rush-uploads input[type=file]::-webkit-file-upload-button { font: inherit; }
 .rush-body input[type=checkbox] { width: 18px; height: 18px; vertical-align: middle; margin-right: 6px; accent-color: #8cebbb; }
 .rush-body fieldset { min-width: 0; border: 0; padding: 0; margin: 10px 0; }
 .rush-body legend { font-size: .72rem; color: #a6d3bb; }

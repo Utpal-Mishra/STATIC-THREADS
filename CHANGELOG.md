@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-02 — Rush Hour upload typography
+
+- Match camera/gallery labels, file names and native file-picker button typography to the chatbot’s compact New plan text scale.
+- Preserve file selection, camera capture, accepted formats and all other chatbot styling.
+
 ## 2026-11-01 — Priority 10 Rush Hour
 
 - Add Rush Hour inside the outfit chatbot with mobile camera/gallery pickers, up to three session photos, editable pieces/crops/style labels and explicit confirmation.
