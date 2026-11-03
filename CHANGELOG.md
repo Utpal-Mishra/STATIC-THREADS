@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-03 — More Zara and H&M clothing matches
+
+- Add twelve Ireland website references: two shirts, two T-shirts and two trousers per retailer, with EUR prices, product codes and pairings to existing wardrobe IDs.
+- Preserve existing suggestions and add T-shirt support to the retailer generator; new entries carry dated manual checks and explicit stock/size confirmation wording.
+- Add four verified remote Zara product images and retain image-pending fallbacks elsewhere; document sources and freshness limits.
+
 ## 2026-11-02 — Compact chatbot web suggestion button
 
 - Match Suggest top 5 outfits from the web to New plan typography, text scale and compact button spacing.
@@ -203,3 +209,4 @@ White Textured Shirt is a full-sleeve Powerlook shirt. Its product image now has
 ### Netplay patterned shirt sleeve correction
 
 Navy Pattern Shirt is a half-sleeve Netplay shirt. Its product image now has short sleeves while keeping the existing navy colour and grey motif. The versioned image reference updates its rail, preview and closet card.
+
