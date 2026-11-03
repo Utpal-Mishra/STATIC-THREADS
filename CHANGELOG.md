@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-03 — Broader clothing and sneaker matches
+
+- Add sixteen wardrobe-matched references across NEXT, MANGO, DIESEL, Pull&Bear and Adidas/Puma/Nike/New Balance sneakers; retain all nineteen prior suggestions including Zara/H&M.
+- Cover shirts, T-shirts and trousers for all six requested clothing retailers; distinguish ten specific products from six browse ranges without inventing range prices, colours or product codes.
+- Include original retailer image references where available, existing wardrobe pairings, replacement/duplicate notes, dated source checks and source limitations.
+
 ## 2026-11-03 — More Zara and H&M clothing matches
 
 - Add twelve Ireland website references: two shirts, two T-shirts and two trousers per retailer, with EUR prices, product codes and pairings to existing wardrobe IDs.
@@ -209,4 +215,5 @@ White Textured Shirt is a full-sleeve Powerlook shirt. Its product image now has
 ### Netplay patterned shirt sleeve correction
 
 Navy Pattern Shirt is a half-sleeve Netplay shirt. Its product image now has short sleeves while keeping the existing navy colour and grey motif. The versioned image reference updates its rail, preview and closet card.
+
 

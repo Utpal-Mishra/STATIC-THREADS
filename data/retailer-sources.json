@@ -375,6 +375,318 @@
       "sourceType": "product",
       "productCode": "1300095004",
       "seedCheckedAt": "2026-11-03"
+    },
+    {
+      "id": "next-blue-oxford-shirt",
+      "retailer": "NEXT",
+      "name": "Light Blue Regular Fit Oxford Long Sleeve Shirt",
+      "category": "shirt",
+      "colour": "Light blue",
+      "priceLabel": "€36",
+      "match": 92,
+      "pairsWith": [
+        "black-jeans",
+        "grey-jeans",
+        "adidas-white-black"
+      ],
+      "reason": "A structured light-blue Oxford extends your clean shirt-and-denim looks. Compare it with the other blue-shirt options before choosing one.",
+      "href": "https://www.next.ie/en/style/su620384/f29963",
+      "sourceType": "product",
+      "productCode": "F29-963",
+      "seedCheckedAt": "2026-11-03",
+      "imageUrl": "https://xcdn.next.co.uk/common/items/default/default/itemimages/3_4Ratio/product/lge/F29963s.jpg?im=Resize%2Cwidth%3D180",
+      "imageAlt": "NEXT Light Blue Regular Fit Oxford Long Sleeve Shirt"
+    },
+    {
+      "id": "next-white-essential-tee",
+      "retailer": "NEXT",
+      "name": "White Regular Fit Essential Crew Neck Cotton T-Shirt",
+      "category": "t-shirt",
+      "colour": "White",
+      "priceLabel": "€10.50",
+      "match": 86,
+      "pairsWith": [
+        "olive-cargo",
+        "grey-jeans",
+        "beige-overshirt"
+      ],
+      "reason": "A simple cotton replacement option for your white tee, keeping olive cargo and overshirt combinations easy. Skip it if the owned tee still does the job.",
+      "href": "https://www.next.ie/en/style/st056123/369510",
+      "sourceType": "product",
+      "productCode": "369-510",
+      "seedCheckedAt": "2026-11-03",
+      "imageUrl": "https://xcdn.next.co.uk/common/items/default/default/itemimages/3_4Ratio/product/lge/369510s.jpg?im=Resize%2Cwidth%3D180",
+      "imageAlt": "NEXT White Regular Fit Essential Crew Neck Cotton T-Shirt"
+    },
+    {
+      "id": "next-navy-straight-chinos",
+      "retailer": "NEXT",
+      "name": "Navy Blue Straight Fit Stretch Chinos Trousers",
+      "category": "trousers",
+      "colour": "Navy blue",
+      "priceLabel": "€16",
+      "match": 93,
+      "pairsWith": [
+        "white-textured-shirt",
+        "grey-linen-shirt",
+        "cream-pocket-tee"
+      ],
+      "reason": "Navy chinos offer a cleaner alternative to denim with your cream and grey tops while keeping the palette restrained.",
+      "href": "https://www.next.ie/en/style/sv381965/690177",
+      "sourceType": "product",
+      "productCode": "690-177",
+      "seedCheckedAt": "2026-11-03",
+      "imageUrl": "https://xcdn.next.co.uk/common/items/default/default/itemimages/3_4Ratio/product/lge/690177s.jpg?im=Resize%2Cwidth%3D180",
+      "imageAlt": "NEXT Navy Blue Straight Fit Stretch Chinos Trousers"
+    },
+    {
+      "id": "mango-white-oxford-shirt",
+      "retailer": "MANGO",
+      "name": "100% Cotton Oxford Shirt",
+      "category": "shirt",
+      "colour": "White",
+      "priceLabel": "€45.99",
+      "match": 88,
+      "pairsWith": [
+        "black-jeans",
+        "olive-cargo",
+        "timberland-brown"
+      ],
+      "reason": "A plain white Oxford offers a smoother alternative to your textured white shirt. Choose it for a different fabric or fit rather than an extra identical layer.",
+      "href": "https://shop.mango.com/ie/en/p/men/shirts/plain/100-cotton-oxford-shirt/27051288/01/00",
+      "sourceType": "product",
+      "productCode": "27051288/01",
+      "seedCheckedAt": "2026-11-03"
+    },
+    {
+      "id": "mango-basic-tee-range",
+      "retailer": "MANGO",
+      "name": "Plain Cotton T-Shirts — Current Range",
+      "category": "t-shirt",
+      "colour": "Colour varies by item",
+      "priceLabel": "Check selected item price",
+      "match": 84,
+      "pairsWith": [
+        "grey-jeans",
+        "olive-cargo",
+        "beige-overshirt"
+      ],
+      "reason": "Browse the cotton basics for ecru, sand or navy options that work with your neutral layers. Confirm the exact garment and colour before comparing value.",
+      "href": "https://shop.mango.com/ie/en/c/men/t-shirts/basics/f64751e7",
+      "sourceType": "category",
+      "seedCheckedAt": "2026-11-03"
+    },
+    {
+      "id": "mango-forest-green-chinos",
+      "retailer": "MANGO",
+      "name": "Regular-Fit Chino Trousers",
+      "category": "trousers",
+      "colour": "Forest green",
+      "priceLabel": "€59.99",
+      "match": 89,
+      "pairsWith": [
+        "white-textured-shirt",
+        "cream-pocket-tee",
+        "adidas-white-black"
+      ],
+      "reason": "Forest-green chinos keep your earthy palette while offering a cleaner trouser shape than cargo. Compare them with your existing olive cargo before buying.",
+      "href": "https://shop.mango.com/ie/en/p/men/trousers/regular-fit/regular-fit-chino-trousers_27056709",
+      "sourceType": "product",
+      "productCode": "27056709/48",
+      "seedCheckedAt": "2026-11-03",
+      "imageUrl": "https://media.mango.com/is/image/punto/27056709-48-900?wid=2048",
+      "imageAlt": "MANGO Regular-Fit Chino Trousers"
+    },
+    {
+      "id": "diesel-black-poplin-shirt",
+      "retailer": "DIESEL",
+      "name": "Stretch Poplin Shirt with Oval D Embroidery",
+      "category": "shirt",
+      "colour": "Black",
+      "priceLabel": "€150",
+      "match": 85,
+      "pairsWith": [
+        "grey-jeans",
+        "olive-cargo",
+        "adidas-white-black"
+      ],
+      "reason": "The plain black bowling-collar shape fits your relaxed shirt styling. This is a premium-priced alternative; compare it with your dark navy shirt first.",
+      "href": "https://ie.diesel.com/en/shirts/s-mac-gsbh-black/A204730GSBH9XX.html",
+      "sourceType": "product",
+      "productCode": "A204730GSBH9XX",
+      "seedCheckedAt": "2026-11-03"
+    },
+    {
+      "id": "diesel-white-logo-patch-tee",
+      "retailer": "DIESEL",
+      "name": "Cotton T-Shirt with Logo Patch",
+      "category": "t-shirt",
+      "colour": "White",
+      "priceLabel": "€55",
+      "match": 82,
+      "pairsWith": [
+        "black-jeans",
+        "olive-cargo",
+        "beige-overshirt"
+      ],
+      "reason": "A restrained logo tee keeps your usual white base with a small branded detail. Your current white tee already covers most of these combinations.",
+      "href": "https://ie.diesel.com/en/t-shirts/t-adjust-aa12-white/A251300QIAM100.html",
+      "sourceType": "product",
+      "productCode": "A251300QIAM100",
+      "seedCheckedAt": "2026-11-03"
+    },
+    {
+      "id": "diesel-chino-range",
+      "retailer": "DIESEL",
+      "name": "Chino Trousers — Current Range",
+      "category": "trousers",
+      "colour": "Colour varies by item",
+      "priceLabel": "Check selected item price",
+      "match": 83,
+      "pairsWith": [
+        "white-textured-shirt",
+        "cream-pocket-tee",
+        "dark-navy-shirt"
+      ],
+      "reason": "Look for beige or khaki chinos to connect your light shirts and navy top. Check the selected style, fabric and premium price before treating it as a wardrobe gap.",
+      "href": "https://ie.diesel.com/en/man/pants-and-shorts/",
+      "sourceType": "category",
+      "seedCheckedAt": "2026-11-03"
+    },
+    {
+      "id": "pullbear-shirt-range",
+      "retailer": "Pull&Bear",
+      "name": "Plain and Striped Shirts — Current Range",
+      "category": "shirt",
+      "colour": "Colour varies by item",
+      "priceLabel": "Check selected item price",
+      "match": 88,
+      "pairsWith": [
+        "black-jeans",
+        "grey-jeans",
+        "adidas-white-black"
+      ],
+      "reason": "Choose a relaxed plain or restrained striped shirt to wear with your darker denim. Compare the exact colour and fit with shirts you already own.",
+      "href": "https://www.pullandbear.com/ie/man/clothing/shirts-n6313?celement=1030204766",
+      "sourceType": "category",
+      "seedCheckedAt": "2026-11-03"
+    },
+    {
+      "id": "pullbear-basic-tee-range",
+      "retailer": "Pull&Bear",
+      "name": "Basic and Boxy T-Shirts — Current Range",
+      "category": "t-shirt",
+      "colour": "Colour varies by item",
+      "priceLabel": "Check selected item price",
+      "match": 85,
+      "pairsWith": [
+        "olive-cargo",
+        "black-jeans",
+        "beige-overshirt"
+      ],
+      "reason": "Browse plain basic or boxy cuts for an alternative silhouette under your overshirts. Prefer a replacement or a useful new fit over duplicating existing tees.",
+      "href": "https://www.pullandbear.com/ie/man/clothing/t-shirts-n6323",
+      "sourceType": "category",
+      "seedCheckedAt": "2026-11-03"
+    },
+    {
+      "id": "pullbear-chino-trouser-range",
+      "retailer": "Pull&Bear",
+      "name": "Darted Chinos and Straight Trousers — Current Range",
+      "category": "trousers",
+      "colour": "Colour varies by item",
+      "priceLabel": "Check selected item price",
+      "match": 89,
+      "pairsWith": [
+        "grey-linen-shirt",
+        "white-textured-shirt",
+        "cream-pocket-tee"
+      ],
+      "reason": "Look for a straight or darted trouser in stone, beige or charcoal to extend your light-shirt looks. Confirm the current colour and fabric on the retailer page.",
+      "href": "https://www.pullandbear.com/ie/man/clothing/trousers-n6363",
+      "sourceType": "category",
+      "seedCheckedAt": "2026-11-03"
+    },
+    {
+      "id": "adidas-white-stan-smith",
+      "retailer": "Adidas",
+      "name": "Stan Smith Shoes",
+      "category": "shoes",
+      "colour": "White",
+      "priceLabel": "€110",
+      "match": 88,
+      "pairsWith": [
+        "grey-jeans",
+        "black-jeans",
+        "white-textured-shirt"
+      ],
+      "reason": "An all-white low-top keeps your shirt-and-denim outfits clean. It overlaps strongly with your existing white trainers, so consider it mainly as a replacement.",
+      "href": "https://www.adidas.ie/stan-smith-shoes/S75104.html",
+      "sourceType": "product",
+      "productCode": "S75104",
+      "seedCheckedAt": "2026-11-03",
+      "imageUrl": "https://assets.adidas.com/images/w_500%2Cf_auto%2Cq_auto/deecebcc265c43c6b092a7fa00fed2d0_9366/Stan_Smith_Shoes_White_S75104_01_standard.jpg",
+      "imageAlt": "Adidas Stan Smith Shoes"
+    },
+    {
+      "id": "puma-white-black-club-era",
+      "retailer": "Puma",
+      "name": "Club II Era Sneakers",
+      "category": "shoes",
+      "colour": "White / Black / Vapor Gray",
+      "priceLabel": "€65",
+      "match": 90,
+      "pairsWith": [
+        "olive-cargo",
+        "grey-jeans",
+        "cream-pocket-tee"
+      ],
+      "reason": "A white-and-black retro court shape works with your neutral cargo and denim outfits. Compare it with your current Adidas and Puma pairs before adding another.",
+      "href": "https://eu.puma.com/ie/en/pd/puma-club-ii-era-sneakers-unisex/397447?swatch=07",
+      "sourceType": "product",
+      "productCode": "397447_07",
+      "seedCheckedAt": "2026-11-03",
+      "imageUrl": "https://images.puma.com/image/upload/f_auto%2Cq_auto%2Cb_rgb%3Afafafa%2Cw_600%2Ch_600%2Ct_white_blk_50/global/397447/07/sv01/fnd/EEA/fmt/png/PUMA-Club-II-Era-Sneakers-Unisex",
+      "imageAlt": "Puma Club II Era Sneakers"
+    },
+    {
+      "id": "nike-white-court-vision",
+      "retailer": "Nike",
+      "name": "Court Vision Low Next Nature",
+      "category": "shoes",
+      "colour": "White",
+      "priceLabel": "€79.99",
+      "match": 87,
+      "pairsWith": [
+        "black-jeans",
+        "grey-jeans",
+        "beige-overshirt"
+      ],
+      "reason": "A white basketball-inspired low-top gives a slightly fuller silhouette with denim and neutral layers. It is an alternative to, rather than a necessary addition beside, owned white trainers.",
+      "href": "https://www.nike.com/ie/t/court-vision-low-next-nature-shoes-qz2jMVjz/DH2987-100",
+      "sourceType": "product",
+      "productCode": "DH2987-100",
+      "seedCheckedAt": "2026-11-03",
+      "imageUrl": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto%2Cq_auto%3Aeco%2Cc_scale%2Cw_300%2Cu_9ddf04c7-2a9a-4d76-add1-d15af8f0263d%2Cc_scale%2Cfl_relative%2Cw_1.0%2Ch_1.0%2Cfl_layer_apply/706e54b6-9360-4760-817d-86bba495f2e5/NIKE%2BCOURT%2BVISION%2BLO%2BNN.png",
+      "imageAlt": "Nike Court Vision Low Next Nature"
+    },
+    {
+      "id": "newbalance-neutral-574-range",
+      "retailer": "New Balance",
+      "name": "574 Sneakers — Grey and Neutral Options",
+      "category": "shoes",
+      "colour": "Colour varies by item",
+      "priceLabel": "Check selected pair price",
+      "match": 91,
+      "pairsWith": [
+        "black-jeans",
+        "olive-cargo",
+        "cream-pocket-tee"
+      ],
+      "reason": "Browse grey-and-white adult 574 options for a textured retro alternative to your court trainers. Confirm the adult model, colour, width and size; this links to the current family range.",
+      "href": "https://www.newbalance.ie/en/shop-by-model/574/",
+      "sourceType": "category",
+      "seedCheckedAt": "2026-11-03"
     }
   ]
 }
