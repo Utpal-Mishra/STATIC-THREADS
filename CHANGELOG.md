@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-03 — Named Sale Radar retailer preferences
+
+- Add Zara, H&M, MANGO, DIESEL, Pull&Bear, Adidas, Puma, Nike and New Balance as individual Sale Radar options alongside existing NEXT, Brand stores, JD Sports and Sports Direct.
+- Preserve saved retailer choices, including an empty selection, while filtering unsupported stored names.
+- Reuse the existing coverage cards and responsive layout; live feeds and sale alert delivery remain pending.
+
 ## 2026-11-03 — Broader clothing and sneaker matches
 
 - Add sixteen wardrobe-matched references across NEXT, MANGO, DIESEL, Pull&Bear and Adidas/Puma/Nike/New Balance sneakers; retain all nineteen prior suggestions including Zara/H&M.
