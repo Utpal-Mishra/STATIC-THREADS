@@ -215,7 +215,7 @@ def emit_ts(products: list[dict[str, Any]]) -> str:
         "  id: string;",
         "  retailer: string;",
         "  name: string;",
-        '  category: "shirt" | "overshirt" | "trousers" | "shorts" | "shoes";',
+        '  category: "shirt" | "t-shirt" | "overshirt" | "trousers" | "shorts" | "shoes";',
         "  colour: string;",
         "  priceLabel: string;",
         "  match: number;",
@@ -308,3 +308,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

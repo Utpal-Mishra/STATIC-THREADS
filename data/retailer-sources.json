@@ -11,7 +11,12 @@
       "colour": "Stone",
       "priceLabel": "€32",
       "match": 97,
-      "pairsWith": ["grey-linen-shirt", "white-textured-shirt", "cream-pocket-tee", "adidas-white-black"],
+      "pairsWith": [
+        "grey-linen-shirt",
+        "white-textured-shirt",
+        "cream-pocket-tee",
+        "adidas-white-black"
+      ],
       "reason": "Stone trousers are the most useful missing bridge between your white/cream shirts and darker tops. They recreate several of your saved smart-casual references without becoming formal.",
       "href": "https://www.next.ie/en/style/st525777/ag4042",
       "sourceType": "product",
@@ -27,7 +32,11 @@
       "colour": "Black",
       "priceLabel": "€29.99",
       "match": 96,
-      "pairsWith": ["grey-linen-shirt", "white-textured-shirt", "puma-white-green"],
+      "pairsWith": [
+        "grey-linen-shirt",
+        "white-textured-shirt",
+        "puma-white-green"
+      ],
       "reason": "This is the closest ready-made version of the relaxed dark-short silhouette already visible in your outfits. It keeps the look clean rather than sporty.",
       "href": "https://www2.hm.com/en_ie/productpage.1265992001.html",
       "sourceType": "product",
@@ -41,7 +50,12 @@
       "colour": "White",
       "priceLabel": "€45.95",
       "match": 95,
-      "pairsWith": ["grey-jeans", "black-jeans", "olive-cargo", "adidas-white-black"],
+      "pairsWith": [
+        "grey-jeans",
+        "black-jeans",
+        "olive-cargo",
+        "adidas-white-black"
+      ],
       "reason": "Your strongest repeated look is a breathable light shirt with a relaxed collar and rolled sleeves. This current Zara linen shirt is a direct extension of that pattern.",
       "href": "https://www.zara.com/ie/en/100-linen-regular-fit-shirt-p01063410.html",
       "sourceType": "product",
@@ -56,7 +70,12 @@
       "priceLabel": "€29.90",
       "sale": "Reduced from €49.90 when checked",
       "match": 94,
-      "pairsWith": ["white-tee", "grey-jeans", "black-jeans", "puma-white-green"],
+      "pairsWith": [
+        "white-tee",
+        "grey-jeans",
+        "black-jeans",
+        "puma-white-green"
+      ],
       "reason": "A lightweight natural overshirt gives you the same easy layering effect as your current cream and beige pieces without becoming too formal.",
       "href": "https://www.uniqlo.com/eu-ie/en/products/E482443-000/00?colorDisplayCode=69",
       "sourceType": "product",
@@ -72,7 +91,12 @@
       "colour": "Charcoal / Stone",
       "priceLabel": "from €35.95",
       "match": 93,
-      "pairsWith": ["white-textured-shirt", "grey-linen-shirt", "cream-pocket-tee", "adidas-white-burgundy"],
+      "pairsWith": [
+        "white-textured-shirt",
+        "grey-linen-shirt",
+        "cream-pocket-tee",
+        "adidas-white-burgundy"
+      ],
       "reason": "A slightly fuller charcoal or stone trouser preserves your dark-bottom preference while giving the silhouette more polish than denim.",
       "href": "https://www.zara.com/ie/en/man-trousers-l838.html",
       "sourceType": "category"
@@ -85,7 +109,12 @@
       "colour": "Beige",
       "priceLabel": "€129",
       "match": 92,
-      "pairsWith": ["white-tee", "black-jeans", "grey-jeans", "adidas-white-black"],
+      "pairsWith": [
+        "white-tee",
+        "black-jeans",
+        "grey-jeans",
+        "adidas-white-black"
+      ],
       "reason": "The relaxed beige utility shape fits directly into your existing neutral layering system and is more refined than adding another graphic layer.",
       "href": "https://www.cos.com/en-ie/men/menswear/shirts/cottonshirts/product/contrast-panel-cotton-overshirt-beige-1326530001",
       "sourceType": "product",
@@ -100,11 +129,253 @@
       "priceLabel": "€40.00",
       "sale": "33% off when checked",
       "match": 90,
-      "pairsWith": ["grey-jeans", "black-jeans", "light-grey-denim-shorts", "timberland-brown"],
+      "pairsWith": [
+        "grey-jeans",
+        "black-jeans",
+        "light-grey-denim-shorts",
+        "timberland-brown"
+      ],
       "reason": "Mango's linen shirt gives you the same relaxed shirt language with a slightly cleaner, more grown-up finish.",
       "href": "https://shop.mango.com/ie/en/p/men/shirts/linen/regular-fit-100-linen-shirt/27085939/57/00",
       "sourceType": "product",
       "productCode": "27085939"
+    },
+    {
+      "id": "zara-striped-poplin-shirt",
+      "retailer": "Zara",
+      "name": "Striped Poplin Shirt",
+      "category": "shirt",
+      "colour": "Striped",
+      "priceLabel": "€59.95",
+      "match": 92,
+      "pairsWith": [
+        "black-jeans",
+        "grey-jeans",
+        "adidas-white-black"
+      ],
+      "reason": "A relaxed striped shirt adds pattern to your neutral denim and trainers while retaining the long-sleeve shirt silhouette.",
+      "href": "https://www.zara.com/ie/en/relaxed-fit-poplin-shirt-p05588301.html",
+      "sourceType": "product",
+      "productCode": "5588/301/104",
+      "seedCheckedAt": "2026-11-03",
+      "imageUrl": "https://static.zara.net/assets/public/1d6c/6c36/6c924db5811f/1a5f9c2d9e72/05588301104-p/05588301104-p.jpg?f=auto&ts=1791300052802&w=560",
+      "imageAlt": "Zara Striped Poplin Shirt in Striped"
+    },
+    {
+      "id": "zara-striped-linen-blend-shirt",
+      "retailer": "Zara",
+      "name": "Regular Fit Linen Blend Shirt",
+      "category": "shirt",
+      "colour": "Striped",
+      "priceLabel": "€35.95",
+      "match": 91,
+      "pairsWith": [
+        "black-jeans",
+        "olive-cargo",
+        "puma-white-green"
+      ],
+      "reason": "This linen-blend stripe is a lighter alternative to your textured shirts and pairs with plain darker trousers.",
+      "href": "https://www.zara.com/ie/en/regular-fit-linen-cotton-shirt-p01063411.html?v1=545479923",
+      "sourceType": "product",
+      "productCode": "1063/411/104",
+      "seedCheckedAt": "2026-11-03"
+    },
+    {
+      "id": "zara-green-heavyweight-tee",
+      "retailer": "Zara",
+      "name": "Basic Heavyweight T-Shirt /03",
+      "category": "t-shirt",
+      "colour": "Green",
+      "priceLabel": "€17.95",
+      "match": 89,
+      "pairsWith": [
+        "black-jeans",
+        "grey-jeans",
+        "beige-overshirt"
+      ],
+      "reason": "A compact cotton crew neck works with your existing overshirts and denim. Compare it with your green tee before adding another.",
+      "href": "https://www.zara.com/ie/en/basic-heavyweight-t-shirt--03-p01887410.html",
+      "sourceType": "product",
+      "productCode": "1887/410/500",
+      "seedCheckedAt": "2026-11-03"
+    },
+    {
+      "id": "zara-black-interlock-tee",
+      "retailer": "Zara",
+      "name": "Relaxed Fit Interlock T-Shirt /04",
+      "category": "t-shirt",
+      "colour": "Black",
+      "priceLabel": "€22.95",
+      "match": 90,
+      "pairsWith": [
+        "grey-jeans",
+        "olive-cargo",
+        "beige-overshirt"
+      ],
+      "reason": "A relaxed plain black layer connects your grey denim and beige overshirt. Your existing black tee may already cover this role.",
+      "href": "https://www.zara.com/ie/en/relaxed-fit-interlock-t-shirt--04-p05584471.html?v1=545425833",
+      "sourceType": "product",
+      "productCode": "5584/471/800",
+      "seedCheckedAt": "2026-11-03",
+      "imageUrl": "https://static.zara.net/assets/public/7745/b5e3/8cb14f1ea921/3ccc6db2257f/05584471800-p/05584471800-p.jpg?f=auto&ts=1765295647746&w=560",
+      "imageAlt": "Zara Relaxed Fit Interlock T-Shirt /04 in Black"
+    },
+    {
+      "id": "zara-stone-pleated-chinos",
+      "retailer": "Zara",
+      "name": "Pleated Regular Fit Chino Trousers",
+      "category": "trousers",
+      "colour": "Stone",
+      "priceLabel": "€69.95",
+      "match": 94,
+      "pairsWith": [
+        "grey-linen-shirt",
+        "dark-navy-shirt",
+        "adidas-white-black"
+      ],
+      "reason": "Stone pleated trousers add a lighter base for your navy and grey shirts, extending the City Minimal direction.",
+      "href": "https://www.zara.com/ie/en/pleated-regular-fit-chino-trousers-p02553754.html",
+      "sourceType": "product",
+      "productCode": "2553/754/806",
+      "seedCheckedAt": "2026-11-03",
+      "imageUrl": "https://static.zara.net/assets/public/27f5/2082/fcd647ce9b00/2093d3b248bb/02553754806-p/02553754806-p.jpg?f=auto&ts=1791200455579&w=560",
+      "imageAlt": "Zara Pleated Regular Fit Chino Trousers in Stone"
+    },
+    {
+      "id": "zara-taupe-wide-pleated-trousers",
+      "retailer": "Zara",
+      "name": "Wide-Leg Pleated Trousers",
+      "category": "trousers",
+      "colour": "Taupe grey",
+      "priceLabel": "€59.95",
+      "match": 92,
+      "pairsWith": [
+        "white-textured-shirt",
+        "dark-navy-shirt",
+        "cream-pocket-tee"
+      ],
+      "reason": "A taupe-grey pleated base offers a fuller alternative to your slim jeans and works with cream and navy tops.",
+      "href": "https://www.zara.com/ie/en/pleated-wide-leg-trousers-p00706952.html",
+      "sourceType": "product",
+      "productCode": "0706/952/832",
+      "seedCheckedAt": "2026-11-03",
+      "imageUrl": "https://static.zara.net/assets/public/7f14/3980/a198457c96cd/bc3566ebba85/00706952832-p/00706952832-p.jpg?f=auto&ts=1792672335996&w=560",
+      "imageAlt": "Zara Wide-Leg Pleated Trousers in Taupe grey"
+    },
+    {
+      "id": "hm-white-cotton-shirt",
+      "retailer": "H&M",
+      "name": "Cotton Shirt Regular Fit",
+      "category": "shirt",
+      "colour": "White",
+      "priceLabel": "€22.99",
+      "match": 90,
+      "pairsWith": [
+        "black-jeans",
+        "olive-cargo",
+        "timberland-brown"
+      ],
+      "reason": "A plain white button-down complements your darker trousers. Compare it with your white textured shirt to avoid duplicating the same job.",
+      "href": "https://www2.hm.com/en_ie/productpage.0634037001.html",
+      "sourceType": "product",
+      "productCode": "0634037001",
+      "seedCheckedAt": "2026-11-03"
+    },
+    {
+      "id": "hm-blue-oxford-shirt",
+      "retailer": "H&M",
+      "name": "Regular Fit Oxford Shirt",
+      "category": "shirt",
+      "colour": "Light blue",
+      "priceLabel": "€19.99",
+      "match": 93,
+      "pairsWith": [
+        "black-jeans",
+        "grey-jeans",
+        "adidas-white-black"
+      ],
+      "reason": "Light blue Oxford cotton fits your clean shirt-and-trouser references and pairs directly with both existing denim colours.",
+      "href": "https://www2.hm.com/en_ie/productpage.1013956003.html",
+      "sourceType": "product",
+      "productCode": "1013956003",
+      "seedCheckedAt": "2026-11-03"
+    },
+    {
+      "id": "hm-white-regular-tee",
+      "retailer": "H&M",
+      "name": "Regular Fit T-Shirt",
+      "category": "t-shirt",
+      "colour": "White",
+      "priceLabel": "€7.99",
+      "match": 88,
+      "pairsWith": [
+        "olive-cargo",
+        "grey-jeans",
+        "beige-overshirt"
+      ],
+      "reason": "A white crew neck layers under your overshirts and works with olive cargo. Treat it as a replacement option if your white tee is still sufficient.",
+      "href": "https://www2.hm.com/en_ie/productpage.0685816001.html",
+      "sourceType": "product",
+      "productCode": "0685816001",
+      "seedCheckedAt": "2026-11-03"
+    },
+    {
+      "id": "hm-black-relaxed-tee",
+      "retailer": "H&M",
+      "name": "Relaxed Fit T-Shirt",
+      "category": "t-shirt",
+      "colour": "Black",
+      "priceLabel": "€9.99",
+      "match": 89,
+      "pairsWith": [
+        "grey-jeans",
+        "olive-cargo",
+        "beige-overshirt"
+      ],
+      "reason": "The relaxed cut offers an alternative to your regular black tee and keeps grey denim and beige layers easy to combine.",
+      "href": "https://www2.hm.com/en_ie/productpage.1309319010.html",
+      "sourceType": "product",
+      "productCode": "1309319010",
+      "seedCheckedAt": "2026-11-03"
+    },
+    {
+      "id": "hm-beige-cotton-chinos",
+      "retailer": "H&M",
+      "name": "Slim Fit Cotton Chinos",
+      "category": "trousers",
+      "colour": "Beige",
+      "priceLabel": "€29.99",
+      "match": 94,
+      "pairsWith": [
+        "grey-linen-shirt",
+        "dark-navy-shirt",
+        "adidas-white-black"
+      ],
+      "reason": "Beige chinos supply the light trouser base missing from your darker everyday bottoms and complement navy and grey shirts.",
+      "href": "https://www2.hm.com/en_ie/productpage.1019838002.html",
+      "sourceType": "product",
+      "productCode": "1019838002",
+      "seedCheckedAt": "2026-11-03"
+    },
+    {
+      "id": "hm-brown-loose-cargos",
+      "retailer": "H&M",
+      "name": "Loose Fit Cargo Trousers",
+      "category": "trousers",
+      "colour": "Brown",
+      "priceLabel": "€34.99",
+      "match": 90,
+      "pairsWith": [
+        "white-tee",
+        "cream-pocket-tee",
+        "adidas-white-black"
+      ],
+      "reason": "Brown cargos extend the earthy utility palette and pair with your cream and white tops. Check the looser fit against your existing cargos.",
+      "href": "https://www2.hm.com/en_ie/productpage.1300095004.html",
+      "sourceType": "product",
+      "productCode": "1300095004",
+      "seedCheckedAt": "2026-11-03"
     }
   ]
 }
+
