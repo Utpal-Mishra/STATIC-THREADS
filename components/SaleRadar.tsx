@@ -18,24 +18,69 @@ const STORAGE_KEY = "static-threads-sale-preferences";
 
 const retailerOptions = [
   {
-    name: "Brand stores",
-    role: "Direct releases, colourways and brand-specific promotions",
-    accent: "mint"
+    "name": "Brand stores",
+    "role": "Direct releases, colourways and brand-specific promotions",
+    "accent": "mint"
   },
   {
-    name: "JD Sports",
-    role: "Multi-brand footwear, trainers and streetwear offers",
-    accent: "violet"
+    "name": "JD Sports",
+    "role": "Multi-brand footwear, trainers and streetwear offers",
+    "accent": "violet"
   },
   {
-    name: "Sports Direct",
-    role: "Cross-brand sportswear, footwear and seasonal reductions",
-    accent: "amber"
+    "name": "Sports Direct",
+    "role": "Cross-brand sportswear, footwear and seasonal reductions",
+    "accent": "amber"
   },
   {
-    name: "NEXT",
-    role: "Clothing, footwear and selected third-party brand ranges",
-    accent: "blue"
+    "name": "NEXT",
+    "role": "Clothing, footwear and selected third-party brand ranges",
+    "accent": "blue"
+  },
+  {
+    "name": "Zara",
+    "role": "Shirts, T-shirts, trousers and seasonal clothing promotions",
+    "accent": "mint"
+  },
+  {
+    "name": "H&M",
+    "role": "Everyday shirts, T-shirts, chinos and wardrobe basics",
+    "accent": "violet"
+  },
+  {
+    "name": "MANGO",
+    "role": "Smart-casual shirts, neutral basics and tailored trousers",
+    "accent": "amber"
+  },
+  {
+    "name": "DIESEL",
+    "role": "Shirts, logo T-shirts, denim and trouser promotions",
+    "accent": "blue"
+  },
+  {
+    "name": "Pull&Bear",
+    "role": "Casual shirts, relaxed T-shirts, chinos and cargo trousers",
+    "accent": "mint"
+  },
+  {
+    "name": "Adidas",
+    "role": "Court sneakers, retro trainers and footwear offers",
+    "accent": "violet"
+  },
+  {
+    "name": "Puma",
+    "role": "Court and retro sneakers for everyday combinations",
+    "accent": "amber"
+  },
+  {
+    "name": "Nike",
+    "role": "Lifestyle sneakers, court shoes and footwear offers",
+    "accent": "blue"
+  },
+  {
+    "name": "New Balance",
+    "role": "Retro sneakers, neutral colourways and footwear offers",
+    "accent": "mint"
   }
 ] as const;
 
@@ -74,7 +119,13 @@ export function SaleRadar({ catalog }: SaleRadarProps) {
       setEnabled(Boolean(preferences.enabled));
       setMinimumDiscount(preferences.minimumDiscount || "20");
       setMaximumPrice(preferences.maximumPrice || "150");
-      setRetailers(preferences.retailers?.length ? preferences.retailers : retailerOptions.map((item) => item.name));
+      setRetailers(
+        Array.isArray(preferences.retailers)
+          ? unique(preferences.retailers.filter((name) =>
+            typeof name === "string" && retailerOptions.some((item) => item.name === name)
+          ))
+          : retailerOptions.map((item) => item.name)
+      );
       setSaveMessage("Saved rules restored from this device.");
     } catch {
       window.localStorage.removeItem(STORAGE_KEY);

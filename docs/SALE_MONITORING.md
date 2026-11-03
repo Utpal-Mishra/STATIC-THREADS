@@ -122,3 +122,14 @@ Recommended channels:
 ## Current status
 
 The current frontend stores sale preferences and can request browser notification permission. Live prices, stock checks and scheduled notifications are intentionally marked as pending until approved data feeds and a backend service are connected.
+
+
+## Named retailer preferences — 3 November 2026
+
+Sale Radar now offers Zara, H&M, NEXT, MANGO, DIESEL, Pull&Bear, Adidas, Puma, Nike and New Balance individually. Brand stores, JD Sports and Sports Direct remain available, giving13 choices.
+
+The same names appear in the monitor checkboxes and planned-coverage cards. Returning users retain their saved selections; new options are not silently enabled in an existing saved list. An explicitly empty retailer selection stays empty after reload. Unsupported saved names are ignored, and duplicate names are normalised.
+
+This expands preference coverage only. No live sale feed, price/size/stock adapter, personalised scheduled matching job or alert delivery has been activated for these brands. Similar's curated product references and metadata refresh do not establish a sale-monitoring feed. Existing minimum-discount, maximum-price, paused/enabled and browser-permission flows remain. Browser permission alone does not create live monitoring.
+
+DIESEL refers to the international brand used in the retailer matches at ie.diesel.com; a future adapter must keep it distinct from the separate diesel.ie store. No retailer API, affiliate agreement or commercial partnership is implied.
