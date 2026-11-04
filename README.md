@@ -182,3 +182,5 @@ Open **Plan an outfit → Rush Hour** to photograph/upload a few options, review
 ## Personal wardrobe — Priorities 2 and 3
 
 Open `/wardrobe/` from Account or My closet to add, edit and delete clothing, upload private item photos, and sync across signed-in devices. Apply the database/bucket setup first: [personal wardrobe setup](docs/PERSONAL_WARDROBE.md). The approved public demo and imagery stay separate.
+
+The personal wardrobe also offers **Import my existing closet** for selecting existing catalogue items and copying their approved previews without overwriting prior imports. New item photos open a local cleanup/review editor before upload; plain-background removal and manual corrections are available without another provider. See the [workflow and limits](docs/PERSONAL_WARDROBE.md#import-the-existing-closet).

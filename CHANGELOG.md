@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-04 — Existing closet import and photo-cleanup review
+
+- Add selective existing-closet import into the signed-in private wardrobe, with optional approved image copies, per-item progress and duplicate-safe retries that preserve edits.
+- Add local pre-upload cleanup review: plain-background removal, erase/restore brush, crop, centring, background and optional lighting adjustment, with approval and original/cancel choices.
+- Reuse private account/storage lifecycle and existing database setup; no extra provider or migration. Add client/pixel, PostgreSQL and browser contracts. Complex backgrounds require manual correction; no model-based garment segmentation is claimed.
+
 ## 2026-11-04 — Personal wardrobe and private photos
 
 - Add account-scoped clothing create/edit/delete, flexible garment categories, availability and occasion metadata.

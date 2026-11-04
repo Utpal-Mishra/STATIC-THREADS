@@ -34,3 +34,27 @@
 @media(max-width:520px) { .personal-grid,.personal-fields { grid-template-columns:1fr; } .personal-editor { padding:1rem; } .personal-wardrobe { margin-top:2rem; } }
 .personal-wardrobe button:not(.secondary) { background:#88f1c6; color:#07150e; border:1px solid #88f1c6; }
 .personal-wardrobe button:disabled { opacity:.5; cursor:not-allowed; }
+.existing-closet-import { margin:1rem 0; }
+.existing-closet-import fieldset,.photo-cleanup fieldset { border:0; padding:0; margin:0; min-width:0; }
+.existing-closet-options { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.65rem; max-height:22rem; overflow:auto; padding:.8rem 0; }
+.existing-closet-options label,.cleanup-approval { display:flex !important; flex-direction:row; align-items:center; gap:.6rem; }
+.existing-closet-options input,.cleanup-approval input,.cleanup-controls input[type=checkbox] { width:auto; }
+.existing-import-results { max-height:20rem; overflow:auto; padding-left:1.3rem; font-size:.85rem; }
+.photo-cleanup.personal-wardrobe { width:min(1000px,calc(100vw - 24px)); max-height:90dvh; max-width:1000px; margin:auto; padding:1.2rem; border:1px solid #406154; border-radius:20px; background:#101a16; color:#eef7f1; overflow:auto; }
+.photo-cleanup::backdrop { background:rgba(0,0,0,.8); }
+.cleanup-head { display:flex; justify-content:space-between; align-items:center; gap:1rem; }
+.cleanup-head h2 { font-size:1.4rem; }
+.cleanup-images,.cleanup-controls { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
+.cleanup-images figure { margin:0; min-width:0; }
+.cleanup-images canvas { display:block; width:100%; max-height:50dvh; object-fit:contain; background:#07110d; }
+.cleanup-images canvas[aria-label="Original photo mask editor"] { max-height:none; height:auto; }
+.cleanup-images figcaption { font-size:.8rem; color:#c5ded1; margin:.5rem 0; }
+.cleanup-controls { margin:1rem 0; }
+.cleanup-approval { margin:1rem 0; }
+@media(max-width:600px) { .cleanup-images,.cleanup-controls,.existing-closet-options { grid-template-columns:1fr; } .photo-cleanup.personal-wardrobe { padding:.9rem; } .cleanup-images canvas[aria-label="Original photo mask editor"] { max-height:none; object-fit:fill; } }
+.photo-cleanup { overscroll-behavior:contain; }
+.cleanup-head { position:sticky; top:-1.2rem; z-index:1; padding:.5rem 0; background:#101a16; }
+.cleanup-head button { flex-shrink:0; }
+.cleanup-controls .cleanup-toggle { display:flex; align-items:center; gap:.6rem; }
+.cleanup-toggle input[type=checkbox] { width:18px; height:18px; margin:0; padding:0; flex-shrink:0; }
+.photo-cleanup input,.existing-closet-import input { accent-color:#88f1c6; }

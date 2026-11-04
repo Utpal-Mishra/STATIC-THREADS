@@ -73,3 +73,24 @@ end $$;
 reset role;
 drop function public.test_assert(boolean,text);
 select 'PASS: personal wardrobe ownership, revision conflicts, immutable private objects, replacement and retryable deletion, import compatibility' as result;
+
+-- REST bulk-import contract: stable owner/source key + DO NOTHING preserves edits.
+set role authenticated;
+set request.jwt.claim.sub='00000000-0000-4000-8000-000000000001';
+insert into public.wardrobe_items(user_id,client_item_id,name,category,brand) values(auth.uid(),'catalog:v1:fixture-shirt','Existing shirt','shirts','Original brand') on conflict(user_id,client_item_id) do nothing returning id,user_id,name,revision;
+insert into public.wardrobe_items(user_id,client_item_id,name,category,brand) values(auth.uid(),'catalog:v1:fixture-shirt','Do not overwrite','shirts','Wrong brand') on conflict(user_id,client_item_id) do nothing returning id,user_id,name,revision;
+do $$ begin
+  if (select count(*) from public.wardrobe_items where client_item_id='catalog:v1:fixture-shirt')<>1 then raise exception 'Catalogue retry duplicated records'; end if;
+  if (select brand from public.wardrobe_items where client_item_id='catalog:v1:fixture-shirt')<>'Original brand' then raise exception 'Import overwrote existing details'; end if;
+  begin
+    insert into public.wardrobe_items(user_id,client_item_id,name,category) values('00000000-0000-4000-8000-000000000002','catalog:v1:spoof','Spoof','shirts');
+    raise exception 'Catalogue import spoofed another user';
+  exception when insufficient_privilege then null; end;
+end $$;
+set request.jwt.claim.sub='00000000-0000-4000-8000-000000000002';
+do $$ begin
+  if exists(select 1 from public.wardrobe_items where client_item_id='catalog:v1:fixture-shirt') then raise exception 'Imported catalogue leaked'; end if;
+end $$;
+insert into public.wardrobe_items(user_id,client_item_id,name,category) values(auth.uid(),'catalog:v1:fixture-shirt','My own copy','shirts') on conflict(user_id,client_item_id) do nothing returning id,user_id,name;
+reset role;
+select 'PASS: duplicate-safe per-account catalogue import and metadata preservation' as result;
