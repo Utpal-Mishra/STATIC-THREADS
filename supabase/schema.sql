@@ -63,15 +63,19 @@ alter table public.wardrobe_items enable row level security;
 alter table public.outfit_events enable row level security;
 alter table public.purchase_checks enable row level security;
 
+drop policy if exists "profiles own rows" on public.profiles;
 create policy "profiles own rows" on public.profiles
   for all using (auth.uid() = id) with check (auth.uid() = id);
 
+drop policy if exists "wardrobe own rows" on public.wardrobe_items;
 create policy "wardrobe own rows" on public.wardrobe_items
   for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
 
+drop policy if exists "outfit events own rows" on public.outfit_events;
 create policy "outfit events own rows" on public.outfit_events
   for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
 
+drop policy if exists "purchase checks own rows" on public.purchase_checks;
 create policy "purchase checks own rows" on public.purchase_checks
   for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
 

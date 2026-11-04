@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
 import { useAuth } from "@/components/AuthProvider";
 import { authErrorMessage, getSupabaseBrowser, requestMagicLink } from "@/lib/supabase-browser";
@@ -68,12 +69,13 @@ export function AccountPanel() {
         <div className="account-status-grid">
           <div><span>Current mode</span><strong>{loading ? "Checking account…" : signedIn ? "Signed in" : enabled ? "Ready to sign in" : "Demo"}</strong></div>
           <div><span>Authentication</span><strong>{enabled ? "Magic-link email" : "Not configured"}</strong></div>
-          <div><span>Wardrobe storage</span><strong>Demo catalogue</strong></div>
+          <div><span>Wardrobe storage</span><strong>{signedIn ? "Personal wardrobe available" : "Demo catalogue"}</strong></div>
         </div>
         {loading ? <p className="account-note" role="status">Checking your session…</p> : signedIn ? (
           <div className="account-form">
             <p className="account-identity">Signed in as <strong>{auth.user?.email ?? "your account"}</strong></p>
-            <p className="account-message">Your account is connected. Personal wardrobe uploads and cloud sync are coming next; the current catalogue remains the demo.</p>
+            <p className="account-message">Your account is connected. Open your personal wardrobe to add clothing and sync private photos. The sample catalogue stays available separately.</p>
+            <Link className="photo-import-entry" href="/wardrobe/">Open personal wardrobe</Link>
             <button type="button" onClick={signOut} disabled={status === "signing-out"}>{status === "signing-out" ? "Signing out…" : "Sign out of this browser"}</button>
           </div>
         ) : enabled ? (

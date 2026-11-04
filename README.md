@@ -178,3 +178,7 @@ Use **My closet → Import outfit photo** to review visible garments, edit categ
 ### Rush Hour (Priority 10)
 
 Open **Plan an outfit → Rush Hour** to photograph/upload a few options, review pieces and plan without a complete wardrobe. Manual review works without an account. Recognition and optional private metadata saving reuse Priority 8 activation. Photos/plans are transient; no virtual try-on is claimed. See [Rush Hour flow and acceptance](docs/RUSH_HOUR.md).
+
+## Personal wardrobe — Priorities 2 and 3
+
+Open `/wardrobe/` from Account or My closet to add, edit and delete clothing, upload private item photos, and sync across signed-in devices. Apply the database/bucket setup first: [personal wardrobe setup](docs/PERSONAL_WARDROBE.md). The approved public demo and imagery stay separate.

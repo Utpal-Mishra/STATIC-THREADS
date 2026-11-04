@@ -1,0 +1,36 @@
+.personal-wardrobe { margin: 3rem auto 6rem; max-width: 1100px; }
+.personal-wardrobe h1 { font-size: clamp(1.8rem, 5vw, 3rem); }
+.personal-toolbar { display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+.personal-toolbar p { max-width: 42rem; color:var(--muted); }
+.personal-wardrobe button,.personal-wardrobe .photo-import-entry { font:inherit; font-size:.8rem; min-height:40px; padding:.6rem .9rem; border-radius:12px; }
+.personal-actions { display:flex; gap:.6rem; align-items:center; flex-wrap:wrap; }
+.personal-wardrobe .secondary { background:rgba(120,235,190,.07); color:#bce9d6; border:1px solid #406154; }
+.personal-sync,.personal-footnote { color:#b4c6be; font-size:.8rem; }
+.personal-warning { padding:.8rem; margin:.7rem 0; border:1px solid #657451; background:#17231d; border-radius:12px; overflow-wrap:anywhere; }
+.personal-warning p { margin:0 0 .6rem; }
+.personal-warning a { text-decoration:underline; }
+.personal-editor { margin:1.5rem 0; padding:1.3rem; background:#121b1b; border:1px solid #355149; border-radius:22px; }
+.personal-editor fieldset { margin:0; padding:0; border:0; min-width:0; }
+.personal-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.9rem; }
+.personal-wardrobe label { display:grid; gap:.35rem; font-size:.8rem; color:#c2d6ce; }
+.personal-wardrobe input,.personal-wardrobe select,.personal-wardrobe textarea { width:100%; min-width:0; font:inherit; font-size:16px; background:#08120f; color:#ecf7f1; border:1px solid #3c5d50; border-radius:10px; padding:.7rem; }
+.personal-editor .personal-occasions { display:flex; flex-wrap:wrap; gap:.8rem; margin:1rem 0; }
+.personal-occasions label { display:flex; align-items:center; gap:.4rem; }
+.personal-occasions input { width:auto; }
+.personal-search { max-width:36rem; margin:1rem 0; }
+.personal-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; }
+.personal-card { overflow:hidden; border:1px solid #2e423b; background:#101817; border-radius:20px; min-width:0; }
+.personal-photo { aspect-ratio:4/5; background:#0a100e; display:grid; place-items:center; text-align:center; color:#b4c6be; }
+.personal-photo img { width:100%; height:100%; object-fit:contain; min-height:0; }
+.personal-content { padding:1rem; overflow-wrap:anywhere; }
+.personal-content h2 { font-size:1.1rem; margin:.4rem 0; }
+.personal-content > p { color:#b4c6be; font-size:.85rem; }
+.personal-upload { margin:.8rem 0; }
+.personal-upload input { font-size:.75rem; padding:.4rem; }
+.personal-upload input::file-selector-button { font:inherit; border:1px solid #406154; background:#203b2f; color:#d1f4e2; border-radius:6px; padding:.4rem; margin-right:.4rem; }
+.personal-pagination { margin:1.5rem 0; }
+.personal-wardrobe :focus-visible { outline:2px solid #8bf2cb; outline-offset:3px; }
+@media(max-width:800px) { .personal-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:520px) { .personal-grid,.personal-fields { grid-template-columns:1fr; } .personal-editor { padding:1rem; } .personal-wardrobe { margin-top:2rem; } }
+.personal-wardrobe button:not(.secondary) { background:#88f1c6; color:#07150e; border:1px solid #88f1c6; }
+.personal-wardrobe button:disabled { opacity:.5; cursor:not-allowed; }

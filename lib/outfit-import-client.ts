@@ -29,7 +29,7 @@ export async function saveImportedGarments(photo: ImportPhoto, items: GarmentCan
 }
 export async function loadImportedGarments(userId: string, signal: AbortSignal) {
   const { client } = await verified(userId);
-  const { data, error } = await client.from("wardrobe_items").select("id,user_id,name,category,primary_colour").eq("user_id", userId).like("client_item_id", "photo:%").order("created_at", { ascending: false }).limit(100).abortSignal(signal);
+  const { data, error } = await client.from("wardrobe_items").select("id,user_id,name,category,primary_colour").eq("user_id", userId).is("deleted_at", null).like("client_item_id", "photo:%").order("created_at", { ascending: false }).limit(100).abortSignal(signal);
   if (error || (data ?? []).some(row => row.user_id !== userId)) throw new Error("Your imported wardrobe items could not be loaded.");
   return data ?? [];
 }

@@ -50,6 +50,9 @@ jobs:
       - name: Validate Rush Hour planning
         run: npm run test:rush-hour
 
+      - name: Validate personal wardrobe client contracts
+        run: node scripts/test_personal_wardrobe.cjs
+
       - name: Build application
         run: npm run build
 
@@ -167,6 +170,9 @@ jobs:
       - name: Check configured Rush Hour contracts
         timeout-minutes: 3
         run: TEST_RUSH=1 node scripts/check_rush_hour.cjs
+      - name: Check personal wardrobe CRUD and photo sync contracts
+        timeout-minutes: 3
+        run: node scripts/check_personal_wardrobe.cjs
       - name: Save account QA screenshots
         if: always()
         uses: actions/upload-artifact@v4
@@ -198,3 +204,4 @@ jobs:
           psql -h localhost -U postgres -d postgres -f scripts/test_outfit_chat_rls.sql
           psql -h localhost -U postgres -d postgres -f scripts/test_outfit_visual_quota.sql
           psql -h localhost -U postgres -d postgres -f scripts/test_outfit_import.sql
+          psql -h localhost -U postgres -d postgres -f scripts/test_personal_wardrobe.sql

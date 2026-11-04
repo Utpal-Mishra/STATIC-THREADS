@@ -116,6 +116,7 @@ export function WardrobeCatalogView({ catalog }: WardrobeCatalogViewProps) {
         <p>Updated {catalog.updatedAt}</p>
       </div>
 
+      <Link className="photo-import-entry" href="/wardrobe/">Open personal wardrobe</Link>
       <Link className="photo-import-entry" href="/import/">Import outfit photo</Link>
 
       <p className="closet-image-note">Photorealistic catalog images generated from your item descriptions.</p>
