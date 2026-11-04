@@ -18,7 +18,7 @@ export async function loadPersonalWardrobe(userId: string, signal: AbortSignal) 
   const client = await verifiedClient(userId);
   const { data, error } = await client.from("wardrobe_items")
     .select("id,user_id,name,category,subcategory,primary_colour,secondary_colours,material,occasions,status")
-    .eq("user_id", userId).order("id").limit(500).abortSignal(signal);
+    .eq("user_id", userId).is("deleted_at", null).order("id").limit(500).abortSignal(signal);
   if (error) throw error;
   if ((data ?? []).some(row => row.user_id !== userId)) throw new Error("Wardrobe owner mismatch");
   return (data ?? []).map(mapWardrobeRow);

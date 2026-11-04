@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-04 — Personal wardrobe and private photos
+
+- Add account-scoped clothing create/edit/delete, flexible garment categories, availability and occasion metadata.
+- Add private per-item photos, camera/gallery controls, metadata stripping, short-lived signed previews, replacement and explicit deletion recovery.
+- Refresh on tab return/visibility, reconnect and visible intervals; prevent stale edits and clear private state on account changes.
+- Add owner-enforced database/Storage policies, immutable photo paths, lifecycle RPCs, setup SQL and client/database/browser contract checks.
+- Production requires applying `supabase/setup-personal-wardrobe.sql`; no service key or user photo is committed. Live two-account and physical-device acceptance remains required.
+
 ## 2026-11-03 — Named Sale Radar retailer preferences
 
 - Add Zara, H&M, MANGO, DIESEL, Pull&Bear, Adidas, Puma, Nike and New Balance as individual Sale Radar options alongside existing NEXT, Brand stores, JD Sports and Sports Direct.
