@@ -51,7 +51,9 @@ jobs:
         run: npm run test:rush-hour
 
       - name: Validate personal wardrobe client contracts
-        run: node scripts/test_personal_wardrobe.cjs
+        run: |
+          node scripts/test_personal_wardrobe.cjs
+          node scripts/test_photo_cleanup.cjs
 
       - name: Build application
         run: npm run build
@@ -172,7 +174,9 @@ jobs:
         run: TEST_RUSH=1 node scripts/check_rush_hour.cjs
       - name: Check personal wardrobe CRUD and photo sync contracts
         timeout-minutes: 3
-        run: node scripts/check_personal_wardrobe.cjs
+        run: |
+          node scripts/check_personal_wardrobe.cjs
+          node scripts/check_closet_integrations.cjs
       - name: Save account QA screenshots
         if: always()
         uses: actions/upload-artifact@v4

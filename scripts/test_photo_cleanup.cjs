@@ -1,0 +1,13 @@
+const assert=require('node:assert/strict'),ts=require('typescript'),fs=require('fs');
+function load(file){const module={exports:{}};new Function('exports','module',ts.transpileModule(fs.readFileSync(file,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText)(module.exports,module);return module.exports}
+const {foregroundMask,defaultCleanup}=load('lib/photo-cleanup.ts');
+const w=20,h=30,pixels=new Uint8ClampedArray(w*h*4);for(let p=0;p<w*h;p++)pixels.set([240,240,240,255],p*4);for(let y=5;y<25;y++)for(let x=6;x<14;x++)pixels.set([30,80,130,255],(y*w+x)*4);
+const before=new Uint8ClampedArray(pixels),opts=defaultCleanup();let result=foregroundMask(pixels,w,h,opts);assert.deepEqual(result.bounds,[6,5,8,20]);assert.equal(result.mask[0],0);assert.equal(result.mask[10*w+10],255);assert.deepEqual(pixels,before,'Source pixels must never be modified');
+result=foregroundMask(pixels,w,h,{...opts,marks:[{x:.5,y:.5,radius:.15,keep:false}]});assert.equal(result.mask[15*w+10],0);
+result=foregroundMask(pixels,w,h,{...opts,marks:[{x:.1,y:.1,radius:.1,keep:true}]});assert.equal(result.mask[3*w+2],255,'Restore keeps original pixels');
+assert.throws(()=>foregroundMask(pixels,w,h,{...opts,crop:[.9,0,.2,1]}),/Keep at least/);
+const uniform=new Uint8ClampedArray(w*h*4).fill(255);assert.throws(()=>foregroundMask(uniform,w,h,opts),/No garment remains/);
+const uneven=new Uint8ClampedArray(pixels);uneven.set([0,0,0,255],0);assert.match(foregroundMask(uneven,w,h,opts).warning,/uneven/);
+const transparent=new Uint8ClampedArray(w*h*4);for(let y=5;y<25;y++)for(let x=6;x<14;x++)transparent.set([0,0,0,255],(y*w+x)*4);assert.deepEqual(foregroundMask(transparent,w,h,opts).bounds,[6,5,8,20],'Transparent backdrop must not erase black garments');
+const metadata=load('lib/catalogue-import.ts'),catalog=require('../data/catalog.json');const selected=metadata.catalogueMetadata(catalog.items[0]);assert.equal(selected.name,catalog.items[0].name);assert.equal(selected.brand,catalog.items[0].brand);assert.equal(selected.primary_colour,catalog.items[0].primaryColour);assert.ok(selected.notes.includes('illustrative preview'));assert.equal(metadata.catalogueAssetUrl('/catalog/white-tee.webp','https://example.test','/STATIC-THREADS'),'https://example.test/STATIC-THREADS/catalog/white-tee.webp');for(const bad of ['https://evil.test/a.jpg','/catalog/../secret.jpg','/catalog/file.svg'])assert.throws(()=>metadata.catalogueAssetUrl(bad,'https://example.test',''));
+console.log('PASS: local mask/crop, erase/restore, uneven/empty safeguards, transparent dark garments, immutable source pixels and bounded catalogue metadata/assets');

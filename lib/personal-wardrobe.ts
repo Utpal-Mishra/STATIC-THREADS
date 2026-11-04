@@ -2,7 +2,7 @@ import { getCloudConfig, getSupabaseBrowser } from "@/lib/supabase-browser";
 import { prepareImportPhoto } from "@/lib/outfit-import";
 
 export type PersonalItem = {
-  id: string; user_id: string; name: string; brand: string; category: string; subcategory: string;
+  id: string; user_id: string; client_item_id?: string; name: string; brand: string; category: string; subcategory: string;
   size: string; fit: string; primary_colour: string; material: string; notes: string;
   status: string; occasions: string[]; revision: number; photo_id: string | null;
   deleted_at: string | null; created_at: string; updated_at: string;
@@ -58,6 +58,21 @@ export async function personalSession(userId: string, signal: AbortSignal) {
     },
     async save(id: string, revision: number, draft: ItemDraft): Promise<PersonalItem> {
       return ownedItem(await rpc("save_wardrobe_item", { p_id: id, p_revision: revision, p_item: draft }));
+    },
+    async importCatalogue(sourceId: string, metadata: ItemDraft & { secondary_colours: string[]; seasons: string[]; pattern: string; wear_count: number; last_worn_date: string | null }) {
+      if (!/^[a-z0-9][a-z0-9-]{0,99}$/.test(sourceId)) throw new WardrobeError("Invalid catalogue item.");
+      const key = `catalog:v1:${sourceId}`;
+      // DO NOTHING on the owner's stable source key: retries never overwrite edits.
+      const rows = await request("/rest/v1/wardrobe_items?on_conflict=user_id,client_item_id", { method: "POST", headers: { Prefer: "resolution=ignore-duplicates,return=representation" }, body: JSON.stringify({ ...metadata, user_id: userId, client_item_id: key }) });
+      if (!Array.isArray(rows) || rows.length > 1) throw new WardrobeError("Import could not be confirmed. Retry the same selection.");
+      if (rows.length) {
+        if (rows[0].client_item_id !== key) throw new WardrobeError("Imported item source could not be verified.");
+        return { item: ownedItem(rows[0]), created: true };
+      }
+      const existing = await request(`/rest/v1/wardrobe_items?select=*&user_id=eq.${userId}&client_item_id=eq.${encodeURIComponent(key)}&limit=1`);
+      if (!Array.isArray(existing) || existing.length !== 1) throw new WardrobeError("Existing import could not be confirmed. Reload before retrying.");
+      if (existing[0].client_item_id !== key) throw new WardrobeError("Existing import source could not be verified.");
+      return { item: ownedItem(existing[0]), created: false };
     },
     async signedPhoto(photo: PrivatePhoto) {
       if (photo.user_id !== userId || photo.state !== "current") throw new WardrobeError("Photo unavailable.");

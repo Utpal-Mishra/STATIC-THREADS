@@ -1,5 +1,8 @@
 "use client";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+const ExistingClosetImport = dynamic(() => import("@/components/ExistingClosetImport"), { ssr: false });
+const PhotoCleanup = dynamic(() => import("@/components/PhotoCleanup").then(m => m.PhotoCleanup), { ssr: false });
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useAuth } from "@/components/AuthProvider";
 import { clothingCategories } from "@/lib/outfit-import";
@@ -20,6 +23,7 @@ function WardrobeManager({ userId }: { userId: string }) {
   const [loadError, setLoadError] = useState(""), [notice, setNotice] = useState(""), [synced, setSynced] = useState("");
   const [query, setQuery] = useState(""), [editor, setEditor] = useState<{ id: string; revision: number } | null>(null), [draft, setDraft] = useState<ItemDraft>(emptyDraft);
   const [confirm, setConfirm] = useState<{ id: string; action: "delete" | "photo" } | null>(null);
+  const [photoDraft, setPhotoDraft] = useState<{ item: PersonalItem; file: File } | null>(null);
   const lifetime = useRef<AbortController | null>(null), sequence = useRef(0), working = useRef(false);
   const form = useRef<HTMLFormElement>(null);
   async function reload(signal: AbortSignal, currentPage: number) {
@@ -51,10 +55,12 @@ function WardrobeManager({ userId }: { userId: string }) {
     return () => { controller.abort(); ++sequence.current; clearInterval(interval); window.removeEventListener("focus", sync); window.removeEventListener("online", sync); document.removeEventListener("visibilitychange", sync); };
   }, [userId, page]);
   async function run(action: (api: Awaited<ReturnType<typeof personalSession>>) => Promise<string>) {
-    if (working.current || !lifetime.current) return;
+    if (working.current || !lifetime.current) return false;
     const signal = lifetime.current.signal; working.current = true; setBusy(true); setNotice(""); ++sequence.current;
+    let success = false;
     try {
       const api = await personalSession(userId, signal), message = await action(api);
+      success = !signal.aborted;
       if (!signal.aborted) { setNotice(message); setConfirm(null); }
     } catch (error) {
       if (!signal.aborted) setNotice(error instanceof Error ? error.message : "The change could not be confirmed. Reload before retrying.");
@@ -62,6 +68,7 @@ function WardrobeManager({ userId }: { userId: string }) {
       if (!signal.aborted) { await reload(signal, page); setBusy(false); }
       working.current = false;
     }
+    return success;
   }
   function openEditor(item?: PersonalItem) {
     setEditor(item ? { id: item.id, revision: item.revision } : { id: crypto.randomUUID(), revision: 0 }); setDraft(item ? draftFrom(item) : emptyDraft()); setNotice("");
@@ -80,6 +87,8 @@ function WardrobeManager({ userId }: { userId: string }) {
   const conflict = editLatest && editLatest.revision !== editor?.revision;
   return <>
     <div className="personal-toolbar"><p>Private to your account. Changes sync on opening, returning to this tab and every 45 seconds while visible.</p><div className="personal-actions"><button disabled={busy || !ready} onClick={() => openEditor()}>Add clothing</button><button className="secondary" disabled={busy || loading} onClick={() => { if (lifetime.current) void reload(lifetime.current.signal, page); }}>Retry sync</button></div></div>
+    <ExistingClosetImport userId={userId} onChange={() => { if (lifetime.current) void reload(lifetime.current.signal, page); }} />
+    {photoDraft ? <PhotoCleanup file={photoDraft.file} onClose={() => setPhotoDraft(null)} onSave={async file => { const saved = await run(async api => { await api.upload(photoDraft.item, file); await cleanup(api, photoDraft.item); return "Photo saved privately to your account."; }); if (saved) setPhotoDraft(null); return saved; }} /> : null}
     <p className="personal-sync" role="status">{busy ? "Saving changes…" : loading ? "Loading your wardrobe…" : synced ? `Last synced ${synced}` : "Not synced yet"}</p>
     {loadError ? <div className="personal-warning" role="alert"><p>{loadError}</p><a href="https://github.com/Utpal-Mishra/STATIC-THREADS/blob/main/docs/PERSONAL_WARDROBE.md" target="_blank" rel="noreferrer">Wardrobe setup guide</a></div> : null}
     {notice ? <p className="personal-warning" role="status">{notice}</p> : null}
@@ -104,11 +113,11 @@ function WardrobeManager({ userId }: { userId: string }) {
       const photo = photos.find(p => p.id === item.photo_id), pending = photos.filter(p => p.item_id === item.id && p.state !== "current");
       return <article className="personal-card" key={item.id} aria-label={item.name}>
         <div className="personal-photo">{photo && urls[photo.id] && !item.deleted_at ? <img src={urls[photo.id]} alt={item.name} referrerPolicy="no-referrer" onError={() => setUrls(current => { const next = { ...current }; delete next[photo.id]; return next; })} /> : <span>{item.deleted_at ? "Deletion pending" : photo ? "Preview unavailable · retry sync" : "Add your photo"}</span>}</div>
-        <div className="personal-content"><p className="eyebrow">{item.category} · {item.status}</p><h2>{item.name}</h2><p>{[item.brand, item.primary_colour, item.size].filter(Boolean).join(" · ") || "Details can be added anytime"}</p>
+        <div className="personal-content"><p className="eyebrow">{item.category} · {item.status}</p><h2>{item.name}</h2>{item.client_item_id?.startsWith("catalog:v1:") ? <p>Imported from existing catalogue · check photo details.</p> : null}<p>{[item.brand, item.primary_colour, item.size].filter(Boolean).join(" · ") || "Details can be added anytime"}</p>
         {item.deleted_at ? <><p>Removed from outfit planning. Photo and record deletion must finish before this disappears.</p><button disabled={busy} onClick={() => void run(async api => { await cleanup(api, item, true); await api.finishDelete(item); return "Clothing and photo deletion confirmed."; })}>Retry deletion</button></> : <>
           <div className="personal-actions"><button className="secondary" disabled={busy} onClick={() => openEditor(item)}>Edit</button><button className="secondary" disabled={busy} onClick={() => setConfirm({ id: item.id, action: "delete" })}>Delete</button></div>
-          <label className="personal-upload">{photo ? "Replace photo" : "Upload photo"}<input type="file" accept="image/jpeg,image/png,image/webp" disabled={busy} onChange={e => { const file = e.target.files?.[0]; e.target.value = ""; if (file) void run(async api => { await api.upload(item, file); await cleanup(api, item); return "Photo saved privately to your account."; }); }} /></label>
-          <label className="personal-upload">Take photo<input type="file" accept="image/jpeg,image/png,image/webp" capture="environment" disabled={busy} onChange={e => { const file = e.target.files?.[0]; e.target.value = ""; if (file) void run(async api => { await api.upload(item, file); await cleanup(api, item); return "Photo saved privately to your account."; }); }} /></label>
+          <label className="personal-upload">{photo ? "Replace photo" : "Upload photo"}<input type="file" accept="image/jpeg,image/png,image/webp" disabled={busy} onChange={e => { const file = e.target.files?.[0]; e.target.value = ""; if (file) setPhotoDraft({ item, file }); }} /></label>
+          <label className="personal-upload">Take photo<input type="file" accept="image/jpeg,image/png,image/webp" capture="environment" disabled={busy} onChange={e => { const file = e.target.files?.[0]; e.target.value = ""; if (file) setPhotoDraft({ item, file }); }} /></label>
           {photo ? <button className="secondary" disabled={busy} onClick={() => setConfirm({ id: item.id, action: "photo" })}>Remove photo</button> : null}
           {pending.length ? <div className="personal-warning"><p>{pending.length} unfinished upload / old photo(s). Cleanup discards these and keeps the current photo.</p><button className="secondary" disabled={busy} onClick={() => void run(async api => { await cleanup(api, item); return "Pending photos cleaned up."; })}>Clean up pending photos</button></div> : null}
         </>}

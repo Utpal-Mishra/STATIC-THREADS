@@ -1,7 +1,7 @@
 // Token binding and recovery contracts. No real account or provider requests.
 const assert=require('node:assert/strict'),fs=require('node:fs'),ts=require('typescript');
 const source=ts.transpileModule(fs.readFileSync('lib/personal-wardrobe.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
-let token='token-A', verifiedTokens=[],requests=[],mode='ok';
+let token='token-A', verifiedTokens=[],requests=[],mode='ok';const imported=new Map();
 const owner='00000000-0000-4000-8000-000000000001',itemId='00000000-0000-4000-8000-000000000011';
 const row={id:itemId,user_id:owner,revision:1};
 const moduleObj={exports:{}};
@@ -18,6 +18,8 @@ global.fetch=async(url,init={})=>{requests.push({url,init});if(String(url).start
  if(mode==='conflict')return new Response(JSON.stringify({code:'40001'}),{status:409});
  if(mode==='offline')throw new TypeError('network');
  let data=[];
+ if(mode==='catalogue'&&String(url).includes('/wardrobe_items')){if(init.method==='POST'){const input=JSON.parse(init.body);assert.equal(input.user_id,owner);assert.equal(init.headers.Authorization,'Bearer token-A');if(imported.has(input.client_item_id))data=[];else{data=[{...input,id:itemId,revision:1}];imported.set(input.client_item_id,data[0])}}else data=[...imported.values()];return new Response(JSON.stringify(data),{status:200});}
+
  if(String(url).includes('wardrobe_items?'))data=[mode==='foreign'?{...row,user_id:'other'}:row];
  if(String(url).includes('/rpc/save_'))data=row;
  if(String(url).includes('/sign/'))data={signedURL:'/object/sign/wardrobe-private/'+owner+'/'+itemId+'/photo.jpg?token=fixture'};
@@ -27,5 +29,6 @@ global.fetch=async(url,init={})=>{requests.push({url,init});if(String(url).start
  const signed=await api.signedPhoto({id:'photo',user_id:owner,item_id:itemId,state:'current',path:owner+'/'+itemId+'/photo.jpg'});assert.ok(signed.startsWith('https://test.example/storage/v1/object/sign/'));
  for(const [m,kind] of [['missing','setup'],['conflict','conflict'],['offline','network'],['foreign','network']]){mode=m;await assert.rejects(()=>api.list(0),e=>e.kind===kind)}
  mode='attach-fail';requests=[];await assert.rejects(()=>api.upload(row,{}));assert.ok(requests.some(r=>r.url.includes('/storage/v1/object/wardrobe-private/')));assert.equal(requests.some(r=>r.init.method==='DELETE'),false,'Ambiguous attach must never delete a possibly-current photo');
+ mode='catalogue';const metadata={...emptyDraft(),name:'Original',secondary_colours:[],seasons:[],pattern:'',wear_count:0,last_worn_date:null};await api.importCatalogue('white-tee',metadata);await api.importCatalogue('white-tee',{...metadata,name:'Do not overwrite'});assert.equal(imported.size,1);assert.equal(imported.values().next().value.name,'Original');await assert.rejects(()=>api.importCatalogue('../unsafe',metadata));
  mode='ok';requests=[];const aborted=new AbortController();const scoped=await personalSession(owner,aborted.signal);aborted.abort();await assert.rejects(()=>scoped.save(itemId,1,emptyDraft()));assert.equal(requests.length,0);
  console.log('PASS: exact verified token, safe signed URL, missing setup/conflict/offline/foreign owner, aborted account scope and ambiguous photo attach recovery');})().catch(e=>{console.error(e);process.exitCode=1});
