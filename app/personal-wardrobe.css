@@ -58,3 +58,6 @@
 .cleanup-controls .cleanup-toggle { display:flex; align-items:center; gap:.6rem; }
 .cleanup-toggle input[type=checkbox] { width:18px; height:18px; margin:0; padding:0; flex-shrink:0; }
 .photo-cleanup input,.existing-closet-import input { accent-color:#88f1c6; }
+.outfit-library-grid { margin-top:1rem; }
+.outfit-library-grid ul { padding-left:1.25rem; }
+.outfit-library-grid li + li { margin-top:.35rem; }

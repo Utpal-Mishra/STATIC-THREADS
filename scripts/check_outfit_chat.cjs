@@ -101,11 +101,12 @@ function testSession() {
     await launcher.click(); await dialog.waitFor();
     await dialog.getByRole('button', { name: 'Close outfit planner' }).click();
     if (process.env.TEST_PRIVATE === '1') {
-      let dataMode = 'normal', failWrite = false;
+      let dataMode = 'normal', failWrite = false, loseWearResponse = true;
       const writes = [];
-      await context.route('https://auth-test.example/**', async route => {
+      let events = [];
+      const handleApi = async route => {
         const request = route.request(), url = new URL(request.url());
-        const headers = { 'access-control-allow-origin': '*', 'access-control-allow-headers': '*', 'access-control-allow-methods': 'GET,POST,OPTIONS', 'content-type': 'application/json' };
+        const headers = { 'access-control-allow-origin': '*', 'access-control-allow-headers': '*', 'access-control-allow-methods': 'GET,POST,DELETE,OPTIONS', 'content-type': 'application/json' };
         if (request.method() === 'OPTIONS') return route.fulfill({ status: 200, headers, body: '' });
         let status = 200, body = {};
         if (url.pathname.endsWith('/user')) body = user;
@@ -122,14 +123,43 @@ function testSession() {
           else if (dataMode === 'wrong-owner') body = privateItems.map(item => ({ ...item, user_id: 'other-user' }));
           else body = privateItems;
         } else if (url.pathname.endsWith('/outfit_events')) {
-          assert.equal(request.method(), 'POST');
-          writes.push(request.postDataJSON());
-          status = failWrite ? 403 : 201;
-          body = failWrite ? { message: 'not permitted' } : {};
+          if (request.method() === 'POST') {
+            const event = request.postDataJSON();
+            assert.equal(event.user_id, uid);
+            writes.push(event);
+            if (failWrite) { status = 403; body = { message: 'not permitted' }; }
+            else if (events.some(saved => saved.id === event.id)) { status = 409; body = { code: '23505' }; }
+            else {
+              events.push({ ...event, created_at: new Date().toISOString() });
+              if (event.action === 'worn' && loseWearResponse) {
+                loseWearResponse = false;
+                return route.abort('failed');
+              }
+              status = 201;
+            }
+          } else {
+            assert.equal(url.searchParams.get('user_id'), `eq.${uid}`);
+            const action = url.searchParams.get('action')?.slice(3);
+            const id = url.searchParams.get('id')?.slice(3);
+            const ids = url.searchParams.get('item_ids')?.slice(4, -1).split(',');
+            const matches = event => event.action === action && (!id || event.id === id)
+              && (!ids || JSON.stringify([...new Set(event.item_ids)].sort()) === JSON.stringify(ids));
+            if (request.method() === 'DELETE') {
+              assert.ok(['saved', 'liked'].includes(action) && ids?.length);
+              assert.deepEqual(url.searchParams.getAll('item_ids').map(filter => filter.slice(0, 3)), ['cs.', 'cd.']);
+              events = events.filter(event => !matches(event));
+              status = 204;
+              body = null;
+            } else {
+              assert.equal(request.method(), 'GET');
+              body = events.filter(matches).slice(0, Number(url.searchParams.get('limit')));
+            }
+          }
         } else if (url.pathname.endsWith('/logout')) { status = 204; body = null; }
         else throw new Error(`Unexpected test request ${url.pathname}`);
         return route.fulfill({ status, headers, body: body === null ? '' : JSON.stringify(body) });
-      });
+      };
+      await context.route('https://auth-test.example/**', handleApi);
       await page.evaluate(value => localStorage.setItem('sb-auth-test-auth-token', JSON.stringify(value)), testSession());
       await page.reload();
       await page.getByText('Signed in as', { exact: false }).waitFor();
@@ -150,7 +180,11 @@ function testSession() {
       assert.equal(last.user_id, uid); assert.equal(last.action, 'saved');
       assert.deepEqual(last.item_ids.sort(), privateItems.map(item => item.id).sort());
       await dialog.getByRole('button', { name: 'Wore this', exact: true }).click();
+      await dialog.getByRole('status').filter({ hasText: "This action couldn't be confirmed" }).waitFor();
+      await dialog.getByRole('button', { name: 'Wore this', exact: true }).click();
       await dialog.getByRole('status').filter({ hasText: 'Wear event recorded in your account.' }).waitFor();
+      assert.equal(writes.at(-1).id, writes.at(-2).id);
+      assert.equal(events.filter(event => event.action === 'worn').length, 1);
       assert.equal(writes.at(-1).action, 'worn');
       dataMode = 'changed';
       await dialog.getByRole('button', { name: 'Another option', exact: true }).click();
@@ -180,6 +214,35 @@ function testSession() {
         await dialog.getByRole('button', { name: 'Try demo wardrobe' }).click();
       }
       await dialog.getByRole('button', { name: 'Close outfit planner' }).click();
+      dataMode = 'normal';
+      const saved = events.find(event => event.action === 'saved');
+      events.push({ ...saved, id: '00000000-0000-4000-8000-000000000075', item_ids: [...saved.item_ids].reverse() });
+      await page.getByRole('link', { name: 'My outfits', exact: true }).click();
+      await page.getByRole('heading', { name: 'My outfits', exact: true }).waitFor();
+      await page.getByRole('button', { name: 'Add to favourites', exact: true }).click();
+      await page.getByText('Added to favourites.', { exact: true }).waitFor();
+      assert.equal(await page.getByRole('article').count(), 1, 'Legacy duplicate saves should display as one outfit');
+      const device = await browser.newContext({ storageState: await context.storageState(), viewport: { width: 320, height: 740 } });
+      try {
+        await device.route('https://auth-test.example/**', handleApi);
+        const second = await device.newPage();
+        await second.goto(base + 'outfits/');
+        await second.getByRole('button', { name: 'Favourites', exact: true }).click();
+        await second.getByText('Private dresses', { exact: true }).waitFor();
+        assert.ok(await second.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+        await page.getByRole('button', { name: 'Unsave outfit', exact: true }).click();
+        await page.getByText('Outfit unsaved.', { exact: true }).waitFor();
+        await second.getByRole('button', { name: 'Saved outfits', exact: true }).click();
+        await second.getByText('Save an outfit from the planner to see it here.', { exact: true }).waitFor();
+        await second.getByRole('button', { name: 'Wear history', exact: true }).click();
+        await second.getByText('Private dresses', { exact: true }).waitFor();
+        assert.equal(await second.getByRole('article').count(), 1);
+        await second.getByRole('button', { name: 'Favourites', exact: true }).click();
+        await second.getByRole('button', { name: 'Remove favourite', exact: true }).click();
+        await second.getByText('Removed from favourites.', { exact: true }).waitFor();
+        assert.deepEqual(events.map(event => event.action), ['worn']);
+      } finally { await device.close(); }
+      await page.goto(base + 'account/');
       await page.getByRole('button', { name: 'Sign out of this browser' }).click();
       await page.getByLabel('Email', { exact: true }).waitFor();
       await launcher.click();

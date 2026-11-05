@@ -76,6 +76,7 @@ export function AccountPanel() {
             <p className="account-identity">Signed in as <strong>{auth.user?.email ?? "your account"}</strong></p>
             <p className="account-message">Your account is connected. Open your personal wardrobe to add clothing and sync private photos. The sample catalogue stays available separately.</p>
             <Link className="photo-import-entry" href="/wardrobe/">Open personal wardrobe</Link>
+            <Link className="photo-import-entry" href="/outfits/">My outfits</Link>
             <button type="button" onClick={signOut} disabled={status === "signing-out"}>{status === "signing-out" ? "Signing out…" : "Sign out of this browser"}</button>
           </div>
         ) : enabled ? (

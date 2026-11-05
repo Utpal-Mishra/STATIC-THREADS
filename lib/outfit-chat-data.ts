@@ -23,15 +23,6 @@ export async function loadPersonalWardrobe(userId: string, signal: AbortSignal) 
   if ((data ?? []).some(row => row.user_id !== userId)) throw new Error("Wardrobe owner mismatch");
   return (data ?? []).map(mapWardrobeRow);
 }
-export async function recordPersonalOutfit(userId: string, itemIds: string[], action: "saved" | "worn", occasion: string) {
-  const client = await verifiedClient(userId);
-  // Recheck ownership and availability when writing; do not trust old UI selections.
-  const { data, error } = await client.from("wardrobe_items").select("id,user_id,status").eq("user_id", userId).is("deleted_at", null).in("id", itemIds);
-  if (error || !data || data.length !== itemIds.length || data.some(row => row.user_id !== userId || row.status !== "available")) throw new Error("These pieces are no longer available in your wardrobe");
-  const result = await client.from("outfit_events").insert({ user_id: userId, item_ids: itemIds, action, occasion });
-  if (result.error) throw result.error;
-}
-
 const DEMO_KEY = "static-threads-outfit-chat-demo-v1";
 export type DemoActions = { version: 1; saved: string[]; worn: Array<{ outfit: string; date: string }> };
 export function readDemoActions(): DemoActions {
