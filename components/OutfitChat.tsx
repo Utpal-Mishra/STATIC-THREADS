@@ -70,8 +70,10 @@ function ChatSession({ userId }: { userId: string | null }) {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const sequence = useRef(1);
   const pendingActions = useRef(new Set<string>());
+  const planningRequest = useRef<AbortController | null>(null);
+  const [planning, setPlanning] = useState(false);
   const mounted = useRef(true);
-  useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
+  useEffect(() => { mounted.current = true; return () => { mounted.current = false; planningRequest.current?.abort(); }; }, []);
   useEffect(() => {
     if (!userId) { setDemoActions(readDemoActions()); return; }
     const controller = new AbortController();
@@ -92,20 +94,51 @@ function ChatSession({ userId }: { userId: string | null }) {
   function addMessage(speaker: Message["speaker"], text: string) {
     setMessages(current => [...current.slice(-38), { id: sequence.current++, speaker, text }]);
   }
-  function send(value: string) {
+  async function send(value: string) {
     const text = value.trim().slice(0, 600);
-    if (!text || loadStatus !== "ready" || !items.length) return;
+    if (!text || loadStatus !== "ready" || !items.length || planningRequest.current) return;
+    let currentItems = items;
+    if (userId) {
+      const controller = new AbortController();
+      planningRequest.current = controller;
+      setPlanning(true);
+      try {
+        currentItems = await loadPersonalWardrobe(userId, controller.signal);
+        if (controller.signal.aborted) return;
+        setItems(currentItems);
+      } catch {
+        if (!controller.signal.aborted) {
+          setItems([]);
+          setOutfits([]);
+          setSeen([]);
+          setLoadStatus("error");
+          setInput(text);
+        }
+        return;
+      } finally {
+        planningRequest.current = null;
+        if (!controller.signal.aborted) setPlanning(false);
+      }
+      if (!currentItems.length) {
+        setOutfits([]);
+        setSeen([]);
+        setInput(text);
+        return;
+      }
+    }
+    const wardrobeChanged = JSON.stringify(currentItems) !== JSON.stringify(items);
     addMessage("You", text);
-    const next = updateBrief(brief, text, items);
-    const changed = JSON.stringify(next) !== JSON.stringify(brief);
+    const next = updateBrief(brief, text, currentItems);
+    const changed = wardrobeChanged || JSON.stringify(next) !== JSON.stringify(brief);
     setBrief(next); setInput(""); setActionMessage("");
     const followup = nextQuestion(next);
     if (followup) {
+      if (changed) setSeen([]);
       setOutfits([]); setQuestion(followup.options); addMessage("Planner", followup.text);
     } else if (!changed && outfits.length && !/\b(another|alternative|more|again|options)\b/i.test(text)) {
       addMessage("Planner", "I can adjust this plan using an event, dress code, indoor/outdoor conditions, colours to avoid or an exact item name. Try ‘no black’, ‘prefer blue’ or ‘another option’. This local planner doesn't answer general questions.");
     } else {
-      const result = planOutfits(items, next, changed ? [] : seen, userId ? [] : styleProfile.outfits.slice(0, 4).map(look => look.itemIds));
+      const result = planOutfits(currentItems, next, changed ? [] : seen, userId ? [] : styleProfile.outfits.slice(0, 4).map(look => look.itemIds));
       setOutfits(result.outfits); setSeen(current => [...(changed ? [] : current), ...result.outfits.map(outfit => outfit.id)]);
       setQuestion(result.outfits.length ? ["Another option", "No black", "Prefer blue", "Comfortable"] : ["Casual", "Smart casual", "Clear preferences"]);
       addMessage("Planner", result.message);
@@ -137,9 +170,10 @@ function ChatSession({ userId }: { userId: string | null }) {
     } finally { pendingActions.current.delete(key); }
   }
   const savedDemo = !userId ? demoActions.saved.map(id => ({ id, items: id.split("|").map(itemId => items.find(item => item.id === itemId)).filter((item): item is PlannerItem => Boolean(item)) })).filter(outfit => outfit.items.length === outfit.id.split("|").length) : [];
+  const canSend = loadStatus === "ready" && items.length > 0 && !planning;
   return <>
-    <div className="outfit-chat-toolbar"><span>{loadStatus === "loading" ? "Loading wardrobe…" : `${items.filter(item => item.status === "available").length} available pieces${items.length === 500 ? " · first 500 records" : ""}`}</span><button type="button" onClick={reset}>New plan</button></div>
-    {loadStatus === "error" ? <div className="outfit-chat-notice" role="alert">Your private wardrobe could not be loaded. Check that account storage is set up and try again. Demo data has not been substituted.<button type="button" onClick={() => setRetry(value => value + 1)}>Retry wardrobe</button></div> : loadStatus === "ready" && !items.length ? <p className="outfit-chat-notice">Your wardrobe is empty. Add clothing when wardrobe uploads are available, or choose “Try demo wardrobe” above to explore the planner.</p> : null}
+    <div className="outfit-chat-toolbar"><span>{planning ? "Checking wardrobe…" : loadStatus === "loading" ? "Loading wardrobe…" : `${items.filter(item => item.status === "available").length} available pieces${items.length === 500 ? " · first 500 records" : ""}`}</span><button type="button" disabled={planning} onClick={reset}>New plan</button></div>
+    {loadStatus === "error" ? <div className="outfit-chat-notice" role="alert">Your private wardrobe could not be loaded. Check that account storage is set up and try again. Demo data has not been substituted.<button type="button" onClick={() => setRetry(value => value + 1)}>Retry wardrobe</button></div> : loadStatus === "ready" && !items.length ? <p className="outfit-chat-notice">Your wardrobe is empty. Add clothing in Personal wardrobe, then refresh here.<button type="button" onClick={() => setRetry(value => value + 1)}>Refresh wardrobe</button></p> : null}
     <div className="outfit-chat-transcript" ref={transcript}>
       <div role="log" aria-label="Outfit planning conversation" aria-live="polite" aria-relevant="additions">
         {messages.map(message => <div className={`outfit-chat-message ${message.speaker === "You" ? "from-user" : "from-planner"}`} key={message.id}><span>{message.speaker}</span><p>{message.text}</p></div>)}
@@ -148,22 +182,23 @@ function ChatSession({ userId }: { userId: string | null }) {
         <h3>Option {index + 1}</h3>
         <ul>{outfit.items.map(item => <li key={item.id}><strong>{item.name}</strong><span>{item.colour} · {item.category}</span></li>)}</ul>
         <p>{outfit.explanation}</p>
+        {userId ? <p className="chat-visual-note">From your private wardrobe. Mannequin previews are illustrative.</p> : null}
         <OutfitVisuals key={`${outfit.id}:${JSON.stringify(brief)}`} outfit={outfit} brief={brief} />
         <details><summary>Before you wear it</summary>{outfit.cautions.map(caution => <p key={caution}>{caution}</p>)}</details>
         <div className="outfit-chat-actions">{(["saved", "worn"] as const).map(action => {
           const state = actionState[`${outfit.id}:${action}`];
           const done = state === "done" || (!userId && action === "saved" && demoActions.saved.includes(outfit.id));
-          return <button key={action} type="button" disabled={state === "busy" || done} onClick={() => void act(outfit, action)}>{state === "busy" ? "Recording…" : done ? action === "saved" ? "Saved" : "Wear recorded" : action === "saved" ? "Save outfit" : "Wore this"}</button>;
+          return <button key={action} type="button" disabled={planning || state === "busy" || done} onClick={() => void act(outfit, action)}>{state === "busy" ? "Recording…" : done ? action === "saved" ? "Saved" : "Wear recorded" : action === "saved" ? "Save outfit" : "Wore this"}</button>;
         })}</div>
       </article>)}</div> : null}
-      {!outfits.length && messages.length > 1 && !nextQuestion(brief) ? <div className="chat-empty-visual"><OutfitVisuals key={JSON.stringify(brief)} outfit={{ id: "missing-wardrobe-look", items: [], explanation: "", cautions: [] }} brief={brief} /></div> : null}
+      {loadStatus === "ready" && items.length > 0 && !planning && !outfits.length && messages.length > 1 && !nextQuestion(brief) ? <div className="chat-empty-visual"><OutfitVisuals key={JSON.stringify(brief)} outfit={{ id: "missing-wardrobe-look", items: [], explanation: "", cautions: [] }} brief={brief} /></div> : null}
       {!userId && savedDemo.length ? <div className="outfit-chat-saved"><button type="button" aria-expanded={showSaved} onClick={() => setShowSaved(value => !value)}>Saved demo outfits ({savedDemo.length})</button>{showSaved ? <ul>{savedDemo.map(outfit => <li key={outfit.id}>{outfit.items.map(item => item.name).join(" + ")}</li>)}</ul> : null}<small>{demoActions.worn.length} demo wear event(s) on this browser</small></div> : null}
     </div>
     <p className="outfit-chat-action-message" role="status">{actionMessage}</p>
-    <div className="outfit-chat-quick" aria-label="Suggested replies">{question.map(value => <button type="button" key={value} disabled={loadStatus !== "ready" || !items.length} onClick={() => send(value)}>{value}</button>)}</div>
+    <div className="outfit-chat-quick" aria-label="Suggested replies">{question.map(value => <button type="button" key={value} disabled={!canSend} onClick={() => send(value)}>{value}</button>)}</div>
     <form className="outfit-chat-form" onSubmit={submit}>
       <label htmlFor="outfit-chat-input" className="outfit-chat-input-label">Tell the planner</label>
-      <div><textarea id="outfit-chat-input" ref={inputRef} value={input} onChange={event => setInput(event.target.value)} maxLength={600} rows={2} placeholder="Dinner, smart casual, indoors…" disabled={loadStatus !== "ready" || !items.length} /><button type="submit" disabled={!input.trim() || loadStatus !== "ready" || !items.length}>Send</button></div>
+      <div><textarea id="outfit-chat-input" ref={inputRef} value={input} onChange={event => setInput(event.target.value)} maxLength={600} rows={2} placeholder="Dinner, smart casual, indoors…" disabled={loadStatus !== "ready" || !items.length} readOnly={planning} /><button type="submit" disabled={!input.trim() || !canSend}>Send</button></div>
       <small>Conversation stays in this session. Only explicit save/wear actions are stored.</small>
     </form>
   </>;
