@@ -16,7 +16,7 @@ export class WardrobeError extends Error {
 
 // Every request in an operation uses this exact verified token, never whatever
 // account the singleton may have switched to during a multi-step photo operation.
-export async function personalSession(userId: string, signal: AbortSignal) {
+export async function verifiedWardrobeRequest(userId: string, signal: AbortSignal) {
   const client = getSupabaseBrowser(), config = getCloudConfig();
   if (!client || !config) throw new WardrobeError("Sign in to open your personal wardrobe.", "auth");
   const { data, error } = await client.auth.getSession();
@@ -33,13 +33,21 @@ export async function personalSession(userId: string, signal: AbortSignal) {
     const result = await response.json().catch(() => null);
     if (!response.ok) {
       if (response.status === 401) throw new WardrobeError("Sign in again to continue.", "auth");
-      if (result?.code === "40001" || result?.code === "23505") throw new WardrobeError("This item changed in another session. Reload and review the latest version before saving again.", "conflict");
+      if (result?.code === "40001" || result?.code === "23505") {
+        const error = new WardrobeError("This item changed in another session. Reload and review the latest version before saving again.", "conflict");
+        throw Object.assign(error, { code: result.code });
+      }
       if (["42P01", "42703", "PGRST202", "PGRST204", "PGRST205"].includes(result?.code)) throw new WardrobeError("Personal wardrobe setup is pending. Apply the wardrobe database setup, then retry.", "setup");
       throw new WardrobeError("The cloud operation could not be confirmed. Reload and retry. Photo cleanup may still be pending.");
     }
     signal.throwIfAborted();
     return result;
   }
+  return { request, config };
+}
+
+export async function personalSession(userId: string, signal: AbortSignal) {
+  const { request, config } = await verifiedWardrobeRequest(userId, signal);
   const rpc = (name: string, body: object) => request(`/rest/v1/rpc/${name}`, { method: "POST", body: JSON.stringify(body) });
   function ownedItem(row: PersonalItem) {
     if (!row || row.user_id !== userId || typeof row.id !== "string" || !Number.isInteger(row.revision)) throw new WardrobeError("Your wardrobe could not be verified.");

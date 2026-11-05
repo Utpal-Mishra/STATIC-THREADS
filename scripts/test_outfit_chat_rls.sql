@@ -43,9 +43,25 @@ begin
     raise exception 'Update bypassed garment ownership';
   exception when insufficient_privilege then null; end;
 end $$;
+-- Match the library's exact-set DELETE, including historical duplicate saves.
+insert into public.outfit_events (user_id, item_ids, action) values
+  (auth.uid(), array['00000000-0000-4000-8000-000000000011']::uuid[], 'saved'),
+  (auth.uid(), array['00000000-0000-4000-8000-000000000011']::uuid[], 'liked'),
+  (auth.uid(), array['00000000-0000-4000-8000-000000000011']::uuid[], 'worn');
+delete from public.outfit_events where user_id = auth.uid() and action = 'saved'
+  and item_ids @> array['00000000-0000-4000-8000-000000000011']::uuid[]
+  and item_ids <@ array['00000000-0000-4000-8000-000000000011']::uuid[];
+do $$
+begin
+  if (select array_agg(action order by action) from public.outfit_events) is distinct from array['liked', 'worn'] then
+    raise exception 'Unsave did not preserve the separate favourite and wear event';
+  end if;
+end $$;
 set request.jwt.claim.sub = '00000000-0000-4000-8000-000000000002';
 do $$
 begin
+  delete from public.outfit_events where user_id = '00000000-0000-4000-8000-000000000001' and action = 'liked';
+  if found then raise exception 'Second account removed another account favourite'; end if;
   if (select count(*) from public.outfit_events) <> 0 then raise exception 'Saved outfit leaked across accounts'; end if;
   if (select count(*) from public.wardrobe_items) <> 1 then raise exception 'Second account saw other garments'; end if;
 end $$;

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-05 — My outfits
+
+- Add an account outfit library for saved outfits, favourites and dated wear history. Group repeated saves of the same garment set and let users remove saved or favourite entries independently. Retry a wear action with the same event ID if its result is uncertain.
+
 ## 2026-11-05
 
 - Refresh the signed-in wardrobe before each planner reply so edited, unavailable and removed pieces affect recommendations in an open session. Private outfit options label mannequin previews as illustrative.

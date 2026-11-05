@@ -7,7 +7,9 @@ import { useAuth } from "@/components/AuthProvider";
 import { styleProfile } from "@/data/style-profile";
 import catalog from "@/data/catalog.json";
 import { emptyBrief, nextQuestion, planOutfits, updateBrief, type Brief, type Outfit, type PlannerItem } from "@/lib/outfit-planner";
-import { loadPersonalWardrobe, readDemoActions, recordDemoOutfit, recordPersonalOutfit, type DemoActions } from "@/lib/outfit-chat-data";
+import { loadPersonalWardrobe, readDemoActions, recordDemoOutfit, type DemoActions } from "@/lib/outfit-chat-data";
+
+import { outfitLibrary } from "@/lib/outfit-library";
 
 const RushHour = dynamic(() => import("@/components/RushHour"), { loading: () => <p className="outfit-chat-notice">Opening Rush Hour…</p> });
 
@@ -70,10 +72,17 @@ function ChatSession({ userId }: { userId: string | null }) {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const sequence = useRef(1);
   const pendingActions = useRef(new Set<string>());
+  const wearIds = useRef(new Map<string, string>());
+  const actionLifetime = useRef<AbortController | null>(null);
   const planningRequest = useRef<AbortController | null>(null);
   const [planning, setPlanning] = useState(false);
   const mounted = useRef(true);
-  useEffect(() => { mounted.current = true; return () => { mounted.current = false; planningRequest.current?.abort(); }; }, []);
+  useEffect(() => {
+    const controller = new AbortController();
+    actionLifetime.current = controller;
+    mounted.current = true;
+    return () => { mounted.current = false; controller.abort(); planningRequest.current?.abort(); };
+  }, []);
   useEffect(() => {
     if (!userId) { setDemoActions(readDemoActions()); return; }
     const controller = new AbortController();
@@ -147,6 +156,9 @@ function ChatSession({ userId }: { userId: string | null }) {
   }
   function submit(event: FormEvent) { event.preventDefault(); send(input); }
   function reset() {
+    // A new plan can record a new wear, while retries keep the same event ID.
+    wearIds.current.clear();
+    setActionState({});
     setBrief(emptyBrief()); setMessages([initialMessage]); setOutfits([]); setSeen([]); setQuestion(["Office", "Wedding", "Dinner", "Travel"]); setInput(""); setActionMessage("");
     inputRef.current?.focus();
   }
@@ -156,7 +168,17 @@ function ChatSession({ userId }: { userId: string | null }) {
     pendingActions.current.add(key);
     setActionState(current => ({ ...current, [key]: "busy" })); setActionMessage("");
     try {
-      if (userId) await recordPersonalOutfit(userId, outfit.items.map(item => item.id), action, brief.event);
+      if (userId) {
+        const signal = actionLifetime.current?.signal;
+        if (!signal) return;
+        let wearId: string | undefined;
+        if (action === "worn") {
+          wearId = wearIds.current.get(key) ?? crypto.randomUUID();
+          wearIds.current.set(key, wearId);
+        }
+        const api = await outfitLibrary(userId, signal);
+        await api.record(action, outfit.items.map(item => item.id), brief.event, wearId);
+      }
       else {
         const value = recordDemoOutfit(outfit.id, action);
         if (mounted.current) setDemoActions(value);
@@ -172,7 +194,7 @@ function ChatSession({ userId }: { userId: string | null }) {
   const savedDemo = !userId ? demoActions.saved.map(id => ({ id, items: id.split("|").map(itemId => items.find(item => item.id === itemId)).filter((item): item is PlannerItem => Boolean(item)) })).filter(outfit => outfit.items.length === outfit.id.split("|").length) : [];
   const canSend = loadStatus === "ready" && items.length > 0 && !planning;
   return <>
-    <div className="outfit-chat-toolbar"><span>{planning ? "Checking wardrobe…" : loadStatus === "loading" ? "Loading wardrobe…" : `${items.filter(item => item.status === "available").length} available pieces${items.length === 500 ? " · first 500 records" : ""}`}</span><button type="button" disabled={planning} onClick={reset}>New plan</button></div>
+    <div className="outfit-chat-toolbar"><span>{planning ? "Checking wardrobe…" : loadStatus === "loading" ? "Loading wardrobe…" : `${items.filter(item => item.status === "available").length} available pieces${items.length === 500 ? " · first 500 records" : ""}`}</span><button type="button" disabled={planning || pendingActions.current.size > 0} onClick={reset}>New plan</button></div>
     {loadStatus === "error" ? <div className="outfit-chat-notice" role="alert">Your private wardrobe could not be loaded. Check that account storage is set up and try again. Demo data has not been substituted.<button type="button" onClick={() => setRetry(value => value + 1)}>Retry wardrobe</button></div> : loadStatus === "ready" && !items.length ? <p className="outfit-chat-notice">Your wardrobe is empty. Add clothing in Personal wardrobe, then refresh here.<button type="button" onClick={() => setRetry(value => value + 1)}>Refresh wardrobe</button></p> : null}
     <div className="outfit-chat-transcript" ref={transcript}>
       <div role="log" aria-label="Outfit planning conversation" aria-live="polite" aria-relevant="additions">
