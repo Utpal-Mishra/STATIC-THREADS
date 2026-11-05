@@ -18,7 +18,7 @@ export async function loadPersonalWardrobe(userId: string, signal: AbortSignal) 
   const client = await verifiedClient(userId);
   const { data, error } = await client.from("wardrobe_items")
     .select("id,user_id,name,category,subcategory,primary_colour,secondary_colours,material,occasions,status")
-    .eq("user_id", userId).is("deleted_at", null).order("id").limit(500).abortSignal(signal);
+    .eq("user_id", userId).is("deleted_at", null).order("id").limit(500).abortSignal(AbortSignal.any([signal, AbortSignal.timeout(30000)]));
   if (error) throw error;
   if ((data ?? []).some(row => row.user_id !== userId)) throw new Error("Wardrobe owner mismatch");
   return (data ?? []).map(mapWardrobeRow);
@@ -26,7 +26,7 @@ export async function loadPersonalWardrobe(userId: string, signal: AbortSignal) 
 export async function recordPersonalOutfit(userId: string, itemIds: string[], action: "saved" | "worn", occasion: string) {
   const client = await verifiedClient(userId);
   // Recheck ownership and availability when writing; do not trust old UI selections.
-  const { data, error } = await client.from("wardrobe_items").select("id,user_id,status").eq("user_id", userId).in("id", itemIds);
+  const { data, error } = await client.from("wardrobe_items").select("id,user_id,status").eq("user_id", userId).is("deleted_at", null).in("id", itemIds);
   if (error || !data || data.length !== itemIds.length || data.some(row => row.user_id !== userId || row.status !== "available")) throw new Error("These pieces are no longer available in your wardrobe");
   const result = await client.from("outfit_events").insert({ user_id: userId, item_ids: itemIds, action, occasion });
   if (result.error) throw result.error;

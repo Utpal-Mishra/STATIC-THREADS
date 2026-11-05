@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-05
+
+- Refresh the signed-in wardrobe before each planner reply so edited, unavailable and removed pieces affect recommendations in an open session. Private outfit options label mannequin previews as illustrative.
+
 ## 2026-11-04 — Existing closet import and photo-cleanup review
 
 - Add selective existing-closet import into the signed-in private wardrobe, with optional approved image copies, per-item progress and duplicate-safe retries that preserve edits.

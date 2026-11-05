@@ -113,6 +113,12 @@ function testSession() {
           assert.equal(url.searchParams.get('user_id'), `eq.${uid}`, 'User-scoped filter missing');
           if (dataMode === 'error') { status = 403; body = { message: 'not permitted' }; }
           else if (dataMode === 'empty') body = [];
+          else if (dataMode === 'changed') body = [
+            { ...privateItems[0], status: 'unavailable' },
+            privateItems[1],
+            { ...privateItems[0], id: '00000000-0000-4000-8000-000000000013', name: 'Replacement dress', primary_colour: 'Green' },
+            { ...privateItems[0], id: '00000000-0000-4000-8000-000000000014', name: 'Pending deletion dress', deleted_at: '2026-11-05T00:00:00Z' }
+          ].filter(item => url.searchParams.get('deleted_at') !== 'is.null' || !item.deleted_at);
           else if (dataMode === 'wrong-owner') body = privateItems.map(item => ({ ...item, user_id: 'other-user' }));
           else body = privateItems;
         } else if (url.pathname.endsWith('/outfit_events')) {
@@ -146,6 +152,20 @@ function testSession() {
       await dialog.getByRole('button', { name: 'Wore this', exact: true }).click();
       await dialog.getByRole('status').filter({ hasText: 'Wear event recorded in your account.' }).waitFor();
       assert.equal(writes.at(-1).action, 'worn');
+      dataMode = 'changed';
+      await dialog.getByRole('button', { name: 'Another option', exact: true }).click();
+      await dialog.getByText('Replacement dress', { exact: true }).waitFor();
+      assert.deepEqual(await dialog.locator('.outfit-chat-outfit li strong').allTextContents(), ['Replacement dress', 'Private shoes']);
+      await dialog.getByText('From your private wardrobe. Mannequin previews are illustrative.', { exact: true }).waitFor();
+      dataMode = 'error';
+      await send('Another option');
+      await dialog.getByRole('alert').filter({ hasText: 'Your private wardrobe could not be loaded' }).waitFor();
+      assert.equal(await dialog.getByRole('article').count(), 0);
+      assert.equal(await dialog.getByLabel('Tell the planner').inputValue(), 'Another option');
+      dataMode = 'changed';
+      await dialog.getByRole('button', { name: 'Retry wardrobe' }).click();
+      await dialog.getByRole('button', { name: 'Send', exact: true }).click();
+      await dialog.getByText('Replacement dress', { exact: true }).waitFor();
       // Source switches cannot retain private suggestions in demo mode.
       await dialog.getByRole('button', { name: 'Try demo wardrobe' }).click();
       await dialog.getByText('Demo Wardrobe', { exact: true }).waitFor();
