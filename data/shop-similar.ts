@@ -40,7 +40,7 @@ export const shopSuggestions: ShopSuggestion[] = [
     imageUrl: "https://xcdn.next.co.uk/common/items/default/default/itemimages/3_4Ratio/product/lge/AG4042s.jpg",
     imageAlt: "NEXT stone tapered fit chinos",
     refreshStatus: "stale",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "hm-black-relaxed-shorts",
@@ -58,7 +58,7 @@ export const shopSuggestions: ShopSuggestion[] = [
     availability: "Refresh unavailable; open H&M to verify current stock",
     productCode: "1265992001",
     refreshStatus: "stale",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "zara-white-linen-shirt",
@@ -72,12 +72,12 @@ export const shopSuggestions: ShopSuggestion[] = [
     reason: "Your strongest repeated look is a breathable light shirt with a relaxed collar and rolled sleeves. This current Zara linen shirt is a direct extension of that pattern.",
     href: "https://www.zara.com/ie/en/100-linen-regular-fit-shirt-p01063410.html",
     sourceType: "product",
-    checkedAt: "2026-11-11",
+    checkedAt: "2026-11-12",
     availability: "Product page reachable at Zara when refreshed",
     productCode: "1063/410/250",
     imageAlt: "Zara 100% Linen Regular Fit Shirt",
     refreshStatus: "live",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "uniqlo-cotton-linen-shirt-jacket",
@@ -92,13 +92,13 @@ export const shopSuggestions: ShopSuggestion[] = [
     reason: "A lightweight natural overshirt gives you the same easy layering effect as your current cream and beige pieces without becoming too formal.",
     href: "https://www.uniqlo.com/eu-ie/en/products/E482443-000/00?colorDisplayCode=69",
     sourceType: "product",
-    checkedAt: "2026-11-11",
+    checkedAt: "2026-11-12",
     availability: "Product page reachable at UNIQLO when refreshed",
     productCode: "482443",
     imageUrl: "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/482443/item/eugoods_57_482443_3x4.jpg",
     imageAlt: "UNIQLO cotton linen blend shirt jacket",
     refreshStatus: "live",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "zara-relaxed-trousers",
@@ -112,10 +112,10 @@ export const shopSuggestions: ShopSuggestion[] = [
     reason: "A slightly fuller charcoal or stone trouser preserves your dark-bottom preference while giving the silhouette more polish than denim.",
     href: "https://www.zara.com/ie/en/man-trousers-l838.html",
     sourceType: "category",
-    checkedAt: "2026-11-11",
+    checkedAt: "2026-11-12",
     availability: "Current Zara range; category link refreshed",
     refreshStatus: "manual",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "cos-beige-overshirt",
@@ -133,7 +133,7 @@ export const shopSuggestions: ShopSuggestion[] = [
     availability: "Refresh unavailable; open COS to verify current stock",
     productCode: "1326530001",
     refreshStatus: "stale",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "mango-linen-shirt",
@@ -152,7 +152,7 @@ export const shopSuggestions: ShopSuggestion[] = [
     availability: "Refresh unavailable; open MANGO to verify current stock",
     productCode: "27085939",
     refreshStatus: "stale",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "zara-striped-poplin-shirt",
@@ -166,13 +166,13 @@ export const shopSuggestions: ShopSuggestion[] = [
     reason: "A relaxed striped shirt adds pattern to your neutral denim and trainers while retaining the long-sleeve shirt silhouette.",
     href: "https://www.zara.com/ie/en/relaxed-fit-poplin-shirt-p05588301.html",
     sourceType: "product",
-    checkedAt: "2026-11-11",
+    checkedAt: "2026-11-12",
     availability: "Product page reachable at Zara when refreshed",
     productCode: "5588/301/104",
     imageUrl: "https://static.zara.net/assets/public/1d6c/6c36/6c924db5811f/1a5f9c2d9e72/05588301104-p/05588301104-p.jpg?f=auto&ts=1791300052802&w=560",
     imageAlt: "Zara Striped Poplin Shirt in Striped",
     refreshStatus: "live",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "zara-striped-linen-blend-shirt",
@@ -186,12 +186,12 @@ export const shopSuggestions: ShopSuggestion[] = [
     reason: "This linen-blend stripe is a lighter alternative to your textured shirts and pairs with plain darker trousers.",
     href: "https://www.zara.com/ie/en/regular-fit-linen-cotton-shirt-p01063411.html?v1=545479923",
     sourceType: "product",
-    checkedAt: "2026-11-11",
+    checkedAt: "2026-11-12",
     availability: "Product page reachable at Zara when refreshed",
     productCode: "1063/411/104",
     imageAlt: "Zara Regular Fit Linen Blend Shirt",
     refreshStatus: "live",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "zara-green-heavyweight-tee",
@@ -205,12 +205,12 @@ export const shopSuggestions: ShopSuggestion[] = [
     reason: "A compact cotton crew neck works with your existing overshirts and denim. Compare it with your green tee before adding another.",
     href: "https://www.zara.com/ie/en/basic-heavyweight-t-shirt--03-p01887410.html",
     sourceType: "product",
-    checkedAt: "2026-11-11",
+    checkedAt: "2026-11-12",
     availability: "Product page reachable at Zara when refreshed",
     productCode: "1887/410/500",
     imageAlt: "Zara Basic Heavyweight T-Shirt /03",
     refreshStatus: "live",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "zara-black-interlock-tee",
@@ -224,13 +224,13 @@ export const shopSuggestions: ShopSuggestion[] = [
     reason: "A relaxed plain black layer connects your grey denim and beige overshirt. Your existing black tee may already cover this role.",
     href: "https://www.zara.com/ie/en/relaxed-fit-interlock-t-shirt--04-p05584471.html?v1=545425833",
     sourceType: "product",
-    checkedAt: "2026-11-11",
+    checkedAt: "2026-11-12",
     availability: "Product page reachable at Zara when refreshed",
     productCode: "5584/471/800",
     imageUrl: "https://static.zara.net/assets/public/7745/b5e3/8cb14f1ea921/3ccc6db2257f/05584471800-p/05584471800-p.jpg?f=auto&ts=1765295647746&w=560",
     imageAlt: "Zara Relaxed Fit Interlock T-Shirt /04 in Black",
     refreshStatus: "live",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "zara-stone-pleated-chinos",
@@ -244,13 +244,13 @@ export const shopSuggestions: ShopSuggestion[] = [
     reason: "Stone pleated trousers add a lighter base for your navy and grey shirts, extending the City Minimal direction.",
     href: "https://www.zara.com/ie/en/pleated-regular-fit-chino-trousers-p02553754.html",
     sourceType: "product",
-    checkedAt: "2026-11-11",
+    checkedAt: "2026-11-12",
     availability: "Product page reachable at Zara when refreshed",
     productCode: "2553/754/806",
     imageUrl: "https://static.zara.net/assets/public/27f5/2082/fcd647ce9b00/2093d3b248bb/02553754806-p/02553754806-p.jpg?f=auto&ts=1791200455579&w=560",
     imageAlt: "Zara Pleated Regular Fit Chino Trousers in Stone",
     refreshStatus: "live",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "zara-taupe-wide-pleated-trousers",
@@ -264,13 +264,13 @@ export const shopSuggestions: ShopSuggestion[] = [
     reason: "A taupe-grey pleated base offers a fuller alternative to your slim jeans and works with cream and navy tops.",
     href: "https://www.zara.com/ie/en/pleated-wide-leg-trousers-p00706952.html",
     sourceType: "product",
-    checkedAt: "2026-11-11",
+    checkedAt: "2026-11-12",
     availability: "Product page reachable at Zara when refreshed",
     productCode: "0706/952/832",
     imageUrl: "https://static.zara.net/assets/public/7f14/3980/a198457c96cd/bc3566ebba85/00706952832-p/00706952832-p.jpg?f=auto&ts=1792672335996&w=560",
     imageAlt: "Zara Wide-Leg Pleated Trousers in Taupe grey",
     refreshStatus: "live",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "hm-white-cotton-shirt",
@@ -288,7 +288,7 @@ export const shopSuggestions: ShopSuggestion[] = [
     availability: "Refresh unavailable; open H&M to verify current stock",
     productCode: "0634037001",
     refreshStatus: "stale",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "hm-blue-oxford-shirt",
@@ -306,7 +306,7 @@ export const shopSuggestions: ShopSuggestion[] = [
     availability: "Refresh unavailable; open H&M to verify current stock",
     productCode: "1013956003",
     refreshStatus: "stale",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "hm-white-regular-tee",
@@ -324,7 +324,7 @@ export const shopSuggestions: ShopSuggestion[] = [
     availability: "Refresh unavailable; open H&M to verify current stock",
     productCode: "0685816001",
     refreshStatus: "stale",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "hm-black-relaxed-tee",
@@ -342,7 +342,7 @@ export const shopSuggestions: ShopSuggestion[] = [
     availability: "Refresh unavailable; open H&M to verify current stock",
     productCode: "1309319010",
     refreshStatus: "stale",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "hm-beige-cotton-chinos",
@@ -360,7 +360,7 @@ export const shopSuggestions: ShopSuggestion[] = [
     availability: "Refresh unavailable; open H&M to verify current stock",
     productCode: "1019838002",
     refreshStatus: "stale",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "hm-brown-loose-cargos",
@@ -378,7 +378,7 @@ export const shopSuggestions: ShopSuggestion[] = [
     availability: "Refresh unavailable; open H&M to verify current stock",
     productCode: "1300095004",
     refreshStatus: "stale",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "next-blue-oxford-shirt",
@@ -398,7 +398,7 @@ export const shopSuggestions: ShopSuggestion[] = [
     imageUrl: "https://xcdn.next.co.uk/common/items/default/default/itemimages/3_4Ratio/product/lge/F29963s.jpg?im=Resize%2Cwidth%3D180",
     imageAlt: "NEXT Light Blue Regular Fit Oxford Long Sleeve Shirt",
     refreshStatus: "stale",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "next-white-essential-tee",
@@ -418,7 +418,7 @@ export const shopSuggestions: ShopSuggestion[] = [
     imageUrl: "https://xcdn.next.co.uk/common/items/default/default/itemimages/3_4Ratio/product/lge/369510s.jpg?im=Resize%2Cwidth%3D180",
     imageAlt: "NEXT White Regular Fit Essential Crew Neck Cotton T-Shirt",
     refreshStatus: "stale",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "next-navy-straight-chinos",
@@ -438,7 +438,7 @@ export const shopSuggestions: ShopSuggestion[] = [
     imageUrl: "https://xcdn.next.co.uk/common/items/default/default/itemimages/3_4Ratio/product/lge/690177s.jpg?im=Resize%2Cwidth%3D180",
     imageAlt: "NEXT Navy Blue Straight Fit Stretch Chinos Trousers",
     refreshStatus: "stale",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "mango-white-oxford-shirt",
@@ -456,7 +456,7 @@ export const shopSuggestions: ShopSuggestion[] = [
     availability: "Refresh unavailable; open MANGO to verify current stock",
     productCode: "27051288/01",
     refreshStatus: "stale",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "mango-basic-tee-range",
@@ -470,10 +470,10 @@ export const shopSuggestions: ShopSuggestion[] = [
     reason: "Browse the cotton basics for ecru, sand or navy options that work with your neutral layers. Confirm the exact garment and colour before comparing value.",
     href: "https://shop.mango.com/ie/en/c/men/t-shirts/basics/f64751e7",
     sourceType: "category",
-    checkedAt: "2026-11-11",
+    checkedAt: "2026-11-12",
     availability: "Current MANGO range; category link refreshed",
     refreshStatus: "manual",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "mango-forest-green-chinos",
@@ -493,7 +493,7 @@ export const shopSuggestions: ShopSuggestion[] = [
     imageUrl: "https://media.mango.com/is/image/punto/27056709-48-900?wid=2048",
     imageAlt: "MANGO Regular-Fit Chino Trousers",
     refreshStatus: "stale",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "diesel-black-poplin-shirt",
@@ -507,13 +507,13 @@ export const shopSuggestions: ShopSuggestion[] = [
     reason: "The plain black bowling-collar shape fits your relaxed shirt styling. This is a premium-priced alternative; compare it with your dark navy shirt first.",
     href: "https://ie.diesel.com/en/shirts/s-mac-gsbh-black/A204730GSBH9XX.html",
     sourceType: "product",
-    checkedAt: "2026-11-11",
+    checkedAt: "2026-11-12",
     availability: "Available from DIESEL when refreshed",
     productCode: "A204730GSBH9XX",
     imageUrl: "https://ie.diesel.com/on/demandware.static/-/Sites-diesel-master-catalog/default/dw20994ba5/images/large/A20473_0GSBH_9XX_C.jpg",
     imageAlt: "DIESEL Stretch Poplin Shirt with Oval D Embroidery",
     refreshStatus: "live",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "diesel-white-logo-patch-tee",
@@ -527,13 +527,13 @@ export const shopSuggestions: ShopSuggestion[] = [
     reason: "A restrained logo tee keeps your usual white base with a small branded detail. Your current white tee already covers most of these combinations.",
     href: "https://ie.diesel.com/en/t-shirts/t-adjust-aa12-white/A251300QIAM100.html",
     sourceType: "product",
-    checkedAt: "2026-11-11",
+    checkedAt: "2026-11-12",
     availability: "Available from DIESEL when refreshed",
     productCode: "A251300QIAM100",
     imageUrl: "https://ie.diesel.com/on/demandware.static/-/Sites-diesel-master-catalog/default/dwde33e820/images/large/A25130_0QIAM_100_C.jpg",
     imageAlt: "DIESEL Cotton T-Shirt with Logo Patch",
     refreshStatus: "live",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "diesel-chino-range",
@@ -547,10 +547,10 @@ export const shopSuggestions: ShopSuggestion[] = [
     reason: "Look for beige or khaki chinos to connect your light shirts and navy top. Check the selected style, fabric and premium price before treating it as a wardrobe gap.",
     href: "https://ie.diesel.com/en/man/pants-and-shorts/",
     sourceType: "category",
-    checkedAt: "2026-11-11",
+    checkedAt: "2026-11-12",
     availability: "Current DIESEL range; category link refreshed",
     refreshStatus: "manual",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "pullbear-shirt-range",
@@ -564,10 +564,10 @@ export const shopSuggestions: ShopSuggestion[] = [
     reason: "Choose a relaxed plain or restrained striped shirt to wear with your darker denim. Compare the exact colour and fit with shirts you already own.",
     href: "https://www.pullandbear.com/ie/man/clothing/shirts-n6313?celement=1030204766",
     sourceType: "category",
-    checkedAt: "2026-11-11",
+    checkedAt: "2026-11-12",
     availability: "Current Pull&Bear range; category link refreshed",
     refreshStatus: "manual",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "pullbear-basic-tee-range",
@@ -581,10 +581,10 @@ export const shopSuggestions: ShopSuggestion[] = [
     reason: "Browse plain basic or boxy cuts for an alternative silhouette under your overshirts. Prefer a replacement or a useful new fit over duplicating existing tees.",
     href: "https://www.pullandbear.com/ie/man/clothing/t-shirts-n6323",
     sourceType: "category",
-    checkedAt: "2026-11-11",
+    checkedAt: "2026-11-12",
     availability: "Current Pull&Bear range; category link refreshed",
     refreshStatus: "manual",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "pullbear-chino-trouser-range",
@@ -598,10 +598,10 @@ export const shopSuggestions: ShopSuggestion[] = [
     reason: "Look for a straight or darted trouser in stone, beige or charcoal to extend your light-shirt looks. Confirm the current colour and fabric on the retailer page.",
     href: "https://www.pullandbear.com/ie/man/clothing/trousers-n6363",
     sourceType: "category",
-    checkedAt: "2026-11-11",
+    checkedAt: "2026-11-12",
     availability: "Current Pull&Bear range; category link refreshed",
     refreshStatus: "manual",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "adidas-white-stan-smith",
@@ -621,7 +621,7 @@ export const shopSuggestions: ShopSuggestion[] = [
     imageUrl: "https://assets.adidas.com/images/w_500%2Cf_auto%2Cq_auto/deecebcc265c43c6b092a7fa00fed2d0_9366/Stan_Smith_Shoes_White_S75104_01_standard.jpg",
     imageAlt: "Adidas Stan Smith Shoes",
     refreshStatus: "stale",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "puma-white-black-club-era",
@@ -635,13 +635,13 @@ export const shopSuggestions: ShopSuggestion[] = [
     reason: "A white-and-black retro court shape works with your neutral cargo and denim outfits. Compare it with your current Adidas and Puma pairs before adding another.",
     href: "https://eu.puma.com/ie/en/pd/puma-club-ii-era-sneakers-unisex/397447?swatch=07",
     sourceType: "product",
-    checkedAt: "2026-11-11",
+    checkedAt: "2026-11-12",
     availability: "Available from Puma when refreshed",
     productCode: "397447_07",
     imageUrl: "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/397447/07/sv01/fnd/EEA/fmt/png/PUMA-Club-II-Era-Sneakers-Unisex",
     imageAlt: "Puma Club II Era Sneakers",
     refreshStatus: "live",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "nike-white-court-vision",
@@ -655,13 +655,13 @@ export const shopSuggestions: ShopSuggestion[] = [
     reason: "A white basketball-inspired low-top gives a slightly fuller silhouette with denim and neutral layers. It is an alternative to, rather than a necessary addition beside, owned white trainers.",
     href: "https://www.nike.com/ie/t/court-vision-low-next-nature-shoes-qz2jMVjz/DH2987-100",
     sourceType: "product",
-    checkedAt: "2026-11-11",
+    checkedAt: "2026-11-12",
     availability: "Product page reachable at Nike when refreshed",
     productCode: "DH2987-100",
     imageUrl: "https://static.nike.com/a/images/t_default/u_9ddf04c7-2a9a-4d76-add1-d15af8f0263d,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/706e54b6-9360-4760-817d-86bba495f2e5/NIKE+COURT+VISION+LO+NN.png",
     imageAlt: "Nike Court Vision Low Next Nature",
     refreshStatus: "live",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
   {
     id: "newbalance-neutral-574-range",
@@ -675,9 +675,9 @@ export const shopSuggestions: ShopSuggestion[] = [
     reason: "Browse grey-and-white adult 574 options for a textured retro alternative to your court trainers. Confirm the adult model, colour, width and size; this links to the current family range.",
     href: "https://www.newbalance.ie/en/shop-by-model/574/",
     sourceType: "category",
-    checkedAt: "2026-11-11",
+    checkedAt: "2026-11-12",
     availability: "Current New Balance range; category link refreshed",
     refreshStatus: "manual",
-    lastAttemptAt: "2026-11-11T12:45:14Z"
+    lastAttemptAt: "2026-11-12T13:48:26Z"
   },
 ];
