@@ -72,9 +72,13 @@ export function DecisionLab({ catalog }: { catalog: WardrobeCatalog }) {
       ?? styleProfile.outfits[0];
   }, [occasion, lockedItemId]);
 
-  const mannequin = occasion === "Weekend"
-    ? recommendationColourVariants[outfit.id as RecommendationColourVariantId]?.find(variant => variant.original)
+  const variants = occasion === "Weekend"
+    ? recommendationColourVariants[outfit.id as RecommendationColourVariantId]
     : undefined;
+  // The grey board is closer to Weekend Ease's listed grey shirt and denim.
+  const mannequin = outfit.id === "weekend-ease"
+    ? variants?.find(variant => variant.id === "grey-light-grey")
+    : variants?.find(variant => variant.original);
 
   const suggestion = shopSuggestions.find((entry) => entry.id === productId) ?? shopSuggestions[0];
   const duplicate = suggestion ? duplicateRisk(catalog, suggestion.category, suggestion.colour) : 0;

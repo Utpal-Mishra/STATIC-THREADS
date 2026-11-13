@@ -74,7 +74,7 @@ async function until(check, message) {
     await dock.getByRole('link', { name: 'Decide', exact: true }).click();
     const decide = page.locator('#decision-lab');
     await decide.getByLabel('Occasion').selectOption('Weekend');
-    await decide.getByRole('region', { name: /Weekend Ease.*mannequin views/ }).waitFor();
+    await decide.getByRole('region', { name: /Weekend Ease.*Grey.*mannequin views/ }).waitFor();
     await decide.getByLabel('Build around').selectOption({ label: 'White Tee' });
     const layered = decide.getByRole('region', { name: /Layered Neutral.*mannequin views/ });
     await layered.getByRole('img', { name: /Front$/ }).waitFor();
@@ -84,7 +84,7 @@ async function until(check, message) {
     const board = layered.getByRole('img', { name: /complete five-view board/ });
     await until(() => board.evaluate(img => img.complete && img.naturalWidth > 0), 'Weekend mannequin board failed to load');
     assert.match(await board.getAttribute('src'), /layered-neutral-beige-black\.webp$/);
-    assert.equal(await decide.getByText('Adidas Handball Spezial', { exact: true }).count(), 1);
+    assert.equal(await decide.locator('.decision-outfit-list').getByText('Adidas Handball Spezial', { exact: true }).count(), 1);
     await decide.getByLabel('Build around').selectOption({ label: 'Cream Pocket Tee' });
     const utility = decide.getByRole('region', { name: /Utility Travel.*mannequin views/ });
     await utility.getByRole('img', { name: /Front$/ }).waitFor();
