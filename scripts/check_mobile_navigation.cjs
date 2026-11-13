@@ -71,6 +71,27 @@ async function until(check, message) {
       await until(() => page.locator(`#${id}`).evaluate(e => Math.abs(e.getBoundingClientRect().top - 92) < 20), `${label} anchor obscured`);
       assert.equal(await page.locator('body').evaluate(e => e.style.overflow === 'hidden'), false);
     }
+    await dock.getByRole('link', { name: 'Decide', exact: true }).click();
+    const decide = page.locator('#decision-lab');
+    await decide.getByLabel('Occasion').selectOption('Weekend');
+    await decide.getByRole('region', { name: /Weekend Ease.*mannequin views/ }).waitFor();
+    await decide.getByLabel('Build around').selectOption({ label: 'White Tee' });
+    const layered = decide.getByRole('region', { name: /Layered Neutral.*mannequin views/ });
+    await layered.getByRole('img', { name: /Front$/ }).waitFor();
+    await layered.getByRole('button', { name: 'Show side mannequin view' }).click();
+    await layered.getByRole('img', { name: /Side$/ }).waitFor();
+    await layered.getByRole('button', { name: 'Show complete image board' }).click();
+    const board = layered.getByRole('img', { name: /complete five-view board/ });
+    await until(() => board.evaluate(img => img.complete && img.naturalWidth > 0), 'Weekend mannequin board failed to load');
+    assert.match(await board.getAttribute('src'), /layered-neutral-beige-black\.webp$/);
+    assert.equal(await decide.getByText('Adidas Handball Spezial', { exact: true }).count(), 1);
+    await decide.getByLabel('Build around').selectOption({ label: 'Cream Pocket Tee' });
+    const utility = decide.getByRole('region', { name: /Utility Travel.*mannequin views/ });
+    await utility.getByRole('img', { name: /Front$/ }).waitFor();
+    await decide.getByLabel('Build around').selectOption({ label: 'Taupe Tee' });
+    await decide.getByText('A mannequin preview isn’t available for this outfit yet.', { exact: true }).waitFor();
+    await decide.getByLabel('Occasion').selectOption('Office');
+    assert.equal(await decide.locator('.decision-mannequin').count(), 0);
     // Scroll without using a dock link to check the live section indicator.
     await page.locator('#decision-lab').evaluate(e => e.scrollIntoView({ block: 'start' }));
     await until(() => dock.getByRole('link', { name: 'Decide', exact: true }).getAttribute('aria-current').then(x => x === 'location'), 'Scroll-based active state failed');
