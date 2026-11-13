@@ -72,9 +72,7 @@ export function DecisionLab({ catalog }: { catalog: WardrobeCatalog }) {
       ?? styleProfile.outfits[0];
   }, [occasion, lockedItemId]);
 
-  const variants = occasion === "Weekend"
-    ? recommendationColourVariants[outfit.id as RecommendationColourVariantId]
-    : undefined;
+  const variants = recommendationColourVariants[outfit.id as RecommendationColourVariantId];
   // The grey board is closer to Weekend Ease's listed grey shirt and denim.
   const mannequin = outfit.id === "weekend-ease"
     ? variants?.find(variant => variant.id === "grey-light-grey")
@@ -134,9 +132,9 @@ export function DecisionLab({ catalog }: { catalog: WardrobeCatalog }) {
                 label: `${outfit.name} · ${mannequin.label}`
               }} />
             </div>
-          ) : occasion === "Weekend" ? (
+          ) : (
             <p className="chat-visual-note">A mannequin preview isn’t available for this outfit yet.</p>
-          ) : null}
+          )}
 
           <div className="decision-outfit-list">
             {outfit.itemIds.map((id) => {

@@ -73,8 +73,19 @@ async function until(check, message) {
     }
     await dock.getByRole('link', { name: 'Decide', exact: true }).click();
     const decide = page.locator('#decision-lab');
-    await decide.getByLabel('Occasion').selectOption('Weekend');
-    await decide.getByRole('region', { name: /Weekend Ease.*Grey.*mannequin views/ }).waitFor();
+    const occasion = decide.getByLabel('Occasion');
+    const anchor = decide.getByLabel('Build around');
+    await decide.getByRole('region', { name: /City Minimal.*mannequin views/ }).waitFor();
+    for (const [label, look] of [
+      ['Office', 'City Minimal'], ['Weekend', 'Weekend Ease'], ['Dinner', 'City Minimal'],
+      ['Travel', 'Weekend Ease'], ['Date', 'City Minimal'], ['Casual', 'Weekend Ease']
+    ]) {
+      await occasion.selectOption(label);
+      const gallery = decide.getByRole('region', { name: new RegExp(look + '.*mannequin views') });
+      await gallery.getByRole('img', { name: /Front$/ }).waitFor();
+      assert.equal(await gallery.getByRole('button', { name: /Show .* mannequin view/ }).count(), 5);
+    }
+    await occasion.selectOption('Weekend');
     await decide.getByLabel('Build around').selectOption({ label: 'White Tee' });
     const layered = decide.getByRole('region', { name: /Layered Neutral.*mannequin views/ });
     await layered.getByRole('img', { name: /Front$/ }).waitFor();
@@ -90,8 +101,11 @@ async function until(check, message) {
     await utility.getByRole('img', { name: /Front$/ }).waitFor();
     await decide.getByLabel('Build around').selectOption({ label: 'Taupe Tee' });
     await decide.getByText('A mannequin preview isn’t available for this outfit yet.', { exact: true }).waitFor();
-    await decide.getByLabel('Occasion').selectOption('Office');
+    await occasion.selectOption('Office');
+    await decide.getByText('A mannequin preview isn’t available for this outfit yet.', { exact: true }).waitFor();
     assert.equal(await decide.locator('.decision-mannequin').count(), 0);
+    await anchor.selectOption({ label: 'Black Tee' });
+    await decide.getByRole('region', { name: /City Minimal.*mannequin views/ }).getByRole('img', { name: /Front$/ }).waitFor();
     // Scroll without using a dock link to check the live section indicator.
     await page.locator('#decision-lab').evaluate(e => e.scrollIntoView({ block: 'start' }));
     await until(() => dock.getByRole('link', { name: 'Decide', exact: true }).getAttribute('aria-current').then(x => x === 'location'), 'Scroll-based active state failed');
