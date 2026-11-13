@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-13 — Weekend mannequin preview
+
+- Show the existing five-view mannequin board for the selected Weekend recommendation in Decide, including Layered Neutral when building around White Tee.
+
 ## 2026-11-05 — My outfits
 
 - Add an account outfit library for saved outfits, favourites and dated wear history. Group repeated saves of the same garment set and let users remove saved or favourite entries independently. Retry a wear action with the same event ID if its result is uncertain.

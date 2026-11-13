@@ -1,6 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { MannequinGallery } from "@/components/MannequinGallery";
+import { recommendationColourVariants, type RecommendationColourVariantId } from "@/data/recommendation-colour-variants";
 import { shopSuggestions } from "@/data/shop-similar";
 import { styleProfile } from "@/data/style-profile";
 import type { WardrobeCatalog, WardrobeItem } from "@/types/catalog";
@@ -70,6 +72,14 @@ export function DecisionLab({ catalog }: { catalog: WardrobeCatalog }) {
       ?? styleProfile.outfits[0];
   }, [occasion, lockedItemId]);
 
+  const variants = occasion === "Weekend"
+    ? recommendationColourVariants[outfit.id as RecommendationColourVariantId]
+    : undefined;
+  // The grey board is closer to Weekend Ease's listed grey shirt and denim.
+  const mannequin = outfit.id === "weekend-ease"
+    ? variants?.find(variant => variant.id === "grey-light-grey")
+    : variants?.find(variant => variant.original);
+
   const suggestion = shopSuggestions.find((entry) => entry.id === productId) ?? shopSuggestions[0];
   const duplicate = suggestion ? duplicateRisk(catalog, suggestion.category, suggestion.colour) : 0;
   const price = suggestion ? parseEuro(suggestion.priceLabel) : null;
@@ -113,6 +123,20 @@ export function DecisionLab({ catalog }: { catalog: WardrobeCatalog }) {
               </select>
             </label>
           </div>
+
+          {mannequin ? (
+            <div className="decision-mannequin">
+              <MannequinGallery key={mannequin.asset} board={{
+                asset: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${mannequin.asset}`,
+                width: mannequin.width,
+                height: mannequin.height,
+                frames: mannequin.frames,
+                label: `${outfit.name} · ${mannequin.label}`
+              }} />
+            </div>
+          ) : occasion === "Weekend" ? (
+            <p className="chat-visual-note">A mannequin preview isn’t available for this outfit yet.</p>
+          ) : null}
 
           <div className="decision-outfit-list">
             {outfit.itemIds.map((id) => {

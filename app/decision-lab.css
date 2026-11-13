@@ -280,3 +280,12 @@
     text-align: left;
   }
 }
+
+.decision-mannequin {
+  max-width: 380px;
+  margin: 18px auto 0;
+}
+
+.decision-mannequin .chat-mannequin-thumbs button {
+  min-height: 44px;
+}
