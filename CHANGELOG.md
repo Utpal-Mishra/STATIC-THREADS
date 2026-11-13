@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-13 — Mannequin previews for every occasion
+
+- Extend the five-pose gallery in Decide to Office, Dinner, Travel, Date and Casual alongside Weekend. Show the board for the recommended outfit when available.
+
 ## 2026-11-13 — Weekend mannequin preview
 
 - Show the existing five-view mannequin board for the selected Weekend recommendation in Decide, including Layered Neutral when building around White Tee.
